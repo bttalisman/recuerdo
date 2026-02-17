@@ -1,0 +1,63 @@
+import Foundation
+import SwiftData
+
+struct ExampleSentence: Codable, Hashable {
+    let es: String
+    let en: String
+}
+
+@Model
+final class FlashCard {
+    @Attribute(.unique) var wordId: String
+    var sourceText: String
+    var targetText: String
+    var article: String?
+    var partOfSpeech: String?
+    var category: String?
+    var intrinsicDifficulty: Int
+    var deckId: String
+    var examples: [ExampleSentence]
+
+    // Spaced repetition state
+    var status: String // "new", "learning", "mastered"
+    var introducedDate: Date?
+    var easeFactor: Double
+    var interval: Int // days
+    var repetitionCount: Int
+    var nextReviewDate: Date?
+    var lastReviewDate: Date?
+    var totalReviews: Int
+    var totalCorrect: Int
+    var currentStreak: Int
+    var longestStreak: Int
+
+    @Relationship(deleteRule: .cascade, inverse: \ReviewRecord.card)
+    var reviewHistory: [ReviewRecord]
+
+    init(wordId: String, sourceText: String, targetText: String,
+         article: String?, partOfSpeech: String?, category: String?,
+         intrinsicDifficulty: Int, deckId: String,
+         examples: [ExampleSentence] = []) {
+        self.wordId = wordId
+        self.sourceText = sourceText
+        self.targetText = targetText
+        self.article = article
+        self.partOfSpeech = partOfSpeech
+        self.category = category
+        self.intrinsicDifficulty = intrinsicDifficulty
+        self.deckId = deckId
+        self.examples = examples
+        self.status = "new"
+        self.introducedDate = nil
+        self.easeFactor = 2.5
+        self.interval = 0
+        self.repetitionCount = 0
+        self.nextReviewDate = nil
+        self.lastReviewDate = nil
+        self.totalReviews = 0
+        self.totalCorrect = 0
+        self.currentStreak = 0
+        self.longestStreak = 0
+        self.reviewHistory = []
+    }
+}

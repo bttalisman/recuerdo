@@ -1,10 +1,3 @@
-//
-//  flashCardsApp.swift
-//  flashCards
-//
-//  Created by Benjamin Talisman on 2/16/26.
-//
-
 import SwiftUI
 import SwiftData
 
@@ -12,20 +5,39 @@ import SwiftData
 struct flashCardsApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            FlashCard.self,
+            ReviewRecord.self,
+            DeckMetadata.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {
             return try ModelContainer(for: schema, configurations: [modelConfiguration])
         } catch {
-            fatalError("Could not create ModelContainer: \(error)")
+            // Schema changed during development — delete the old store and retry
+            let urls = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
+            if let appSupport = urls.first {
+                let storeURL = appSupport.appendingPathComponent("default.store")
+                try? FileManager.default.removeItem(at: storeURL)
+                // Also remove WAL/SHM files
+                try? FileManager.default.removeItem(at: storeURL.appendingPathExtension("wal"))
+                try? FileManager.default.removeItem(at: storeURL.appendingPathExtension("shm"))
+            }
+            do {
+                return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            } catch {
+                fatalError("Could not create ModelContainer: \(error)")
+            }
         }
     }()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onAppear {
+                    DataLoader.seedIfNeeded(container: sharedModelContainer)
+                    NotificationManager.shared.requestAuthorization()
+                }
         }
         .modelContainer(sharedModelContainer)
     }
