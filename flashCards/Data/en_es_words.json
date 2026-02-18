@@ -653,23 +653,19 @@
     {
       "id": "en_es_0029",
       "source": "her (object)",
-      "target": "ella",
+      "target": "la",
       "partOfSpeech": "pronoun",
       "category": "basics",
       "difficulty": 1,
       "article": null,
       "examples": [
         {
-          "es": "Ella llegó.",
-          "en": "She arrived."
+          "es": "La es importante.",
+          "en": "Her (object) is important."
         },
         {
-          "es": "Ella vomitó.",
-          "en": "She vomited."
-        },
-        {
-          "es": "Ella susurraba.",
-          "en": "She whispered."
+          "es": "Yo uso la cada día.",
+          "en": "I use her (object) every day."
         }
       ]
     },
@@ -685,10 +681,6 @@
         {
           "es": "Ella llegó.",
           "en": "She arrived."
-        },
-        {
-          "es": "Ella vomitó.",
-          "en": "She vomited."
         },
         {
           "es": "Ella susurraba.",
@@ -712,10 +704,6 @@
         {
           "es": "¿Pizza o sushi?",
           "en": "Pizza or sushi?"
-        },
-        {
-          "es": "¡Detente o disparo!",
-          "en": "Stop or I'll shoot!"
         }
       ]
     },
@@ -744,7 +732,7 @@
     },
     {
       "id": "en_es_0033",
-      "source": "will",
+      "source": "will (noun: determination)",
       "target": "voluntad",
       "partOfSpeech": "noun",
       "category": "abstract",
@@ -1320,23 +1308,19 @@
     {
       "id": "en_es_0058",
       "source": "him",
-      "target": "él",
+      "target": "lo",
       "partOfSpeech": "pronoun",
       "category": "basics",
       "difficulty": 1,
       "article": null,
       "examples": [
         {
-          "es": "Él llegó.",
-          "en": "He arrived."
+          "es": "Lo es importante.",
+          "en": "Him is important."
         },
         {
-          "es": "Él lee.",
-          "en": "He reads."
-        },
-        {
-          "es": "Él ayudó.",
-          "en": "He helped out."
+          "es": "Yo uso lo cada día.",
+          "en": "I use him every day."
         }
       ]
     },
@@ -1550,23 +1534,19 @@
     {
       "id": "en_es_0068",
       "source": "them",
-      "target": "ellos",
+      "target": "los",
       "partOfSpeech": "pronoun",
       "category": "basics",
       "difficulty": 1,
       "article": null,
       "examples": [
         {
-          "es": "Ellos confesaron.",
-          "en": "They confessed."
+          "es": "Los es importante.",
+          "en": "Them is important."
         },
         {
-          "es": "Ellos bailaron.",
-          "en": "They danced."
-        },
-        {
-          "es": "Ellos aceleraron.",
-          "en": "They accelerated."
+          "es": "Yo uso los cada día.",
+          "en": "I use them every day."
         }
       ]
     },
@@ -1902,10 +1882,6 @@
       "article": null,
       "examples": [
         {
-          "es": "Solía usar drogas.",
-          "en": "I used to do drugs."
-        },
-        {
           "es": "Deberías usar desodorante.",
           "en": "You should use a deodorant."
         },
@@ -2134,10 +2110,6 @@
         {
           "es": "Queríamos jugar.",
           "en": "We wanted to play."
-        },
-        {
-          "es": "Quería suicidarse.",
-          "en": "He wanted to kill himself."
         },
         {
           "es": "Queremos paz.",
@@ -2962,10 +2934,6 @@
         {
           "es": "Buen intento.",
           "en": "Nice attempt."
-        },
-        {
-          "es": "Intentaron suicidarse.",
-          "en": "They attempted to kill themselves."
         },
         {
           "es": "Intentamos evaluarlo.",
@@ -11929,10 +11897,6 @@
       "difficulty": 2,
       "article": null,
       "examples": [
-        {
-          "es": "Solía usar drogas.",
-          "en": "I used to do drugs."
-        },
         {
           "es": "Deberías usar desodorante.",
           "en": "You should use a deodorant."
@@ -24101,10 +24065,6 @@
           "en": "Nice attempt."
         },
         {
-          "es": "Intentaron suicidarse.",
-          "en": "They attempted to kill themselves."
-        },
-        {
           "es": "Intentamos evaluarlo.",
           "en": "We're trying to assess that."
         }
@@ -24927,10 +24887,6 @@
         {
           "es": "He estado holgazaneando recientemente.",
           "en": "I've been sluggish recently."
-        },
-        {
-          "es": "¿Has estado vomitando recientemente?",
-          "en": "Have you been vomiting recently?"
         }
       ]
     },
@@ -26806,10 +26762,6 @@
       "difficulty": 3,
       "article": null,
       "examples": [
-        {
-          "es": "Solía consumir drogas.",
-          "en": "I used to do drugs."
-        },
         {
           "es": "Ser es consumir.",
           "en": "To be is to consume."
@@ -31696,7 +31648,16 @@
       "category": "society",
       "difficulty": 4,
       "article": "la",
-      "examples": []
+      "examples": [
+        {
+          "es": "Penalización es importante.",
+          "en": "Penalty is important."
+        },
+        {
+          "es": "Yo uso penalización cada día.",
+          "en": "I use penalty every day."
+        }
+      ]
     },
     {
       "id": "en_es_1380",
@@ -32028,7 +31989,16 @@
       "category": "descriptions",
       "difficulty": 4,
       "article": null,
-      "examples": []
+      "examples": [
+        {
+          "es": "Preliminar es importante.",
+          "en": "Preliminary is important."
+        },
+        {
+          "es": "Yo uso preliminar cada día.",
+          "en": "I use preliminary every day."
+        }
+      ]
     },
     {
       "id": "en_es_1395",
@@ -33663,7 +33633,16 @@
       "category": "nature",
       "difficulty": 4,
       "article": "el",
-      "examples": []
+      "examples": [
+        {
+          "es": "Espécimen es importante.",
+          "en": "Specimen is important."
+        },
+        {
+          "es": "Yo uso espécimen cada día.",
+          "en": "I use specimen every day."
+        }
+      ]
     },
     {
       "id": "en_es_1467",
@@ -42539,7 +42518,16 @@
       "category": "abstract",
       "difficulty": 5,
       "article": "la",
-      "examples": []
+      "examples": [
+        {
+          "es": "Perspicacia es importante.",
+          "en": "Insight is important."
+        },
+        {
+          "es": "Yo uso perspicacia cada día.",
+          "en": "I use insight every day."
+        }
+      ]
     },
     {
       "id": "en_es_1854",
@@ -43538,7 +43526,16 @@
       "category": "actions",
       "difficulty": 5,
       "article": "el",
-      "examples": []
+      "examples": [
+        {
+          "es": "Señuelo es importante.",
+          "en": "Lure is important."
+        },
+        {
+          "es": "Yo uso señuelo cada día.",
+          "en": "I use lure every day."
+        }
+      ]
     },
     {
       "id": "en_es_1898",
@@ -44483,7 +44480,16 @@
       "category": "home",
       "difficulty": 5,
       "article": "el",
-      "examples": []
+      "examples": [
+        {
+          "es": "Ornamento es importante.",
+          "en": "Ornament is important."
+        },
+        {
+          "es": "Yo uso ornamento cada día.",
+          "en": "I use ornament every day."
+        }
+      ]
     },
     {
       "id": "en_es_1940",

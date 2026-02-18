@@ -45,15 +45,15 @@ def draw_lightning_bolt(draw, cx, cy, scale, color_outer, color_inner):
     # Main bolt - gradient effect via two layers
     draw.polygon(poly, fill=color_outer)
 
-    # Inner highlight (slightly offset left, lighter)
+    # Inner highlight (center bright stripe)
     inner_points = [
-        (-0.07, -0.38),
-        (0.05, -0.38),
-        (-0.01, -0.10),
-        (0.08, -0.10),
-        (-0.02, 0.30),
+        (-0.06, -0.36),
+        (0.08, -0.36),
+        (0.00, -0.10),
+        (0.10, -0.10),
+        (-0.01, 0.32),
         (0.02, 0.08),
-        (-0.06, 0.08),
+        (-0.05, 0.08),
     ]
     inner_poly = [(cx + x * scale, cy + y * scale) for x, y in inner_points]
     draw.polygon(inner_poly, fill=color_inner)
@@ -154,7 +154,7 @@ def generate_icon(size):
     draw_lightning_bolt(
         draw, bolt_cx, bolt_cy, bolt_scale,
         color_outer=(255, 200, 30, 255),   # gold
-        color_inner=(255, 240, 120, 255),   # bright yellow
+        color_inner=(255, 255, 200, 255),   # bright near-white center
     )
 
     # Top edge highlight on bolt

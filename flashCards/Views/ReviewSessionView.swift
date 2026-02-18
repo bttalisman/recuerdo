@@ -160,13 +160,11 @@ struct ReviewSessionView: View {
             UINotificationFeedbackGenerator().notificationOccurred(.error)
         }
         ratingFlash = correct ? .correct : .incorrect
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.025) {
             var transaction = Transaction(animation: nil)
             transaction.disablesAnimations = true
             withTransaction(transaction) {
                 viewModel.submitRating(quality, context: modelContext)
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 ratingFlash = nil
             }
         }
