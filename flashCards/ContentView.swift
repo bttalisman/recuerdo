@@ -3,6 +3,7 @@ import SwiftData
 
 struct ContentView: View {
     @AppStorage("appearance") private var appearance: String = "system"
+    @State private var showStartup = true
 
     private var colorScheme: ColorScheme? {
         switch appearance {
@@ -13,6 +14,26 @@ struct ContentView: View {
     }
 
     var body: some View {
+        ZStack {
+            mainContent
+                .opacity(showStartup ? 0 : 1)
+
+            if showStartup {
+                StartupView()
+                    .transition(.opacity)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
+                            withAnimation(.easeOut(duration: 0.8)) {
+                                showStartup = false
+                            }
+                        }
+                    }
+            }
+        }
+        .preferredColorScheme(colorScheme)
+    }
+
+    private var mainContent: some View {
         TabView {
             StudySessionView()
                 .tabItem {

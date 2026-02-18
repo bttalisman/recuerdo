@@ -4,6 +4,7 @@ import SwiftData
 struct StudySessionView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var viewModel: StudySessionViewModel?
+    @State private var justUnlocked = false
     @Query(filter: #Predicate<DeckMetadata> { _ in true })
     private var decks: [DeckMetadata]
     @Query private var allCards: [FlashCard]
@@ -192,10 +193,11 @@ struct StudySessionView: View {
             ProgressView(value: progress)
                 .tint(progress >= 0.8 ? .green : .blue)
 
-            if shouldShowExpansionPrompt {
+            if shouldShowExpansionPrompt && !justUnlocked {
                 Button {
                     deck.unlockedWordCount = min(unlocked + nextBatch, deck.totalWords)
                     try? modelContext.save()
+                    justUnlocked = true
                 } label: {
                     HStack {
                         Image(systemName: "lock.open.fill")

@@ -2,14 +2,67 @@ import Foundation
 import UserNotifications
 import SwiftData
 
-class NotificationManager {
+class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     static let shared = NotificationManager()
     private let center = UNUserNotificationCenter.current()
 
-    private init() {}
+    private override init() {
+        super.init()
+        center.delegate = self
+    }
+
+    // Show notifications even when the app is in the foreground
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        willPresent notification: UNNotification,
+        withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
+    ) {
+        completionHandler([.banner, .sound, .badge])
+    }
 
     func requestAuthorization() {
-        center.requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in }
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            if let error {
+                print("[Notifications] Authorization error: \(error)")
+            }
+            print("[Notifications] Authorization granted: \(granted)")
+        }
+    }
+
+    func checkStatus(completion: @escaping (String) -> Void) {
+        center.getNotificationSettings { settings in
+            let status: String
+            switch settings.authorizationStatus {
+            case .authorized: status = "Authorized"
+            case .denied: status = "Denied"
+            case .provisional: status = "Provisional"
+            case .notDetermined: status = "Not Determined"
+            case .ephemeral: status = "Ephemeral"
+            @unknown default: status = "Unknown"
+            }
+            self.center.getPendingNotificationRequests { requests in
+                DispatchQueue.main.async {
+                    completion("\(status) — \(requests.count) pending")
+                }
+            }
+        }
+    }
+
+    func sendTestNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = "Daily Flashcards"
+        content.body = "This is a test notification. Your daily words are waiting!"
+        content.sound = .default
+
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+        let request = UNNotificationRequest(identifier: "test_\(UUID())", content: content, trigger: trigger)
+        center.add(request) { error in
+            if let error {
+                print("[Notifications] Test notification error: \(error)")
+            } else {
+                print("[Notifications] Test notification scheduled in 3 seconds")
+            }
+        }
     }
 
     func updateBadgeCount(context: ModelContext) {
@@ -36,9 +89,15 @@ class NotificationManager {
         for dayOffset in 0..<14 {
             guard scheduled < maxNotifications else { break }
             let dueOnDay = estimatedDueCount(cards: allCards, daysFromNow: dayOffset)
+            // Skip today if it's already past 9 AM — schedule for tomorrow onwards
+            if dayOffset == 0 {
+                let hour = Calendar.current.component(.hour, from: Date())
+                if hour >= 9 { continue }
+            }
             scheduleDailyReminder(dayOffset: dayOffset, badgeCount: dueOnDay)
             scheduled += 1
         }
+        print("[Notifications] Scheduled \(scheduled) reminders")
     }
 
     private func estimatedDueCount(cards: [FlashCard], daysFromNow: Int) -> Int {

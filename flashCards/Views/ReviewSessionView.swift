@@ -34,9 +34,6 @@ struct ReviewSessionView: View {
                         .foregroundStyle(.secondary)
                 }
             }
-            ToolbarItem(placement: .cancellationAction) {
-                Button("Done") { onDismiss() }
-            }
         }
     }
 
@@ -103,7 +100,7 @@ struct ReviewSessionView: View {
 
     private var learnButtons: some View {
         HStack(spacing: 16) {
-            if viewModel.isFlipped {
+            if viewModel.isFlipped && viewModel.currentCardIndex < viewModel.totalSessionCards - 1 {
                 Button {
                     viewModel.advanceToNextCard(context: modelContext)
                 } label: {

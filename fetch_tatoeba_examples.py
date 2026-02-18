@@ -94,10 +94,12 @@ def score_sentence(text, word):
     elif length > 30:
         score -= 5
 
-    # Bonus if the word appears as a whole word (not just substring)
+    # Strong preference for sentences containing the exact word
     pattern = r'\b' + re.escape(word.lower()) + r'\b'
     if re.search(pattern, text.lower()):
-        score += 5
+        score += 20
+    else:
+        score -= 30
 
     # Penalize sentences with unusual characters or likely metadata
     if any(c in text for c in ['[', ']', '{', '}', '<', '>']):
@@ -170,11 +172,12 @@ def extract_examples(api_response, target_word):
             "_score": s
         })
 
-    # Sort by score descending, take top N
+    # Sort by score descending, take top N (only positive scores)
     candidates.sort(key=lambda x: x["_score"], reverse=True)
     examples = []
     for c in candidates[:MAX_EXAMPLES]:
-        examples.append({"es": c["es"], "en": c["en"]})
+        if c["_score"] > 0:
+            examples.append({"es": c["es"], "en": c["en"]})
     return examples
 
 
