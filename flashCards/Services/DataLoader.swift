@@ -65,7 +65,7 @@ struct DataLoader {
                         existingCard.article = word.article
                         existingCard.partOfSpeech = word.partOfSpeech
                         existingCard.category = word.category
-                        existingCard.intrinsicDifficulty = word.difficulty
+                        existingCard.frequencyRank = word.difficulty
                         existingCard.wordIndex = index
                         existingCard.examples = word.examples ?? []
                     } else {
@@ -76,7 +76,7 @@ struct DataLoader {
                             article: word.article,
                             partOfSpeech: word.partOfSpeech,
                             category: word.category,
-                            intrinsicDifficulty: word.difficulty,
+                            frequencyRank: word.difficulty,
                             deckId: deck.deckId,
                             wordIndex: index,
                             examples: word.examples ?? []
@@ -106,7 +106,7 @@ struct DataLoader {
                         article: word.article,
                         partOfSpeech: word.partOfSpeech,
                         category: word.category,
-                        intrinsicDifficulty: word.difficulty,
+                        frequencyRank: word.difficulty,
                         deckId: deck.deckId,
                         wordIndex: index,
                         examples: word.examples ?? []

@@ -56,13 +56,12 @@ class StudySessionViewModel {
     func loadLearnSession(deckId: String, scheduled: Bool, accumulatedCount: Int, context: ModelContext) {
         mode = .learn
 
-        // Read card direction from deck metadata
+        // Study tab always shows English -> Spanish
+        cardDirection = "source_first"
+
         let metaDescriptor = FetchDescriptor<DeckMetadata>(
             predicate: #Predicate { $0.deckId == deckId }
         )
-        if let deckMeta = try? context.fetch(metaDescriptor).first {
-            cardDirection = deckMeta.cardDirection
-        }
 
         let newCards: [FlashCard]
         if scheduled {

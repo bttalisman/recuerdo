@@ -2,10 +2,36 @@ import SwiftUI
 import SwiftData
 import Charts
 
+enum TrendRange: String, CaseIterable {
+    case week = "1W"
+    case month = "1M"
+    case threeMonths = "3M"
+    case all = "All"
+
+    var days: Int? {
+        switch self {
+        case .week: return 7
+        case .month: return 30
+        case .threeMonths: return 90
+        case .all: return nil
+        }
+    }
+
+    var rollingWindow: Int {
+        switch self {
+        case .week: return 3
+        case .month: return 7
+        case .threeMonths: return 14
+        case .all: return 21
+        }
+    }
+}
+
 struct DataAnalysisView: View {
     @Query(sort: \ReviewRecord.reviewDate)
     private var allReviews: [ReviewRecord]
     @Query private var allCards: [FlashCard]
+    @State private var trendRange: TrendRange = .month
 
     var body: some View {
         ScrollView {
@@ -25,7 +51,7 @@ struct DataAnalysisView: View {
         .navigationBarTitleDisplayMode(.large)
     }
 
-    // MARK: - 1. Accuracy Trend (Rolling 7-Day Average)
+    // MARK: - 1. Accuracy Trend
 
     private var dailyAccuracy: [(date: Date, accuracy: Double, count: Int)] {
         let calendar = Calendar.current
@@ -44,16 +70,23 @@ struct DataAnalysisView: View {
         }.sorted { $0.date < $1.date }
     }
 
+    private var filteredDailyAccuracy: [(date: Date, accuracy: Double, count: Int)] {
+        guard let rangeDays = trendRange.days else { return dailyAccuracy }
+        let cutoff = Calendar.current.startOfDay(for: Calendar.current.date(byAdding: .day, value: -rangeDays, to: Date()) ?? Date())
+        return dailyAccuracy.filter { $0.date >= cutoff }
+    }
+
     private var rollingAverage: [(date: Date, accuracy: Double)] {
-        let daily = dailyAccuracy
+        let daily = filteredDailyAccuracy
         guard daily.count >= 2 else { return daily.map { ($0.date, $0.accuracy) } }
 
+        let window = trendRange.rollingWindow
         var result: [(date: Date, accuracy: Double)] = []
         for i in 0..<daily.count {
-            let windowStart = max(0, i - 6)
-            let window = daily[windowStart...i]
-            let totalCorrect = window.reduce(0) { $0 + Int(Double($1.count) * $1.accuracy) }
-            let totalReviews = window.reduce(0) { $0 + $1.count }
+            let windowStart = max(0, i - (window - 1))
+            let slice = daily[windowStart...i]
+            let totalCorrect = slice.reduce(0) { $0 + Int(Double($1.count) * $1.accuracy) }
+            let totalReviews = slice.reduce(0) { $0 + $1.count }
             let avg = totalReviews > 0 ? Double(totalCorrect) / Double(totalReviews) : 0
             result.append((date: daily[i].date, accuracy: avg))
         }
@@ -62,11 +95,18 @@ struct DataAnalysisView: View {
 
     private var accuracyTrendSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Accuracy Trend")
-                .font(.headline)
-            Text("7-day rolling average")
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            HStack {
+                Text("Accuracy Trend")
+                    .font(.headline)
+                Spacer()
+                Picker("Range", selection: $trendRange) {
+                    ForEach(TrendRange.allCases, id: \.self) { range in
+                        Text(range.rawValue).tag(range)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .frame(width: 200)
+            }
 
             if rollingAverage.count < 2 {
                 Text("Not enough data yet. Keep reviewing!")

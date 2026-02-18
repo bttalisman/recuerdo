@@ -20,7 +20,7 @@ import urllib.error
 WORDS_FILE = os.path.join(os.path.dirname(__file__), "flashCards", "Data", "en_es_words.json")
 CACHE_FILE = os.path.join(os.path.dirname(__file__), "tatoeba_cache.json")
 API_BASE = "https://tatoeba.org/api_v0/search"
-RATE_LIMIT_SECONDS = 1.5
+RATE_LIMIT_SECONDS = 3
 MAX_EXAMPLES = 3
 MAX_API_RESULTS = 20  # request up to 20 sentences per word
 
@@ -61,9 +61,10 @@ def fetch_tatoeba(word, retries=3):
             req = urllib.request.Request(url, headers={"User-Agent": "FlashCardApp/1.0"})
             with urllib.request.urlopen(req, timeout=15) as resp:
                 return json.loads(resp.read().decode("utf-8"))
-        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as e:
+        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError,
+                ConnectionResetError, OSError) as e:
             if attempt < retries - 1:
-                wait = (attempt + 1) * 3
+                wait = (attempt + 1) * 10
                 print(f"  Retry {attempt + 1} for '{word}' after {wait}s: {e}")
                 time.sleep(wait)
             else:
@@ -72,22 +73,26 @@ def fetch_tatoeba(word, retries=3):
 
 
 def score_sentence(text, word):
-    """Score a sentence for quality as an example. Higher is better."""
+    """Score a sentence for quality as an example. Higher is better.
+    Returns None to reject a sentence entirely."""
     words_in_sentence = text.split()
     length = len(words_in_sentence)
+
+    # Hard floor: skip 1-2 word sentences (filler like "Cociné.", "Llama.")
+    if length < 3:
+        return None
+
     score = 0
 
     # Prefer sentences of 4-20 words
     if 4 <= length <= 20:
         score += 10
-    elif 3 <= length <= 25:
+    elif length == 3:
+        score += 3
+    elif length <= 25:
         score += 5
     elif length > 30:
         score -= 5
-
-    # Penalize very short sentences (less context)
-    if length < 3:
-        score -= 10
 
     # Bonus if the word appears as a whole word (not just substring)
     pattern = r'\b' + re.escape(word.lower()) + r'\b'
@@ -145,9 +150,19 @@ def extract_examples(api_response, target_word):
         eng_text = eng_texts[0][0]
 
         s = score_sentence(spa_text, target_word)
+        if s is None:
+            continue  # rejected by hard floor (too short)
+
         # Bonus for direct translation
         if eng_texts[0][1]:
             s += 3
+        # Bonus for having audio (indicates vetted, higher-quality sentence)
+        if result.get("audios"):
+            s += 5
+        # Bonus for community-verified correctness
+        correctness = result.get("correctness", 0) or 0
+        if correctness > 0:
+            s += correctness * 8
 
         candidates.append({
             "es": spa_text,
@@ -163,7 +178,25 @@ def extract_examples(api_response, target_word):
     return examples
 
 
+def parse_args():
+    import argparse
+    parser = argparse.ArgumentParser(description="Fetch Tatoeba examples for flashcard words.")
+    parser.add_argument("--sample", type=int, metavar="N",
+                        help="Re-fetch only N random words (clears them from cache first)")
+    parser.add_argument("--range", metavar="START:END",
+                        help="Re-fetch word indices START to END, e.g. 0:50")
+    parser.add_argument("--refetch-all", action="store_true",
+                        help="Clear entire cache and re-fetch everything")
+    parser.add_argument("--dry-run", action="store_true",
+                        help="Show what would be fetched without actually calling the API")
+    parser.add_argument("--no-merge", action="store_true",
+                        help="Fetch only, don't merge into en_es_words.json")
+    return parser.parse_args()
+
+
 def main():
+    args = parse_args()
+
     print("Loading word list...")
     deck = load_json(WORDS_FILE)
     words = deck["words"]
@@ -172,14 +205,36 @@ def main():
     cache = load_cache()
     print(f"  {len(cache)} words already cached")
 
-    # Determine which words still need fetching
-    to_fetch = []
-    for w in words:
-        word_id = w["id"]
-        if word_id not in cache:
-            to_fetch.append(w)
+    # Determine which words to fetch
+    if args.refetch_all:
+        print("  Clearing entire cache...")
+        cache = {}
+        to_fetch = list(words)
+    elif args.sample:
+        import random
+        n = min(args.sample, len(words))
+        to_fetch = random.sample(words, n)
+        for w in to_fetch:
+            cache.pop(w["id"], None)
+        print(f"  Re-fetching {n} random words")
+    elif args.range:
+        start, end = args.range.split(":")
+        start, end = int(start), int(end)
+        to_fetch = words[start:end]
+        for w in to_fetch:
+            cache.pop(w["id"], None)
+        print(f"  Re-fetching words [{start}:{end}] ({len(to_fetch)} words)")
+    else:
+        to_fetch = [w for w in words if w["id"] not in cache]
 
     print(f"  {len(to_fetch)} words to fetch\n")
+
+    if args.dry_run:
+        for i, w in enumerate(to_fetch[:20]):
+            print(f"  Would fetch: {w['target']} ({w['source']})")
+        if len(to_fetch) > 20:
+            print(f"  ... and {len(to_fetch) - 20} more")
+        return
 
     if not to_fetch:
         print("All words cached. Merging into JSON...")
@@ -207,6 +262,10 @@ def main():
 
         save_cache(cache)
         print(f"\nDone fetching. {len(cache)} words cached total.")
+
+    if args.no_merge:
+        print("\nSkipping merge (--no-merge).")
+        return
 
     # Merge examples into the word list
     print("\nMerging examples into en_es_words.json...")

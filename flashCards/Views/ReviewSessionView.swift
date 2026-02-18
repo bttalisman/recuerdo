@@ -12,6 +12,7 @@ struct ReviewSessionView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var decks: [DeckMetadata]
     @State private var ratingFlash: RatingFlash?
+    private let hapticGenerator = UINotificationFeedbackGenerator()
 
     var body: some View {
         Group {
@@ -23,6 +24,7 @@ struct ReviewSessionView: View {
                 emptyStateView
             }
         }
+        .onAppear { hapticGenerator.prepare() }
         .navigationTitle(title)
         .toolbar {
             if !viewModel.sessionCards.isEmpty && !viewModel.isSessionComplete {
@@ -51,6 +53,7 @@ struct ReviewSessionView: View {
                 targetLanguage: deckMeta?.targetLanguage ?? "Spanish",
                 status: card.status,
                 article: card.article,
+                partOfSpeech: card.partOfSpeech,
                 showTargetFirst: viewModel.effectiveShowTargetFirst,
                 sourceLanguageCode: deckMeta?.sourceLanguageCode ?? "en",
                 targetLanguageCode: deckMeta?.targetLanguageCode ?? "es",
@@ -154,13 +157,10 @@ struct ReviewSessionView: View {
 
     private func submitWithFeedback(quality: Int) {
         let correct = quality >= 3
-        if correct {
-            UINotificationFeedbackGenerator().notificationOccurred(.success)
-        } else {
-            UINotificationFeedbackGenerator().notificationOccurred(.error)
-        }
+        hapticGenerator.notificationOccurred(correct ? .success : .error)
+        hapticGenerator.prepare()
         ratingFlash = correct ? .correct : .incorrect
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.025) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.035) {
             var transaction = Transaction(animation: nil)
             transaction.disablesAnimations = true
             withTransaction(transaction) {

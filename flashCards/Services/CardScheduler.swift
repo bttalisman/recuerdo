@@ -41,7 +41,7 @@ struct CardScheduler {
         return session
     }
 
-    /// Free new words: return up to `limit` new cards from the unlocked pool, easiest first
+    /// Free new words: return up to `limit` new cards from the unlocked pool, in curated order
     static func buildFreeNewWordsSession(deckId: String, limit: Int, context: ModelContext) -> [FlashCard] {
         guard limit > 0 else { return [] }
 
@@ -55,7 +55,7 @@ struct CardScheduler {
             predicate: #Predicate {
                 $0.deckId == deckId && $0.status == "new" && $0.wordIndex < maxIndex
             },
-            sortBy: [SortDescriptor(\.intrinsicDifficulty)]
+            sortBy: [SortDescriptor(\.wordIndex)]
         )
         descriptor.fetchLimit = limit
         return (try? context.fetch(descriptor)) ?? []
@@ -89,7 +89,7 @@ struct CardScheduler {
             predicate: #Predicate {
                 $0.deckId == deckId && $0.status == "new" && $0.wordIndex < maxIndex
             },
-            sortBy: [SortDescriptor(\.intrinsicDifficulty)]
+            sortBy: [SortDescriptor(\.wordIndex)]
         )
         newDescriptor.fetchLimit = remaining
 

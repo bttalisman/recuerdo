@@ -7,6 +7,7 @@ struct FlashCardView: View {
     let targetLanguage: String
     let status: String
     var article: String? = nil
+    var partOfSpeech: String? = nil
     var showTargetFirst: Bool = false
     var sourceLanguageCode: String = "en"
     var targetLanguageCode: String = "es"
@@ -35,12 +36,12 @@ struct FlashCardView: View {
     var body: some View {
         ZStack {
             // Front
-            cardFace(text: frontText, article: frontArticle, language: frontLanguage, languageCode: frontLanguageCode, isFront: true)
+            cardFace(text: frontText, article: frontArticle, language: frontLanguage, languageCode: frontLanguageCode, isFront: true, isTargetLanguage: showTargetFirst)
                 .opacity(isFlipped ? 0 : 1)
                 .rotation3DEffect(.degrees(isFlipped ? 180 : 0), axis: (x: 0, y: 1, z: 0))
 
             // Back
-            cardFace(text: backText, article: backArticle, language: backLanguage, languageCode: backLanguageCode, isFront: false)
+            cardFace(text: backText, article: backArticle, language: backLanguage, languageCode: backLanguageCode, isFront: false, isTargetLanguage: !showTargetFirst)
                 .opacity(isFlipped ? 1 : 0)
                 .rotation3DEffect(.degrees(isFlipped ? 0 : -180), axis: (x: 0, y: 1, z: 0))
         }
@@ -52,12 +53,19 @@ struct FlashCardView: View {
     }
 
     @ViewBuilder
-    private func cardFace(text: String, article: String?, language: String, languageCode: String, isFront: Bool) -> some View {
+    private func cardFace(text: String, article: String?, language: String, languageCode: String, isFront: Bool, isTargetLanguage: Bool) -> some View {
         VStack(spacing: 16) {
-            Text(language.uppercased())
-                .font(.caption)
-                .fontWeight(.semibold)
-                .foregroundStyle(.secondary)
+            VStack(spacing: 2) {
+                Text(language.uppercased())
+                    .font(.caption)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(.secondary)
+                if let partOfSpeech, !partOfSpeech.isEmpty {
+                    Text(partOfSpeech)
+                        .font(.caption2)
+                        .foregroundStyle(.tertiary)
+                }
+            }
 
             VStack(spacing: 4) {
                 if let article, !article.isEmpty {
@@ -76,7 +84,7 @@ struct FlashCardView: View {
                     Text("Tap to reveal")
                         .font(.caption2)
                         .foregroundStyle(.tertiary)
-                } else {
+                } else if isTargetLanguage {
                     Button {
                         PronunciationManager.shared.speak(
                             buildSpeechText(text, article: article),

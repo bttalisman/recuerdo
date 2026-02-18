@@ -14,7 +14,7 @@ final class FlashCard {
     var article: String?
     var partOfSpeech: String?
     var category: String?
-    var intrinsicDifficulty: Int
+    var frequencyRank: Int
     var deckId: String
     var wordIndex: Int
     var examples: [ExampleSentence]
@@ -37,7 +37,7 @@ final class FlashCard {
 
     init(wordId: String, sourceText: String, targetText: String,
          article: String?, partOfSpeech: String?, category: String?,
-         intrinsicDifficulty: Int, deckId: String,
+         frequencyRank: Int, deckId: String,
          wordIndex: Int = 0, examples: [ExampleSentence] = []) {
         self.wordId = wordId
         self.sourceText = sourceText
@@ -45,7 +45,7 @@ final class FlashCard {
         self.article = article
         self.partOfSpeech = partOfSpeech
         self.category = category
-        self.intrinsicDifficulty = intrinsicDifficulty
+        self.frequencyRank = frequencyRank
         self.deckId = deckId
         self.wordIndex = wordIndex
         self.examples = examples

@@ -157,10 +157,11 @@ struct WordListView: View {
                     }
 
                     if showReviewSetup && !filteredCards.isEmpty {
+                        let effectiveCount = min(reviewCount, filteredCards.count)
                         Section {
-                            Stepper("\(reviewCount) cards", value: $reviewCount, in: 1...max(filteredCards.count, 1))
+                            Stepper("\(effectiveCount) cards", value: $reviewCount, in: 1...max(filteredCards.count, 1))
                             Button {
-                                let cards = Array(filteredCards.prefix(reviewCount))
+                                let cards = Array(filteredCards.prefix(effectiveCount))
                                 let vm = StudySessionViewModel()
                                 vm.loadCustomReviewSession(cards: cards, cardDirection: cardDirection)
                                 viewModel = vm
@@ -172,7 +173,7 @@ struct WordListView: View {
                             .buttonStyle(.borderedProminent)
                             .listRowBackground(Color.clear)
                         } header: {
-                            Text("Review top \(reviewCount) from this list")
+                            Text("Review top \(effectiveCount) from this list")
                         }
                     }
 
