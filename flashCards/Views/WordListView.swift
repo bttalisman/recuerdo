@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import UIKit
 
 enum WordSortOption: String, CaseIterable {
     case dateNewest = "Newest"
@@ -20,7 +21,8 @@ struct WordListView: View {
     private var learnedCards: [FlashCard]
     @Query private var decks: [DeckMetadata]
 
-    private var showTargetFirst: Bool { decks.first?.showTargetFirst ?? false }
+    private var cardDirection: String { decks.first?.cardDirection ?? "source_first" }
+    private var showTargetFirst: Bool { cardDirection == "target_first" }
 
     @Environment(\.modelContext) private var modelContext
     @State private var searchText = ""
@@ -29,6 +31,7 @@ struct WordListView: View {
     @State private var reviewCount: Int = 10
     @State private var showReviewSetup = false
     @State private var viewModel: StudySessionViewModel?
+    @State private var ratingFlash: RatingFlash?
 
     private var filteredCards: [FlashCard] {
         var cards = learnedCards
@@ -161,7 +164,7 @@ struct WordListView: View {
                             Button {
                                 let cards = Array(filteredCards.prefix(reviewCount))
                                 let vm = StudySessionViewModel()
-                                vm.loadCustomReviewSession(cards: cards, showTargetFirst: showTargetFirst)
+                                vm.loadCustomReviewSession(cards: cards, cardDirection: cardDirection)
                                 viewModel = vm
                                 showReviewSetup = false
                             } label: {
@@ -228,8 +231,7 @@ struct WordListView: View {
                 .padding()
             } else if let card = viewModel.currentCard {
                 let deckMeta = decks.first
-                VStack(spacing: 24) {
-                    Spacer()
+                VStack(spacing: 0) {
                     FlashCardView(
                         sourceText: card.sourceText,
                         targetText: card.targetText,
@@ -237,7 +239,7 @@ struct WordListView: View {
                         targetLanguage: deckMeta?.targetLanguage ?? "Spanish",
                         status: card.status,
                         article: card.article,
-                        showTargetFirst: showTargetFirst,
+                        showTargetFirst: viewModel.effectiveShowTargetFirst,
                         sourceLanguageCode: deckMeta?.sourceLanguageCode ?? "en",
                         targetLanguageCode: deckMeta?.targetLanguageCode ?? "es",
                         examples: card.examples,
@@ -248,42 +250,41 @@ struct WordListView: View {
                     )
                     .id(card.wordId)
                     .frame(height: 300)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(ratingFlash == .correct ? Color.green.opacity(0.25) : ratingFlash == .incorrect ? Color.red.opacity(0.25) : Color.clear)
+                            .allowsHitTesting(false)
+                    )
                     .padding(.horizontal)
+                    .padding(.top, 16)
+
                     Spacer()
 
                     VStack(spacing: 12) {
-                        if viewModel.isFlipped {
-                            HStack(spacing: 16) {
-                                Button {
-                                    var transaction = Transaction(animation: nil)
-                                    transaction.disablesAnimations = true
-                                    withTransaction(transaction) {
-                                        viewModel.submitRating(1, context: modelContext)
-                                    }
-                                } label: {
-                                    Label("Nope", systemImage: "xmark.circle.fill")
-                                        .frame(maxWidth: .infinity)
-                                        .padding(.vertical, 14)
-                                }
-                                .buttonStyle(.borderedProminent)
-                                .tint(.red)
-
-                                Button {
-                                    var transaction = Transaction(animation: nil)
-                                    transaction.disablesAnimations = true
-                                    withTransaction(transaction) {
-                                        viewModel.submitRating(4, context: modelContext)
-                                    }
-                                } label: {
-                                    Label("Got it", systemImage: "checkmark.circle.fill")
-                                        .frame(maxWidth: .infinity)
-                                        .padding(.vertical, 14)
-                                }
-                                .buttonStyle(.borderedProminent)
-                                .tint(.green)
+                        HStack(spacing: 16) {
+                            Button {
+                                submitWithFeedback(quality: 1, viewModel: viewModel)
+                            } label: {
+                                Label("Nope", systemImage: "xmark.circle.fill")
+                                    .font(.body.bold())
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 14)
                             }
-                            .padding(.horizontal)
+                            .buttonStyle(GlowButtonStyle(baseColor: .red))
+
+                            Button {
+                                submitWithFeedback(quality: 4, viewModel: viewModel)
+                            } label: {
+                                Label("Got it", systemImage: "checkmark.circle.fill")
+                                    .font(.body.bold())
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 14)
+                            }
+                            .buttonStyle(GlowButtonStyle(baseColor: .green))
                         }
+                        .padding(.horizontal)
+                        .opacity(viewModel.isFlipped ? 1 : 0)
+                        .allowsHitTesting(viewModel.isFlipped)
 
                         Button {
                             viewModel.isSessionComplete = true
@@ -296,7 +297,6 @@ struct WordListView: View {
                         .tint(.green)
                         .padding(.horizontal)
                     }
-                    .animation(.easeInOut(duration: 0.3), value: viewModel.isFlipped)
                 }
                 .padding()
             }
@@ -310,6 +310,26 @@ struct WordListView: View {
             }
             ToolbarItem(placement: .cancellationAction) {
                 Button("Done") { self.viewModel = nil }
+            }
+        }
+    }
+
+    private func submitWithFeedback(quality: Int, viewModel: StudySessionViewModel) {
+        let correct = quality >= 3
+        if correct {
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
+        } else {
+            UINotificationFeedbackGenerator().notificationOccurred(.error)
+        }
+        ratingFlash = correct ? .correct : .incorrect
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            var transaction = Transaction(animation: nil)
+            transaction.disablesAnimations = true
+            withTransaction(transaction) {
+                viewModel.submitRating(quality, context: modelContext)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                ratingFlash = nil
             }
         }
     }

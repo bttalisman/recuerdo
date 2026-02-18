@@ -19,8 +19,16 @@ class StudySessionViewModel {
     var correctCount: Int = 0
     var wordsLearned: Int = 0
     var cardShownAt: Date = Date()
-    var isScheduledReview: Bool = false
-    var showTargetFirst: Bool = false
+    var cardDirection: String = "source_first" // "source_first", "target_first", "mixed"
+    private var mixedDirections: [String: Bool] = [:]
+
+    var effectiveShowTargetFirst: Bool {
+        guard let card = currentCard else { return cardDirection == "target_first" }
+        if cardDirection == "mixed" {
+            return mixedDirections[card.wordId] ?? false
+        }
+        return cardDirection == "target_first"
+    }
 
     var currentCard: FlashCard? {
         guard currentCardIndex < sessionCards.count else { return nil }
@@ -45,9 +53,28 @@ class StudySessionViewModel {
 
     // MARK: - Learn Mode
 
-    func loadLearnSession(deckId: String, context: ModelContext) {
+    func loadLearnSession(deckId: String, scheduled: Bool, accumulatedCount: Int, context: ModelContext) {
         mode = .learn
-        let newCards = CardScheduler.getNewCardsForToday(deckId: deckId, context: context)
+
+        // Read card direction from deck metadata
+        let metaDescriptor = FetchDescriptor<DeckMetadata>(
+            predicate: #Predicate { $0.deckId == deckId }
+        )
+        if let deckMeta = try? context.fetch(metaDescriptor).first {
+            cardDirection = deckMeta.cardDirection
+        }
+
+        let newCards: [FlashCard]
+        if scheduled {
+            newCards = CardScheduler.buildFreeNewWordsSession(deckId: deckId, limit: accumulatedCount, context: context)
+            // Drain accumulation: reset the drain date
+            if let deckMeta = try? context.fetch(metaDescriptor).first {
+                deckMeta.lastNewWordsDrainDate = Date()
+                try? context.save()
+            }
+        } else {
+            newCards = CardScheduler.buildFreeNewWordsSession(deckId: deckId, limit: accumulatedCount, context: context)
+        }
 
         wordsLearned = 0
         sessionCards = newCards.shuffled()
@@ -56,6 +83,7 @@ class StudySessionViewModel {
         isFlipped = false
         isSessionComplete = newCards.isEmpty
         cardShownAt = Date()
+        generateMixedDirections()
 
         introduceCurrentCard(context: context)
     }
@@ -71,8 +99,9 @@ class StudySessionViewModel {
         introduceCurrentCard(context: context)
     }
 
-    func endLearnSession() {
+    func endLearnSession(context: ModelContext) {
         isSessionComplete = true
+        NotificationManager.shared.rescheduleNotifications(context: context)
     }
 
     private func introduceCurrentCard(context: ModelContext) {
@@ -86,34 +115,22 @@ class StudySessionViewModel {
 
     // MARK: - Review Mode
 
-    func loadCustomReviewSession(cards: [FlashCard], showTargetFirst: Bool) {
+    func loadCustomReviewSession(cards: [FlashCard], cardDirection: String) {
         self.mode = .review
-        self.isScheduledReview = false
-        self.showTargetFirst = showTargetFirst
+        self.cardDirection = cardDirection
         sessionCards = cards
         totalSessionCards = cards.count
         currentCardIndex = 0
         isFlipped = false
         isSessionComplete = cards.isEmpty
         cardShownAt = Date()
+        generateMixedDirections()
     }
 
-    func loadReviewSession(deckId: String, scheduled: Bool, accumulatedCount: Int, showTargetFirst: Bool, context: ModelContext) {
+    func loadReviewSession(deckId: String, cardDirection: String, context: ModelContext) {
         self.mode = .review
-        self.isScheduledReview = scheduled
-        self.showTargetFirst = showTargetFirst
-        let cards: [FlashCard]
-        if scheduled {
-            cards = CardScheduler.buildScheduledReviewSession(deckId: deckId, context: context)
-        } else {
-            cards = CardScheduler.buildFreeReviewSession(deckId: deckId, limit: accumulatedCount, context: context)
-            // Drain accumulation: reset the drain date
-            let metaDescriptor = FetchDescriptor<DeckMetadata>()
-            if let deckMeta = try? context.fetch(metaDescriptor).first {
-                deckMeta.lastReviewDrainDate = Date()
-                try? context.save()
-            }
-        }
+        self.cardDirection = cardDirection
+        let cards = CardScheduler.buildReviewSession(deckId: deckId, context: context)
 
         sessionCards = cards
         totalSessionCards = cards.count
@@ -121,6 +138,7 @@ class StudySessionViewModel {
         isFlipped = false
         isSessionComplete = cards.isEmpty
         cardShownAt = Date()
+        generateMixedDirections()
     }
 
     func submitRating(_ quality: Int, context: ModelContext) {
@@ -166,16 +184,14 @@ class StudySessionViewModel {
             newInterval: result.newInterval,
             previousEaseFactor: previousEF,
             newEaseFactor: result.newEaseFactor,
-            studyMode: isScheduledReview ? "scheduled_review" : "free_review",
+            studyMode: "review",
             responseTimeSeconds: responseTime,
-            cardDirection: showTargetFirst ? "target_to_source" : "source_to_target"
+            cardDirection: effectiveShowTargetFirst ? "target_to_source" : "source_to_target"
         )
         context.insert(record)
 
         totalReviewed += 1
         if wasCorrect { correctCount += 1 }
-
-        try? context.save()
 
         if wasCorrect {
             sessionCards.remove(at: currentCardIndex)
@@ -193,16 +209,17 @@ class StudySessionViewModel {
 
         if sessionCards.isEmpty {
             isSessionComplete = true
-
-            // Record review completion time if in scheduled mode
-            let metaDescriptor = FetchDescriptor<DeckMetadata>()
-            if let deckMeta = try? context.fetch(metaDescriptor).first,
-               deckMeta.reviewMode == "scheduled" {
-                deckMeta.lastScheduledReviewDate = Date()
-                try? context.save()
-            }
-
+            try? context.save()
             NotificationManager.shared.rescheduleNotifications(context: context)
+        }
+    }
+
+    private func generateMixedDirections() {
+        mixedDirections = [:]
+        if cardDirection == "mixed" {
+            for card in sessionCards {
+                mixedDirections[card.wordId] = Bool.random()
+            }
         }
     }
 }

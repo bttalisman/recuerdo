@@ -71,36 +71,38 @@ struct FlashCardView: View {
                     .minimumScaleFactor(0.5)
             }
 
-            if isFront {
-                Text("Tap to reveal")
-                    .font(.caption2)
-                    .foregroundStyle(.tertiary)
-            } else {
-                Button {
-                    PronunciationManager.shared.speak(
-                        buildSpeechText(text, article: article),
-                        languageCode: languageCode
-                    )
-                } label: {
-                    Image(systemName: "speaker.wave.2.fill")
-                        .font(.title3)
-                        .foregroundStyle(.blue)
-                }
-                .buttonStyle(.plain)
-
-                if let example = examples.first {
-                    VStack(spacing: 2) {
-                        Text(example.es)
-                            .font(.subheadline)
-                            .italic()
-                        Text(example.en)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+            VStack(spacing: 8) {
+                if isFront {
+                    Text("Tap to reveal")
+                        .font(.caption2)
+                        .foregroundStyle(.tertiary)
+                } else {
+                    Button {
+                        PronunciationManager.shared.speak(
+                            buildSpeechText(text, article: article),
+                            languageCode: languageCode
+                        )
+                    } label: {
+                        Image(systemName: "speaker.wave.2.fill")
+                            .font(.title3)
+                            .foregroundStyle(.blue)
                     }
-                    .multilineTextAlignment(.center)
-                    .padding(.top, 4)
+                    .buttonStyle(.plain)
+
+                    if let example = examples.first {
+                        VStack(spacing: 2) {
+                            Text(example.es)
+                                .font(.subheadline)
+                                .italic()
+                            Text(example.en)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        .multilineTextAlignment(.center)
+                    }
                 }
             }
+            .frame(height: 70, alignment: .top)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(32)

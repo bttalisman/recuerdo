@@ -45,6 +45,28 @@ struct ProgressDashboardView: View {
                     overviewChart
                     todayStatsSection
                     upcomingSection
+
+                    NavigationLink {
+                        DataAnalysisView()
+                    } label: {
+                        HStack {
+                            Image(systemName: "chart.xyaxis.line")
+                                .font(.title3)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Detailed Analysis")
+                                    .font(.headline)
+                                Text("Trends, patterns, and activity")
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
+                    }
+                    .buttonStyle(.plain)
                 }
                 .padding()
             }

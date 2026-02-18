@@ -53,7 +53,7 @@ struct DataLoader {
                 existingMeta!.totalWords = deck.words.count
                 existingMeta!.lastSeedDate = Date()
 
-                for word in deck.words {
+                for (index, word) in deck.words.enumerated() {
                     let wordId = word.id
                     let cardDescriptor = FetchDescriptor<FlashCard>(
                         predicate: #Predicate { $0.wordId == wordId }
@@ -66,6 +66,7 @@ struct DataLoader {
                         existingCard.partOfSpeech = word.partOfSpeech
                         existingCard.category = word.category
                         existingCard.intrinsicDifficulty = word.difficulty
+                        existingCard.wordIndex = index
                         existingCard.examples = word.examples ?? []
                     } else {
                         let card = FlashCard(
@@ -77,6 +78,7 @@ struct DataLoader {
                             category: word.category,
                             intrinsicDifficulty: word.difficulty,
                             deckId: deck.deckId,
+                            wordIndex: index,
                             examples: word.examples ?? []
                         )
                         context.insert(card)
@@ -96,7 +98,7 @@ struct DataLoader {
                 meta.lastSeedDate = Date()
                 context.insert(meta)
 
-                for word in deck.words {
+                for (index, word) in deck.words.enumerated() {
                     let card = FlashCard(
                         wordId: word.id,
                         sourceText: word.source,
@@ -106,6 +108,7 @@ struct DataLoader {
                         category: word.category,
                         intrinsicDifficulty: word.difficulty,
                         deckId: deck.deckId,
+                        wordIndex: index,
                         examples: word.examples ?? []
                     )
                     context.insert(card)

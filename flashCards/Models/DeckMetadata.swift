@@ -12,12 +12,11 @@ final class DeckMetadata {
     var lastSeedDate: Date?
     var jsonVersion: Int
     var dailyNewCardLimit: Int
-    var showTargetFirst: Bool
-    var reviewMode: String // "free" or "scheduled"
-    var reviewAccumulationRate: Int // words per hour (1-5)
-    var lastReviewDrainDate: Date? // when accumulation was last drained
-    var scheduledReviewIntervalMinutes: Int
-    var lastScheduledReviewDate: Date?
+    var cardDirection: String // "source_first", "target_first", "mixed"
+    var unlockedWordCount: Int
+    var newWordsMode: String // "free" or "scheduled"
+    var newWordsAccumulationRate: Int // words per hour, used in scheduled mode
+    var lastNewWordsDrainDate: Date? // when scheduled-mode accumulation was last drained
 
     init(deckId: String, sourceLanguage: String, sourceLanguageCode: String,
          targetLanguage: String, targetLanguageCode: String,
@@ -31,11 +30,10 @@ final class DeckMetadata {
         self.lastSeedDate = nil
         self.jsonVersion = jsonVersion
         self.dailyNewCardLimit = 10
-        self.showTargetFirst = false
-        self.reviewMode = "free"
-        self.reviewAccumulationRate = 3
-        self.lastReviewDrainDate = nil
-        self.scheduledReviewIntervalMinutes = 120
-        self.lastScheduledReviewDate = nil
+        self.cardDirection = "source_first"
+        self.unlockedWordCount = 500
+        self.newWordsMode = "free"
+        self.newWordsAccumulationRate = 2
+        self.lastNewWordsDrainDate = nil
     }
 }

@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import UniformTypeIdentifiers
 import UserNotifications
 
 struct SettingsView: View {
@@ -8,6 +9,10 @@ struct SettingsView: View {
     @State private var showingResetAlert = false
     @AppStorage("appearance") private var appearance: String = "system"
     @State private var notificationStatus: String?
+    @State private var showingRestoreImporter = false
+    @State private var backupStatus: String?
+    @State private var showingRestoreAlert = false
+    @State private var pendingRestoreData: Data?
 
     private var activeDeck: DeckMetadata? {
         decks.first
@@ -22,84 +27,80 @@ struct SettingsView: View {
                             Text("\(deck.totalWords)")
                         }
 
-                        Toggle(isOn: Binding(
-                            get: { deck.showTargetFirst },
-                            set: { deck.showTargetFirst = $0 }
+                        Picker("Card Direction", selection: Binding(
+                            get: { deck.cardDirection },
+                            set: { deck.cardDirection = $0 }
                         )) {
-                            VStack(alignment: .leading) {
-                                Text("Card Direction")
-                                Text(deck.showTargetFirst
-                                     ? "\(deck.targetLanguage) → \(deck.sourceLanguage)"
-                                     : "\(deck.sourceLanguage) → \(deck.targetLanguage)")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                            }
+                            Text("\(deck.sourceLanguage) → \(deck.targetLanguage)")
+                                .tag("source_first")
+                            Text("\(deck.targetLanguage) → \(deck.sourceLanguage)")
+                                .tag("target_first")
+                            Text("Mix It Up")
+                                .tag("mixed")
                         }
+                        .pickerStyle(.segmented)
                     }
 
-                    Section("Daily New Cards") {
-                        Stepper(
-                            "\(deck.dailyNewCardLimit) cards per day",
-                            value: Binding(
-                                get: { deck.dailyNewCardLimit },
-                                set: { deck.dailyNewCardLimit = $0 }
-                            ),
-                            in: 1...30
-                        )
-                    }
-
-                    Section("Review Mode") {
+                    Section("New Words Mode") {
                         Picker("Mode", selection: Binding(
-                            get: { deck.reviewMode },
-                            set: { deck.reviewMode = $0 }
+                            get: { deck.newWordsMode },
+                            set: { deck.newWordsMode = $0 }
                         )) {
-                            Text("Free Review").tag("free")
-                            Text("Scheduled Review").tag("scheduled")
+                            Text("Free").tag("free")
+                            Text("Scheduled").tag("scheduled")
                         }
                         .pickerStyle(.segmented)
 
-                        if deck.reviewMode == "free" {
-                            Text("Words accumulate for review over time.")
+                        if deck.newWordsMode == "free" {
+                            Text("Learn new words anytime you want.")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         } else {
-                            Text("Review is locked until the scheduled interval passes.")
+                            Text("New words accumulate over time at a set rate.")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         }
                     }
 
-                    if deck.reviewMode == "free" {
-                        Section("Accumulation Rate") {
+                    if deck.newWordsMode == "free" {
+                        Section("New Words Per Session") {
                             Stepper(
-                                "\(deck.reviewAccumulationRate) words per hour",
+                                "\(deck.dailyNewCardLimit) words",
                                 value: Binding(
-                                    get: { deck.reviewAccumulationRate },
-                                    set: { deck.reviewAccumulationRate = $0 }
+                                    get: { deck.dailyNewCardLimit },
+                                    set: { deck.dailyNewCardLimit = $0 }
+                                ),
+                                in: 1...30
+                            )
+                        }
+                    }
+
+                    if deck.newWordsMode == "scheduled" {
+                        Section("New Words Arrive") {
+                            Stepper(
+                                "\(deck.newWordsAccumulationRate) words per hour",
+                                value: Binding(
+                                    get: { deck.newWordsAccumulationRate },
+                                    set: { deck.newWordsAccumulationRate = $0 }
                                 ),
                                 in: 1...5
                             )
                         }
                     }
 
-                    if deck.reviewMode == "scheduled" {
-                        Section("Scheduled Review") {
-                            Picker("Review every", selection: Binding(
-                                get: { deck.scheduledReviewIntervalMinutes },
-                                set: {
-                                    deck.scheduledReviewIntervalMinutes = $0
-                                    NotificationManager.shared.rescheduleNotifications(context: modelContext)
-                                }
-                            )) {
-                                Text("30 minutes").tag(30)
-                                Text("1 hour").tag(60)
-                                Text("2 hours").tag(120)
-                                Text("3 hours").tag(180)
-                                Text("4 hours").tag(240)
-                                Text("6 hours").tag(360)
-                                Text("8 hours").tag(480)
-                            }
-                        }
+                    Section("Word Pool") {
+                        Stepper(
+                            "\(deck.unlockedWordCount) of \(deck.totalWords) words unlocked",
+                            value: Binding(
+                                get: { deck.unlockedWordCount },
+                                set: { deck.unlockedWordCount = $0 }
+                            ),
+                            in: 100...deck.totalWords,
+                            step: 100
+                        )
+                        Text("New words are introduced from the easiest first. Expand your pool as you progress.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
                     }
 
                     Section("Appearance") {
@@ -162,6 +163,29 @@ struct SettingsView: View {
                         }
                     }
 
+                    Section("Backup & Restore") {
+                        if let url = BackupManager.backupFileURL(context: modelContext) {
+                            ShareLink(
+                                item: url,
+                                preview: SharePreview("Flashcards Backup", image: Image(systemName: "doc.text"))
+                            ) {
+                                Label("Export Backup", systemImage: "square.and.arrow.up")
+                            }
+                        }
+
+                        Button {
+                            showingRestoreImporter = true
+                        } label: {
+                            Label("Restore from Backup", systemImage: "square.and.arrow.down")
+                        }
+
+                        if let backupStatus {
+                            Text(backupStatus)
+                                .font(.caption)
+                                .foregroundStyle(backupStatus.contains("Restored") ? .green : .red)
+                        }
+                    }
+
                     Section {
                         Button("Reset All Progress", role: .destructive) {
                             showingResetAlert = true
@@ -176,6 +200,44 @@ struct SettingsView: View {
             }
             .navigationTitle("")
             .enhancedDarkContrast()
+            .fileImporter(
+                isPresented: $showingRestoreImporter,
+                allowedContentTypes: [.json],
+                onCompletion: { result in
+                    switch result {
+                    case .success(let url):
+                        guard url.startAccessingSecurityScopedResource() else {
+                            backupStatus = "Could not access file."
+                            return
+                        }
+                        defer { url.stopAccessingSecurityScopedResource() }
+                        guard let data = try? Data(contentsOf: url) else {
+                            backupStatus = "Could not read file."
+                            return
+                        }
+                        pendingRestoreData = data
+                        showingRestoreAlert = true
+                    case .failure:
+                        backupStatus = "Import cancelled."
+                    }
+                }
+            )
+            .alert("Restore Backup", isPresented: $showingRestoreAlert) {
+                Button("Cancel", role: .cancel) {
+                    pendingRestoreData = nil
+                }
+                Button("Restore", role: .destructive) {
+                    if let data = pendingRestoreData,
+                       let result = BackupManager.restoreBackup(data: data, context: modelContext) {
+                        backupStatus = "Restored \(result.cards) cards and \(result.reviews) reviews."
+                    } else {
+                        backupStatus = "Restore failed. Invalid backup file."
+                    }
+                    pendingRestoreData = nil
+                }
+            } message: {
+                Text("This will overwrite your current progress with the backup data. This cannot be undone.")
+            }
             .alert("Reset Progress", isPresented: $showingResetAlert) {
                 Button("Cancel", role: .cancel) {}
                 Button("Reset", role: .destructive) {

@@ -3,6 +3,8 @@ import SwiftData
 
 @main
 struct flashCardsApp: App {
+    @Environment(\.scenePhase) private var scenePhase
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             FlashCard.self,
@@ -40,5 +42,11 @@ struct flashCardsApp: App {
                 }
         }
         .modelContainer(sharedModelContainer)
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                let context = ModelContext(sharedModelContainer)
+                NotificationManager.shared.rescheduleNotifications(context: context)
+            }
+        }
     }
 }

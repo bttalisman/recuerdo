@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import UIKit
 
 struct DebugView: View {
     @Environment(\.modelContext) private var modelContext
@@ -7,6 +8,7 @@ struct DebugView: View {
     @Query private var allCards: [FlashCard]
     @State private var reviewCount: Int = 5
     @State private var viewModel: StudySessionViewModel?
+    @State private var ratingFlash: RatingFlash?
 
     private var activeDeckId: String? { decks.first?.deckId }
 
@@ -27,7 +29,7 @@ struct DebugView: View {
                         Button("Start Review") {
                             let vm = StudySessionViewModel()
                             if let deckId = activeDeckId {
-                                vm.loadReviewSession(deckId: deckId, scheduled: false, accumulatedCount: reviewCount, showTargetFirst: decks.first?.showTargetFirst ?? false, context: modelContext)
+                                vm.loadReviewSession(deckId: deckId, cardDirection: decks.first?.cardDirection ?? "source_first", context: modelContext)
                             }
                             viewModel = vm
                         }
@@ -86,8 +88,7 @@ struct DebugView: View {
                 .padding()
             } else if let card = viewModel.currentCard {
                 let deckMeta = decks.first
-                VStack(spacing: 24) {
-                    Spacer()
+                VStack(spacing: 0) {
                     FlashCardView(
                         sourceText: card.sourceText,
                         targetText: card.targetText,
@@ -95,7 +96,7 @@ struct DebugView: View {
                         targetLanguage: deckMeta?.targetLanguage ?? "Spanish",
                         status: card.status,
                         article: card.article,
-                        showTargetFirst: deckMeta?.showTargetFirst ?? false,
+                        showTargetFirst: viewModel.effectiveShowTargetFirst,
                         sourceLanguageCode: deckMeta?.sourceLanguageCode ?? "en",
                         targetLanguageCode: deckMeta?.targetLanguageCode ?? "es",
                         examples: card.examples,
@@ -106,42 +107,41 @@ struct DebugView: View {
                     )
                     .id(card.wordId)
                     .frame(height: 300)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(ratingFlash == .correct ? Color.green.opacity(0.25) : ratingFlash == .incorrect ? Color.red.opacity(0.25) : Color.clear)
+                            .allowsHitTesting(false)
+                    )
                     .padding(.horizontal)
+                    .padding(.top, 16)
+
                     Spacer()
 
                     VStack(spacing: 12) {
-                        if viewModel.isFlipped {
-                            HStack(spacing: 16) {
-                                Button {
-                                    var transaction = Transaction(animation: nil)
-                                    transaction.disablesAnimations = true
-                                    withTransaction(transaction) {
-                                        viewModel.submitRating(1, context: modelContext)
-                                    }
-                                } label: {
-                                    Label("Nope", systemImage: "xmark.circle.fill")
-                                        .frame(maxWidth: .infinity)
-                                        .padding(.vertical, 14)
-                                }
-                                .buttonStyle(.borderedProminent)
-                                .tint(.red)
-
-                                Button {
-                                    var transaction = Transaction(animation: nil)
-                                    transaction.disablesAnimations = true
-                                    withTransaction(transaction) {
-                                        viewModel.submitRating(4, context: modelContext)
-                                    }
-                                } label: {
-                                    Label("Got it", systemImage: "checkmark.circle.fill")
-                                        .frame(maxWidth: .infinity)
-                                        .padding(.vertical, 14)
-                                }
-                                .buttonStyle(.borderedProminent)
-                                .tint(.green)
+                        HStack(spacing: 16) {
+                            Button {
+                                submitWithFeedback(quality: 1, viewModel: viewModel)
+                            } label: {
+                                Label("Nope", systemImage: "xmark.circle.fill")
+                                    .font(.body.bold())
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 14)
                             }
-                            .padding(.horizontal)
+                            .buttonStyle(GlowButtonStyle(baseColor: .red))
+
+                            Button {
+                                submitWithFeedback(quality: 4, viewModel: viewModel)
+                            } label: {
+                                Label("Got it", systemImage: "checkmark.circle.fill")
+                                    .font(.body.bold())
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 14)
+                            }
+                            .buttonStyle(GlowButtonStyle(baseColor: .green))
                         }
+                        .padding(.horizontal)
+                        .opacity(viewModel.isFlipped ? 1 : 0)
+                        .allowsHitTesting(viewModel.isFlipped)
 
                         Button {
                             viewModel.isSessionComplete = true
@@ -155,7 +155,6 @@ struct DebugView: View {
                         .padding(.horizontal)
                     }
                 }
-                .animation(.easeInOut(duration: 0.3), value: viewModel.isFlipped)
                 .padding()
             } else {
                 VStack {
@@ -174,6 +173,26 @@ struct DebugView: View {
             }
             ToolbarItem(placement: .cancellationAction) {
                 Button("Done") { self.viewModel = nil }
+            }
+        }
+    }
+
+    private func submitWithFeedback(quality: Int, viewModel: StudySessionViewModel) {
+        let correct = quality >= 3
+        if correct {
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
+        } else {
+            UINotificationFeedbackGenerator().notificationOccurred(.error)
+        }
+        ratingFlash = correct ? .correct : .incorrect
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            var transaction = Transaction(animation: nil)
+            transaction.disablesAnimations = true
+            withTransaction(transaction) {
+                viewModel.submitRating(quality, context: modelContext)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                ratingFlash = nil
             }
         }
     }

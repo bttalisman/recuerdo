@@ -12,50 +12,53 @@ class NotificationManager {
         center.requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in }
     }
 
+    func updateBadgeCount(context: ModelContext) {
+        let now = Date()
+        let descriptor = FetchDescriptor<FlashCard>()
+        let cards = (try? context.fetch(descriptor)) ?? []
+        let dueCount = cards.filter {
+            $0.status != "new" && $0.nextReviewDate != nil && $0.nextReviewDate! <= now
+        }.count
+        center.setBadgeCount(dueCount)
+    }
+
     func rescheduleNotifications(context: ModelContext) {
         center.removeAllPendingNotificationRequests()
+        updateBadgeCount(context: context)
 
-        let metaDescriptor = FetchDescriptor<DeckMetadata>()
-        guard let deck = try? context.fetch(metaDescriptor).first else { return }
+        let cardDescriptor = FetchDescriptor<FlashCard>()
+        let allCards = (try? context.fetch(cardDescriptor)) ?? []
 
         var scheduled = 0
         let maxNotifications = 60
 
-        // 1. Daily study reminders for next 14 days
+        // Daily study reminders for next 14 days
         for dayOffset in 0..<14 {
             guard scheduled < maxNotifications else { break }
-            scheduleDailyReminder(dayOffset: dayOffset)
+            let dueOnDay = estimatedDueCount(cards: allCards, daysFromNow: dayOffset)
+            scheduleDailyReminder(dayOffset: dayOffset, badgeCount: dueOnDay)
             scheduled += 1
-        }
-
-        // 2. Scheduled review alerts at the user-configured interval
-        let intervalMinutes = max(30, deck.scheduledReviewIntervalMinutes)
-        let intervalSeconds = Double(intervalMinutes) * 60
-        let startFrom = deck.lastScheduledReviewDate ?? Date()
-
-        // Schedule alerts for the next 7 days
-        var nextAlert = startFrom.addingTimeInterval(intervalSeconds)
-        let sevenDaysOut = Date().addingTimeInterval(7 * 24 * 3600)
-        var alertIndex = 0
-
-        // Skip past alerts that are already in the past
-        while nextAlert < Date() {
-            nextAlert = nextAlert.addingTimeInterval(intervalSeconds)
-        }
-
-        while nextAlert < sevenDaysOut && scheduled < maxNotifications {
-            scheduleReviewAlert(date: nextAlert, identifier: "scheduled_\(alertIndex)")
-            scheduled += 1
-            alertIndex += 1
-            nextAlert = nextAlert.addingTimeInterval(intervalSeconds)
         }
     }
 
-    private func scheduleDailyReminder(dayOffset: Int) {
+    private func estimatedDueCount(cards: [FlashCard], daysFromNow: Int) -> Int {
+        let targetDate = Calendar.current.date(byAdding: .day, value: daysFromNow, to: Date()) ?? Date()
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: targetDate)
+        components.hour = 9
+        let atTime = Calendar.current.date(from: components) ?? targetDate
+        return cards.filter {
+            $0.status != "new" && $0.nextReviewDate != nil && $0.nextReviewDate! <= atTime
+        }.count
+    }
+
+    private func scheduleDailyReminder(dayOffset: Int, badgeCount: Int) {
         let content = UNMutableNotificationContent()
         content.title = "Daily Flashcards"
-        content.body = "Your daily words are waiting!"
+        content.body = badgeCount > 0
+            ? "\(badgeCount) words due for review. Your daily words are waiting!"
+            : "Your daily words are waiting!"
         content.sound = .default
+        content.badge = badgeCount as NSNumber
 
         guard let date = Calendar.current.date(byAdding: .day, value: dayOffset, to: Date()) else { return }
         var dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: date)
@@ -65,24 +68,6 @@ class NotificationManager {
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(
             identifier: "daily_\(dayOffset)",
-            content: content,
-            trigger: trigger
-        )
-        center.add(request)
-    }
-
-    private func scheduleReviewAlert(date: Date, identifier: String) {
-        let content = UNMutableNotificationContent()
-        content.title = "Time to Review"
-        content.body = "Your scheduled review is ready. Keep your memory sharp!"
-        content.sound = .default
-
-        let dateComponents = Calendar.current.dateComponents(
-            [.year, .month, .day, .hour, .minute], from: date
-        )
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        let request = UNNotificationRequest(
-            identifier: identifier,
             content: content,
             trigger: trigger
         )

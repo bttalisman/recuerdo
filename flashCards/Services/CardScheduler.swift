@@ -2,32 +2,8 @@ import Foundation
 import SwiftData
 
 struct CardScheduler {
-    /// Free review session: picks `limit` learned words, semi-randomly ordered with recency bias
-    static func buildFreeReviewSession(deckId: String, limit: Int, context: ModelContext) -> [FlashCard] {
-        let descriptor = FetchDescriptor<FlashCard>(
-            predicate: #Predicate {
-                $0.deckId == deckId && $0.status != "new"
-            }
-        )
-        guard let cards = try? context.fetch(descriptor), !cards.isEmpty else { return [] }
-
-        // Sort with recency bias: recently introduced words toward the front,
-        // with randomness so the order isn't identical every time.
-        let now = Date()
-        let sorted = cards.shuffled().sorted { a, b in
-            let aDays = (a.introducedDate ?? now).timeIntervalSince(now) / -86400
-            let bDays = (b.introducedDate ?? now).timeIntervalSince(now) / -86400
-            // Add jitter: ±7 days of randomness so it's not a strict sort
-            let aScore = aDays + Double.random(in: -7...7)
-            let bScore = bDays + Double.random(in: -7...7)
-            return aScore < bScore // lower score = more recent → appears first
-        }
-        let capped = min(limit, sorted.count)
-        return Array(sorted.prefix(capped))
-    }
-
-    /// Scheduled review session: lapsed cards + due review cards (no new cards)
-    static func buildScheduledReviewSession(deckId: String, context: ModelContext) -> [FlashCard] {
+    /// Review session: lapsed cards + due review cards
+    static func buildReviewSession(deckId: String, context: ModelContext) -> [FlashCard] {
         let now = Date()
         var session: [FlashCard] = []
 
@@ -65,6 +41,26 @@ struct CardScheduler {
         return session
     }
 
+    /// Free new words: return up to `limit` new cards from the unlocked pool, easiest first
+    static func buildFreeNewWordsSession(deckId: String, limit: Int, context: ModelContext) -> [FlashCard] {
+        guard limit > 0 else { return [] }
+
+        let metaDescriptor = FetchDescriptor<DeckMetadata>(
+            predicate: #Predicate { $0.deckId == deckId }
+        )
+        guard let deckMeta = try? context.fetch(metaDescriptor).first else { return [] }
+
+        let maxIndex = deckMeta.unlockedWordCount
+        var descriptor = FetchDescriptor<FlashCard>(
+            predicate: #Predicate {
+                $0.deckId == deckId && $0.status == "new" && $0.wordIndex < maxIndex
+            },
+            sortBy: [SortDescriptor(\.intrinsicDifficulty)]
+        )
+        descriptor.fetchLimit = limit
+        return (try? context.fetch(descriptor)) ?? []
+    }
+
     static func getNewCardsForToday(deckId: String, context: ModelContext) -> [FlashCard] {
         let startOfToday = Calendar.current.startOfDay(for: Date())
 
@@ -78,7 +74,7 @@ struct CardScheduler {
         )
         let introducedTodayCount = (try? context.fetchCount(introducedDescriptor)) ?? 0
 
-        // Fetch deck metadata for daily limit
+        // Fetch deck metadata for daily limit and unlocked word count
         let metaDescriptor = FetchDescriptor<DeckMetadata>(
             predicate: #Predicate { $0.deckId == deckId }
         )
@@ -87,9 +83,11 @@ struct CardScheduler {
         let remaining = max(0, deckMeta.dailyNewCardLimit - introducedTodayCount)
         if remaining == 0 { return [] }
 
+        // Only offer new cards within the unlocked range
+        let maxIndex = deckMeta.unlockedWordCount
         var newDescriptor = FetchDescriptor<FlashCard>(
             predicate: #Predicate {
-                $0.deckId == deckId && $0.status == "new"
+                $0.deckId == deckId && $0.status == "new" && $0.wordIndex < maxIndex
             },
             sortBy: [SortDescriptor(\.intrinsicDifficulty)]
         )

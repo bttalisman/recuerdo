@@ -77,12 +77,12 @@ def score_sentence(text, word):
     length = len(words_in_sentence)
     score = 0
 
-    # Prefer sentences of 4-12 words
-    if 4 <= length <= 12:
+    # Prefer sentences of 4-20 words
+    if 4 <= length <= 20:
         score += 10
-    elif 3 <= length <= 15:
+    elif 3 <= length <= 25:
         score += 5
-    elif length > 20:
+    elif length > 30:
         score -= 5
 
     # Penalize very short sentences (less context)

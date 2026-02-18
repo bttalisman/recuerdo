@@ -3547,8 +3547,8 @@
       "en": "I can't stand."
     },
     {
-      "es": "El niño está de pie en la sala de estar.",
-      "en": "The boy is standing in the living room."
+      "es": "Los negros se tenían que sentar en la parte trasera del autobús o estar de pie si ésta estaba llena.",
+      "en": "Black people had to sit in the back of the bus, or stand if the back was full."
     },
     {
       "es": "Si yo hubiera tomado la llave, yo no estaría de pie detrás de la puerta.",
@@ -4197,6 +4197,3926 @@
     {
       "es": "Sos grande.",
       "en": "You are big."
+    }
+  ],
+  "en_es_0301": [
+    {
+      "es": "Son niños.",
+      "en": "They're children."
+    },
+    {
+      "es": "¡Niños gratis!",
+      "en": "Free children!"
+    },
+    {
+      "es": "¿Tienes niños?",
+      "en": "Do you have any kids?"
+    }
+  ],
+  "en_es_0302": [
+    {
+      "es": "Entendí.",
+      "en": "I understood."
+    },
+    {
+      "es": "Entenderán.",
+      "en": "They'll understand."
+    },
+    {
+      "es": "Entenderé.",
+      "en": "I'll understand."
+    }
+  ],
+  "en_es_0303": [
+    {
+      "es": "Miré.",
+      "en": "I looked."
+    },
+    {
+      "es": "Miramos.",
+      "en": "We're watching."
+    },
+    {
+      "es": "Mira.",
+      "en": "Look."
+    }
+  ],
+  "en_es_0304": [
+    {
+      "es": "Soy tu hijo.",
+      "en": "I am your son."
+    },
+    {
+      "es": "¿Estás ganando, hijo?",
+      "en": "Are ya winning, son?"
+    },
+    {
+      "es": "Tenía una hija.",
+      "en": "She had a daughter."
+    }
+  ],
+  "en_es_0305": [
+    {
+      "es": "Perdisteis.",
+      "en": "You lost."
+    },
+    {
+      "es": "Perdiste.",
+      "en": "You lost."
+    },
+    {
+      "es": "Perdimos.",
+      "en": "We lost."
+    }
+  ],
+  "en_es_0306": [
+    {
+      "es": "No a la guerra.",
+      "en": "No to war."
+    },
+    {
+      "es": "No queremos guerra.",
+      "en": "We don't want war."
+    },
+    {
+      "es": "Declaramos la guerra.",
+      "en": "We declared war."
+    }
+  ],
+  "en_es_0307": [
+    {
+      "es": "Mantente fuerte.",
+      "en": "Stay strong."
+    },
+    {
+      "es": "Sigue fuerte.",
+      "en": "Stay strong."
+    },
+    {
+      "es": "Dele fuerte.",
+      "en": "Hit it hard."
+    }
+  ],
+  "en_es_0308": [
+    {
+      "es": "Quisiera diez galletas.",
+      "en": "I would like ten cookies."
+    },
+    {
+      "es": "Tienes diez años?",
+      "en": "Are you ten years old?"
+    },
+    {
+      "es": "Contad hasta diez.",
+      "en": "Count to ten."
+    }
+  ],
+  "en_es_0309": [
+    {
+      "es": "Estuve listo.",
+      "en": "I was ready."
+    },
+    {
+      "es": "Pareces listo.",
+      "en": "You look sharp."
+    },
+    {
+      "es": "¡Listo!",
+      "en": "It's done!"
+    }
+  ],
+  "en_es_0310": [
+    {
+      "es": "Es un número entero.",
+      "en": "It is an integer."
+    },
+    {
+      "es": "Me enteré por él.",
+      "en": "I learned it from him."
+    },
+    {
+      "es": "Se va a enterar.",
+      "en": "You will be informed."
+    }
+  ],
+  "en_es_0311": [
+    {
+      "es": "Es muy callada.",
+      "en": "She's very quiet."
+    },
+    {
+      "es": "Calle arriba.",
+      "en": "Up the street."
+    },
+    {
+      "es": "Te callaste.",
+      "en": "You kept quiet."
+    }
+  ],
+  "en_es_0312": [
+    {
+      "es": "Estoy algo lleno.",
+      "en": "I'm kind of full."
+    },
+    {
+      "es": "Ya me llené.",
+      "en": "I'm full."
+    },
+    {
+      "es": "¿Cuántas cajas llenaste?",
+      "en": "How many boxes did you fill?"
+    }
+  ],
+  "en_es_0313": [
+    {
+      "es": "¿Cagó el perro?",
+      "en": "Did the dog poop?"
+    },
+    {
+      "es": "Huye del perro.",
+      "en": "He's running away from the dog."
+    },
+    {
+      "es": "Teníamos un perro.",
+      "en": "We had a dog."
+    }
+  ],
+  "en_es_0314": [
+    {
+      "es": "Acaricia al gato.",
+      "en": "Pet the cat."
+    },
+    {
+      "es": "Odia los gatos.",
+      "en": "He hates cats."
+    },
+    {
+      "es": "Hay tres gatos.",
+      "en": "There are three cats."
+    }
+  ],
+  "en_es_0315": [
+    {
+      "es": "El árbol cae.",
+      "en": "The tree falls."
+    },
+    {
+      "es": "Hay un árbol.",
+      "en": "There is a tree."
+    },
+    {
+      "es": "Veis un árbol.",
+      "en": "You see a tree."
+    }
+  ],
+  "en_es_0316": [
+    {
+      "es": "Sí.",
+      "en": "Yes."
+    },
+    {
+      "es": "Sí, entendí.",
+      "en": "Yes, I understood."
+    },
+    {
+      "es": "Sí, sí.",
+      "en": "Yes, yes."
+    }
+  ],
+  "en_es_0317": [
+    {
+      "es": "Hola.",
+      "en": "Hi."
+    },
+    {
+      "es": "Díganles hola.",
+      "en": "Say hello to them."
+    },
+    {
+      "es": "Dígales hola.",
+      "en": "Say hello to them."
+    }
+  ],
+  "en_es_0318": [
+    {
+      "es": "Adiós.",
+      "en": "Bye!"
+    },
+    {
+      "es": "Adiós, Tom.",
+      "en": "Bye, Tom."
+    },
+    {
+      "es": "Adiós, John.",
+      "en": "Good-bye, John."
+    }
+  ],
+  "en_es_0319": [
+    {
+      "es": "Pesádmelo, por favor.",
+      "en": "Weigh it for me, please."
+    },
+    {
+      "es": "Pesádmela, por favor.",
+      "en": "Weigh it for me, please."
+    },
+    {
+      "es": "Pésenmelo, por favor.",
+      "en": "Weigh it for me, please."
+    }
+  ],
+  "en_es_0320": [
+    {
+      "es": "Muy agradecido.",
+      "en": "Thanks a lot."
+    },
+    {
+      "es": "Estaría agradecido.",
+      "en": "I'd be grateful."
+    },
+    {
+      "es": "Lo agradecería.",
+      "en": "I'd appreciate it."
+    }
+  ],
+  "en_es_0321": [
+    {
+      "es": "No lo siento.",
+      "en": "I don't feel it."
+    },
+    {
+      "es": "Lo siento, señor.",
+      "en": "I'm sorry, sir."
+    },
+    {
+      "es": "Vale, lo siento.",
+      "en": "Okay. Sorry."
+    }
+  ],
+  "en_es_0322": [
+    {
+      "es": "Necesitamos alojamiento para seis.",
+      "en": "We need accommodation for six."
+    },
+    {
+      "es": "Ya son las seis.",
+      "en": "It's six o'clock already."
+    },
+    {
+      "es": "Yanni usa una seis.",
+      "en": "Yanni wears a six."
+    }
+  ],
+  "en_es_0323": [
+    {
+      "es": "Ahora me quedan siete.",
+      "en": "Now I've got seven left."
+    },
+    {
+      "es": "Tengo ochenta y siete.",
+      "en": "I am eighty-seven."
+    },
+    {
+      "es": "Tiene siete hijos varones.",
+      "en": "She has seven sons."
+    }
+  ],
+  "en_es_0324": [
+    {
+      "es": "Despertadme a las ocho.",
+      "en": "Wake me up at eight."
+    },
+    {
+      "es": "Despiértenme a las ocho.",
+      "en": "Wake me up at eight."
+    },
+    {
+      "es": "Llámame a las ocho.",
+      "en": "Call me at eight."
+    }
+  ],
+  "en_es_0325": [
+    {
+      "es": "Léelo nuevamente.",
+      "en": "Read it again."
+    },
+    {
+      "es": "Explícamelo nuevamente.",
+      "en": "Explain it to me again."
+    },
+    {
+      "es": "Están nuevas.",
+      "en": "They're new."
+    }
+  ],
+  "en_es_0326": [
+    {
+      "es": "Planeo vivir cien años.",
+      "en": "I plan to live to be a hundred."
+    },
+    {
+      "es": "Solo necesito cien dólares.",
+      "en": "I only need one hundred dollars."
+    },
+    {
+      "es": "Sé contar hasta cien.",
+      "en": "I can count to a hundred."
+    }
+  ],
+  "en_es_0327": [
+    {
+      "es": "Necesito dos mil coches.",
+      "en": "I need two thousand cars."
+    },
+    {
+      "es": "De nuevo, mil disculpas.",
+      "en": "Again, a thousand apologies."
+    },
+    {
+      "es": "Tiene dos mil libros.",
+      "en": "She has 2,000 books."
+    }
+  ],
+  "en_es_0328": [
+    {
+      "es": "Tengo un millón de preguntas.",
+      "en": "I have a million questions."
+    },
+    {
+      "es": "Ni en un millón de años.",
+      "en": "Not in a million years."
+    },
+    {
+      "es": "Esta es la pregunta del millón.",
+      "en": "This is the million-dollar question."
+    }
+  ],
+  "en_es_0329": [
+    {
+      "es": "Son hermanas.",
+      "en": "They're sisters."
+    },
+    {
+      "es": "Tengo hermanas.",
+      "en": "I have sisters."
+    },
+    {
+      "es": "¡Hermanos!",
+      "en": "Brothers!"
+    }
+  ],
+  "en_es_0330": [
+    {
+      "es": "Son hermanas.",
+      "en": "They're sisters."
+    },
+    {
+      "es": "Tengo hermanas.",
+      "en": "I have sisters."
+    },
+    {
+      "es": "¡Hermanos!",
+      "en": "Brothers!"
+    }
+  ],
+  "en_es_0331": [
+    {
+      "es": "Mi corazón late.",
+      "en": "My heart beats."
+    },
+    {
+      "es": "Un corazón late.",
+      "en": "A heart beats."
+    },
+    {
+      "es": "Mi corazón sufre.",
+      "en": "My heart's aching."
+    }
+  ],
+  "en_es_0332": [
+    {
+      "es": "Sentí la tierra temblar.",
+      "en": "I felt the earth shake."
+    },
+    {
+      "es": "La tierra tembló.",
+      "en": "The Earth shook."
+    },
+    {
+      "es": "La tierra gira.",
+      "en": "The earth rotates."
+    }
+  ],
+  "en_es_0333": [
+    {
+      "es": "Sin aire morimos.",
+      "en": "We would die without air."
+    },
+    {
+      "es": "Solo necesito aire.",
+      "en": "I just need some air."
+    },
+    {
+      "es": "Necesito aire fresco.",
+      "en": "I need some fresh air."
+    }
+  ],
+  "en_es_0334": [
+    {
+      "es": "Apunta. ¡Fuego!",
+      "en": "Aim. Fire!"
+    },
+    {
+      "es": "¡Fuego!",
+      "en": "Fire!"
+    },
+    {
+      "es": "¡Fuego! ¡Corre!",
+      "en": "Fire! Run!"
+    }
+  ],
+  "en_es_0335": [
+    {
+      "es": "Trabajan solos.",
+      "en": "You work alone."
+    },
+    {
+      "es": "Trabajan solas.",
+      "en": "You work alone."
+    },
+    {
+      "es": "Trabajáis solas.",
+      "en": "You work alone."
+    }
+  ],
+  "en_es_0336": [
+    {
+      "es": "Vendré el lunes.",
+      "en": "I'll come on Monday."
+    },
+    {
+      "es": "Trabajo el lunes.",
+      "en": "I work on Monday."
+    },
+    {
+      "es": "Hay eclipse lunar.",
+      "en": "There is a lunar eclipse."
+    }
+  ],
+  "en_es_0337": [
+    {
+      "es": "Veo una estrella.",
+      "en": "I see a star."
+    },
+    {
+      "es": "¿Ves esa estrella?",
+      "en": "Do you see that star?"
+    },
+    {
+      "es": "¿Ves una estrella?",
+      "en": "Do you see a star?"
+    }
+  ],
+  "en_es_0338": [
+    {
+      "es": "Soy María.",
+      "en": "I'm Mary."
+    },
+    {
+      "es": "Estaba mareada.",
+      "en": "I was dizzy."
+    },
+    {
+      "es": "Estaba mareado.",
+      "en": "I was dizzy."
+    }
+  ],
+  "en_es_0339": [
+    {
+      "es": "Oigo el río.",
+      "en": "I hear the river."
+    },
+    {
+      "es": "Vivo en Río.",
+      "en": "I live in Rio."
+    },
+    {
+      "es": "Cruzó el río.",
+      "en": "He crossed the river."
+    }
+  ],
+  "en_es_0340": [
+    {
+      "es": "Aumenta la lluvia.",
+      "en": "The rain is picking up."
+    },
+    {
+      "es": "Necesitábamos esta lluvia.",
+      "en": "We needed this rain."
+    },
+    {
+      "es": "Las lluvias comenzaron.",
+      "en": "The rains began."
+    }
+  ],
+  "en_es_0341": [
+    {
+      "es": "Odio el viento.",
+      "en": "I hate wind."
+    },
+    {
+      "es": "Hace viento, ¿verdad?",
+      "en": "It's windy, isn't it?"
+    },
+    {
+      "es": "Hace bastante viento.",
+      "en": "It's pretty windy."
+    }
+  ],
+  "en_es_0342": [
+    {
+      "es": "¿Riki es un pueblo?",
+      "en": "Is Riki a village?"
+    },
+    {
+      "es": "Quiere volver al pueblo.",
+      "en": "He wants to go back to the country."
+    },
+    {
+      "es": "Este pueblo aburre.",
+      "en": "This village is boring."
+    }
+  ],
+  "en_es_0343": [
+    {
+      "es": "Esta carretera es terrible.",
+      "en": "This road is terrible."
+    },
+    {
+      "es": "La carretera sigue mojada.",
+      "en": "The road is still wet."
+    },
+    {
+      "es": "La carretera está atascada.",
+      "en": "There's a traffic jam on the highway."
+    }
+  ],
+  "en_es_0344": [
+    {
+      "es": "Haré mi cama.",
+      "en": "I'll make my bed."
+    },
+    {
+      "es": "Compro una cama.",
+      "en": "I am buying a bed."
+    },
+    {
+      "es": "¡A la cama!",
+      "en": "Go to bed!"
+    }
+  ],
+  "en_es_0345": [
+    {
+      "es": "¿Tienen ustedes papel?",
+      "en": "Do you have paper?"
+    },
+    {
+      "es": "¿Tiene usted papel?",
+      "en": "Do you have paper?"
+    },
+    {
+      "es": "¿Necesitas papel higiénico?",
+      "en": "Do you need toilet paper?"
+    }
+  ],
+  "en_es_0346": [
+    {
+      "es": "Produzco música.",
+      "en": "I produce music."
+    },
+    {
+      "es": "Necesitamos música.",
+      "en": "We need music."
+    },
+    {
+      "es": "Escuchamos música.",
+      "en": "We listen to music."
+    }
+  ],
+  "en_es_0347": [
+    {
+      "es": "No juego fútbol.",
+      "en": "I don't play soccer."
+    },
+    {
+      "es": "¡Mal juego!",
+      "en": "Bad game!"
+    },
+    {
+      "es": "Juega.",
+      "en": "Play."
+    }
+  ],
+  "en_es_0348": [
+    {
+      "es": "Entorna la ventana.",
+      "en": "Leave the window ajar."
+    },
+    {
+      "es": "Cerrá la ventana.",
+      "en": "Close the window."
+    },
+    {
+      "es": "¿Cerraste la ventana?",
+      "en": "Did you close the window?"
+    }
+  ],
+  "en_es_0349": [
+    {
+      "es": "Paré.",
+      "en": "I stopped."
+    },
+    {
+      "es": "Para.",
+      "en": "Stop."
+    },
+    {
+      "es": "Pararé.",
+      "en": "I'll stop."
+    }
+  ],
+  "en_es_0350": [
+    {
+      "es": "Enseñadme vuestra carta.",
+      "en": "Show me your letter."
+    },
+    {
+      "es": "Enséñenme su carta.",
+      "en": "Show me your letter."
+    },
+    {
+      "es": "Enséñame tu carta.",
+      "en": "Show me your letter."
+    }
+  ],
+  "en_es_0351": [
+    {
+      "es": "La imagen fue alterada.",
+      "en": "The image was altered."
+    },
+    {
+      "es": "La imagen es muy hermosa.",
+      "en": "The image is very beautiful."
+    },
+    {
+      "es": "¿Puedes ver la imagen?",
+      "en": "Can you see the picture?"
+    }
+  ],
+  "en_es_0352": [
+    {
+      "es": "El rey está desnudo.",
+      "en": "The king is naked."
+    },
+    {
+      "es": "El rey debe abdicar.",
+      "en": "The king must abdicate."
+    },
+    {
+      "es": "Ese rey gobernó sabiamente.",
+      "en": "That king ruled wisely."
+    }
+  ],
+  "en_es_0353": [
+    {
+      "es": "¿Tenemos clase hoy?",
+      "en": "Do we have class today?"
+    },
+    {
+      "es": "¿Coméis en clase?",
+      "en": "Do you eat in the classroom?"
+    },
+    {
+      "es": "¿Comes en clase?",
+      "en": "Do you eat it in the classroom?"
+    }
+  ],
+  "en_es_0354": [
+    {
+      "es": "La iglesia está allí.",
+      "en": "The church is there."
+    },
+    {
+      "es": "Fui a la iglesia.",
+      "en": "I went to church."
+    },
+    {
+      "es": "Voy a la iglesia.",
+      "en": "I'm going to church."
+    }
+  ],
+  "en_es_0355": [
+    {
+      "es": "No tengo caballo.",
+      "en": "I have no horse."
+    },
+    {
+      "es": "Tengo un caballo.",
+      "en": "I have a horse."
+    },
+    {
+      "es": "Monto a caballo.",
+      "en": "I ride a horse."
+    }
+  ],
+  "en_es_0356": [
+    {
+      "es": "Sentí la tierra temblar.",
+      "en": "I felt the earth shake."
+    },
+    {
+      "es": "La tierra tembló.",
+      "en": "The Earth shook."
+    },
+    {
+      "es": "La tierra gira.",
+      "en": "The earth rotates."
+    }
+  ],
+  "en_es_0357": [
+    {
+      "es": "Subimos a la cima.",
+      "en": "We climbed to the top."
+    },
+    {
+      "es": "Daisuke escaló hasta la cima.",
+      "en": "Daisuke climbed to the summit."
+    },
+    {
+      "es": "Nosotros escalamos hasta la cima.",
+      "en": "We climbed right up to the top."
+    }
+  ],
+  "en_es_0358": [
+    {
+      "es": "Una es azul.",
+      "en": "One is blue."
+    },
+    {
+      "es": "Era azul oscuro.",
+      "en": "It was dark blue."
+    },
+    {
+      "es": "Uno es azul.",
+      "en": "One is blue."
+    }
+  ],
+  "en_es_0359": [
+    {
+      "es": "Está verde.",
+      "en": "It's green."
+    },
+    {
+      "es": "Están verdes.",
+      "en": "They're green."
+    },
+    {
+      "es": "Son verdes.",
+      "en": "They're green."
+    }
+  ],
+  "en_es_0360": [
+    {
+      "es": "Era sofocantemente caliente.",
+      "en": "It was stiflingly hot."
+    },
+    {
+      "es": "Calienta la leche.",
+      "en": "Heat the milk."
+    },
+    {
+      "es": "Mantenlo caliente.",
+      "en": "Keep it warm."
+    }
+  ],
+  "en_es_0361": [
+    {
+      "es": "Hacía frío.",
+      "en": "It was cold."
+    },
+    {
+      "es": "Noto frío.",
+      "en": "I feel cold."
+    },
+    {
+      "es": "Tenemos frío.",
+      "en": "We're cold."
+    }
+  ],
+  "en_es_0362": [
+    {
+      "es": "Más rápido.",
+      "en": "Faster."
+    },
+    {
+      "es": "Caven rápido.",
+      "en": "Dig quickly."
+    },
+    {
+      "es": "Cave rápido.",
+      "en": "Dig quickly."
+    }
+  ],
+  "en_es_0363": [
+    {
+      "es": "Camina lento.",
+      "en": "She walks at a slow pace."
+    },
+    {
+      "es": "Maneja lento.",
+      "en": "Drive slowly."
+    },
+    {
+      "es": "Como lentamente.",
+      "en": "I eat slowly."
+    }
+  ],
+  "en_es_0364": [
+    {
+      "es": "Soy limpio.",
+      "en": "I'm clean."
+    },
+    {
+      "es": "Estoy limpio.",
+      "en": "I'm tidy."
+    },
+    {
+      "es": "¿Está limpio?",
+      "en": "Is it clean?"
+    }
+  ],
+  "en_es_0365": [
+    {
+      "es": "Compramos.",
+      "en": "We buy."
+    },
+    {
+      "es": "Compró leche.",
+      "en": "He bought milk."
+    },
+    {
+      "es": "Compro casetes.",
+      "en": "I buy tapes."
+    }
+  ],
+  "en_es_0366": [
+    {
+      "es": "Vendo escobas.",
+      "en": "I sell brooms."
+    },
+    {
+      "es": "¡Vendido!",
+      "en": "Sold!"
+    },
+    {
+      "es": "¡Vendan!",
+      "en": "Sell!"
+    }
+  ],
+  "en_es_0367": [
+    {
+      "es": "Me encanta enviar mensajes.",
+      "en": "I love sending massages."
+    },
+    {
+      "es": "Me enviaron una factura.",
+      "en": "I was sent a bill."
+    },
+    {
+      "es": "Te envié más ejercicios.",
+      "en": "I sent you some more exercises."
+    }
+  ],
+  "en_es_0368": [
+    {
+      "es": "¿Qué deberían construir?",
+      "en": "What should they build?"
+    },
+    {
+      "es": "Tom me construyó.",
+      "en": "Tom built me."
+    },
+    {
+      "es": "Tom construyó esto.",
+      "en": "Tom built this."
+    }
+  ],
+  "en_es_0369": [
+    {
+      "es": "Dejé caer tu taza.",
+      "en": "I dropped your mug."
+    },
+    {
+      "es": "No los dejes caer.",
+      "en": "Don't drop them."
+    },
+    {
+      "es": "Tom podría caer enfermo.",
+      "en": "Tom might get sick."
+    }
+  ],
+  "en_es_0370": [
+    {
+      "es": "¿Cortaste la cuerda?",
+      "en": "Did you cut the rope?"
+    },
+    {
+      "es": "Corta este árbol.",
+      "en": "Cut down that tree."
+    },
+    {
+      "es": "Él cortó.",
+      "en": "He hung up."
+    }
+  ],
+  "en_es_0371": [
+    {
+      "es": "Alcanzó sus objetivos.",
+      "en": "You reached your goals."
+    },
+    {
+      "es": "Alcanzasteis vuestros objetivos.",
+      "en": "You reached your goals."
+    },
+    {
+      "es": "Alcanzaste tus objetivos.",
+      "en": "You reached your goals."
+    }
+  ],
+  "en_es_0372": [
+    {
+      "es": "Decidió quedarse.",
+      "en": "He decided to stay."
+    },
+    {
+      "es": "Querían quedarse.",
+      "en": "They wanted to stay."
+    },
+    {
+      "es": "Quieren quedarse.",
+      "en": "They want to stay."
+    }
+  ],
+  "en_es_0373": [
+    {
+      "es": "Quieren matarnos.",
+      "en": "They want to kill us."
+    },
+    {
+      "es": "Los mataste.",
+      "en": "You killed them."
+    },
+    {
+      "es": "Os matarán.",
+      "en": "They'll kill you."
+    }
+  ],
+  "en_es_0374": [
+    {
+      "es": "Decidió quedarse.",
+      "en": "He decided to stay."
+    },
+    {
+      "es": "Querían quedarse.",
+      "en": "They wanted to stay."
+    },
+    {
+      "es": "Quieren quedarse.",
+      "en": "They want to stay."
+    }
+  ],
+  "en_es_0375": [
+    {
+      "es": "Soy bueno para sugerir actividades.",
+      "en": "I’m great at suggesting activities."
+    },
+    {
+      "es": "Estuve a punto de sugerir lo mismo.",
+      "en": "I was about to suggest the same thing."
+    },
+    {
+      "es": "Sugeriría el cambio siguiente.",
+      "en": "I'd suggest the following change."
+    }
+  ],
+  "en_es_0376": [
+    {
+      "es": "Levanten las piernas.",
+      "en": "Lift your legs."
+    },
+    {
+      "es": "Levanta.",
+      "en": "Get up."
+    },
+    {
+      "es": "Estoy levantado.",
+      "en": "I'm up."
+    }
+  ],
+  "en_es_0377": [
+    {
+      "es": "Pasará.",
+      "en": "It'll happen."
+    },
+    {
+      "es": "Pasó.",
+      "en": "It happened."
+    },
+    {
+      "es": "Pasearon.",
+      "en": "They walked."
+    }
+  ],
+  "en_es_0378": [
+    {
+      "es": "Quiero gastar menos.",
+      "en": "I want to spend less money."
+    },
+    {
+      "es": "Gastad cuanto queráis.",
+      "en": "Spend as much as you want."
+    },
+    {
+      "es": "Compartamos los gastos.",
+      "en": "Let's share the expenses."
+    }
+  ],
+  "en_es_0379": [
+    {
+      "es": "Aparecen de noche.",
+      "en": "They appear at night."
+    },
+    {
+      "es": "Sólo aparecen símbolos.",
+      "en": "Only symbols appear."
+    },
+    {
+      "es": "El ladrón aparecerá.",
+      "en": "The thief will show up."
+    }
+  ],
+  "en_es_0380": [
+    {
+      "es": "Le gusta grabar.",
+      "en": "He likes filming."
+    },
+    {
+      "es": "Graba los resultados.",
+      "en": "Record the results."
+    },
+    {
+      "es": "Te grabé cantando.",
+      "en": "I recorded you singing."
+    }
+  ],
+  "en_es_0381": [
+    {
+      "es": "El mercado está vacío.",
+      "en": "The market is empty."
+    },
+    {
+      "es": "Ellas llegarán al mercado.",
+      "en": "They'll arrive to the market."
+    },
+    {
+      "es": "Ellos llegarán al mercado.",
+      "en": "They'll arrive to the market."
+    }
+  ],
+  "en_es_0382": [
+    {
+      "es": "Suelo flojear mucho.",
+      "en": "I have a habit of slacking off."
+    },
+    {
+      "es": "Atención, suelo mojado.",
+      "en": "Caution, wet floor."
+    },
+    {
+      "es": "No suelo rogar.",
+      "en": "I don't often beg."
+    }
+  ],
+  "en_es_0383": [
+    {
+      "es": "Id hacia el sur.",
+      "en": "Head south."
+    },
+    {
+      "es": "Navegamos hacia el sur.",
+      "en": "We're sailing southward."
+    },
+    {
+      "es": "Él viene del sur.",
+      "en": "He comes from the south."
+    }
+  ],
+  "en_es_0384": [
+    {
+      "es": "Vivo hacia el norte.",
+      "en": "I live upstate."
+    },
+    {
+      "es": "Vivo en el norte.",
+      "en": "I live upstate."
+    },
+    {
+      "es": "Ella viene del norte.",
+      "en": "She comes from the north."
+    }
+  ],
+  "en_es_0385": [
+    {
+      "es": "Este...",
+      "en": "Er..."
+    },
+    {
+      "es": "Utilicen este.",
+      "en": "Use this one."
+    },
+    {
+      "es": "Utilice este.",
+      "en": "Use this one."
+    }
+  ],
+  "en_es_0386": [
+    {
+      "es": "Bienvenido al Salvaje Oeste.",
+      "en": "Welcome to the Wild West."
+    },
+    {
+      "es": "Tom se fue al oeste.",
+      "en": "Tom went west."
+    },
+    {
+      "es": "Mi casa queda al oeste.",
+      "en": "My house is west."
+    }
+  ],
+  "en_es_0387": [
+    {
+      "es": "El sistema se activó.",
+      "en": "The system activated."
+    },
+    {
+      "es": "Necesitamos modernizar nuestro sistema.",
+      "en": "We need to modernize our system."
+    },
+    {
+      "es": "El sistema está desactualizado.",
+      "en": "The system is outdated."
+    }
+  ],
+  "en_es_0388": [
+    {
+      "es": "Encendí mi computadora.",
+      "en": "I turned on my computer."
+    },
+    {
+      "es": "Trae tu computadora.",
+      "en": "Bring your computer."
+    },
+    {
+      "es": "Reinicia tu computadora.",
+      "en": "Restart your computer."
+    }
+  ],
+  "en_es_0389": [
+    {
+      "es": "Perdió su teléfono.",
+      "en": "He lost his phone."
+    },
+    {
+      "es": "¿Sonaba mi teléfono?",
+      "en": "Was my phone ringing?"
+    },
+    {
+      "es": "¿No tienen teléfono?",
+      "en": "Don't you guys have phones?"
+    }
+  ],
+  "en_es_0390": [
+    {
+      "es": "Esperen un momento.",
+      "en": "Wait a moment."
+    },
+    {
+      "es": "Es el momento.",
+      "en": "It's time."
+    },
+    {
+      "es": "Coge el momento.",
+      "en": "Seize the moment."
+    }
+  ],
+  "en_es_0391": [
+    {
+      "es": "No tiene forma.",
+      "en": "It's formless."
+    },
+    {
+      "es": "Forma dos filas.",
+      "en": "Form two lines."
+    },
+    {
+      "es": "Estoy en forma.",
+      "en": "I'm fit."
+    }
+  ],
+  "en_es_0392": [
+    {
+      "es": "Interesante.",
+      "en": "Interesting."
+    },
+    {
+      "es": "Interesante...",
+      "en": "Interesting."
+    },
+    {
+      "es": "Estuvo interesante.",
+      "en": "That was interesting."
+    }
+  ],
+  "en_es_0393": [
+    {
+      "es": "El desarrollo desarrolla la desigualdad.",
+      "en": "Development develops inequality."
+    },
+    {
+      "es": "Tatoeba carece de desarrolladores.",
+      "en": "Tatoeba lacks developers."
+    },
+    {
+      "es": "Leer desarrolla la mente.",
+      "en": "Reading develops the mind."
+    }
+  ],
+  "en_es_0394": [
+    {
+      "es": "La carta estaba escrita en cifra.",
+      "en": "The letter was written in code."
+    },
+    {
+      "es": "¿Me podría dar una cifra aproximada?",
+      "en": "Could you give me a ball-park figure?"
+    },
+    {
+      "es": "Nadie se cree las cifras oficiales.",
+      "en": "No one believes the official numbers."
+    }
+  ],
+  "en_es_0395": [
+    {
+      "es": "Leí el informe.",
+      "en": "I've read the report."
+    },
+    {
+      "es": "No me informaron.",
+      "en": "I wasn't informed."
+    },
+    {
+      "es": "Queremos más información.",
+      "en": "We want further information."
+    }
+  ],
+  "en_es_0396": [
+    {
+      "es": "Queremos más información.",
+      "en": "We want further information."
+    },
+    {
+      "es": "No me informaron.",
+      "en": "I wasn't informed."
+    },
+    {
+      "es": "Leí el informe.",
+      "en": "I've read the report."
+    }
+  ],
+  "en_es_0397": [
+    {
+      "es": "Estudiabais.",
+      "en": "You guys were studying."
+    },
+    {
+      "es": "Estudiábamos.",
+      "en": "We were studying."
+    },
+    {
+      "es": "Estudiaban.",
+      "en": "You were studying."
+    }
+  ],
+  "en_es_0398": [
+    {
+      "es": "Es una empresa china.",
+      "en": "It's a Chinese company."
+    },
+    {
+      "es": "Me gusta la empresa.",
+      "en": "I like the company."
+    },
+    {
+      "es": "Ha quebrado la empresa.",
+      "en": "The company's failed."
+    }
+  ],
+  "en_es_0399": [
+    {
+      "es": "Era una zona agrícola.",
+      "en": "It was an agricultural area."
+    },
+    {
+      "es": "Nos encanta esta zona.",
+      "en": "We love it here."
+    },
+    {
+      "es": "Allí está la zona infantil.",
+      "en": "The children's area is over there."
+    }
+  ],
+  "en_es_0400": [
+    {
+      "es": "El servicio es lento.",
+      "en": "The service is slow."
+    },
+    {
+      "es": "Ahora estoy de servicio.",
+      "en": "I am on duty now."
+    },
+    {
+      "es": "Tom está de servicio.",
+      "en": "Tom is on duty."
+    }
+  ],
+  "en_es_0401": [
+    {
+      "es": "Les falta experiencia.",
+      "en": "They lack experience."
+    },
+    {
+      "es": "Tengo mucha experiencia.",
+      "en": "I have a lot of experience."
+    },
+    {
+      "es": "Aprendemos por experiencia.",
+      "en": "We learn by experience."
+    }
+  ],
+  "en_es_0402": [
+    {
+      "es": "Graba los resultados.",
+      "en": "Record the results."
+    },
+    {
+      "es": "Mejoró sus resultados.",
+      "en": "He improved his results."
+    },
+    {
+      "es": "Resultó tener razón.",
+      "en": "He turned out to be right."
+    }
+  ],
+  "en_es_0403": [
+    {
+      "es": "Necesito una semana.",
+      "en": "I need a week."
+    },
+    {
+      "es": "La semana terminó.",
+      "en": "The week is over."
+    },
+    {
+      "es": "Dame una semana.",
+      "en": "Give me a week."
+    }
+  ],
+  "en_es_0404": [
+    {
+      "es": "Dadme tres meses.",
+      "en": "Give me three months."
+    },
+    {
+      "es": "Recoge la mesa.",
+      "en": "Clear the table."
+    },
+    {
+      "es": "Pon la mesa.",
+      "en": "Set the table."
+    }
+  ],
+  "en_es_0405": [
+    {
+      "es": "Él ve ese programa.",
+      "en": "He watches that programme."
+    },
+    {
+      "es": "El programa está acreditado.",
+      "en": "The program is accredited."
+    },
+    {
+      "es": "Éste es nuestro programa.",
+      "en": "This is our agenda."
+    }
+  ],
+  "en_es_0406": [
+    {
+      "es": "Su negocio fracasó.",
+      "en": "He failed in business."
+    },
+    {
+      "es": "Mi negocio prospera.",
+      "en": "My business is prospering."
+    },
+    {
+      "es": "Hablemos de negocios.",
+      "en": "Let's talk shop."
+    }
+  ],
+  "en_es_0407": [
+    {
+      "es": "Tengo media hora.",
+      "en": "I've got half an hour."
+    },
+    {
+      "es": "Hora de despertar.",
+      "en": "It's time to wake up."
+    },
+    {
+      "es": "Hora de desayunar.",
+      "en": "I think I'll have breakfast."
+    }
+  ],
+  "en_es_0408": [
+    {
+      "es": "No es un miembro.",
+      "en": "He's not a member."
+    },
+    {
+      "es": "Todo miembro debe asistir.",
+      "en": "Every member must attend."
+    },
+    {
+      "es": "Soy miembro del coro.",
+      "en": "I'm a member of the glee club."
+    }
+  ],
+  "en_es_0409": [
+    {
+      "es": "Bancame un minuto.",
+      "en": "Wait a minute."
+    },
+    {
+      "es": "Démosles un minuto.",
+      "en": "Let's give them a minute."
+    },
+    {
+      "es": "Cada minuto cuenta.",
+      "en": "Every minute counts."
+    }
+  ],
+  "en_es_0410": [
+    {
+      "es": "Dime tu precio.",
+      "en": "Just name your price."
+    },
+    {
+      "es": "Mira el precio.",
+      "en": "Look at the price."
+    },
+    {
+      "es": "Acordaron un precio.",
+      "en": "They agreed on a price."
+    }
+  ],
+  "en_es_0411": [
+    {
+      "es": "El presidente se negó.",
+      "en": "The president refused."
+    },
+    {
+      "es": "Fue acreditado como presidente.",
+      "en": "He was accredited to the chairman."
+    },
+    {
+      "es": "Dimitió como presidente.",
+      "en": "He resigned as president."
+    }
+  ],
+  "en_es_0412": [
+    {
+      "es": "Tom alquiló una oficina.",
+      "en": "Tom leased an office."
+    },
+    {
+      "es": "Comeré en la oficina.",
+      "en": "I'm going to eat at the office."
+    },
+    {
+      "es": "Llamame a la oficina.",
+      "en": "Call me at my office."
+    }
+  ],
+  "en_es_0413": [
+    {
+      "es": "Nos vemos en el tribunal.",
+      "en": "See you in court."
+    },
+    {
+      "es": "La depredación del tribunal fue devastadora.",
+      "en": "The depredation of the courthouse was devastating."
+    },
+    {
+      "es": "El tribunal no admitió mi demanda.",
+      "en": "The court denied my claim."
+    }
+  ],
+  "en_es_0414": [
+    {
+      "es": "Cuéntanos tu historia.",
+      "en": "Tell us your story."
+    },
+    {
+      "es": "Termina la historia.",
+      "en": "Finish the story."
+    },
+    {
+      "es": "Adoro esa historia.",
+      "en": "I love that story."
+    }
+  ],
+  "en_es_0415": [
+    {
+      "es": "El gobierno está mintiendo.",
+      "en": "The government is lying."
+    },
+    {
+      "es": "Aún no hay gobierno.",
+      "en": "There's still no government."
+    },
+    {
+      "es": "Hippias recibió el gobierno.",
+      "en": "Hippias received the rule."
+    }
+  ],
+  "en_es_0416": [
+    {
+      "es": "Este proceso es automático.",
+      "en": "This process is automatic."
+    },
+    {
+      "es": "El proceso fue rápido.",
+      "en": "The process was quick."
+    },
+    {
+      "es": "El proceso es importante.",
+      "en": "The process is important."
+    }
+  ],
+  "en_es_0417": [
+    {
+      "es": "Bienvenido al nivel 3.",
+      "en": "Welcome to Level Three."
+    },
+    {
+      "es": "Soy alumno de nivel principiante.",
+      "en": "I’m a beginner-level student."
+    },
+    {
+      "es": "El nivel del mar está aumentando.",
+      "en": "The sea level is rising."
+    }
+  ],
+  "en_es_0418": [
+    {
+      "es": "Tenían razón.",
+      "en": "They were right."
+    },
+    {
+      "es": "Tienen razón.",
+      "en": "They're right."
+    },
+    {
+      "es": "Tenemos razón.",
+      "en": "We're right."
+    }
+  ],
+  "en_es_0419": [
+    {
+      "es": "El periodo terminó.",
+      "en": "Period is over."
+    },
+    {
+      "es": "Dobló el periódico.",
+      "en": "He folded the newspaper."
+    },
+    {
+      "es": "Ella es periodista.",
+      "en": "She's a journalist."
+    }
+  ],
+  "en_es_0420": [
+    {
+      "es": "Este es nuestro campo.",
+      "en": "This is our field."
+    },
+    {
+      "es": "Juego en el campo.",
+      "en": "I play outfield."
+    },
+    {
+      "es": "He arado el campo.",
+      "en": "I plowed the field."
+    }
+  ],
+  "en_es_0421": [
+    {
+      "es": "Tom tiene mi edad.",
+      "en": "Tom is my age."
+    },
+    {
+      "es": "Él tiene mi edad.",
+      "en": "He's the same age as I am."
+    },
+    {
+      "es": "Tom retrocedió de edad.",
+      "en": "Tom age-regressed."
+    }
+  ],
+  "en_es_0422": [
+    {
+      "es": "Sos profesor.",
+      "en": "You're a teacher."
+    },
+    {
+      "es": "¿Eres profesor?",
+      "en": "Are you a teacher?"
+    },
+    {
+      "es": "Soy profesor.",
+      "en": "I'm a teacher."
+    }
+  ],
+  "en_es_0423": [
+    {
+      "es": "Estudiabais.",
+      "en": "You guys were studying."
+    },
+    {
+      "es": "Estudiábamos.",
+      "en": "We were studying."
+    },
+    {
+      "es": "Estudiaban.",
+      "en": "You were studying."
+    }
+  ],
+  "en_es_0424": [
+    {
+      "es": "Es médico.",
+      "en": "He's a doctor."
+    },
+    {
+      "es": "Soy médico.",
+      "en": "I'm a doctor."
+    },
+    {
+      "es": "¿Es médico?",
+      "en": "Is he a doctor?"
+    }
+  ],
+  "en_es_0425": [
+    {
+      "es": "Está fuera de posición.",
+      "en": "He's out of position."
+    },
+    {
+      "es": "Tom está en posición.",
+      "en": "Tom is in position."
+    },
+    {
+      "es": "Comparto su posición política.",
+      "en": "I share his political position."
+    }
+  ],
+  "en_es_0426": [
+    {
+      "es": "Somos una nación independiente.",
+      "en": "We are an independent nation."
+    },
+    {
+      "es": "La nación estaba creciendo.",
+      "en": "The nation was growing."
+    },
+    {
+      "es": "El mundo es una nación.",
+      "en": "The world is a nation."
+    }
+  ],
+  "en_es_0427": [
+    {
+      "es": "Necesitamos otro plan.",
+      "en": "We need another plan."
+    },
+    {
+      "es": "Tengo un plan.",
+      "en": "I've got a plan."
+    },
+    {
+      "es": "Contame tu plan.",
+      "en": "Tell me about your plan."
+    }
+  ],
+  "en_es_0428": [
+    {
+      "es": "Ziri era comunista.",
+      "en": "Ziri was a communist."
+    },
+    {
+      "es": "Tengo amigos comunistas.",
+      "en": "I have friends who are communists."
+    },
+    {
+      "es": "Mary es comunista.",
+      "en": "Mary is a communist."
+    }
+  ],
+  "en_es_0429": [
+    {
+      "es": "Su condición es difícil.",
+      "en": "Her condition is difficult."
+    },
+    {
+      "es": "Poneos en condiciones.",
+      "en": "Make yourselves presentable."
+    },
+    {
+      "es": "Acepto sus condiciones.",
+      "en": "I accept your terms."
+    }
+  ],
+  "en_es_0430": [
+    {
+      "es": "Pagué en efectivo.",
+      "en": "I paid in cash."
+    },
+    {
+      "es": "No es efectivo.",
+      "en": "It's not effective."
+    },
+    {
+      "es": "Es muy efectivo.",
+      "en": "It's very effective."
+    }
+  ],
+  "en_es_0431": [
+    {
+      "es": "Necesitas practicar más.",
+      "en": "You need to practice harder."
+    },
+    {
+      "es": "Necesita practicar.",
+      "en": "He needs to practice."
+    },
+    {
+      "es": "Déjame practicar.",
+      "en": "Let me practice."
+    }
+  ],
+  "en_es_0432": [
+    {
+      "es": "La terapia está en curso.",
+      "en": "The therapy is in session."
+    },
+    {
+      "es": "Seguimos el curso del río.",
+      "en": "We followed the course of the river."
+    },
+    {
+      "es": "¿Tienen un curso para principiantes?",
+      "en": "Do you have a course for beginners?"
+    }
+  ],
+  "en_es_0433": [
+    {
+      "es": "Más acción, menos palabras.",
+      "en": "More actions, fewer words."
+    },
+    {
+      "es": "Fue una acción miserable.",
+      "en": "It was a contemptible thing to do."
+    },
+    {
+      "es": "Su acción merece respeto.",
+      "en": "Her action deserves respect."
+    }
+  ],
+  "en_es_0434": [
+    {
+      "es": "Leer activa el cerebro.",
+      "en": "Reading activates the brain."
+    },
+    {
+      "es": "El sistema se activó.",
+      "en": "The system activated."
+    },
+    {
+      "es": "Ella activó una cuenta.",
+      "en": "She activated an account."
+    }
+  ],
+  "en_es_0435": [
+    {
+      "es": "Evaluaremos la situación.",
+      "en": "We'll assess the situation."
+    },
+    {
+      "es": "Una situación delicada.",
+      "en": "A delicate situation."
+    },
+    {
+      "es": "Su situación empeoró.",
+      "en": "His condition changed for the worse."
+    }
+  ],
+  "en_es_0436": [
+    {
+      "es": "Deberíamos volver.",
+      "en": "We should head back."
+    },
+    {
+      "es": "Volvieron.",
+      "en": "They came back."
+    },
+    {
+      "es": "Volveremos.",
+      "en": "We'll come back."
+    }
+  ],
+  "en_es_0437": [
+    {
+      "es": "Estaban de pie.",
+      "en": "They stood."
+    },
+    {
+      "es": "Cruzaban a pie.",
+      "en": "They crossed on foot."
+    },
+    {
+      "es": "Iré a pie.",
+      "en": "I will go on foot."
+    }
+  ],
+  "en_es_0438": [
+    {
+      "es": "Odio la atención.",
+      "en": "I hate attention."
+    },
+    {
+      "es": "Préstanos atención.",
+      "en": "Pay attention to us."
+    },
+    {
+      "es": "Préstame atención.",
+      "en": "Pay attention to me."
+    }
+  ],
+  "en_es_0439": [
+    {
+      "es": "Tom siempre es educado.",
+      "en": "Tom is always polite."
+    },
+    {
+      "es": "Eres muy bien educada.",
+      "en": "You are so kind."
+    },
+    {
+      "es": "Todas escucharon educadamente.",
+      "en": "Everyone listened politely."
+    }
+  ],
+  "en_es_0440": [
+    {
+      "es": "El edificio es enorme.",
+      "en": "This building is huge."
+    },
+    {
+      "es": "Yanni inspeccionó el edificio.",
+      "en": "Yanni inspected the building."
+    },
+    {
+      "es": "Este edificio es nuevo.",
+      "en": "This building is new."
+    }
+  ],
+  "en_es_0441": [
+    {
+      "es": "Nos faltaba un jugador.",
+      "en": "We were missing a player."
+    },
+    {
+      "es": "Les falta un jugador.",
+      "en": "They're missing a player."
+    },
+    {
+      "es": "Es un jugador cuidadoso.",
+      "en": "He is a careful player."
+    }
+  ],
+  "en_es_0442": [
+    {
+      "es": "Elige un idioma.",
+      "en": "Choose a language."
+    },
+    {
+      "es": "Cada idioma evoluciona.",
+      "en": "Every language evolves."
+    },
+    {
+      "es": "Hablo muchos idiomas.",
+      "en": "I speak many languages."
+    }
+  ],
+  "en_es_0443": [
+    {
+      "es": "¿Continuar?",
+      "en": "Continue?"
+    },
+    {
+      "es": "Continuaremos.",
+      "en": "We'll continue."
+    },
+    {
+      "es": "Continúe.",
+      "en": "Go on."
+    }
+  ],
+  "en_es_0444": [
+    {
+      "es": "No lo habéis incluido.",
+      "en": "You haven't included it."
+    },
+    {
+      "es": "El precio incluye impuestos.",
+      "en": "The price includes tax."
+    },
+    {
+      "es": "Lleva tasas incluidas.",
+      "en": "That's including taxes."
+    }
+  ],
+  "en_es_0445": [
+    {
+      "es": "Tom es un político.",
+      "en": "Tom is a politician."
+    },
+    {
+      "es": "Todo es político.",
+      "en": "Everything's political."
+    },
+    {
+      "es": "Quiero ser político.",
+      "en": "I want to be a politician."
+    }
+  ],
+  "en_es_0446": [
+    {
+      "es": "¿Es posible creer?",
+      "en": "Is it possible to believe?"
+    },
+    {
+      "es": "¿Sería eso posible?",
+      "en": "Would that be possible?"
+    },
+    {
+      "es": "Teóricamente es posible.",
+      "en": "Theoretically, it's possible."
+    }
+  ],
+  "en_es_0447": [
+    {
+      "es": "Danos un ejemplo.",
+      "en": "Give us an example."
+    },
+    {
+      "es": "Denos un ejemplo.",
+      "en": "Give us an example."
+    },
+    {
+      "es": "Ponedme otro ejemplo.",
+      "en": "Give me another example."
+    }
+  ],
+  "en_es_0448": [
+    {
+      "es": "Ellos sabían producir hierro.",
+      "en": "They knew how to make iron."
+    },
+    {
+      "es": "Los mamíferos producen leche.",
+      "en": "Mammals produce milk."
+    },
+    {
+      "es": "Tu estudio producirá fruto.",
+      "en": "Your study will bear fruit."
+    }
+  ],
+  "en_es_0449": [
+    {
+      "es": "¿No crees?",
+      "en": "Don't you think?"
+    },
+    {
+      "es": "¿Lo creéis?",
+      "en": "Do you believe that?"
+    },
+    {
+      "es": "¿Puedes creerme?",
+      "en": "Can you believe me?"
+    }
+  ],
+  "en_es_0450": [
+    {
+      "es": "Apoyamos a Tom.",
+      "en": "We supported Tom."
+    },
+    {
+      "es": "Agradezco el apoyo.",
+      "en": "I appreciate the support."
+    },
+    {
+      "es": "Nadie le apoya.",
+      "en": "Nobody supports him."
+    }
+  ],
+  "en_es_0451": [
+    {
+      "es": "¿Puedes controlar a Tom?",
+      "en": "Can you bring Tom under control?"
+    },
+    {
+      "es": "Había puestos de control.",
+      "en": "There were checkpoints."
+    },
+    {
+      "es": "Tom lo controlará.",
+      "en": "Tom will check it out."
+    }
+  ],
+  "en_es_0452": [
+    {
+      "es": "Todavía estamos considerándolo.",
+      "en": "We're still considering it."
+    },
+    {
+      "es": "Se consideran afortunados.",
+      "en": "They consider themselves fortunate."
+    },
+    {
+      "es": "Considera la fuente.",
+      "en": "Consider the source."
+    }
+  ],
+  "en_es_0453": [
+    {
+      "es": "Debes elegir.",
+      "en": "You should choose."
+    },
+    {
+      "es": "Elegí.",
+      "en": "Choose."
+    },
+    {
+      "es": "Elegiré uno.",
+      "en": "I'll choose one."
+    }
+  ],
+  "en_es_0454": [
+    {
+      "es": "Decidió quedarse.",
+      "en": "He decided to stay."
+    },
+    {
+      "es": "Decidí acostarme.",
+      "en": "I decided to go to sleep."
+    },
+    {
+      "es": "Decidí dimitir.",
+      "en": "I chose to resign."
+    }
+  ],
+  "en_es_0455": [
+    {
+      "es": "Tiene una gran fuerza.",
+      "en": "He's very strong."
+    },
+    {
+      "es": "Nos abrazamos con fuerza.",
+      "en": "We held each other tight."
+    },
+    {
+      "es": "Le abrazó con fuerza.",
+      "en": "He embraced her hard."
+    }
+  ],
+  "en_es_0456": [
+    {
+      "es": "Esperamos.",
+      "en": "We're waiting."
+    },
+    {
+      "es": "Esperarán.",
+      "en": "They'll wait."
+    },
+    {
+      "es": "Esperé.",
+      "en": "I waited."
+    }
+  ],
+  "en_es_0457": [
+    {
+      "es": "Importa.",
+      "en": "It matters."
+    },
+    {
+      "es": "Palestina importa.",
+      "en": "Palestine matters."
+    },
+    {
+      "es": "Nada importa.",
+      "en": "Nothing matters."
+    }
+  ],
+  "en_es_0458": [
+    {
+      "es": "Les puedo servir aquí.",
+      "en": "I can take you over here."
+    },
+    {
+      "es": "Este debería servir.",
+      "en": "This should do it."
+    },
+    {
+      "es": "Me serví un chupito.",
+      "en": "I poured a shot."
+    }
+  ],
+  "en_es_0459": [
+    {
+      "es": "Causó cierta conmoción.",
+      "en": "It caused quite a commotion."
+    },
+    {
+      "es": "Yo causé esto.",
+      "en": "I caused this."
+    },
+    {
+      "es": "No causes problemas.",
+      "en": "Don't make trouble."
+    }
+  ],
+  "en_es_0460": [
+    {
+      "es": "Se puede romper.",
+      "en": "It may break."
+    },
+    {
+      "es": "Rompiste mi taza.",
+      "en": "You broke my cup."
+    },
+    {
+      "es": "Tom rompió conmigo.",
+      "en": "Tom broke up with me."
+    }
+  ],
+  "en_es_0461": [
+    {
+      "es": "Te infectaron a propósito.",
+      "en": "They infected you on purpose."
+    },
+    {
+      "es": "Lo hice a propósito.",
+      "en": "I did it on purpose."
+    },
+    {
+      "es": "Su propósito era distinto.",
+      "en": "His intent is different."
+    }
+  ],
+  "en_es_0462": [
+    {
+      "es": "Detesto pelear.",
+      "en": "I hate fighting."
+    },
+    {
+      "es": "Odio pelear.",
+      "en": "I hate fighting."
+    },
+    {
+      "es": "¿Quieres pelear?",
+      "en": "You wanna fight?"
+    }
+  ],
+  "en_es_0463": [
+    {
+      "es": "Sonó.",
+      "en": "It rang."
+    },
+    {
+      "es": "Son artistas.",
+      "en": "They are artists."
+    },
+    {
+      "es": "Son musulmanes.",
+      "en": "They're Muslim."
+    }
+  ],
+  "en_es_0464": [
+    {
+      "es": "Volvamos dentro.",
+      "en": "Let's get back inside."
+    },
+    {
+      "es": "Metámoslo dentro.",
+      "en": "Let's get it inside."
+    },
+    {
+      "es": "Métete dentro.",
+      "en": "Do come in."
+    }
+  ],
+  "en_es_0465": [
+    {
+      "es": "Fuera.",
+      "en": "Get out."
+    },
+    {
+      "es": "Estaba fuera.",
+      "en": "I was away."
+    },
+    {
+      "es": "Almorcemos fuera.",
+      "en": "Let's eat lunch outside."
+    }
+  ],
+  "en_es_0466": [
+    {
+      "es": "Vivo cerca.",
+      "en": "I live nearby."
+    },
+    {
+      "es": "Estoy cerca.",
+      "en": "I'm close."
+    },
+    {
+      "es": "Estábamos cerca.",
+      "en": "We were close."
+    }
+  ],
+  "en_es_0467": [
+    {
+      "es": "Qué profundo, wey.",
+      "en": "That's deep, man."
+    },
+    {
+      "es": "Ella inspiró profundamente.",
+      "en": "She breathed in deep."
+    },
+    {
+      "es": "Estaba profundamente emocionada.",
+      "en": "I was deeply moved."
+    }
+  ],
+  "en_es_0468": [
+    {
+      "es": "Llevo aretes.",
+      "en": "I wear earrings."
+    },
+    {
+      "es": "Llevo gafas.",
+      "en": "I wear glasses."
+    },
+    {
+      "es": "Lleva pendientes.",
+      "en": "She's wearing earrings."
+    }
+  ],
+  "en_es_0469": [
+    {
+      "es": "Algunos parecen estar de acuerdo contigo.",
+      "en": "Some people seem to agree with you."
+    },
+    {
+      "es": "No puedo estar de acuerdo contigo.",
+      "en": "I can't agree with you."
+    },
+    {
+      "es": "Nunca estaremos de acuerdo.",
+      "en": "We will never agree."
+    }
+  ],
+  "en_es_0470": [
+    {
+      "es": "Ofrecen cursos de habilitación.",
+      "en": "They offer accredited courses."
+    },
+    {
+      "es": "Ofrecen cursos de acreditación.",
+      "en": "They offer accredited courses."
+    },
+    {
+      "es": "Me ofrecieron el trabajo.",
+      "en": "They offered me the job."
+    }
+  ],
+  "en_es_0471": [
+    {
+      "es": "Estaba preparada.",
+      "en": "She was ready."
+    },
+    {
+      "es": "Necesitamos prepararnos.",
+      "en": "We need to get ready."
+    },
+    {
+      "es": "Está preparada.",
+      "en": "She's prepared."
+    }
+  ],
+  "en_es_0472": [
+    {
+      "es": "Recibí un regalo.",
+      "en": "I received a gift."
+    },
+    {
+      "es": "¿Tomaste el recibo?",
+      "en": "Did you take the receipt?"
+    },
+    {
+      "es": "Ha recibido dinero.",
+      "en": "He received money."
+    }
+  ],
+  "en_es_0473": [
+    {
+      "es": "Volvió en tren.",
+      "en": "She came back by train."
+    },
+    {
+      "es": "El tren explotó.",
+      "en": "The train exploded."
+    },
+    {
+      "es": "Perdieron el tren.",
+      "en": "They missed the train."
+    }
+  ],
+  "en_es_0474": [
+    {
+      "es": "Te voy a cubrir.",
+      "en": "I'll cover for you."
+    },
+    {
+      "es": "Este seguro cubre todo.",
+      "en": "This insurance covers everything."
+    },
+    {
+      "es": "La niebla cubrió los picos.",
+      "en": "The fog covered the peaks."
+    }
+  ],
+  "en_es_0475": [
+    {
+      "es": "Desarrollar conciencia política toma tiempo.",
+      "en": "Developing political awareness takes time."
+    },
+    {
+      "es": "Tatoeba carece de desarrolladores.",
+      "en": "Tatoeba lacks developers."
+    },
+    {
+      "es": "Leer desarrolla la mente.",
+      "en": "Reading develops the mind."
+    }
+  ],
+  "en_es_0476": [
+    {
+      "es": "¿Estás tomando nota?",
+      "en": "Are you taking notes?"
+    },
+    {
+      "es": "No todos notaron.",
+      "en": "Not everyone noticed."
+    },
+    {
+      "es": "Toma nota.",
+      "en": "Take note."
+    }
+  ],
+  "en_es_0477": [
+    {
+      "es": "Odio mi voz.",
+      "en": "I hate my voice."
+    },
+    {
+      "es": "Bajen la voz.",
+      "en": "Lower your voice."
+    },
+    {
+      "es": "Baje la voz.",
+      "en": "Lower your voice."
+    }
+  ],
+  "en_es_0478": [
+    {
+      "es": "Puedes elegir cualquier color.",
+      "en": "You can choose any color."
+    },
+    {
+      "es": "¿De qué color son?",
+      "en": "What color are they?"
+    },
+    {
+      "es": "Este color me gusta.",
+      "en": "I like this colour."
+    }
+  ],
+  "en_es_0479": [
+    {
+      "es": "Tom tiene esposa.",
+      "en": "Tom has a wife."
+    },
+    {
+      "es": "Eres mi esposa.",
+      "en": "You're my wife."
+    },
+    {
+      "es": "¿Es tu esposa?",
+      "en": "Is that your wife?"
+    }
+  ],
+  "en_es_0480": [
+    {
+      "es": "Tom tiene esposa.",
+      "en": "Tom has a wife."
+    },
+    {
+      "es": "Eres mi esposa.",
+      "en": "You're my wife."
+    },
+    {
+      "es": "¿Es tu esposa?",
+      "en": "Is that your wife?"
+    }
+  ],
+  "en_es_0481": [
+    {
+      "es": "Tenía una hija.",
+      "en": "She had a daughter."
+    },
+    {
+      "es": "Soy tu hijo.",
+      "en": "I am your son."
+    },
+    {
+      "es": "¿Estás ganando, hijo?",
+      "en": "Are ya winning, son?"
+    }
+  ],
+  "en_es_0482": [
+    {
+      "es": "Sé conducir.",
+      "en": "I know how to drive."
+    },
+    {
+      "es": "Puedo conducir.",
+      "en": "I can drive."
+    },
+    {
+      "es": "¿Quisiste conducir?",
+      "en": "Did you want to drive?"
+    }
+  ],
+  "en_es_0483": [
+    {
+      "es": "Estacione frente al hotel.",
+      "en": "Park across from the hotel."
+    },
+    {
+      "es": "Tu frente está caliente.",
+      "en": "Your forehead is hot."
+    },
+    {
+      "es": "Nos sentamos al frente.",
+      "en": "We sat in the front."
+    }
+  ],
+  "en_es_0484": [
+    {
+      "es": "¡Qué tipo tan gracioso!",
+      "en": "What a funny guy!"
+    },
+    {
+      "es": "¡Qué tipo tan chistoso!",
+      "en": "What a funny guy!"
+    },
+    {
+      "es": "Este tipo es asqueroso.",
+      "en": "This guy is gross."
+    }
+  ],
+  "en_es_0485": [
+    {
+      "es": "El espacio es falso.",
+      "en": "Space is fake."
+    },
+    {
+      "es": "Yo necesito más espacio.",
+      "en": "I need more space."
+    },
+    {
+      "es": "No hay espacio suficiente.",
+      "en": "It's not enough space."
+    }
+  ],
+  "en_es_0486": [
+    {
+      "es": "Me equivoqué de fecha.",
+      "en": "I got the date wrong."
+    },
+    {
+      "es": "Sé la fecha exacta.",
+      "en": "I know the exact date."
+    },
+    {
+      "es": "Hoy es buena fecha.",
+      "en": "Today would be good."
+    }
+  ],
+  "en_es_0487": [
+    {
+      "es": "No tendrás valor.",
+      "en": "You won't have the guts."
+    },
+    {
+      "es": "Admiro vuestro valor.",
+      "en": "I admire your courage."
+    },
+    {
+      "es": "Admiro tu valor.",
+      "en": "I admire your courage."
+    }
+  ],
+  "en_es_0488": [
+    {
+      "es": "¿Cómo será nuestro futuro?",
+      "en": "What will our future be like?"
+    },
+    {
+      "es": "Ellos son el futuro.",
+      "en": "They are the future."
+    },
+    {
+      "es": "El futuro es sombrío.",
+      "en": "The future is bleak."
+    }
+  ],
+  "en_es_0489": [
+    {
+      "es": "Pasará.",
+      "en": "It'll happen."
+    },
+    {
+      "es": "Pasó.",
+      "en": "It happened."
+    },
+    {
+      "es": "Pasearon.",
+      "en": "They walked."
+    }
+  ],
+  "en_es_0490": [
+    {
+      "es": "Querría presentarme brevemente.",
+      "en": "I'd like to briefly introduce myself."
+    },
+    {
+      "es": "Ella se presentó.",
+      "en": "She introduced herself."
+    },
+    {
+      "es": "Tenedlo presente.",
+      "en": "Keep it in mind."
+    }
+  ],
+  "en_es_0491": [
+    {
+      "es": "La tasa de desempleo está subiendo.",
+      "en": "Unemployment numbers are rising."
+    },
+    {
+      "es": "La tasa de natalidad es muy baja.",
+      "en": "The birth rate is very low."
+    },
+    {
+      "es": "La tasa de desempleo ascendió un 5 %.",
+      "en": "The unemployment rate went up to 5%."
+    }
+  ],
+  "en_es_0492": [
+    {
+      "es": "El centro comercial cerró.",
+      "en": "The mall closed."
+    },
+    {
+      "es": "Quiero ir al centro.",
+      "en": "I want to go to town."
+    },
+    {
+      "es": "Necesito ir al centro.",
+      "en": "I need to go to downtown."
+    }
+  ],
+  "en_es_0493": [
+    {
+      "es": "La sociedad estará condenada.",
+      "en": "Society will be doomed."
+    },
+    {
+      "es": "La sociedad somos nosotros.",
+      "en": "We are the society."
+    },
+    {
+      "es": "Vivimos en una sociedad.",
+      "en": "We live in a society."
+    }
+  ],
+  "en_es_0494": [
+    {
+      "es": "Tu pieza es grande.",
+      "en": "Your room is big."
+    },
+    {
+      "es": "La pieza estaba cálida.",
+      "en": "The room was warm."
+    },
+    {
+      "es": "¿Me concedes esta pieza?",
+      "en": "May I have this dance?"
+    }
+  ],
+  "en_es_0495": [
+    {
+      "es": "Ellos deberían demandarle.",
+      "en": "They should sue him."
+    },
+    {
+      "es": "¿Demandaste a Tom?",
+      "en": "Did you sue Tom?"
+    },
+    {
+      "es": "Deberíamos demandarlos.",
+      "en": "We should sue them."
+    }
+  ],
+  "en_es_0496": [
+    {
+      "es": "Vístase más rápido.",
+      "en": "Get dressed faster."
+    },
+    {
+      "es": "¿Viste el accidente?",
+      "en": "Did you see the accident?"
+    },
+    {
+      "es": "¿Viste eso?",
+      "en": "Did you see that?"
+    }
+  ],
+  "en_es_0497": [
+    {
+      "es": "La prensa confirmó los rumores.",
+      "en": "The press confirmed the rumors."
+    },
+    {
+      "es": "Esa es la libertad de prensa.",
+      "en": "That's the press freedom."
+    },
+    {
+      "es": "La prensa bombardeó al ministro con preguntas.",
+      "en": "The press besieged the minister with questions."
+    }
+  ],
+  "en_es_0498": [
+    {
+      "es": "Es temporada de venados.",
+      "en": "It's deer season."
+    },
+    {
+      "es": "Ya es temporada de tifones.",
+      "en": "It's already typhoon season."
+    },
+    {
+      "es": "La temporada pasada marcó 30 goles.",
+      "en": "Last season he scored 30 goals."
+    }
+  ],
+  "en_es_0499": [
+    {
+      "es": "Este material es dinamita.",
+      "en": "This stuff is dynamite."
+    },
+    {
+      "es": "Este material es asqueroso.",
+      "en": "This stuff is disgusting."
+    },
+    {
+      "es": "¿Cuál es el material?",
+      "en": "What's the material?"
+    }
+  ],
+  "en_es_0500": [
+    {
+      "es": "El cine es una industria.",
+      "en": "The cinema is an industry."
+    },
+    {
+      "es": "Ella trabaja para una industria extranjera.",
+      "en": "She works for a foreign industry."
+    },
+    {
+      "es": "La industria automovilística está contratando nuevamente.",
+      "en": "The auto industry is hiring again."
+    }
+  ],
+  "en_es_0501": [
+    {
+      "es": "Abre una cuenta.",
+      "en": "Open an account."
+    },
+    {
+      "es": "Eso no cuenta.",
+      "en": "That doesn't count."
+    },
+    {
+      "es": "Cada detalle cuenta.",
+      "en": "Every detail matters."
+    }
+  ],
+  "en_es_0502": [
+    {
+      "es": "¿Puedes medir el largo?",
+      "en": "Can you measure the length?"
+    },
+    {
+      "es": "Medidas desesperadas fueron tomadas.",
+      "en": "Desperate measures were taken."
+    },
+    {
+      "es": "Esto requiere drásticas medidas.",
+      "en": "This calls for drastic measures."
+    }
+  ],
+  "en_es_0503": [
+    {
+      "es": "Dale una oportunidad.",
+      "en": "Give her a chance."
+    },
+    {
+      "es": "No tienes oportunidad.",
+      "en": "You don't have a chance."
+    },
+    {
+      "es": "Aprovecharé la oportunidad.",
+      "en": "I'll take a chance."
+    }
+  ],
+  "en_es_0504": [
+    {
+      "es": "Yanni comprobó su aceite.",
+      "en": "Yanni checked his oil."
+    },
+    {
+      "es": "Como pan sin aceite.",
+      "en": "I eat bread without oil."
+    },
+    {
+      "es": "Esta estufa quema aceite.",
+      "en": "This stove burns oil."
+    }
+  ],
+  "en_es_0505": [
+    {
+      "es": "Dame tu dirección.",
+      "en": "Give me your address."
+    },
+    {
+      "es": "Apunta su dirección.",
+      "en": "Write down his address."
+    },
+    {
+      "es": "Sé su dirección.",
+      "en": "I know his address."
+    }
+  ],
+  "en_es_0506": [
+    {
+      "es": "Están atrapadas.",
+      "en": "They're trapped."
+    },
+    {
+      "es": "Están atrapados.",
+      "en": "They're trapped."
+    },
+    {
+      "es": "Buena atrapada.",
+      "en": "Good catch."
+    }
+  ],
+  "en_es_0507": [
+    {
+      "es": "Quiero explicar.",
+      "en": "I want to explain."
+    },
+    {
+      "es": "Déjame explicar.",
+      "en": "Let me explain."
+    },
+    {
+      "es": "Puedo explicarlo.",
+      "en": "I can explain it."
+    }
+  ],
+  "en_es_0508": [
+    {
+      "es": "Lástima.",
+      "en": "Too bad."
+    },
+    {
+      "es": "Me lastimaste.",
+      "en": "You hurt me."
+    },
+    {
+      "es": "Estábamos lastimados.",
+      "en": "We were hurt."
+    }
+  ],
+  "en_es_0509": [
+    {
+      "es": "Esperamos.",
+      "en": "We're waiting."
+    },
+    {
+      "es": "Esperarán.",
+      "en": "They'll wait."
+    },
+    {
+      "es": "Esperé.",
+      "en": "I waited."
+    }
+  ],
+  "en_es_0510": [
+    {
+      "es": "Debo entrar.",
+      "en": "I must go in."
+    },
+    {
+      "es": "Debes entrar.",
+      "en": "You must come in."
+    },
+    {
+      "es": "Déjanos entrar.",
+      "en": "Let us in."
+    }
+  ],
+  "en_es_0511": [
+    {
+      "es": "Terminaste.",
+      "en": "You're done."
+    },
+    {
+      "es": "Terminemos.",
+      "en": "Let's finish up."
+    },
+    {
+      "es": "Terminamos.",
+      "en": "We're done."
+    }
+  ],
+  "en_es_0512": [
+    {
+      "es": "Agarra eso. Vamos a jalar.",
+      "en": "Take hold of it. We're going to pull it."
+    },
+    {
+      "es": "Ella jaló mi camisa.",
+      "en": "She pulled my shirt."
+    },
+    {
+      "es": "Tom jaló el gatillo.",
+      "en": "Tom pulled the trigger."
+    }
+  ],
+  "en_es_0513": [
+    {
+      "es": "Deja de empujar.",
+      "en": "Stop pushing."
+    },
+    {
+      "es": "Ayúdame a empujarlo.",
+      "en": "Help me push it."
+    },
+    {
+      "es": "Me empujó suavemente.",
+      "en": "She pushed me gently."
+    }
+  ],
+  "en_es_0514": [
+    {
+      "es": "Dejé caer tu taza.",
+      "en": "I dropped your mug."
+    },
+    {
+      "es": "No los dejes caer.",
+      "en": "Don't drop them."
+    },
+    {
+      "es": "Dejé caer mis llaves.",
+      "en": "I dropped my keys."
+    }
+  ],
+  "en_es_0515": [
+    {
+      "es": "Puedo volar.",
+      "en": "I can fly."
+    },
+    {
+      "es": "Detesto volar.",
+      "en": "I hate flying."
+    },
+    {
+      "es": "Odio volar.",
+      "en": "I hate flying."
+    }
+  ],
+  "en_es_0516": [
+    {
+      "es": "El pez es pequeño.",
+      "en": "The fish is small."
+    },
+    {
+      "es": "Esto es un pez.",
+      "en": "This is a fish."
+    },
+    {
+      "es": "Nada como un pez.",
+      "en": "He swims like a fish."
+    }
+  ],
+  "en_es_0517": [
+    {
+      "es": "Toco jazz.",
+      "en": "I play jazz."
+    },
+    {
+      "es": "Me toca.",
+      "en": "It's my turn."
+    },
+    {
+      "es": "¡Toco madera!",
+      "en": "Touch wood!"
+    }
+  ],
+  "en_es_0518": [
+    {
+      "es": "Escoge ser feliz.",
+      "en": "Choose to be happy."
+    },
+    {
+      "es": "Escoge.",
+      "en": "Make your choice."
+    },
+    {
+      "es": "Escoge sabiamente.",
+      "en": "Choose wisely."
+    }
+  ],
+  "en_es_0519": [
+    {
+      "es": "Solía usar drogas.",
+      "en": "I used to do drugs."
+    },
+    {
+      "es": "Deberías usar desodorante.",
+      "en": "You should use a deodorant."
+    },
+    {
+      "es": "Quiero usar estos.",
+      "en": "I want to use these."
+    }
+  ],
+  "en_es_0520": [
+    {
+      "es": "Suponía que eras canadiense.",
+      "en": "I assumed you were Canadian."
+    },
+    {
+      "es": "Se supone que lloverá mañana.",
+      "en": "It's supposed to rain tomorrow."
+    },
+    {
+      "es": "Se supone que produce somnolencia.",
+      "en": "It's supposed to cause drowsiness."
+    }
+  ],
+  "en_es_0521": [
+    {
+      "es": "Canté.",
+      "en": "I sang."
+    },
+    {
+      "es": "Cantemos.",
+      "en": "Let's sing."
+    },
+    {
+      "es": "Canta.",
+      "en": "Sing."
+    }
+  ],
+  "en_es_0522": [
+    {
+      "es": "Bailen.",
+      "en": "Dance."
+    },
+    {
+      "es": "Baile.",
+      "en": "Dance."
+    },
+    {
+      "es": "Bailad.",
+      "en": "Dance."
+    }
+  ],
+  "en_es_0523": [
+    {
+      "es": "Desearía morirme.",
+      "en": "I wish I could die."
+    },
+    {
+      "es": "Estoy deseándolo.",
+      "en": "I'm wishing for that."
+    },
+    {
+      "es": "Como desees.",
+      "en": "As you wish."
+    }
+  ],
+  "en_es_0524": [
+    {
+      "es": "Me gusta dibujar.",
+      "en": "I like to draw."
+    },
+    {
+      "es": "Dibujaré una imagen.",
+      "en": "I will draw a picture."
+    },
+    {
+      "es": "Dibujaron dos líneas.",
+      "en": "They drew two lines."
+    }
+  ],
+  "en_es_0525": [
+    {
+      "es": "Podéis contar conmigo.",
+      "en": "You can count on me."
+    },
+    {
+      "es": "Pueden contar conmigo.",
+      "en": "You can count on me."
+    },
+    {
+      "es": "Puede contar conmigo.",
+      "en": "You can count on me."
+    }
+  ],
+  "en_es_0526": [
+    {
+      "es": "Quiero cocinar.",
+      "en": "I want to cook."
+    },
+    {
+      "es": "Sé cocinar.",
+      "en": "I can cook."
+    },
+    {
+      "es": "Cociné.",
+      "en": "I cooked."
+    }
+  ],
+  "en_es_0527": [
+    {
+      "es": "Los golpes cesaron.",
+      "en": "The banging stopped."
+    },
+    {
+      "es": "Tuve un golpe.",
+      "en": "I had a stroke."
+    },
+    {
+      "es": "Ellos tuvieron golpes.",
+      "en": "They had strokes."
+    }
+  ],
+  "en_es_0528": [
+    {
+      "es": "Quiero ahorrar muchísimo.",
+      "en": "I want to save a lot of money."
+    },
+    {
+      "es": "Quiero ahorrar más.",
+      "en": "I want to save more money."
+    },
+    {
+      "es": "Ahorra mucho dinero.",
+      "en": "He saves a lot of money."
+    }
+  ],
+  "en_es_0529": [
+    {
+      "es": "Adoro enseñar.",
+      "en": "I love teaching."
+    },
+    {
+      "es": "Vosotras enseñáis.",
+      "en": "You teach."
+    },
+    {
+      "es": "Vosotros enseñáis.",
+      "en": "You teach."
+    }
+  ],
+  "en_es_0530": [
+    {
+      "es": "Intentaba olvidar.",
+      "en": "I tried to forget."
+    },
+    {
+      "es": "Olvidamos algo.",
+      "en": "We're forgetting something."
+    },
+    {
+      "es": "Olvidé vigilarlo.",
+      "en": "I forgot to watch it."
+    }
+  ],
+  "en_es_0531": [
+    {
+      "es": "¿Puedo visitar?",
+      "en": "Can I stop by?"
+    },
+    {
+      "es": "Visitaré Atenas.",
+      "en": "I'll visit Athens."
+    },
+    {
+      "es": "Visité Boston.",
+      "en": "I visited Boston."
+    }
+  ],
+  "en_es_0532": [
+    {
+      "es": "Quieren viajar.",
+      "en": "They want to travel."
+    },
+    {
+      "es": "Quisiera viajar.",
+      "en": "I wanna travel."
+    },
+    {
+      "es": "Viajé.",
+      "en": "I traveled."
+    }
+  ],
+  "en_es_0533": [
+    {
+      "es": "Llegaré.",
+      "en": "I will arrive."
+    },
+    {
+      "es": "Llegaron.",
+      "en": "They came in."
+    },
+    {
+      "es": "Llegué.",
+      "en": "I've arrived."
+    }
+  ],
+  "en_es_0534": [
+    {
+      "es": "Lloraba.",
+      "en": "I wept."
+    },
+    {
+      "es": "Lloré.",
+      "en": "I wept."
+    },
+    {
+      "es": "Nunca lloró.",
+      "en": "He never cried."
+    }
+  ],
+  "en_es_0535": [
+    {
+      "es": "No pude evitar sonreír.",
+      "en": "I could not help smiling."
+    },
+    {
+      "es": "Tengo ganas de sonreír.",
+      "en": "I feel like smiling."
+    },
+    {
+      "es": "Ella le vio sonreír.",
+      "en": "She saw him smile."
+    }
+  ],
+  "en_es_0536": [
+    {
+      "es": "Reír es sano.",
+      "en": "Laughing is healthy."
+    },
+    {
+      "es": "Dejaron de reír.",
+      "en": "They stopped laughing."
+    },
+    {
+      "es": "Dejé de reír.",
+      "en": "I stopped laughing."
+    }
+  ],
+  "en_es_0537": [
+    {
+      "es": "Parecían preocupadas.",
+      "en": "They seemed concerned."
+    },
+    {
+      "es": "Te preocupa.",
+      "en": "It concerns you."
+    },
+    {
+      "es": "Estaban preocupados.",
+      "en": "They were worried."
+    }
+  ],
+  "en_es_0538": [
+    {
+      "es": "Tenemos miedo.",
+      "en": "We are afraid."
+    },
+    {
+      "es": "Dais miedo.",
+      "en": "You are scary."
+    },
+    {
+      "es": "Tienen miedo.",
+      "en": "They're scared."
+    }
+  ],
+  "en_es_0539": [
+    {
+      "es": "Yanni carece de confianza.",
+      "en": "Yanni lacks confidence."
+    },
+    {
+      "es": "Quizá pequé de confianza.",
+      "en": "Maybe I was too confident."
+    },
+    {
+      "es": "No son de confianza.",
+      "en": "They're unreliable."
+    }
+  ],
+  "en_es_0540": [
+    {
+      "es": "Tengo una sorpresa.",
+      "en": "I have a surprise."
+    },
+    {
+      "es": "¡Qué desagradable sorpresa!",
+      "en": "What an unpleasant surprise!"
+    },
+    {
+      "es": "¡Qué sorpresa maravillosa!",
+      "en": "What a wonderful surprise!"
+    }
+  ],
+  "en_es_0541": [
+    {
+      "es": "Vestía de rosa.",
+      "en": "She dressed in pink."
+    },
+    {
+      "es": "¡Qué bonito vestido!",
+      "en": "What a pretty dress!"
+    },
+    {
+      "es": "Tenemos que vestirnos.",
+      "en": "We have to get dressed."
+    }
+  ],
+  "en_es_0542": [
+    {
+      "es": "Ponte la camisa.",
+      "en": "Put on your shirt."
+    },
+    {
+      "es": "Deme su camisa.",
+      "en": "Give me your shirt."
+    },
+    {
+      "es": "Planchó su camisa.",
+      "en": "He ironed his shirt."
+    }
+  ],
+  "en_es_0543": [
+    {
+      "es": "¿Vas a contratarlos?",
+      "en": "Are you going to hire them?"
+    },
+    {
+      "es": "Necesitamos vasos.",
+      "en": "We need glasses."
+    },
+    {
+      "es": "Vas tarde.",
+      "en": "You're running late."
+    }
+  ],
+  "en_es_0544": [
+    {
+      "es": "Su taza es roja.",
+      "en": "His mug is red."
+    },
+    {
+      "es": "La taza está rota.",
+      "en": "The cup is broken."
+    },
+    {
+      "es": "Tom depositó su taza.",
+      "en": "Tom set down his mug."
+    }
+  ],
+  "en_es_0545": [
+    {
+      "es": "Recomiendo este plato.",
+      "en": "I recommend this dish."
+    },
+    {
+      "es": "Usé este plato.",
+      "en": "I used this plate."
+    },
+    {
+      "es": "¡Limpia tu plato!",
+      "en": "Clean your plate!"
+    }
+  ],
+  "en_es_0546": [
+    {
+      "es": "Comen pan.",
+      "en": "They eat bread."
+    },
+    {
+      "es": "Comí pan.",
+      "en": "I ate bread."
+    },
+    {
+      "es": "¿Hay pan?",
+      "en": "Is there any bread?"
+    }
+  ],
+  "en_es_0547": [
+    {
+      "es": "Compró leche.",
+      "en": "He bought milk."
+    },
+    {
+      "es": "Bebemos leche.",
+      "en": "We drink milk."
+    },
+    {
+      "es": "Tienen leche.",
+      "en": "They have milk."
+    }
+  ],
+  "en_es_0548": [
+    {
+      "es": "Comen carne cruda.",
+      "en": "They eat raw meat."
+    },
+    {
+      "es": "Sólo comeré carne.",
+      "en": "I will only eat meat."
+    },
+    {
+      "es": "Como poca carne.",
+      "en": "I eat little meat."
+    }
+  ],
+  "en_es_0549": [
+    {
+      "es": "Comen fruta.",
+      "en": "They eat fruit."
+    },
+    {
+      "es": "Vendemos fruta.",
+      "en": "We sell fruit."
+    },
+    {
+      "es": "¡Coman fruta!",
+      "en": "Eat fruit!"
+    }
+  ],
+  "en_es_0550": [
+    {
+      "es": "Comí arroz.",
+      "en": "I ate rice."
+    },
+    {
+      "es": "Tenemos arroz.",
+      "en": "We have rice."
+    },
+    {
+      "es": "Comemos arroz.",
+      "en": "We eat rice."
+    }
+  ],
+  "en_es_0551": [
+    {
+      "es": "Cascáis los huevos.",
+      "en": "Crack the eggs."
+    },
+    {
+      "es": "Aquí vendían huevos.",
+      "en": "They used to sell eggs here."
+    },
+    {
+      "es": "Quiero huevos.",
+      "en": "I want eggs."
+    }
+  ],
+  "en_es_0552": [
+    {
+      "es": "No puedo comer pollo.",
+      "en": "I can't eat chicken."
+    },
+    {
+      "es": "¿Prefieres pescado o pollo?",
+      "en": "Do you prefer fish or chicken?"
+    },
+    {
+      "es": "Sabe a pollo.",
+      "en": "It tastes like chicken."
+    }
+  ],
+  "en_es_0553": [
+    {
+      "es": "Sal.",
+      "en": "Get out."
+    },
+    {
+      "es": "¡Sal!",
+      "en": "Go!"
+    },
+    {
+      "es": "Salía.",
+      "en": "I was going out."
+    }
+  ],
+  "en_es_0554": [
+    {
+      "es": "Necesito azúcar.",
+      "en": "I need sugar."
+    },
+    {
+      "es": "Querría azúcar.",
+      "en": "I'd like some sugar."
+    },
+    {
+      "es": "Consumo azúcar.",
+      "en": "I consume sugar."
+    }
+  ],
+  "en_es_0555": [
+    {
+      "es": "Haz café.",
+      "en": "Make coffee."
+    },
+    {
+      "es": "Bebieron café.",
+      "en": "They drank coffee."
+    },
+    {
+      "es": "Huelo café.",
+      "en": "I smell coffee."
+    }
+  ],
+  "en_es_0556": [
+    {
+      "es": "Preparé té.",
+      "en": "I made tea."
+    },
+    {
+      "es": "Es té.",
+      "en": "It's tea."
+    },
+    {
+      "es": "Bebí té.",
+      "en": "I drank tea."
+    }
+  ],
+  "en_es_0557": [
+    {
+      "es": "Leonid vino.",
+      "en": "Leonid came."
+    },
+    {
+      "es": "Yanni vino.",
+      "en": "Yanni came."
+    },
+    {
+      "es": "Querría vino.",
+      "en": "I'd like some wine."
+    }
+  ],
+  "en_es_0558": [
+    {
+      "es": "No vendemos cerveza.",
+      "en": "We don't sell beer."
+    },
+    {
+      "es": "Bebimos cerveza.",
+      "en": "We drank beer."
+    },
+    {
+      "es": "Tengo cerveza.",
+      "en": "I've got beer."
+    }
+  ],
+  "en_es_0559": [
+    {
+      "es": "Tiene la nariz puntiaguda.",
+      "en": "He has a pointed nose."
+    },
+    {
+      "es": "Les sangra la nariz.",
+      "en": "Your noses are bleeding."
+    },
+    {
+      "es": "Os sangra la nariz.",
+      "en": "Your noses are bleeding."
+    }
+  ],
+  "en_es_0560": [
+    {
+      "es": "Cállate la boca.",
+      "en": "Shut the fuck up."
+    },
+    {
+      "es": "Es mi boca.",
+      "en": "It is my mouth."
+    },
+    {
+      "es": "Tu boca hiede.",
+      "en": "Your mouth stinks."
+    }
+  ],
+  "en_es_0561": [
+    {
+      "es": "Mi oreja fue amputada.",
+      "en": "My ear was amputated."
+    },
+    {
+      "es": "Me perforé las orejas.",
+      "en": "I got my ears pierced."
+    },
+    {
+      "es": "¿Podéis mover las orejas?",
+      "en": "Can you move your ears?"
+    }
+  ],
+  "en_es_0562": [
+    {
+      "es": "Tienes los dientes blancos.",
+      "en": "You have white teeth."
+    },
+    {
+      "es": "Me cepillé los dientes.",
+      "en": "I brushed my teeth."
+    },
+    {
+      "es": "¿Las ranas tienen dientes?",
+      "en": "Do frogs have teeth?"
+    }
+  ],
+  "en_es_0563": [
+    {
+      "es": "No pelees.",
+      "en": "Don't fight."
+    },
+    {
+      "es": "No peleen.",
+      "en": "Don't fight."
+    },
+    {
+      "es": "No peleábamos.",
+      "en": "We weren't fighting."
+    }
+  ],
+  "en_es_0564": [
+    {
+      "es": "Su dedo está roto.",
+      "en": "His finger is broken."
+    },
+    {
+      "es": "Fue mi dedo.",
+      "en": "That was my finger."
+    },
+    {
+      "es": "Su dedo sangra.",
+      "en": "His finger bleeds."
+    }
+  ],
+  "en_es_0565": [
+    {
+      "es": "Arremángate el brazo.",
+      "en": "Roll up your sleeve."
+    },
+    {
+      "es": "Levanten los brazos.",
+      "en": "Lift up your arms."
+    },
+    {
+      "es": "Levante los brazos.",
+      "en": "Lift up your arms."
+    }
+  ],
+  "en_es_0566": [
+    {
+      "es": "¿Qué pierna duele?",
+      "en": "Which leg hurts?"
+    },
+    {
+      "es": "Levanten las piernas.",
+      "en": "Lift your legs."
+    },
+    {
+      "es": "Levantad las piernas.",
+      "en": "Lift your legs."
+    }
+  ],
+  "en_es_0567": [
+    {
+      "es": "Eres un hombre.",
+      "en": "You're a man."
+    },
+    {
+      "es": "Encógete de hombros.",
+      "en": "Shrug your shoulders."
+    },
+    {
+      "es": "Sigue cotorreando, hombre.",
+      "en": "Keep yappin', man."
+    }
+  ],
+  "en_es_0568": [
+    {
+      "es": "Me raspé la rodilla.",
+      "en": "I scraped my knee."
+    },
+    {
+      "es": "Me lastimé la rodilla.",
+      "en": "I hurt my knee."
+    },
+    {
+      "es": "Me golpeé la rodilla.",
+      "en": "I bumped my knee."
+    }
+  ],
+  "en_es_0569": [
+    {
+      "es": "Parece sangre.",
+      "en": "It looks like blood."
+    },
+    {
+      "es": "Donó sangre.",
+      "en": "He gave blood."
+    },
+    {
+      "es": "Tosí sangre.",
+      "en": "I coughed up blood."
+    }
+  ],
+  "en_es_0570": [
+    {
+      "es": "Su piel es blanca.",
+      "en": "His skin is white."
+    },
+    {
+      "es": "Mi piel está seca.",
+      "en": "My skin is dry."
+    },
+    {
+      "es": "Tengo la piel seca.",
+      "en": "I have dry skin."
+    }
+  ],
+  "en_es_0571": [
+    {
+      "es": "Las cerezas tienen hueso.",
+      "en": "Cherries have pits inside."
+    },
+    {
+      "es": "No veo ningún hueso roto.",
+      "en": "I don't see any broken bones."
+    },
+    {
+      "es": "Ese niño es puro hueso.",
+      "en": "That boy is skinny."
+    }
+  ],
+  "en_es_0572": [
+    {
+      "es": "Se rompió el cuello.",
+      "en": "He broke his neck."
+    },
+    {
+      "es": "Me duele el cuello.",
+      "en": "My neck hurts."
+    },
+    {
+      "es": "¿Te duele el cuello?",
+      "en": "Does your neck hurt?"
+    }
+  ],
+  "en_es_0573": [
+    {
+      "es": "Me duele mi estómago.",
+      "en": "My tummy hurts."
+    },
+    {
+      "es": "Tengo el estómago lleno.",
+      "en": "My stomach's full."
+    },
+    {
+      "es": "Tengo ardor de estómago.",
+      "en": "I have heartburn."
+    }
+  ],
+  "en_es_0574": [
+    {
+      "es": "Leer activa el cerebro.",
+      "en": "Reading activates the brain."
+    },
+    {
+      "es": "Mi cerebro está lleno.",
+      "en": "My brain is full."
+    },
+    {
+      "es": "Mi cerebro está frito.",
+      "en": "My brain is fried."
+    }
+  ],
+  "en_es_0575": [
+    {
+      "es": "Mirad esa montaña.",
+      "en": "Look at that mountain."
+    },
+    {
+      "es": "Mirá esa montaña.",
+      "en": "Look at that mountain."
+    },
+    {
+      "es": "Miren esa montaña.",
+      "en": "Look at that mountain."
+    }
+  ],
+  "en_es_0576": [
+    {
+      "es": "Nadie es una isla.",
+      "en": "Nobody is an island."
+    },
+    {
+      "es": "Creta es una isla.",
+      "en": "Crete is an island."
+    },
+    {
+      "es": "La isla está deshabitada.",
+      "en": "The island is uninhabited."
+    }
+  ],
+  "en_es_0577": [
+    {
+      "es": "Me gusta ese lago.",
+      "en": "I like that lake."
+    },
+    {
+      "es": "El lago está helado.",
+      "en": "The lake is frozen."
+    },
+    {
+      "es": "El lago está congelado.",
+      "en": "The lake is frozen."
+    }
+  ],
+  "en_es_0578": [
+    {
+      "es": "Este bosque está peligroso.",
+      "en": "This forest is dangerous."
+    },
+    {
+      "es": "Medito en el bosque.",
+      "en": "I meditate in the forest."
+    },
+    {
+      "es": "Entré en el bosque.",
+      "en": "I entered the forest."
+    }
+  ],
+  "en_es_0579": [
+    {
+      "es": "El jardín es lindo.",
+      "en": "The garden is pretty."
+    },
+    {
+      "es": "El jardín es pequeño.",
+      "en": "The garden is small."
+    },
+    {
+      "es": "¿Donde está el jardín?",
+      "en": "Where's the garden?"
+    }
+  ],
+  "en_es_0580": [
+    {
+      "es": "Toma una flor.",
+      "en": "Pick the flower."
+    },
+    {
+      "es": "Bonita flor, ¿cierto?",
+      "en": "This flower is pretty, isn't it?"
+    },
+    {
+      "es": "Sami encargó flores.",
+      "en": "Sami ordered flowers."
     }
   ]
 }

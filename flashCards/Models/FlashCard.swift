@@ -16,6 +16,7 @@ final class FlashCard {
     var category: String?
     var intrinsicDifficulty: Int
     var deckId: String
+    var wordIndex: Int
     var examples: [ExampleSentence]
 
     // Spaced repetition state
@@ -37,7 +38,7 @@ final class FlashCard {
     init(wordId: String, sourceText: String, targetText: String,
          article: String?, partOfSpeech: String?, category: String?,
          intrinsicDifficulty: Int, deckId: String,
-         examples: [ExampleSentence] = []) {
+         wordIndex: Int = 0, examples: [ExampleSentence] = []) {
         self.wordId = wordId
         self.sourceText = sourceText
         self.targetText = targetText
@@ -46,6 +47,7 @@ final class FlashCard {
         self.category = category
         self.intrinsicDifficulty = intrinsicDifficulty
         self.deckId = deckId
+        self.wordIndex = wordIndex
         self.examples = examples
         self.status = "new"
         self.introducedDate = nil
