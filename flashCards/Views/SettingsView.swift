@@ -8,6 +8,7 @@ struct SettingsView: View {
     @Query private var decks: [DeckMetadata]
     @State private var showingResetAlert = false
     @AppStorage("appearance") private var appearance: String = "system"
+    @AppStorage("notificationsEnabled") private var notificationsEnabled: Bool = true
     @State private var notificationStatus: String?
     @State private var showingRestoreImporter = false
     @State private var backupStatus: String?
@@ -78,12 +79,12 @@ struct SettingsView: View {
                     if deck.newWordsMode == "scheduled" {
                         Section("New Words Arrive") {
                             Stepper(
-                                "\(deck.newWordsAccumulationRate) words per hour",
+                                "\(deck.newWordsAccumulationRate) words per day",
                                 value: Binding(
                                     get: { deck.newWordsAccumulationRate },
                                     set: { deck.newWordsAccumulationRate = $0 }
                                 ),
-                                in: 1...5
+                                in: 1...50
                             )
                         }
                     }
@@ -112,55 +113,25 @@ struct SettingsView: View {
                         .pickerStyle(.segmented)
                     }
 
-                    Section("Notifications") {
-                        Button("Enable Notifications") {
-                            let center = UNUserNotificationCenter.current()
-                            center.getNotificationSettings { settings in
-                                DispatchQueue.main.async {
-                                    switch settings.authorizationStatus {
-                                    case .notDetermined:
-                                        center.requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
-                                            DispatchQueue.main.async {
-                                                if granted {
-                                                    notificationStatus = "granted"
-                                                    NotificationManager.shared.rescheduleNotifications(context: modelContext)
-                                                } else {
-                                                    notificationStatus = "denied"
-                                                }
-                                            }
-                                        }
-                                    case .denied:
-                                        if let url = URL(string: UIApplication.openSettingsURLString) {
-                                            UIApplication.shared.open(url)
-                                        }
-                                    case .authorized, .provisional, .ephemeral:
-                                        notificationStatus = "already"
-                                        NotificationManager.shared.rescheduleNotifications(context: modelContext)
-                                    @unknown default:
-                                        break
-                                    }
+                    Section {
+                        Toggle("Review Reminders", isOn: $notificationsEnabled)
+                            .onChange(of: notificationsEnabled) { _, enabled in
+                                if enabled {
+                                    requestNotificationPermission()
+                                } else {
+                                    NotificationManager.shared.cancelAll()
                                 }
                             }
-                        }
 
                         if let notificationStatus {
-                            switch notificationStatus {
-                            case "granted":
-                                Text("Notifications enabled!")
-                                    .foregroundStyle(.green)
-                                    .font(.caption)
-                            case "denied":
-                                Text("Notifications denied. Opening Settings...")
-                                    .foregroundStyle(.orange)
-                                    .font(.caption)
-                            case "already":
-                                Text("Notifications already enabled!")
-                                    .foregroundStyle(.green)
-                                    .font(.caption)
-                            default:
-                                EmptyView()
-                            }
+                            Text(notificationStatus)
+                                .font(.caption)
+                                .foregroundStyle(notificationStatus.contains("denied") ? .orange : .green)
                         }
+                    } header: {
+                        Text("Notifications")
+                    } footer: {
+                        Text("Get notified at 9 AM, 1 PM, and 6 PM when you have words ready for review.")
                     }
 
                     Section("Backup & Restore") {
@@ -245,6 +216,38 @@ struct SettingsView: View {
                 }
             } message: {
                 Text("This will reset all your learning progress. Your word data will be preserved, but all cards will return to 'new' status. This cannot be undone.")
+            }
+        }
+    }
+
+    private func requestNotificationPermission() {
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings { settings in
+            DispatchQueue.main.async {
+                switch settings.authorizationStatus {
+                case .notDetermined:
+                    center.requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
+                        DispatchQueue.main.async {
+                            if granted {
+                                notificationStatus = "Notifications enabled!"
+                                NotificationManager.shared.rescheduleNotifications(context: modelContext)
+                            } else {
+                                notificationsEnabled = false
+                                notificationStatus = "Notifications denied — enable in Settings app."
+                            }
+                        }
+                    }
+                case .denied:
+                    notificationsEnabled = false
+                    notificationStatus = "Notifications denied — enable in Settings app."
+                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url)
+                    }
+                case .authorized, .provisional, .ephemeral:
+                    NotificationManager.shared.rescheduleNotifications(context: modelContext)
+                @unknown default:
+                    break
+                }
             }
         }
     }

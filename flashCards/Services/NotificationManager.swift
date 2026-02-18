@@ -6,6 +6,9 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     static let shared = NotificationManager()
     private let center = UNUserNotificationCenter.current()
 
+    /// Daytime check-point hours when we may send a notification
+    private let checkHours = [9, 13, 18]
+
     private override init() {
         super.init()
         center.delegate = self
@@ -50,8 +53,8 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
 
     func sendTestNotification() {
         let content = UNMutableNotificationContent()
-        content.title = "Daily Flashcards"
-        content.body = "This is a test notification. Your daily words are waiting!"
+        content.title = "Chispa"
+        content.body = "This is a test notification. Your words are waiting!"
         content.sound = .default
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
@@ -75,61 +78,82 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         center.setBadgeCount(dueCount)
     }
 
+    /// Remove all pending notifications (used when user disables notifications).
+    func cancelAll() {
+        center.removeAllPendingNotificationRequests()
+        center.setBadgeCount(0)
+        print("[Notifications] Cancelled all notifications")
+    }
+
+    /// Schedule review-due notifications at daytime check points (9 AM, 1 PM, 6 PM)
+    /// for the next 14 days. Only schedules a notification when cards are due.
     func rescheduleNotifications(context: ModelContext) {
         center.removeAllPendingNotificationRequests()
         updateBadgeCount(context: context)
 
+        // Respect user opt-out
+        guard UserDefaults.standard.bool(forKey: "notificationsEnabled") else {
+            print("[Notifications] Disabled by user — skipping schedule")
+            return
+        }
+
         let cardDescriptor = FetchDescriptor<FlashCard>()
         let allCards = (try? context.fetch(cardDescriptor)) ?? []
 
+        let calendar = Calendar.current
+        let now = Date()
+        let currentHour = calendar.component(.hour, from: now)
         var scheduled = 0
         let maxNotifications = 60
 
-        // Daily study reminders for next 14 days
         for dayOffset in 0..<14 {
             guard scheduled < maxNotifications else { break }
-            let dueOnDay = estimatedDueCount(cards: allCards, daysFromNow: dayOffset)
-            // Skip today if it's already past 9 AM — schedule for tomorrow onwards
-            if dayOffset == 0 {
-                let hour = Calendar.current.component(.hour, from: Date())
-                if hour >= 9 { continue }
+
+            guard let targetDay = calendar.date(byAdding: .day, value: dayOffset, to: now) else { continue }
+
+            for hour in checkHours {
+                guard scheduled < maxNotifications else { break }
+
+                // Skip check points that have already passed today
+                if dayOffset == 0 && hour <= currentHour { continue }
+
+                let dueCount = estimatedDueCount(cards: allCards, onDay: targetDay, atHour: hour)
+                guard dueCount > 0 else { continue }
+
+                scheduleReminder(day: targetDay, hour: hour, dueCount: dueCount, identifier: "review_d\(dayOffset)_h\(hour)")
+                scheduled += 1
             }
-            scheduleDailyReminder(dayOffset: dayOffset, badgeCount: dueOnDay)
-            scheduled += 1
         }
-        print("[Notifications] Scheduled \(scheduled) reminders")
+        print("[Notifications] Scheduled \(scheduled) reminders across \(checkHours.count) daily check points")
     }
 
-    private func estimatedDueCount(cards: [FlashCard], daysFromNow: Int) -> Int {
-        let targetDate = Calendar.current.date(byAdding: .day, value: daysFromNow, to: Date()) ?? Date()
-        var components = Calendar.current.dateComponents([.year, .month, .day], from: targetDate)
-        components.hour = 9
-        let atTime = Calendar.current.date(from: components) ?? targetDate
+    private func estimatedDueCount(cards: [FlashCard], onDay day: Date, atHour hour: Int) -> Int {
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: day)
+        components.hour = hour
+        components.minute = 0
+        guard let atTime = Calendar.current.date(from: components) else { return 0 }
         return cards.filter {
             $0.status != "new" && $0.nextReviewDate != nil && $0.nextReviewDate! <= atTime
         }.count
     }
 
-    private func scheduleDailyReminder(dayOffset: Int, badgeCount: Int) {
+    private func scheduleReminder(day: Date, hour: Int, dueCount: Int, identifier: String) {
         let content = UNMutableNotificationContent()
-        content.title = "Daily Flashcards"
-        content.body = badgeCount > 0
-            ? "\(badgeCount) words due for review. Your daily words are waiting!"
-            : "Your daily words are waiting!"
+        content.title = "Chispa"
+        if dueCount == 1 {
+            content.body = "1 word is ready for review."
+        } else {
+            content.body = "\(dueCount) words are ready for review."
+        }
         content.sound = .default
-        content.badge = badgeCount as NSNumber
+        content.badge = dueCount as NSNumber
 
-        guard let date = Calendar.current.date(byAdding: .day, value: dayOffset, to: Date()) else { return }
-        var dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: date)
-        dateComponents.hour = 9
+        var dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: day)
+        dateComponents.hour = hour
         dateComponents.minute = 0
 
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        let request = UNNotificationRequest(
-            identifier: "daily_\(dayOffset)",
-            content: content,
-            trigger: trigger
-        )
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
         center.add(request)
     }
 }

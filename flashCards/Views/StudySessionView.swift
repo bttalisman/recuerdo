@@ -27,9 +27,9 @@ struct StudySessionView: View {
         guard let deck = decks.first else { return 0 }
         guard availableNewInPool > 0 else { return 0 }
         let drainDate = deck.lastNewWordsDrainDate ?? deck.lastSeedDate ?? Date.distantPast
-        let elapsedHours = Date().timeIntervalSince(drainDate) / 3600
-        let accumulated = Int(elapsedHours * Double(deck.newWordsAccumulationRate))
-        return min(max(accumulated, 0), availableNewInPool)
+        let alreadyDrainedToday = Calendar.current.isDateInToday(drainDate)
+        if alreadyDrainedToday { return 0 }
+        return min(deck.newWordsAccumulationRate, availableNewInPool)
     }
 
     private var freeModeBatchSize: Int {
@@ -51,9 +51,9 @@ struct StudySessionView: View {
             if availableNewInPool == 0 { return "All words introduced" }
             return "\(freeModeBatchSize) new words available"
         }
-        // Scheduled mode: accumulation
+        // Scheduled mode: daily batch
         if availableNewInPool == 0 { return "All words introduced" }
-        if accumulatedNewWordsCount == 0 { return "Accumulating..." }
+        if accumulatedNewWordsCount == 0 { return "Today's words done — come back tomorrow" }
         return "\(accumulatedNewWordsCount) new words ready"
     }
 

@@ -37,13 +37,16 @@ struct DataAnalysisView: View {
         ScrollView {
             VStack(spacing: 20) {
                 accuracyTrendSection
+                forgettingCurvesLink
                 responseTimeTrendSection
                 accuracyByPOSSection
                 directionComparisonSection
                 timeOfDaySection
                 wordsAtRiskSection
+                difficultyInsightsLink
                 activityHeatmapSection
                 learningVelocitySection
+                wordConnectionsLink
             }
             .padding()
         }
@@ -665,6 +668,82 @@ struct DataAnalysisView: View {
 
         return byDay
     }
+
+    // MARK: - Navigation Links
+
+    private var forgettingCurvesLink: some View {
+        NavigationLink {
+            ForgettingCurveView()
+        } label: {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Forgetting Curves")
+                        .font(.headline)
+                        .foregroundStyle(.primary)
+                    Text("See how your memory strength changes over time")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.caption)
+                    .foregroundStyle(.tertiary)
+            }
+            .padding()
+            .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var difficultyInsightsLink: some View {
+        NavigationLink {
+            DifficultyInsightsView()
+        } label: {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Difficulty Insights")
+                        .font(.headline)
+                        .foregroundStyle(.primary)
+                    Text("Discover patterns in what trips you up")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.caption)
+                    .foregroundStyle(.tertiary)
+            }
+            .padding()
+            .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var wordConnectionsLink: some View {
+        NavigationLink {
+            WordGraphView()
+        } label: {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Word Connections")
+                        .font(.headline)
+                        .foregroundStyle(.primary)
+                    Text("Explore how your words relate to each other")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.caption)
+                    .foregroundStyle(.tertiary)
+            }
+            .padding()
+            .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
+        }
+        .buttonStyle(.plain)
+    }
+
+    // MARK: - 8. Learning Velocity
 
     private var learningVelocitySection: some View {
         VStack(alignment: .leading, spacing: 12) {

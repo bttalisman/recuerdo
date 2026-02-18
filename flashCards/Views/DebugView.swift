@@ -40,14 +40,11 @@ struct DebugView: View {
             .navigationTitle("Debug")
             .enhancedDarkContrast()
             .fullScreenCover(isPresented: $showStartup) {
-                StartupView()
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
-                            withAnimation(.easeOut(duration: 0.8)) {
-                                showStartup = false
-                            }
-                        }
+                StartupView {
+                    withAnimation(.easeOut(duration: 0.8)) {
+                        showStartup = false
                     }
+                }
             }
             .alert(
                     confirmAction?.title ?? "",

@@ -2,43 +2,44 @@ import Foundation
 import SwiftData
 
 struct CardScheduler {
-    /// Review session: lapsed cards + due review cards
+    /// Review session: all non-new cards that are due now, capped for session size.
+    /// Uses in-memory filtering to match the Study tab's due count exactly.
     static func buildReviewSession(deckId: String, context: ModelContext) -> [FlashCard] {
         let now = Date()
-        var session: [FlashCard] = []
+        let descriptor = FetchDescriptor<FlashCard>()
+        guard let allCards = try? context.fetch(descriptor) else { return [] }
 
-        // 1. Failed/lapsed cards (interval = 0, due now)
-        let lapsedDescriptor = FetchDescriptor<FlashCard>(
-            predicate: #Predicate {
-                $0.deckId == deckId &&
-                $0.status == "learning" &&
-                $0.interval == 0 &&
-                $0.introducedDate != nil
-            },
-            sortBy: [SortDescriptor(\.lastReviewDate)]
-        )
-        if let lapsed = try? context.fetch(lapsedDescriptor) {
-            session.append(contentsOf: lapsed)
+        var due = allCards.filter {
+            $0.deckId == deckId &&
+            $0.status != "new" &&
+            $0.nextReviewDate != nil &&
+            $0.nextReviewDate! <= now
         }
 
-        // 2. Due review cards (nextReviewDate <= now)
-        let dueDescriptor = FetchDescriptor<FlashCard>(
-            predicate: #Predicate {
-                $0.deckId == deckId &&
-                $0.status != "new" &&
-                $0.interval > 0 &&
-                $0.nextReviewDate != nil &&
-                $0.nextReviewDate! <= now
-            },
-            sortBy: [SortDescriptor(\.nextReviewDate)]
-        )
-        if let dueCards = try? context.fetch(dueDescriptor) {
-            let existingIds = Set(session.map(\.wordId))
-            let filtered = dueCards.filter { !existingIds.contains($0.wordId) }
-            session.append(contentsOf: filtered.prefix(20))
+        // Also pick up lapsed cards that lost their nextReviewDate
+        let lapsed = allCards.filter {
+            $0.deckId == deckId &&
+            $0.status == "learning" &&
+            $0.interval == 0 &&
+            $0.nextReviewDate == nil &&
+            $0.introducedDate != nil
+        }
+        let dueIds = Set(due.map(\.wordId))
+        due.append(contentsOf: lapsed.filter { !dueIds.contains($0.wordId) })
+
+        // Sort: lapsed first, then by next review date
+        due.sort { a, b in
+            let aLapsed = a.interval == 0
+            let bLapsed = b.interval == 0
+            if aLapsed != bLapsed { return aLapsed }
+            return (a.nextReviewDate ?? .distantPast) < (b.nextReviewDate ?? .distantPast)
         }
 
-        return session
+        // Cap at 30 per session
+        if due.count > 30 {
+            due = Array(due.prefix(30))
+        }
+        return due
     }
 
     /// Free new words: return up to `limit` new cards from the unlocked pool, in curated order

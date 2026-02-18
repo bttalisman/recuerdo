@@ -19,15 +19,15 @@ struct ContentView: View {
                 .opacity(showStartup ? 0 : 1)
 
             if showStartup {
-                StartupView()
-                    .transition(.opacity)
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 5.5) {
-                            withAnimation(.easeOut(duration: 0.8)) {
-                                showStartup = false
-                            }
-                        }
+                StartupView {
+                    withAnimation(.easeIn(duration: 0.5)) {
+                        showStartup = false
                     }
+                }
+                .transition(.asymmetric(
+                    insertion: .opacity,
+                    removal: .move(edge: .bottom).combined(with: .opacity)
+                ))
             }
         }
         .preferredColorScheme(colorScheme)

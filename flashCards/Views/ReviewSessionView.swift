@@ -61,6 +61,7 @@ struct ReviewSessionView: View {
                 )
             )
             .id(card.wordId)
+            .transition(.identity)
             .frame(height: 300)
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
@@ -99,8 +100,8 @@ struct ReviewSessionView: View {
     // MARK: - Learn Mode Buttons
 
     private var learnButtons: some View {
-        HStack(spacing: 16) {
-            if viewModel.isFlipped && viewModel.currentCardIndex < viewModel.totalSessionCards - 1 {
+        VStack(spacing: 12) {
+            if viewModel.isFlipped {
                 Button {
                     viewModel.advanceToNextCard(context: modelContext)
                 } label: {
@@ -110,6 +111,7 @@ struct ReviewSessionView: View {
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.blue)
+                .padding(.horizontal)
             }
 
             Button {
@@ -121,8 +123,8 @@ struct ReviewSessionView: View {
             }
             .buttonStyle(.borderedProminent)
             .tint(.green)
+            .padding(.horizontal)
         }
-        .padding(.horizontal)
     }
 
     // MARK: - Review Mode Buttons
@@ -157,12 +159,12 @@ struct ReviewSessionView: View {
         hapticGenerator.notificationOccurred(correct ? .success : .error)
         hapticGenerator.prepare()
         ratingFlash = correct ? .correct : .incorrect
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.035) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
             var transaction = Transaction(animation: nil)
             transaction.disablesAnimations = true
             withTransaction(transaction) {
-                viewModel.submitRating(quality, context: modelContext)
                 ratingFlash = nil
+                viewModel.submitRating(quality, context: modelContext)
             }
         }
     }
@@ -170,31 +172,15 @@ struct ReviewSessionView: View {
     // MARK: - Session Complete
 
     private var sessionCompleteView: some View {
-        VStack(spacing: 20) {
-            Image(systemName: "checkmark.seal.fill")
-                .font(.system(size: 60))
-                .foregroundStyle(.green)
-
-            Text(viewModel.mode == .learn ? "Words Learned!" : "Review Complete!")
-                .font(.title.bold())
-
-            VStack(spacing: 8) {
-                if viewModel.mode == .learn {
-                    statRow(label: "New words seen", value: "\(viewModel.wordsLearned)")
-                } else {
-                    statRow(label: "Cards reviewed", value: "\(viewModel.totalReviewed)")
-                    statRow(label: "Correct", value: "\(viewModel.correctCount)")
-                    statRow(label: "Accuracy", value: "\(Int(viewModel.accuracy * 100))%")
-                }
-            }
-            .padding()
-            .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
-
-            Button(backLabel) { onDismiss() }
-                .buttonStyle(.borderedProminent)
-                .padding(.top)
-        }
-        .padding()
+        SessionCompleteContent(
+            mode: viewModel.mode,
+            wordsLearned: viewModel.wordsLearned,
+            totalReviewed: viewModel.totalReviewed,
+            correctCount: viewModel.correctCount,
+            accuracy: viewModel.accuracy,
+            backLabel: backLabel,
+            onDismiss: onDismiss
+        )
     }
 
     private func statRow(label: String, value: String) -> some View {
@@ -229,4 +215,179 @@ struct ReviewSessionView: View {
 
 enum RatingFlash {
     case correct, incorrect
+}
+
+// MARK: - Session Complete (animated)
+
+private struct SessionCompleteContent: View {
+    let mode: StudyMode
+    let wordsLearned: Int
+    let totalReviewed: Int
+    let correctCount: Int
+    let accuracy: Double
+    let backLabel: String
+    let onDismiss: () -> Void
+
+    @State private var boltScale: CGFloat = 0.3
+    @State private var boltOpacity: Double = 0
+    @State private var boltRotation: Double = -20
+    @State private var glowOpacity: Double = 0
+    @State private var glowScale: CGFloat = 0.5
+    @State private var sparkles: [(offset: CGSize, opacity: Double)] = Array(
+        repeating: (.zero, 0), count: 6
+    )
+    @State private var textOpacity: Double = 0
+    @State private var statsOpacity: Double = 0
+
+    var body: some View {
+        VStack(spacing: 20) {
+            ZStack {
+                // Radial glow
+                Circle()
+                    .fill(
+                        RadialGradient(
+                            colors: [
+                                Color.yellow.opacity(0.3),
+                                Color.orange.opacity(0.1),
+                                .clear
+                            ],
+                            center: .center,
+                            startRadius: 5,
+                            endRadius: 70
+                        )
+                    )
+                    .frame(width: 140, height: 140)
+                    .scaleEffect(glowScale)
+                    .opacity(glowOpacity)
+
+                // Sparkles
+                ForEach(0..<6, id: \.self) { i in
+                    Circle()
+                        .fill(i % 2 == 0 ? Color.yellow : Color.orange)
+                        .frame(width: i % 3 == 0 ? 6 : 4, height: i % 3 == 0 ? 6 : 4)
+                        .offset(sparkles[i].offset)
+                        .opacity(sparkles[i].opacity)
+                }
+
+                // Bolt
+                BoltShape()
+                    .fill(
+                        LinearGradient(
+                            colors: [
+                                Color(red: 1.0, green: 0.95, blue: 0.7),
+                                Color(red: 1.0, green: 0.8, blue: 0.2),
+                                Color(red: 0.95, green: 0.65, blue: 0.0)
+                            ],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
+                    .frame(width: 50, height: 70)
+                    .shadow(color: .yellow.opacity(0.4), radius: 8, y: 2)
+                    .scaleEffect(boltScale)
+                    .rotationEffect(.degrees(boltRotation))
+                    .opacity(boltOpacity)
+            }
+            .frame(height: 140)
+
+            Text(mode == .learn ? "Words Learned!" : "Review Complete!")
+                .font(.title.bold())
+                .opacity(textOpacity)
+
+            VStack(spacing: 8) {
+                if mode == .learn {
+                    completionStatRow(label: "New words seen", value: "\(wordsLearned)")
+                } else {
+                    completionStatRow(label: "Cards reviewed", value: "\(totalReviewed)")
+                    completionStatRow(label: "Correct", value: "\(correctCount)")
+                    completionStatRow(label: "Accuracy", value: "\(Int(accuracy * 100))%")
+                }
+            }
+            .padding()
+            .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
+            .opacity(statsOpacity)
+
+            Button(backLabel) { onDismiss() }
+                .buttonStyle(.borderedProminent)
+                .padding(.top)
+                .opacity(statsOpacity)
+        }
+        .padding()
+        .onAppear { animate() }
+    }
+
+    private func completionStatRow(label: String, value: String) -> some View {
+        HStack {
+            Text(label)
+                .foregroundStyle(.secondary)
+            Spacer()
+            Text(value)
+                .fontWeight(.semibold)
+        }
+    }
+
+    private func animate() {
+        // Bolt pops in with a bounce
+        withAnimation(.spring(response: 0.5, dampingFraction: 0.5).delay(0.1)) {
+            boltScale = 1.0
+            boltOpacity = 1
+            boltRotation = 0
+        }
+
+        // Glow expands
+        withAnimation(.easeOut(duration: 0.6).delay(0.2)) {
+            glowScale = 1.2
+            glowOpacity = 1
+        }
+        withAnimation(.easeInOut(duration: 1.0).delay(0.8)) {
+            glowScale = 1.0
+            glowOpacity = 0.5
+        }
+
+        // Sparkles burst outward
+        let angles: [Double] = [0, 60, 120, 180, 240, 300]
+        for i in 0..<6 {
+            let rad = angles[i] * .pi / 180
+            let dist: CGFloat = CGFloat.random(in: 35...55)
+            withAnimation(.easeOut(duration: 0.5).delay(0.3)) {
+                sparkles[i] = (
+                    offset: CGSize(width: cos(rad) * dist, height: sin(rad) * dist),
+                    opacity: 1.0
+                )
+            }
+            withAnimation(.easeIn(duration: 0.4).delay(0.7)) {
+                sparkles[i].opacity = 0
+            }
+        }
+
+        // Text fades in
+        withAnimation(.easeOut(duration: 0.4).delay(0.4)) {
+            textOpacity = 1
+        }
+
+        // Stats slide in
+        withAnimation(.easeOut(duration: 0.4).delay(0.6)) {
+            statsOpacity = 1
+        }
+    }
+}
+
+// MARK: - Bolt Shape (shared with StartupView)
+
+struct BoltShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        let w = rect.width
+        let h = rect.height
+        var path = Path()
+
+        path.move(to: CGPoint(x: w * 0.55, y: 0))
+        path.addLine(to: CGPoint(x: w * 0.05, y: h * 0.50))
+        path.addLine(to: CGPoint(x: w * 0.42, y: h * 0.50))
+        path.addLine(to: CGPoint(x: w * 0.25, y: h))
+        path.addLine(to: CGPoint(x: w * 0.95, y: h * 0.42))
+        path.addLine(to: CGPoint(x: w * 0.58, y: h * 0.42))
+        path.closeSubpath()
+
+        return path
+    }
 }

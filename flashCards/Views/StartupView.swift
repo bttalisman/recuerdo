@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct StartupView: View {
+    var onFinished: (() -> Void)? = nil
     @State private var boltOffset: CGFloat = -60
     @State private var boltOpacity: Double = 0
     @State private var glowScale: CGFloat = 0.8
@@ -138,6 +139,11 @@ struct StartupView: View {
         withAnimation(.easeIn(duration: 0.5).delay(1.9)) {
             subtitleOpacity = 1
         }
+
+        // Signal ready to dismiss after animations complete + hold
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            onFinished?()
+        }
     }
 }
 
@@ -175,27 +181,6 @@ private struct StarsView: View {
                 )
             }
         }
-    }
-}
-
-// MARK: - Bolt Shape (matches StudyIcon / App Icon)
-
-private struct BoltShape: Shape {
-    func path(in rect: CGRect) -> Path {
-        let w = rect.width
-        let h = rect.height
-        var path = Path()
-
-        // Classic lightning bolt zigzag matching the app icon
-        path.move(to: CGPoint(x: w * 0.55, y: 0))
-        path.addLine(to: CGPoint(x: w * 0.05, y: h * 0.50))
-        path.addLine(to: CGPoint(x: w * 0.42, y: h * 0.50))
-        path.addLine(to: CGPoint(x: w * 0.25, y: h))
-        path.addLine(to: CGPoint(x: w * 0.95, y: h * 0.42))
-        path.addLine(to: CGPoint(x: w * 0.58, y: h * 0.42))
-        path.closeSubpath()
-
-        return path
     }
 }
 

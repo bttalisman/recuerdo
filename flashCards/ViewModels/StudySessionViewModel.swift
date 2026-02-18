@@ -206,6 +206,9 @@ class StudySessionViewModel {
         isFlipped = false
         cardShownAt = Date()
 
+        // Update badge after every review
+        NotificationManager.shared.updateBadgeCount(context: context)
+
         if sessionCards.isEmpty {
             isSessionComplete = true
             try? context.save()
