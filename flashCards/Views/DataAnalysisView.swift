@@ -32,6 +32,7 @@ struct DataAnalysisView: View {
     private var allReviews: [ReviewRecord]
     @Query private var allCards: [FlashCard]
     @State private var trendRange: TrendRange = .month
+    @State private var showWordsAtRiskInfo = false
 
     var body: some View {
         ScrollView {
@@ -147,10 +148,17 @@ struct DataAnalysisView: View {
                     }
                 }
                 .frame(height: 200)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(accuracyTrendAccessibilityLabel)
             }
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
+    }
+
+    private var accuracyTrendAccessibilityLabel: String {
+        guard let latest = rollingAverage.last else { return "Accuracy trend chart" }
+        return "Accuracy trend chart. Latest rolling average: \(Int(latest.accuracy * 100)) percent"
     }
 
     // MARK: - 2. Accuracy by Part of Speech
@@ -211,10 +219,17 @@ struct DataAnalysisView: View {
                     }
                 }
                 .frame(height: CGFloat(max(accuracyByPOS.count * 36, 100)))
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(posChartAccessibilityLabel)
             }
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
+    }
+
+    private var posChartAccessibilityLabel: String {
+        let items = accuracyByPOS.prefix(3).map { "\($0.pos) \(Int($0.accuracy * 100))%" }
+        return "Accuracy by word type chart. \(items.joined(separator: ", "))"
     }
 
     private func barColor(for accuracy: Double) -> Color {
@@ -347,6 +362,8 @@ struct DataAnalysisView: View {
                 }
 
             }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("Study activity heatmap. \(totalDays) days active, \(totalReviews) total reviews, \(currentStreak) day streak")
 
             // Legend
             HStack(spacing: 4) {
@@ -362,6 +379,7 @@ struct DataAnalysisView: View {
                     .font(.system(size: 9))
                     .foregroundStyle(.secondary)
             }
+            .accessibilityHidden(true)
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
@@ -435,10 +453,17 @@ struct DataAnalysisView: View {
                 }
                 .chartYAxisLabel("seconds")
                 .frame(height: 180)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(responseTimeAccessibilityLabel)
             }
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
+    }
+
+    private var responseTimeAccessibilityLabel: String {
+        guard let latest = dailyResponseTime.last else { return "Response time chart" }
+        return "Response time chart. Latest average: \(String(format: "%.1f", latest.avgTime)) seconds per card"
     }
 
     // MARK: - 5. Direction Comparison
@@ -554,10 +579,19 @@ struct DataAnalysisView: View {
                     }
                 }
                 .frame(height: 180)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(timeOfDayAccessibilityLabel)
             }
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
+    }
+
+    private var timeOfDayAccessibilityLabel: String {
+        guard let best = hourlyAccuracy.max(by: { $0.accuracy < $1.accuracy }) else {
+            return "Time of day chart"
+        }
+        return "Time of day accuracy chart. Best performance at \(formatHour(best.hour)) with \(Int(best.accuracy * 100)) percent accuracy"
     }
 
     private func formatHour(_ hour: Int) -> String {
@@ -597,11 +631,32 @@ struct DataAnalysisView: View {
 
     private var wordsAtRiskSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Words at Risk")
-                .font(.headline)
+            HStack {
+                Text("Words at Risk")
+                    .font(.headline)
+                Spacer()
+                Button {
+                    withAnimation { showWordsAtRiskInfo.toggle() }
+                } label: {
+                    Image(systemName: "info.circle")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Info")
+                .accessibilityHint("Shows explanation of words at risk criteria")
+            }
             Text("Words you're struggling with most")
                 .font(.caption)
                 .foregroundStyle(.secondary)
+
+            if showWordsAtRiskInfo {
+                Text("A word lands here if any of these are true:\n\n**Low Ease** — The ease factor dropped below 1.8. Ease starts at 2.5 for every word and adjusts after each review: correct answers raise it, incorrect answers lower it. A low value means the word has been missed repeatedly, so it gets reviewed more frequently.\n\n**Low Accuracy** — Less than 50% correct after 5+ reviews.\n\n**Streak Broken** — You had 3+ correct answers in a row, then got it wrong. The word may need reinforcement.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .padding(10)
+                    .background(RoundedRectangle(cornerRadius: 8).fill(Color(.secondarySystemBackground)))
+            }
 
             if wordsAtRisk.isEmpty {
                 Text("No struggling words detected. Nice work!")
@@ -803,7 +858,7 @@ struct DataAnalysisView: View {
         } label: {
             HStack {
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Forgetting Curves")
+                    Text("Word Retention")
                         .font(.headline)
                         .foregroundStyle(.primary)
                     Text("See how your memory strength changes over time")
@@ -903,9 +958,16 @@ struct DataAnalysisView: View {
                     }
                 }
                 .frame(height: 180)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(velocityAccessibilityLabel)
             }
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
+    }
+
+    private var velocityAccessibilityLabel: String {
+        guard let latest = cumulativeWordsLearned.last else { return "Learning velocity chart" }
+        return "Learning velocity chart. \(latest.count) words learned total"
     }
 }

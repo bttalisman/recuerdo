@@ -111,6 +111,7 @@ struct StudySessionView: View {
                 .scaledToFit()
                 .frame(width: 60, height: 60)
                 .foregroundStyle(.blue)
+                .accessibilityHidden(true)
 
             Text("Ready to Study?")
                 .font(.title.bold())
@@ -141,6 +142,8 @@ struct StudySessionView: View {
                     disabled: !learnEnabled
                 ))
                 .disabled(!learnEnabled)
+                .accessibilityLabel("Learn new words")
+                .accessibilityHint(learnSubtitle)
 
                 // Review
                 Button {
@@ -161,6 +164,8 @@ struct StudySessionView: View {
                     disabled: dueReviewCount == 0
                 ))
                 .disabled(dueReviewCount == 0)
+                .accessibilityLabel("Review")
+                .accessibilityHint(reviewSubtitle)
             }
             .padding(.horizontal)
 
@@ -192,6 +197,8 @@ struct StudySessionView: View {
 
             ProgressView(value: progress)
                 .tint(progress >= 0.8 ? .green : .blue)
+                .accessibilityLabel("Learning progress")
+                .accessibilityValue("\(Int(progress * 100)) percent")
 
             if shouldShowExpansionPrompt && !justUnlocked {
                 Button {
@@ -201,6 +208,7 @@ struct StudySessionView: View {
                 } label: {
                     HStack {
                         Image(systemName: "lock.open.fill")
+                            .accessibilityHidden(true)
                         VStack(alignment: .leading, spacing: 2) {
                             Text("Unlock \(nextBatch) More Words")
                                 .fontWeight(.semibold)
@@ -210,6 +218,7 @@ struct StudySessionView: View {
                         }
                         Spacer()
                         Image(systemName: "chevron.right")
+                            .accessibilityHidden(true)
                     }
                     .padding()
                 }
@@ -223,6 +232,7 @@ struct StudySessionView: View {
         HStack {
             Image(systemName: icon)
                 .frame(width: 24)
+                .accessibilityHidden(true)
             VStack(alignment: .leading) {
                 Text(title)
                     .fontWeight(.semibold)
@@ -232,6 +242,7 @@ struct StudySessionView: View {
             }
             Spacer()
             Image(systemName: "chevron.right")
+                .accessibilityHidden(true)
         }
         .frame(maxWidth: .infinity)
         .padding()

@@ -6,6 +6,7 @@ struct WordGraphView: View {
     @State private var searchText = ""
     @State private var selectedWordId: String?
     @State private var activeTypes: Set<RelationshipType> = Set(RelationshipType.allCases)
+    @State private var suggestedCards: [FlashCard] = []
 
     private var sortedCards: [FlashCard] {
         allCards.filter { $0.totalReviews > 0 }.sorted { $0.targetText < $1.targetText }
@@ -45,13 +46,18 @@ struct WordGraphView: View {
         }
         .navigationTitle("Word Connections")
         .navigationBarTitleDisplayMode(.large)
+        .onAppear {
+            if suggestedCards.isEmpty {
+                suggestedCards = Array(sortedCards.shuffled().prefix(10))
+            }
+        }
     }
 
     // MARK: - Word Search
 
     private var wordSearchSection: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("Select a Word")
+            Text(searchText.isEmpty ? "Suggestions" : "Search Results")
                 .font(.headline)
 
             HStack {
@@ -66,13 +72,16 @@ struct WordGraphView: View {
                         Image(systemName: "xmark.circle.fill")
                             .foregroundStyle(.secondary)
                     }
+                    .accessibilityLabel("Clear search")
                 }
             }
             .padding(10)
             .background(RoundedRectangle(cornerRadius: 10).fill(Color(.systemGray6)))
 
-            if !searchText.isEmpty || selectedWordId == nil {
-                let cards = Array(filteredCards.prefix(15))
+            if true {
+                let cards = searchText.isEmpty
+                    ? Array(suggestedCards.prefix(10))
+                    : Array(filteredCards.prefix(15))
                 if cards.isEmpty {
                     Text("No words found.")
                         .font(.caption)
@@ -120,6 +129,7 @@ struct WordGraphView: View {
                     Image(systemName: "circle.dashed")
                         .font(.system(size: 30))
                         .foregroundStyle(.secondary)
+                        .accessibilityHidden(true)
                     Text("No connections found for this word.")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
@@ -199,12 +209,15 @@ struct WordGraphView: View {
                 .onTapGesture { location in
                     handleTap(at: location, in: CGSize(width: 350, height: 350), data: data)
                 }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(graphAccessibilityLabel(data: data))
 
                 // Edge type legend
                 HStack(spacing: 12) {
                     ForEach(Array(Set(data.edges.map(\.type))).sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { type in
                         HStack(spacing: 3) {
                             Circle().fill(edgeColor(type)).frame(width: 6, height: 6)
+                                .accessibilityHidden(true)
                             Text(type.rawValue)
                                 .font(.system(size: 9))
                                 .foregroundStyle(.secondary)
@@ -248,6 +261,7 @@ struct WordGraphView: View {
                         .clipShape(Capsule())
                     }
                     .buttonStyle(.plain)
+                    .accessibilityValue(activeTypes.contains(type) ? "enabled" : "disabled")
                 }
             }
         }
@@ -262,6 +276,7 @@ struct WordGraphView: View {
             Image(systemName: "circle.grid.3x3.circle")
                 .font(.system(size: 40))
                 .foregroundStyle(.secondary)
+                .accessibilityHidden(true)
             Text("Select a word above to see its connections")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
@@ -272,6 +287,15 @@ struct WordGraphView: View {
     }
 
     // MARK: - Helpers
+
+    private func graphAccessibilityLabel(data: (nodes: [WordNode], edges: [WordEdge])) -> String {
+        guard let center = data.nodes.first else { return "Word connections graph" }
+        let connected = data.nodes.dropFirst().prefix(5).map(\.label)
+        if connected.isEmpty {
+            return "Word connections graph centered on \(center.label). No connections."
+        }
+        return "Word connections graph centered on \(center.label). Connected to: \(connected.joined(separator: ", "))"
+    }
 
     private func handleTap(at location: CGPoint, in size: CGSize, data: (nodes: [WordNode], edges: [WordEdge])) {
         // Scale the tap location to the 350x350 coordinate space

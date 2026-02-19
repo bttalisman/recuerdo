@@ -82,6 +82,10 @@ def score_sentence(text, word):
     if length < 3:
         return None
 
+    # Reject truncated sentences
+    if '...' in text or '…' in text:
+        return None
+
     score = 0
 
     # Prefer sentences of 4-20 words

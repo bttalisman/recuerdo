@@ -41,6 +41,10 @@ def score_sentence(text, word):
     if length < 3:
         return None
 
+    # Reject truncated sentences
+    if '...' in text or '…' in text:
+        return None
+
     # HARD REQUIREMENT: sentence must contain the target word
     pattern = r'\b' + re.escape(word.lower()) + r'\b'
     if re.search(pattern, text.lower()):

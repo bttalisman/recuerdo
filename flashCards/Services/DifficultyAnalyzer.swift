@@ -34,6 +34,7 @@ struct DifficultyAnalyzer {
         if let pos = posDeepDive(cards: reviewed) { insights.append(pos) }
         if let slow = slowWords(cards: reviewed, reviews: reviews) { insights.append(slow) }
         if let cognate = cognateEffect(cards: reviewed) { insights.append(cognate) }
+        if let falseCog = falseCognates(cards: cards) { insights.append(falseCog) }
         if let lapse = lapsePatterns(cards: reviewed) { insights.append(lapse) }
         if let length = wordLengthEffect(cards: reviewed) { insights.append(length) }
 
@@ -134,15 +135,22 @@ struct DifficultyAnalyzer {
 
         guard ranked.count >= 3 else { return nil }
 
-        let avgTime = timeByCard
+        let allAvgTimes = timeByCard
             .filter { $0.value.count >= 3 }
             .map { $0.value.total / Double($0.value.count) }
 
-        let overallAvg = avgTime.reduce(0, +) / Double(max(avgTime.count, 1))
-        let topAvg = timeByCard
-            .filter { ranked.map(\.wordId).contains($0.key) }
+        // Need more cards than just the slow ones to make a meaningful comparison
+        guard allAvgTimes.count >= 8 else { return nil }
+
+        let overallAvg = allAvgTimes.reduce(0, +) / Double(allAvgTimes.count)
+        let rankedIds = Set(ranked.map(\.wordId))
+        let topAvgTimes = timeByCard
+            .filter { rankedIds.contains($0.key) }
             .map { $0.value.total / Double($0.value.count) }
-            .reduce(0, +) / Double(ranked.count)
+        let topAvg = topAvgTimes.reduce(0, +) / Double(topAvgTimes.count)
+
+        // Only show if slow words are meaningfully slower than average
+        guard topAvg > overallAvg * 1.3 else { return nil }
 
         return Insight(
             id: "slow",
@@ -215,7 +223,83 @@ struct DifficultyAnalyzer {
         return Double(shared) / Double(max(sChars.count, tChars.count)) > 0.5
     }
 
-    // MARK: - 5. Lapse Patterns
+    // MARK: - 5. False Cognates
+
+    // Spanish word → (looks like English, actually means)
+    private static let falseCognateMap: [String: (looksLike: String, actualMeaning: String)] = [
+        "actual": ("actual", "current, present"),
+        "actualmente": ("actually", "currently"),
+        "asistir": ("assist", "to attend"),
+        "atender": ("attend", "to assist, pay attention to"),
+        "bizarro": ("bizarre", "brave, gallant"),
+        "campo": ("camp", "field, countryside"),
+        "carpeta": ("carpet", "folder"),
+        "collar": ("collar", "necklace"),
+        "compromiso": ("compromise", "commitment, obligation"),
+        "conducir": ("conduce", "to drive"),
+        "constipado": ("constipated", "having a cold"),
+        "contestar": ("contest", "to answer"),
+        "decepción": ("deception", "disappointment"),
+        "delito": ("delight", "crime"),
+        "disgusto": ("disgust", "annoyance, upset"),
+        "embarazada": ("embarrassed", "pregnant"),
+        "eventualmente": ("eventually", "possibly, occasionally"),
+        "éxito": ("exit", "success"),
+        "fábrica": ("fabric", "factory"),
+        "gracioso": ("gracious", "funny"),
+        "introducir": ("introduce (a person)", "to insert, enter"),
+        "largo": ("large", "long"),
+        "lectura": ("lecture", "reading"),
+        "librería": ("library", "bookstore"),
+        "molestar": ("molest", "to bother, annoy"),
+        "once": ("once", "eleven"),
+        "pan": ("pan", "bread"),
+        "pariente": ("parent", "relative"),
+        "pretender": ("pretend", "to try, attempt"),
+        "realizar": ("realize", "to accomplish, carry out"),
+        "recordar": ("record", "to remember"),
+        "ropa": ("rope", "clothing"),
+        "salida": ("salad", "exit, departure"),
+        "sensible": ("sensible", "sensitive"),
+        "sopa": ("soap", "soup"),
+        "suceso": ("success", "event, happening"),
+        "tuna": ("tuna", "prickly pear, student music group"),
+        "vaso": ("vase", "drinking glass"),
+    ]
+
+    private static func falseCognates(cards: [FlashCard]) -> Insight? {
+        let targetLookup = Dictionary(
+            cards.map { ($0.targetText.lowercased(), $0) },
+            uniquingKeysWith: { first, _ in first }
+        )
+
+        var matched: [FlashCard] = []
+        for (spanishWord, _) in falseCognateMap {
+            if let card = targetLookup[spanishWord] {
+                matched.append(card)
+            }
+        }
+
+        guard !matched.isEmpty else { return nil }
+
+        let tips = matched.prefix(3).compactMap { card -> String? in
+            guard let entry = falseCognateMap[card.targetText.lowercased()] else { return nil }
+            return "\"\(card.targetText)\" looks like \"\(entry.looksLike)\" but means \"\(entry.actualMeaning)\""
+        }
+
+        let desc = "Your deck has \(matched.count) false cognate\(matched.count == 1 ? "" : "s") — Spanish words that look like English but mean something different. " + tips.joined(separator: ". ") + "."
+
+        return Insight(
+            id: "falsecognate",
+            icon: "exclamationmark.triangle",
+            title: "False Friends",
+            description: desc,
+            severity: .warning,
+            supportingWords: matched
+        )
+    }
+
+    // MARK: - 6. Lapse Patterns
 
     private static func lapsePatterns(cards: [FlashCard]) -> Insight? {
         let lapsed = cards.filter { $0.longestStreak >= 3 && $0.currentStreak == 0 && $0.totalReviews >= 3 }

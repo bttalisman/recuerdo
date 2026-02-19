@@ -54,11 +54,6 @@ struct ContentView: View {
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }
-
-            DebugView()
-                .tabItem {
-                    Label("Debug", systemImage: "ant")
-                }
         }
         .preferredColorScheme(colorScheme)
     }

@@ -8,6 +8,8 @@ struct ForgettingCurveView: View {
     @Query private var allCards: [FlashCard]
     @State private var selectedCard: FlashCard?
     @State private var searchText = ""
+    @State private var showCurveInfo = false
+    @State private var showTimingInfo = false
 
     private var reviewedCards: [FlashCard] {
         allCards.filter { $0.totalReviews > 0 && $0.interval > 0 }
@@ -23,19 +25,23 @@ struct ForgettingCurveView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                if let card = selectedCard {
-                    wordCurveSection(card)
-                } else {
-                    aggregateCurveSection
+        ScrollViewReader { proxy in
+            ScrollView {
+                VStack(spacing: 20) {
+                    if let card = selectedCard {
+                        wordCurveSection(card)
+                            .id("curveChart")
+                    } else {
+                        aggregateCurveSection
+                            .id("curveChart")
+                    }
+                    summaryStatsSection
+                    wordPickerSection(scrollProxy: proxy)
                 }
-                summaryStatsSection
-                wordPickerSection
+                .padding()
             }
-            .padding()
         }
-        .navigationTitle("Forgetting Curves")
+        .navigationTitle("Word Retention")
         .navigationBarTitleDisplayMode(.large)
         .searchable(text: $searchText, prompt: "Search words...")
     }
@@ -52,11 +58,32 @@ struct ForgettingCurveView: View {
 
     private var aggregateCurveSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Memory Decay by Strength")
-                .font(.headline)
+            HStack {
+                Text("Memory Decay by Strength")
+                    .font(.headline)
+                Spacer()
+                Button {
+                    withAnimation { showCurveInfo.toggle() }
+                } label: {
+                    Image(systemName: "info.circle")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Info")
+                .accessibilityHint("Shows explanation of the memory decay chart")
+            }
             Text("How retention drops over days since review")
                 .font(.caption)
                 .foregroundStyle(.secondary)
+
+            if showCurveInfo {
+                Text("This chart groups all your reviewed words into three tiers by ease factor, then models a single decay curve for each tier — so you see 3 lines, not one per word.\n\n**Strong** (green): words you find easy — memory decays slowly.\n**Moderate** (orange): average difficulty — medium decay.\n**Weak** (red): words you struggle with — memory fades quickly.\n\nThe Y-axis is retention: 100% means perfect recall, and the curves show how it drops over days since your last review. The scattered dots are your real results — green (top) = correct, red (bottom) = incorrect — showing how well you actually did after that many days. Use \"Explore Individual Words\" below to see any single word's curve.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .padding(10)
+                    .background(RoundedRectangle(cornerRadius: 8).fill(Color(.secondarySystemBackground)))
+            }
 
             if tierCurves.isEmpty {
                 Text("Not enough reviewed cards to show curves.")
@@ -65,22 +92,17 @@ struct ForgettingCurveView: View {
                     .frame(maxWidth: .infinity, minHeight: 200)
             } else {
                 Chart {
-                    // Tier area curves
+                    // Tier area curves — use series to separate tiers
                     ForEach(tierCurves) { tier in
                         ForEach(tier.curve) { point in
-                            AreaMark(
-                                x: .value("Days", point.day),
-                                y: .value("Retention", point.retention)
-                            )
-                            .foregroundStyle(tierColor(tier.tier).opacity(0.15))
-                            .interpolationMethod(.catmullRom)
-
                             LineMark(
                                 x: .value("Days", point.day),
-                                y: .value("Retention", point.retention)
+                                y: .value("Retention", point.retention),
+                                series: .value("Tier", tier.tier.rawValue)
                             )
                             .foregroundStyle(tierColor(tier.tier))
                             .interpolationMethod(.catmullRom)
+                            .lineStyle(StrokeStyle(lineWidth: 2.5))
                         }
                     }
 
@@ -88,10 +110,10 @@ struct ForgettingCurveView: View {
                     ForEach(actualPoints) { point in
                         PointMark(
                             x: .value("Days", point.daysSinceReview),
-                            y: .value("Retention", point.wasCorrect ? 1.0 : 0.0)
+                            y: .value("Outcome", point.wasCorrect ? 0.95 : 0.05)
                         )
-                        .foregroundStyle(point.wasCorrect ? .green.opacity(0.4) : .red.opacity(0.4))
-                        .symbolSize(20)
+                        .foregroundStyle(point.wasCorrect ? .green.opacity(0.7) : .red.opacity(0.7))
+                        .symbolSize(30)
                     }
                 }
                 .chartYScale(domain: 0...1)
@@ -107,12 +129,17 @@ struct ForgettingCurveView: View {
                 }
                 .chartXAxisLabel("Days since review")
                 .frame(height: 250)
+                .padding(.top, 12)
+                .clipped()
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(aggregateChartAccessibilityLabel)
 
                 // Legend
                 HStack(spacing: 16) {
                     ForEach(tierCurves) { tier in
                         HStack(spacing: 4) {
                             Circle().fill(tierColor(tier.tier)).frame(width: 8, height: 8)
+                                .accessibilityHidden(true)
                             Text("\(tier.tier.rawValue) (\(tier.cardCount))")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
@@ -190,12 +217,16 @@ struct ForgettingCurveView: View {
             }
             .chartXAxisLabel("Days since review")
             .frame(height: 250)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("Forgetting curve for \(card.targetText). Stability \(String(format: "%.1f", data.stability)) days, interval \(card.interval) days")
 
             HStack(spacing: 16) {
                 statBadge(label: "Stability", value: String(format: "%.1fd", data.stability))
                 statBadge(label: "Interval", value: "\(card.interval)d")
                 statBadge(label: "Ease", value: String(format: "%.2f", card.easeFactor))
             }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel("Stability \(String(format: "%.1f", data.stability)) days, Interval \(card.interval) days, Ease \(String(format: "%.2f", card.easeFactor))")
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
@@ -205,8 +236,29 @@ struct ForgettingCurveView: View {
 
     private var summaryStatsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Optimal Review Timing")
-                .font(.headline)
+            HStack {
+                Text("Optimal Review Timing")
+                    .font(.headline)
+                Spacer()
+                Button {
+                    withAnimation { showTimingInfo.toggle() }
+                } label: {
+                    Image(systemName: "info.circle")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Info")
+                .accessibilityHint("Shows explanation of optimal review timing")
+            }
+
+            if showTimingInfo {
+                Text("Each word has a **stability** value (S) — the number of days it takes for your recall to drop to 90%. Higher stability means the memory lasts longer.\n\n**\"Review by day X\"** is the latest you should review words in that tier before retention drops below 90%. Chispa uses these values to schedule your reviews automatically.\n\n**Strong** words have high stability and can wait longer between reviews. **Weak** words fade faster and need more frequent practice.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .padding(10)
+                    .background(RoundedRectangle(cornerRadius: 8).fill(Color(.secondarySystemBackground)))
+            }
 
             if tierCurves.isEmpty {
                 Text("No data yet.")
@@ -217,6 +269,7 @@ struct ForgettingCurveView: View {
                     let optimalDay = ForgettingCurveCalculator.optimalReviewDay(stability: tier.averageStability)
                     HStack {
                         Circle().fill(tierColor(tier.tier)).frame(width: 10, height: 10)
+                            .accessibilityHidden(true)
                         Text(tier.tier.rawValue)
                             .font(.subheadline)
                         Spacer()
@@ -236,7 +289,7 @@ struct ForgettingCurveView: View {
 
     // MARK: - Word Picker
 
-    private var wordPickerSection: some View {
+    private func wordPickerSection(scrollProxy proxy: ScrollViewProxy) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Explore Individual Words")
                 .font(.headline)
@@ -252,7 +305,10 @@ struct ForgettingCurveView: View {
             } else {
                 ForEach(filteredCards.prefix(20), id: \.wordId) { card in
                     Button {
-                        withAnimation { selectedCard = card }
+                        withAnimation {
+                            selectedCard = card
+                            proxy.scrollTo("curveChart", anchor: .top)
+                        }
                     } label: {
                         HStack {
                             VStack(alignment: .leading, spacing: 2) {
@@ -286,6 +342,11 @@ struct ForgettingCurveView: View {
     }
 
     // MARK: - Helpers
+
+    private var aggregateChartAccessibilityLabel: String {
+        let tierSummaries = tierCurves.map { "\($0.tier.rawValue): \($0.cardCount) words" }
+        return "Memory decay chart with \(tierCurves.count) tiers. \(tierSummaries.joined(separator: ", "))"
+    }
 
     private func tierColor(_ tier: RetentionTier) -> Color {
         switch tier {

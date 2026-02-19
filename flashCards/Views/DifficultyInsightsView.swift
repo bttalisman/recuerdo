@@ -37,6 +37,7 @@ struct DifficultyInsightsView: View {
             Image(systemName: "lightbulb")
                 .font(.system(size: 40))
                 .foregroundStyle(.secondary)
+                .accessibilityHidden(true)
             Text("Keep studying!")
                 .font(.headline)
             Text("Insights appear after 50+ reviews. You have \(allReviews.count) so far.")
@@ -53,6 +54,7 @@ struct DifficultyInsightsView: View {
             Image(systemName: "checkmark.circle")
                 .font(.system(size: 40))
                 .foregroundStyle(.green)
+                .accessibilityHidden(true)
             Text("Looking good!")
                 .font(.headline)
             Text("No significant difficulty patterns detected. Keep up the great work!")
@@ -88,6 +90,7 @@ struct DifficultyInsightsView: View {
                             Circle()
                                 .fill(severityColor(insight.severity))
                                 .frame(width: 8, height: 8)
+                                .accessibilityHidden(true)
                         }
                         Text(insight.description)
                             .font(.subheadline)
@@ -101,10 +104,12 @@ struct DifficultyInsightsView: View {
                         Image(systemName: expandedInsightId == insight.id ? "chevron.up" : "chevron.down")
                             .font(.caption)
                             .foregroundStyle(.tertiary)
+                            .accessibilityHidden(true)
                     }
                 }
             }
             .buttonStyle(.plain)
+            .accessibilityHint(insight.supportingWords.isEmpty ? "" : "Double tap to \(expandedInsightId == insight.id ? "collapse" : "expand") affected words")
 
             // Expanded word list
             if expandedInsightId == insight.id && !insight.supportingWords.isEmpty {

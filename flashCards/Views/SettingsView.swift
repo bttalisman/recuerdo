@@ -28,56 +28,35 @@ struct SettingsView: View {
                             Text("\(deck.totalWords)")
                         }
 
-                        Picker("Card Direction", selection: Binding(
-                            get: { deck.cardDirection },
-                            set: { deck.cardDirection = $0 }
-                        )) {
-                            Text("\(deck.sourceLanguage) → \(deck.targetLanguage)")
-                                .tag("source_first")
-                            Text("\(deck.targetLanguage) → \(deck.sourceLanguage)")
-                                .tag("target_first")
-                            Text("Mix It Up")
-                                .tag("mixed")
-                        }
-                        .pickerStyle(.segmented)
+                        directionRow(deck: deck, label: "\(deck.sourceLanguage) → \(deck.targetLanguage)", value: "source_first")
+                        directionRow(deck: deck, label: "\(deck.targetLanguage) → \(deck.sourceLanguage)", value: "target_first")
+                        directionRow(deck: deck, label: "Mix It Up!", value: "mixed")
                     }
 
                     Section("New Words Mode") {
-                        Picker("Mode", selection: Binding(
-                            get: { deck.newWordsMode },
-                            set: { deck.newWordsMode = $0 }
-                        )) {
-                            Text("Free").tag("free")
-                            Text("Scheduled").tag("scheduled")
+                        HStack {
+                            modeButton(deck: deck, label: "Free", value: "free")
+                            modeButton(deck: deck, label: "Scheduled", value: "scheduled")
                         }
-                        .pickerStyle(.segmented)
 
                         if deck.newWordsMode == "free" {
                             Text("Learn new words anytime you want.")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
-                        } else {
-                            Text("A fresh batch of new words arrives each day.")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
-                    }
 
-                    if deck.newWordsMode == "free" {
-                        Section("New Words Per Session") {
                             Stepper(
-                                "\(deck.dailyNewCardLimit) words",
+                                "\(deck.dailyNewCardLimit) words per session",
                                 value: Binding(
                                     get: { deck.dailyNewCardLimit },
                                     set: { deck.dailyNewCardLimit = $0 }
                                 ),
                                 in: 1...30
                             )
-                        }
-                    }
+                        } else {
+                            Text("A fresh batch of new words arrives each day.")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
 
-                    if deck.newWordsMode == "scheduled" {
-                        Section("New Words Arrive") {
                             Stepper(
                                 "\(deck.newWordsAccumulationRate) words per day",
                                 value: Binding(
@@ -99,7 +78,7 @@ struct SettingsView: View {
                             in: 100...deck.totalWords,
                             step: 100
                         )
-                        Text("New words are introduced from the easiest first. Expand your pool as you progress.")
+                        Text("New words are introduced, most common first. Expand this pool as you progress.")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
@@ -154,6 +133,14 @@ struct SettingsView: View {
                             Text(backupStatus)
                                 .font(.caption)
                                 .foregroundStyle(backupStatus.contains("Restored") ? .green : .red)
+                        }
+                    }
+
+                    Section {
+                        NavigationLink {
+                            AboutView()
+                        } label: {
+                            Label("About Chispa", systemImage: "info.circle")
                         }
                     }
 
@@ -216,6 +203,38 @@ struct SettingsView: View {
                 }
             } message: {
                 Text("This will reset all your learning progress. Your word data will be preserved, but all cards will return to 'new' status. This cannot be undone.")
+            }
+        }
+    }
+
+    private func modeButton(deck: DeckMetadata, label: String, value: String) -> some View {
+        Button {
+            deck.newWordsMode = value
+        } label: {
+            Text(label)
+                .font(.subheadline.weight(.medium))
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 8)
+                .background(deck.newWordsMode == value ? Color.accentColor : Color(.systemGray5))
+                .foregroundStyle(deck.newWordsMode == value ? .white : .primary)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+        }
+        .buttonStyle(.plain)
+    }
+
+    private func directionRow(deck: DeckMetadata, label: String, value: String) -> some View {
+        Button {
+            deck.cardDirection = value
+        } label: {
+            HStack {
+                Text(label)
+                    .foregroundStyle(.primary)
+                Spacer()
+                if deck.cardDirection == value {
+                    Image(systemName: "checkmark")
+                        .foregroundStyle(.blue)
+                        .fontWeight(.semibold)
+                }
             }
         }
     }

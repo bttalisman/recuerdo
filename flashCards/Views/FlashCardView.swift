@@ -13,6 +13,7 @@ struct FlashCardView: View {
     var targetLanguageCode: String = "es"
     var examples: [ExampleSentence] = []
     @Binding var isFlipped: Bool
+    @State private var showAllExamples = false
 
     // Article is displayed on whichever side shows the target language
     private var frontText: String { showTargetFirst ? targetText : sourceText }
@@ -45,10 +46,18 @@ struct FlashCardView: View {
                 .opacity(isFlipped ? 1 : 0)
                 .rotation3DEffect(.degrees(isFlipped ? 0 : -180), axis: (x: 0, y: 1, z: 0))
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(cardAccessibilityLabel)
+        .accessibilityHint("Double tap to flip card")
+        .accessibilityValue(isFlipped ? "showing answer" : "showing prompt")
         .onTapGesture {
             withAnimation(.easeInOut(duration: 0.4)) {
                 isFlipped.toggle()
             }
+        }
+        .sheet(isPresented: $showAllExamples) {
+            ExamplesSheet(word: showTargetFirst ? frontText : backText, examples: examples)
+                .presentationDetents([.medium])
         }
     }
 
@@ -80,11 +89,7 @@ struct FlashCardView: View {
             }
 
             VStack(spacing: 8) {
-                if isFront {
-                    Text("Tap to reveal")
-                        .font(.caption2)
-                        .foregroundStyle(.tertiary)
-                } else if isTargetLanguage {
+                if isTargetLanguage {
                     Button {
                         PronunciationManager.shared.speak(
                             buildSpeechText(text, article: article),
@@ -96,21 +101,43 @@ struct FlashCardView: View {
                             .foregroundStyle(.blue)
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel("Pronounce word")
 
                     if let example = examples.first {
                         VStack(spacing: 2) {
                             Text(example.es)
                                 .font(.subheadline)
                                 .italic()
-                            Text(example.en)
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
+                                .minimumScaleFactor(0.7)
+                            if !isFront {
+                                Text(example.en)
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                                    .minimumScaleFactor(0.7)
+                            }
                         }
                         .multilineTextAlignment(.center)
+                        .lineLimit(3)
+
+                        if !isFront && examples.count > 1 {
+                            Button {
+                                showAllExamples = true
+                            } label: {
+                                Text("more examples")
+                                    .font(.caption2)
+                                    .foregroundStyle(.blue)
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityHint("Shows all example sentences")
+                        }
                     }
+                } else if isFront {
+                    Text("Tap to reveal")
+                        .font(.caption2)
+                        .foregroundStyle(.tertiary)
                 }
             }
-            .frame(height: 70, alignment: .top)
+            .frame(minHeight: 70, alignment: .top)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(32)
@@ -125,10 +152,56 @@ struct FlashCardView: View {
         )
     }
 
+    private var cardAccessibilityLabel: String {
+        let currentText = isFlipped ? backText : frontText
+        let currentLang = isFlipped ? backLanguage : frontLanguage
+        let currentArticle = isFlipped ? backArticle : frontArticle
+        var label = "\(currentLang). "
+        if let currentArticle, !currentArticle.isEmpty {
+            label += "\(currentArticle) "
+        }
+        label += currentText
+        if let partOfSpeech, !partOfSpeech.isEmpty {
+            label += ", \(partOfSpeech)"
+        }
+        return label
+    }
+
     private func buildSpeechText(_ text: String, article: String?) -> String {
         if let article, !article.isEmpty {
             return "\(article) \(text)"
         }
         return text
+    }
+}
+
+private struct ExamplesSheet: View {
+    let word: String
+    let examples: [ExampleSentence]
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationStack {
+            List {
+                ForEach(Array(examples.enumerated()), id: \.offset) { index, example in
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(example.es)
+                            .font(.body)
+                            .italic()
+                        Text(example.en)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(.vertical, 4)
+                }
+            }
+            .navigationTitle("Examples: \(word)")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done") { dismiss() }
+                }
+            }
+        }
     }
 }

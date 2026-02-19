@@ -12,6 +12,9 @@ struct ReviewSessionView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var decks: [DeckMetadata]
     @State private var ratingFlash: RatingFlash?
+    @State private var hasRevealedCard = false
+    @State private var completedFirstLap = false
+    @State private var cardsSeenInLap = 0
     private let hapticGenerator = UINotificationFeedbackGenerator()
 
     var body: some View {
@@ -57,7 +60,10 @@ struct ReviewSessionView: View {
                 examples: card.examples,
                 isFlipped: Binding(
                     get: { viewModel.isFlipped },
-                    set: { viewModel.isFlipped = $0 }
+                    set: {
+                        viewModel.isFlipped = $0
+                        if $0 { hasRevealedCard = true }
+                    }
                 )
             )
             .id(card.wordId)
@@ -67,6 +73,7 @@ struct ReviewSessionView: View {
                 RoundedRectangle(cornerRadius: 20)
                     .fill(ratingFlash == .correct ? Color.green.opacity(0.25) : ratingFlash == .incorrect ? Color.red.opacity(0.25) : Color.clear)
                     .allowsHitTesting(false)
+                    .accessibilityHidden(true)
             )
             .padding(.horizontal)
             .padding(.top, 16)
@@ -78,8 +85,8 @@ struct ReviewSessionView: View {
             } else {
                 VStack(spacing: 12) {
                     reviewButtons
-                        .opacity(viewModel.isFlipped ? 1 : 0)
-                        .allowsHitTesting(viewModel.isFlipped)
+                        .opacity(hasRevealedCard ? 1 : 0)
+                        .allowsHitTesting(hasRevealedCard)
 
                     Button {
                         viewModel.isSessionComplete = true
@@ -101,8 +108,15 @@ struct ReviewSessionView: View {
 
     private var learnButtons: some View {
         VStack(spacing: 12) {
-            if viewModel.isFlipped {
+            if completedFirstLap || hasRevealedCard {
                 Button {
+                    cardsSeenInLap += 1
+                    if cardsSeenInLap >= viewModel.totalSessionCards {
+                        completedFirstLap = true
+                    }
+                    if !completedFirstLap {
+                        hasRevealedCard = false
+                    }
                     viewModel.advanceToNextCard(context: modelContext)
                 } label: {
                     Label("Next", systemImage: "arrow.right.circle.fill")
@@ -140,6 +154,7 @@ struct ReviewSessionView: View {
                     .padding(.vertical, 14)
             }
             .buttonStyle(GlowButtonStyle(baseColor: .red))
+            .accessibilityLabel("Incorrect, I didn't know this word")
 
             Button {
                 submitWithFeedback(quality: 4)
@@ -150,6 +165,7 @@ struct ReviewSessionView: View {
                     .padding(.vertical, 14)
             }
             .buttonStyle(GlowButtonStyle(baseColor: .green))
+            .accessibilityLabel("Correct, I knew this word")
         }
         .padding(.horizontal)
     }
@@ -159,11 +175,12 @@ struct ReviewSessionView: View {
         hapticGenerator.notificationOccurred(correct ? .success : .error)
         hapticGenerator.prepare()
         ratingFlash = correct ? .correct : .incorrect
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
             var transaction = Transaction(animation: nil)
             transaction.disablesAnimations = true
             withTransaction(transaction) {
                 ratingFlash = nil
+                hasRevealedCard = false
                 viewModel.submitRating(quality, context: modelContext)
             }
         }
@@ -198,6 +215,7 @@ struct ReviewSessionView: View {
             Image(systemName: "rectangle.on.rectangle.slash")
                 .font(.system(size: 50))
                 .foregroundStyle(.secondary)
+                .accessibilityHidden(true)
             Text("No cards available")
                 .font(.title2)
             Text("Check back later.")
@@ -289,6 +307,7 @@ private struct SessionCompleteContent: View {
                     .opacity(boltOpacity)
             }
             .frame(height: 140)
+            .accessibilityHidden(true)
 
             Text(mode == .learn ? "Words Learned!" : "Review Complete!")
                 .font(.title.bold())
@@ -306,6 +325,7 @@ private struct SessionCompleteContent: View {
             .padding()
             .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
             .opacity(statsOpacity)
+            .accessibilityElement(children: .combine)
 
             Button(backLabel) { onDismiss() }
                 .buttonStyle(.borderedProminent)
