@@ -31,7 +31,7 @@ struct WordListView: View {
     @State private var showReviewSetup = false
     @State private var viewModel: StudySessionViewModel?
     @State private var filterCategory: String? = nil
-    @AppStorage("isPremium") private var isPremium: Bool = false
+    private var isPremium: Bool { PremiumManager.shared.isPremium }
 
     private var availableCategories: [String] {
         let cats = Set(learnedCards.compactMap(\.category).filter { !$0.isEmpty })

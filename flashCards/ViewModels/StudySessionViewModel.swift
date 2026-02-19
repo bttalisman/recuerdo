@@ -20,6 +20,7 @@ class StudySessionViewModel {
     var wordsLearned: Int = 0
     var cardShownAt: Date = Date()
     var cardDirection: String = "source_first" // "source_first", "target_first", "mixed"
+    var isCategorySession: Bool = false
     private var mixedDirections: [String: Bool] = [:]
 
     var effectiveShowTargetFirst: Bool {
@@ -116,6 +117,7 @@ class StudySessionViewModel {
 
     func loadCategoryLearnSession(cards: [FlashCard], context: ModelContext) {
         mode = .learn
+        isCategorySession = true
         cardDirection = "source_first"
         wordsLearned = 0
         sessionCards = cards.shuffled()
@@ -125,7 +127,12 @@ class StudySessionViewModel {
         isSessionComplete = cards.isEmpty
         cardShownAt = Date()
         generateMixedDirections()
+        // Don't introduce until user flips the card
+    }
 
+    /// Call when the user flips a category card to mark it as learning.
+    func introduceOnFlipIfNeeded(context: ModelContext) {
+        guard isCategorySession else { return }
         introduceCurrentCard(context: context)
     }
 

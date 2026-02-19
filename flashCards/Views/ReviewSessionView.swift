@@ -62,7 +62,10 @@ struct ReviewSessionView: View {
                     get: { viewModel.isFlipped },
                     set: {
                         viewModel.isFlipped = $0
-                        if $0 { hasRevealedCard = true }
+                        if $0 {
+                            hasRevealedCard = true
+                            viewModel.introduceOnFlipIfNeeded(context: modelContext)
+                        }
                     }
                 )
             )

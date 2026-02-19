@@ -7,15 +7,12 @@ struct CategoryBrowserView: View {
     @Query private var decks: [DeckMetadata]
     @State private var searchText = ""
     @State private var wordCount: Int = 10
+    @State private var categories: [(name: String, total: Int, learned: Int)] = []
 
     let onStartSession: (StudySessionViewModel) -> Void
 
     private var deckId: String {
         decks.first?.deckId ?? ""
-    }
-
-    private var categories: [(name: String, total: Int, learned: Int)] {
-        CardScheduler.allCategories(deckId: deckId, context: modelContext)
     }
 
     private var filteredCategories: [(name: String, total: Int, learned: Int)] {
@@ -34,7 +31,9 @@ struct CategoryBrowserView: View {
                 }
 
                 Section {
-                    if filteredCategories.isEmpty {
+                    if categories.isEmpty {
+                        ProgressView("Loading categories...")
+                    } else if filteredCategories.isEmpty {
                         Text("No categories found.")
                             .foregroundStyle(.secondary)
                     } else {
@@ -64,7 +63,9 @@ struct CategoryBrowserView: View {
                         }
                     }
                 } header: {
-                    Text("\(categories.count) Categories")
+                    if !categories.isEmpty {
+                        Text("\(categories.count) Categories")
+                    }
                 }
             }
             .navigationTitle("Study by Category")
@@ -74,6 +75,9 @@ struct CategoryBrowserView: View {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
                 }
+            }
+            .task {
+                categories = CardScheduler.allCategories(deckId: deckId, context: modelContext)
             }
         }
     }

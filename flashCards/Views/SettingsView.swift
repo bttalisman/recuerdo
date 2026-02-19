@@ -9,7 +9,7 @@ struct SettingsView: View {
     @State private var showingResetAlert = false
     @AppStorage("appearance") private var appearance: String = "system"
     @AppStorage("notificationsEnabled") private var notificationsEnabled: Bool = true
-    @AppStorage("isPremium") private var isPremium: Bool = false
+    private var premiumManager = PremiumManager.shared
     @State private var notificationStatus: String?
     @State private var showingRestoreImporter = false
     @State private var backupStatus: String?
@@ -70,18 +70,30 @@ struct SettingsView: View {
                     }
 
                     Section("Word Pool") {
-                        Stepper(
-                            "\(deck.unlockedWordCount) of \(deck.totalWords) words unlocked",
-                            value: Binding(
-                                get: { deck.unlockedWordCount },
-                                set: { deck.unlockedWordCount = $0 }
-                            ),
-                            in: 100...deck.totalWords,
-                            step: 100
-                        )
-                        Text("New words are introduced, most common first. Expand this pool as you progress.")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                        if premiumManager.isPremium {
+                            Stepper(
+                                "\(deck.unlockedWordCount) of \(deck.totalWords) words unlocked",
+                                value: Binding(
+                                    get: { deck.unlockedWordCount },
+                                    set: { deck.unlockedWordCount = $0 }
+                                ),
+                                in: 100...deck.totalWords,
+                                step: 100
+                            )
+                            Text("New words are introduced, most common first. Expand this pool as you progress.")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        } else {
+                            HStack {
+                                Text("\(deck.unlockedWordCount) of \(deck.totalWords) words unlocked")
+                                Spacer()
+                                Image(systemName: "lock.fill")
+                                    .foregroundStyle(.secondary)
+                            }
+                            Text("Get Recuerdo Premium to unlock more words.")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
                     }
 
                     Section("Appearance") {
@@ -145,8 +157,26 @@ struct SettingsView: View {
                         }
                     }
 
+                    Section("Premium") {
+                        HStack {
+                            Text("Status")
+                            Spacer()
+                            Text(premiumManager.isPremium ? "Active" : "Not purchased")
+                                .foregroundStyle(premiumManager.isPremium ? .green : .secondary)
+                        }
+
+                        Button {
+                            Task { await premiumManager.restorePurchases() }
+                        } label: {
+                            Label("Restore Purchase", systemImage: "arrow.clockwise")
+                        }
+                    }
+
                     Section("Developer") {
-                        Toggle("Premium Enabled", isOn: $isPremium)
+                        Toggle("Premium Override", isOn: Binding(
+                            get: { premiumManager.devOverride },
+                            set: { premiumManager.devOverride = $0 }
+                        ))
                     }
 
                     Section {

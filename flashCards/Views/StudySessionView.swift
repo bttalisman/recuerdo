@@ -7,7 +7,7 @@ struct StudySessionView: View {
     @State private var justUnlocked = false
     @State private var showCategoryBrowser = false
     @State private var showPremiumGate = false
-    @AppStorage("isPremium") private var isPremium: Bool = false
+    private var isPremium: Bool { PremiumManager.shared.isPremium }
     @Query(filter: #Predicate<DeckMetadata> { _ in true })
     private var decks: [DeckMetadata]
     @Query private var allCards: [FlashCard]
@@ -233,29 +233,53 @@ struct StudySessionView: View {
                 .accessibilityValue("\(Int(progress * 100)) percent")
 
             if shouldShowExpansionPrompt && !justUnlocked {
-                Button {
-                    deck.unlockedWordCount = min(unlocked + nextBatch, deck.totalWords)
-                    try? modelContext.save()
-                    justUnlocked = true
-                } label: {
-                    HStack {
-                        Image(systemName: "lock.open.fill")
-                            .accessibilityHidden(true)
-                        VStack(alignment: .leading, spacing: 2) {
-                            Text("Unlock \(nextBatch) More Words")
-                                .fontWeight(.semibold)
-                            Text("You've learned \(Int(progress * 100))% of your current set!")
-                                .font(.caption)
-                                .foregroundStyle(.white.opacity(0.8))
+                if isPremium {
+                    Button {
+                        deck.unlockedWordCount = min(unlocked + nextBatch, deck.totalWords)
+                        try? modelContext.save()
+                        justUnlocked = true
+                    } label: {
+                        HStack {
+                            Image(systemName: "lock.open.fill")
+                                .accessibilityHidden(true)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Unlock \(nextBatch) More Words")
+                                    .fontWeight(.semibold)
+                                Text("You've learned \(Int(progress * 100))% of your current set!")
+                                    .font(.caption)
+                                    .foregroundStyle(.white.opacity(0.8))
+                            }
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .accessibilityHidden(true)
                         }
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                            .accessibilityHidden(true)
+                        .padding()
                     }
-                    .padding()
+                    .buttonStyle(.borderedProminent)
+                    .tint(.green)
+                } else {
+                    Button {
+                        showPremiumGate = true
+                    } label: {
+                        HStack {
+                            Image(systemName: "lock.fill")
+                                .accessibilityHidden(true)
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text("Unlock More Words")
+                                    .fontWeight(.semibold)
+                                Text("Get Recuerdo Premium to expand beyond \(unlocked) words")
+                                    .font(.caption)
+                                    .foregroundStyle(.white.opacity(0.8))
+                            }
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .accessibilityHidden(true)
+                        }
+                        .padding()
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .tint(.orange)
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(.green)
             }
         }
     }
