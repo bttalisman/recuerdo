@@ -85,7 +85,8 @@ struct DataAnalysisView: View {
         let daily = filteredDailyAccuracy
         guard daily.count >= 2 else { return daily.map { ($0.date, $0.accuracy) } }
 
-        let window = trendRange.rollingWindow
+        // Clamp rolling window to at most half the data points so short histories still show variation
+        let window = min(trendRange.rollingWindow, max(1, daily.count / 2))
         var result: [(date: Date, accuracy: Double)] = []
         for i in 0..<daily.count {
             let windowStart = max(0, i - (window - 1))
@@ -96,6 +97,23 @@ struct DataAnalysisView: View {
             result.append((date: daily[i].date, accuracy: avg))
         }
         return result
+    }
+
+    /// Dynamic Y-axis range that zooms into the actual data, with some padding
+    private var accuracyYDomain: ClosedRange<Double> {
+        let values = rollingAverage.map(\.accuracy)
+        guard let minVal = values.min(), let maxVal = values.max() else { return 0...1 }
+        let spread = maxVal - minVal
+        if spread < 0.15 {
+            // Data is very tight — show a wider window centered on the data
+            let mid = (minVal + maxVal) / 2
+            let lo = max(0, mid - 0.15)
+            let hi = min(1, lo + 0.30)
+            return lo...hi
+        }
+        // Normal case: pad 10% above and below
+        let padding = spread * 0.1
+        return max(0, minVal - padding)...min(1, maxVal + padding)
     }
 
     private var accuracyTrendSection: some View {
@@ -136,9 +154,9 @@ struct DataAnalysisView: View {
                         .interpolationMethod(.catmullRom)
                     }
                 }
-                .chartYScale(domain: 0...1)
+                .chartYScale(domain: accuracyYDomain)
                 .chartYAxis {
-                    AxisMarks(values: [0, 0.25, 0.5, 0.75, 1.0]) { value in
+                    AxisMarks { value in
                         AxisGridLine()
                         AxisValueLabel {
                             if let v = value.as(Double.self) {
@@ -675,7 +693,7 @@ struct DataAnalysisView: View {
                                 Text(item.card.targetText)
                                     .fontWeight(.semibold)
                             }
-                            Text(item.card.sourceText)
+                            Text(item.card.displaySourceText)
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         }

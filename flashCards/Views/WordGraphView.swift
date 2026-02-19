@@ -17,7 +17,7 @@ struct WordGraphView: View {
         let q = searchText.lowercased()
         return sortedCards.filter {
             $0.targetText.lowercased().contains(q) ||
-            $0.sourceText.lowercased().contains(q)
+            $0.displaySourceText.lowercased().contains(q)
         }
     }
 
@@ -102,7 +102,7 @@ struct WordGraphView: View {
                                     Text(card.targetText).fontWeight(.medium)
                                 }
                                 Spacer()
-                                Text(card.sourceText)
+                                Text(card.displaySourceText)
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                                     .lineLimit(1)

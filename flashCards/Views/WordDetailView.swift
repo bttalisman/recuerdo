@@ -56,7 +56,7 @@ struct WordDetailView: View {
                 historySection
             }
         }
-        .navigationTitle(showTargetFirst ? card.targetText : card.sourceText)
+        .navigationTitle(showTargetFirst ? card.targetText : card.displaySourceText)
         .navigationBarTitleDisplayMode(.large)
     }
 
@@ -87,7 +87,7 @@ struct WordDetailView: View {
                     .buttonStyle(.plain)
                 }
 
-                Text(card.sourceText)
+                Text(card.displaySourceText)
                     .font(.title3)
                     .foregroundStyle(.secondary)
 

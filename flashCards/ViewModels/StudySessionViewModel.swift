@@ -112,6 +112,23 @@ class StudySessionViewModel {
         try? context.save()
     }
 
+    // MARK: - Category Learn Mode
+
+    func loadCategoryLearnSession(cards: [FlashCard], context: ModelContext) {
+        mode = .learn
+        cardDirection = "source_first"
+        wordsLearned = 0
+        sessionCards = cards.shuffled()
+        totalSessionCards = sessionCards.count
+        currentCardIndex = 0
+        isFlipped = false
+        isSessionComplete = cards.isEmpty
+        cardShownAt = Date()
+        generateMixedDirections()
+
+        introduceCurrentCard(context: context)
+    }
+
     // MARK: - Review Mode
 
     func loadCustomReviewSession(cards: [FlashCard], cardDirection: String) {

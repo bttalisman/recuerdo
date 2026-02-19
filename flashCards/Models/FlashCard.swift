@@ -35,6 +35,14 @@ final class FlashCard {
     @Relationship(deleteRule: .cascade, inverse: \ReviewRecord.card)
     var reviewHistory: [ReviewRecord]
 
+    /// Display-friendly English text: prepends "to " for verbs that don't already have it.
+    var displaySourceText: String {
+        if partOfSpeech == "verb" && !sourceText.lowercased().hasPrefix("to ") {
+            return "to \(sourceText)"
+        }
+        return sourceText
+    }
+
     init(wordId: String, sourceText: String, targetText: String,
          article: String?, partOfSpeech: String?, category: String?,
          frequencyRank: Int, deckId: String,

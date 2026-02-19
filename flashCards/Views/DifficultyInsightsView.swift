@@ -126,7 +126,7 @@ struct DifficultyInsightsView: View {
                                     Text(card.targetText)
                                         .fontWeight(.medium)
                                 }
-                                Text(card.sourceText)
+                                Text(card.displaySourceText)
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }

@@ -5,6 +5,9 @@ struct StudySessionView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var viewModel: StudySessionViewModel?
     @State private var justUnlocked = false
+    @State private var showCategoryBrowser = false
+    @State private var showPremiumGate = false
+    @AppStorage("isPremium") private var isPremium: Bool = false
     @Query(filter: #Predicate<DeckMetadata> { _ in true })
     private var decks: [DeckMetadata]
     @Query private var allCards: [FlashCard]
@@ -166,6 +169,24 @@ struct StudySessionView: View {
                 .disabled(dueReviewCount == 0)
                 .accessibilityLabel("Review")
                 .accessibilityHint(reviewSubtitle)
+
+                // Categories
+                Button {
+                    if isPremium {
+                        showCategoryBrowser = true
+                    } else {
+                        showPremiumGate = true
+                    }
+                } label: {
+                    modeButtonLabel(
+                        icon: "tag.fill",
+                        title: "Study by Category",
+                        subtitle: "Pick a topic to learn"
+                    )
+                }
+                .buttonStyle(GlowButtonStyle(baseColor: .purple))
+                .accessibilityLabel("Study by category")
+                .accessibilityHint("Pick a topic to learn")
             }
             .padding(.horizontal)
 
@@ -177,6 +198,17 @@ struct StudySessionView: View {
             Spacer()
         }
         .navigationTitle("")
+        .sheet(isPresented: $showCategoryBrowser) {
+            CategoryBrowserView { vm in
+                viewModel = vm
+            }
+        }
+        .sheet(isPresented: $showPremiumGate) {
+            PremiumGateView(
+                feature: "Study by Category",
+                description: "Focus on topics that matter to you — travel, food, work, and more. Learn words by category instead of frequency order."
+            )
+        }
     }
 
     private func tierProgressView(deck: DeckMetadata) -> some View {

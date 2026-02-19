@@ -46,8 +46,8 @@ class PronunciationManager {
 
         let utterance = AVSpeechUtterance(string: cleaned)
         utterance.voice = bestVoice(for: languageCode)
-        utterance.rate = AVSpeechUtteranceDefaultSpeechRate * 0.75
-        utterance.pitchMultiplier = 0.75
+        utterance.rate = AVSpeechUtteranceDefaultSpeechRate
+        utterance.pitchMultiplier = 1
 
         synthesizer.speak(utterance)
     }

@@ -2905,29 +2905,6 @@
       ]
     },
     {
-      "id": "en_es_0127",
-      "source": "then",
-      "target": "entonces",
-      "partOfSpeech": "adverb",
-      "category": "time",
-      "difficulty": 76,
-      "article": null,
-      "examples": [
-        {
-          "es": "Entonces tenemos un problema...",
-          "en": "Then there is a problem..."
-        },
-        {
-          "es": "Después de eso, me voy, pero entonces me doy cuenta de que olvidé mi mochila.",
-          "en": "After that, I left, but then I realized that I forgot my backpack at their house."
-        },
-        {
-          "es": "Entonces voy a hacer un sudoku en vez de seguir molestándote.",
-          "en": "I will play Sudoku then instead of continuing to bother you."
-        }
-      ]
-    },
-    {
       "id": "en_es_0128",
       "source": "between",
       "target": "entre",

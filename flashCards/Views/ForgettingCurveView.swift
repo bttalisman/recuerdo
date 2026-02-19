@@ -20,7 +20,7 @@ struct ForgettingCurveView: View {
         let q = searchText.lowercased()
         return reviewedCards.filter {
             $0.targetText.lowercased().contains(q) ||
-            $0.sourceText.lowercased().contains(q)
+            $0.displaySourceText.lowercased().contains(q)
         }
     }
 
@@ -167,7 +167,7 @@ struct ForgettingCurveView: View {
                         }
                         Text(card.targetText).font(.headline)
                     }
-                    Text(card.sourceText)
+                    Text(card.displaySourceText)
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -318,7 +318,7 @@ struct ForgettingCurveView: View {
                                     }
                                     Text(card.targetText).fontWeight(.medium)
                                 }
-                                Text(card.sourceText)
+                                Text(card.displaySourceText)
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }

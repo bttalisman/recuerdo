@@ -4,7 +4,9 @@
       "Bash(python3:*)",
       "Bash(curl:*)",
       "Bash(bunzip2:*)",
-      "Bash(wc:*)"
+      "Bash(wc:*)",
+      "WebFetch(domain:reword.app)",
+      "WebSearch"
     ]
   }
 }

@@ -30,16 +30,26 @@ struct WordListView: View {
     @State private var reviewCount: Int = 10
     @State private var showReviewSetup = false
     @State private var viewModel: StudySessionViewModel?
+    @State private var filterCategory: String? = nil
+    @AppStorage("isPremium") private var isPremium: Bool = false
+
+    private var availableCategories: [String] {
+        let cats = Set(learnedCards.compactMap(\.category).filter { !$0.isEmpty })
+        return cats.sorted()
+    }
 
     private var filteredCards: [FlashCard] {
         var cards = learnedCards
         if let filterStatus {
             cards = cards.filter { $0.status == filterStatus }
         }
+        if let filterCategory {
+            cards = cards.filter { $0.category == filterCategory }
+        }
         if !searchText.isEmpty {
             let query = searchText.lowercased()
             cards = cards.filter {
-                $0.sourceText.lowercased().contains(query) ||
+                $0.displaySourceText.lowercased().contains(query) ||
                 $0.targetText.lowercased().contains(query) ||
                 ($0.article?.lowercased().contains(query) ?? false)
             }
@@ -84,8 +94,8 @@ struct WordListView: View {
             return cards.sorted { $0.easeFactor < $1.easeFactor }
         case .alphabetical:
             return cards.sorted {
-                let left0 = showTargetFirst ? $0.targetText : $0.sourceText
-                let left1 = showTargetFirst ? $1.targetText : $1.sourceText
+                let left0 = showTargetFirst ? $0.targetText : $0.displaySourceText
+                let left1 = showTargetFirst ? $1.targetText : $1.displaySourceText
                 return left0.localizedCaseInsensitiveCompare(left1) == .orderedAscending
             }
         }
@@ -137,6 +147,15 @@ struct WordListView: View {
                         }
                         .pickerStyle(.segmented)
                         .listRowBackground(Color.clear)
+
+                        if isPremium && !availableCategories.isEmpty {
+                            Picker("Category", selection: $filterCategory) {
+                                Text("All Categories").tag(nil as String?)
+                                ForEach(availableCategories, id: \.self) { cat in
+                                    Text(cat.capitalized).tag(cat as String?)
+                                }
+                            }
+                        }
                     }
 
                     Section {
@@ -221,8 +240,8 @@ private struct WordRow: View {
     let card: FlashCard
     let showTargetFirst: Bool
 
-    private var leftText: String { showTargetFirst ? card.targetText : card.sourceText }
-    private var rightText: String { showTargetFirst ? card.sourceText : card.targetText }
+    private var leftText: String { showTargetFirst ? card.targetText : card.displaySourceText }
+    private var rightText: String { showTargetFirst ? card.displaySourceText : card.targetText }
     private var showArticleOnLeft: Bool { showTargetFirst }
 
     private var accuracyText: String {

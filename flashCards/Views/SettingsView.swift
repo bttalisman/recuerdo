@@ -9,6 +9,7 @@ struct SettingsView: View {
     @State private var showingResetAlert = false
     @AppStorage("appearance") private var appearance: String = "system"
     @AppStorage("notificationsEnabled") private var notificationsEnabled: Bool = true
+    @AppStorage("isPremium") private var isPremium: Bool = false
     @State private var notificationStatus: String?
     @State private var showingRestoreImporter = false
     @State private var backupStatus: String?
@@ -142,6 +143,10 @@ struct SettingsView: View {
                         } label: {
                             Label("About Chispa", systemImage: "info.circle")
                         }
+                    }
+
+                    Section("Developer") {
+                        Toggle("Premium Enabled", isOn: $isPremium)
                     }
 
                     Section {

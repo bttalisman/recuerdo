@@ -47,7 +47,7 @@ struct ReviewSessionView: View {
         let deckMeta = decks.first
         VStack(spacing: 0) {
             FlashCardView(
-                sourceText: card.sourceText,
+                sourceText: card.displaySourceText,
                 targetText: card.targetText,
                 sourceLanguage: deckMeta?.sourceLanguage ?? "English",
                 targetLanguage: deckMeta?.targetLanguage ?? "Spanish",
