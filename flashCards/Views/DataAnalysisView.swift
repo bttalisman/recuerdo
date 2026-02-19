@@ -46,6 +46,7 @@ struct DataAnalysisView: View {
                 difficultyInsightsLink
                 activityHeatmapSection
                 learningVelocitySection
+                estimatedCompletionSection
                 wordConnectionsLink
             }
             .padding()
@@ -667,6 +668,131 @@ struct DataAnalysisView: View {
         }
 
         return byDay
+    }
+
+    // MARK: - 9. Estimated Completion
+
+    private struct CompletionEstimate {
+        let totalWords: Int
+        let introducedCount: Int
+        let remaining: Int
+        let wordsPerDay: Double
+        let estimatedDate: Date?
+        let percentComplete: Int
+    }
+
+    private var completionEstimate: CompletionEstimate {
+        let totalWords = allCards.count
+        let introduced = allCards.filter { $0.introducedDate != nil }
+        let introducedCount = introduced.count
+        let remaining = totalWords - introducedCount
+
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+
+        let sortedDates = introduced.compactMap { $0.introducedDate }.sorted()
+        let firstDate = sortedDates.first.map { calendar.startOfDay(for: $0) }
+
+        var daysSinceStart = 0
+        if let first = firstDate {
+            daysSinceStart = max(calendar.dateComponents([.day], from: first, to: today).day ?? 0, 1)
+        }
+
+        let wordsPerDay = daysSinceStart > 0 ? Double(introducedCount) / Double(daysSinceStart) : 0
+        let daysLeft = wordsPerDay > 0 ? Int(ceil(Double(remaining) / wordsPerDay)) : 0
+        let estDate = wordsPerDay > 0 ? calendar.date(byAdding: .day, value: daysLeft, to: today) : nil
+        let pct = totalWords > 0 ? Int(Double(introducedCount) / Double(totalWords) * 100) : 0
+
+        return CompletionEstimate(
+            totalWords: totalWords, introducedCount: introducedCount,
+            remaining: remaining, wordsPerDay: wordsPerDay,
+            estimatedDate: estDate, percentComplete: pct
+        )
+    }
+
+    private var estimatedCompletionSection: some View {
+        let est = completionEstimate
+        return VStack(alignment: .leading, spacing: 12) {
+            Text("Estimated Completion")
+                .font(.headline)
+            Text("When you'll finish the deck at your current pace")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            if est.introducedCount < 5 {
+                Text("Learn a few more words to see your estimate.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, minHeight: 60)
+            } else if est.remaining == 0 {
+                completionCelebrationView(totalWords: est.totalWords)
+            } else {
+                completionDetailsView(est: est)
+            }
+        }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
+    }
+
+    private func completionCelebrationView(totalWords: Int) -> some View {
+        HStack {
+            Image(systemName: "checkmark.seal.fill")
+                .font(.title)
+                .foregroundStyle(.green)
+            Text("All \(totalWords) words introduced!")
+                .font(.title3.bold())
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 8)
+    }
+
+    private func completionDetailsView(est: CompletionEstimate) -> some View {
+        VStack(spacing: 16) {
+            VStack(alignment: .leading, spacing: 4) {
+                HStack {
+                    Text("\(est.introducedCount) of \(est.totalWords) words")
+                        .font(.subheadline.bold())
+                    Spacer()
+                    Text("\(est.percentComplete)%")
+                        .font(.subheadline.bold())
+                        .foregroundStyle(.blue)
+                }
+                ProgressView(value: Double(est.introducedCount), total: Double(est.totalWords))
+                    .tint(.blue)
+            }
+
+            HStack(spacing: 0) {
+                VStack {
+                    Text(String(format: "%.1f", est.wordsPerDay))
+                        .font(.title3.bold())
+                    Text("words/day")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                .frame(maxWidth: .infinity)
+
+                VStack {
+                    Text("\(est.remaining)")
+                        .font(.title3.bold())
+                    Text("remaining")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                .frame(maxWidth: .infinity)
+
+                VStack {
+                    if let date = est.estimatedDate {
+                        Text(date, format: .dateTime.month(.abbreviated).day().year())
+                            .font(.title3.bold())
+                            .foregroundStyle(.blue)
+                    }
+                    Text("est. finish")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                .frame(maxWidth: .infinity)
+            }
+        }
     }
 
     // MARK: - Navigation Links

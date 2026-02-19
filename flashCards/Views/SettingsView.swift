@@ -57,7 +57,7 @@ struct SettingsView: View {
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         } else {
-                            Text("New words accumulate over time at a set rate.")
+                            Text("A fresh batch of new words arrives each day.")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
                         }

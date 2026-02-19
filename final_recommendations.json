@@ -1,0 +1,1043 @@
+{
+  "switches": [
+    {
+      "id": "en_es_3995",
+      "source": "accuracy",
+      "current": "exactitud",
+      "recommended": "precisión",
+      "reason": "'exactitud' is formal/literary; 'precisión' is the everyday word"
+    },
+    {
+      "id": "en_es_2729",
+      "source": "afterwards",
+      "current": "posteriormente",
+      "recommended": "después",
+      "reason": "'posteriormente' is formal/literary; 'después' is the everyday word"
+    },
+    {
+      "id": "en_es_1456",
+      "source": "anew, again",
+      "current": "nuevamente",
+      "recommended": "de nuevo, otra vez",
+      "reason": "'nuevamente' is formal/literary; 'de nuevo' is the everyday word"
+    },
+    {
+      "id": "en_es_2672",
+      "source": "application, request",
+      "current": "instancia",
+      "recommended": "solicitud, petición",
+      "reason": "'instancia' is formal/literary; 'solicitud' is the everyday word"
+    },
+    {
+      "id": "en_es_3979",
+      "source": "appropriate, suitable",
+      "current": "propicio",
+      "recommended": "apropiado, adecuado",
+      "reason": "'propicio' is formal/literary; 'adecuado' is the everyday word"
+    },
+    {
+      "id": "en_es_4219",
+      "source": "damage, loss",
+      "current": "perjuicio",
+      "recommended": "daños, pérdidas",
+      "reason": "'perjuicio' is formal/literary; 'daño' is the everyday word"
+    },
+    {
+      "id": "en_es_1249",
+      "source": "event, happening",
+      "current": "acontecimiento",
+      "recommended": "evento, suceso",
+      "reason": "'acontecimiento' is formal/literary; 'evento' is the everyday word"
+    },
+    {
+      "id": "en_es_3321",
+      "source": "to arouse, provoke",
+      "current": "suscitar",
+      "recommended": "despertar, provocar",
+      "reason": "'suscitar' is formal/literary; 'provocar' is the everyday word"
+    },
+    {
+      "id": "en_es_4253",
+      "source": "to deprive, rob",
+      "current": "despojar",
+      "recommended": "privar, robar",
+      "reason": "'despojar' is formal/literary; DeepL suggests 'privar, robar'"
+    },
+    {
+      "id": "en_es_1380",
+      "source": "to find out",
+      "current": "hallar",
+      "recommended": "para averiguar",
+      "reason": "'hallar' is formal/literary; DeepL suggests 'para averiguar'"
+    },
+    {
+      "id": "en_es_4405",
+      "source": "to flaunt, show off",
+      "current": "ostentar",
+      "recommended": "alardear, presumir",
+      "reason": "'ostentar' is formal/literary; DeepL suggests 'alardear, presumir'"
+    },
+    {
+      "id": "en_es_1603",
+      "source": "to lack",
+      "current": "carecer",
+      "recommended": "a falta de",
+      "reason": "'carecer' is formal/literary; DeepL suggests 'a falta de'"
+    },
+    {
+      "id": "en_es_2379",
+      "source": "to offer",
+      "current": "brindar",
+      "recommended": "ofrecer",
+      "reason": "'brindar' is formal/literary; 'ofrecer' is the everyday word"
+    },
+    {
+      "id": "en_es_4619",
+      "source": "to prove, verify",
+      "current": "constatar",
+      "recommended": "probar, verificar",
+      "reason": "'constatar' is formal/literary; DeepL suggests 'probar, verificar'"
+    },
+    {
+      "id": "en_es_1651",
+      "source": "to suffer",
+      "current": "padecer",
+      "recommended": "sufrir",
+      "reason": "'padecer' is formal/literary; 'sufrir' is the everyday word"
+    },
+    {
+      "id": "en_es_3902",
+      "source": "foster",
+      "current": "fomentar",
+      "recommended": "acoger",
+      "reason": "'fomentar' is formal/literary; DeepL suggests 'acoger'"
+    },
+    {
+      "id": "en_es_3650",
+      "source": "gentle",
+      "current": "gentil",
+      "recommended": "suave",
+      "reason": "'gentil' is formal/literary; DeepL suggests 'suave'"
+    },
+    {
+      "id": "en_es_1675",
+      "source": "advocate",
+      "current": "abogar",
+      "recommended": "defensor",
+      "reason": "'abogar' is formal/literary; DeepL suggests 'defensor'"
+    },
+    {
+      "id": "en_es_4279",
+      "source": "atrocity",
+      "current": "barbaridad",
+      "recommended": "atrocidad",
+      "reason": "'barbaridad' means outrage/tons; 'atrocidad' matches better"
+    },
+    {
+      "id": "en_es_4568",
+      "source": "aware of",
+      "current": "enterado",
+      "recommended": "consciente",
+      "reason": "'consciente de' is the standard translation"
+    },
+    {
+      "id": "en_es_4101",
+      "source": "bed",
+      "current": "lecho",
+      "recommended": "cama",
+      "reason": "'lecho' is poetic; 'cama' is what everyone says"
+    },
+    {
+      "id": "en_es_5204",
+      "source": "breadth, expanse",
+      "current": "envergadura",
+      "recommended": "amplitud",
+      "reason": "'envergadura' is technical/formal; 'amplitud' is clearer"
+    },
+    {
+      "id": "en_es_3793",
+      "source": "categorical",
+      "current": "rotundo",
+      "recommended": "categórico",
+      "reason": "'rotundo' means 'resounding'; 'categórico' is clearer"
+    },
+    {
+      "id": "en_es_5061",
+      "source": "coming together, participation",
+      "current": "concurrencia",
+      "recommended": "participación",
+      "reason": "'concurrencia' means attendance/crowd"
+    },
+    {
+      "id": "en_es_4958",
+      "source": "disorder, chaos",
+      "current": "desconcierto",
+      "recommended": "confusión",
+      "reason": "'desconcierto' is bewilderment; 'desorden' for disorder"
+    },
+    {
+      "id": "en_es_3609",
+      "source": "doubtless, undoubtedly",
+      "current": "indudablemente",
+      "recommended": "sin duda",
+      "reason": "'sin duda' is simpler and more common"
+    },
+    {
+      "id": "en_es_4098",
+      "source": "ease, spontaneity",
+      "current": "naturalidad",
+      "recommended": "facilidad",
+      "reason": "'naturalidad' means naturalness; 'facilidad' for ease"
+    },
+    {
+      "id": "en_es_3354",
+      "source": "exactly, properly",
+      "current": "propiamente",
+      "recommended": "exactamente",
+      "reason": "'propiamente' means 'properly'; misleading for 'exactly'"
+    },
+    {
+      "id": "en_es_3394",
+      "source": "filth, junk",
+      "current": "porquería",
+      "recommended": "basura",
+      "reason": "'basura' is more standard; 'porquería' is slangy"
+    },
+    {
+      "id": "en_es_4850",
+      "source": "fortunate, happy",
+      "current": "dichoso",
+      "recommended": "afortunado",
+      "reason": "'dichoso' often means 'damn' colloquially; misleading"
+    },
+    {
+      "id": "en_es_3851",
+      "source": "full, overcrowded",
+      "current": "repleto",
+      "recommended": "lleno",
+      "reason": "'repleto' is emphatic; 'lleno' is the basic word to learn first"
+    },
+    {
+      "id": "en_es_4547",
+      "source": "highly",
+      "current": "altamente",
+      "recommended": "muy",
+      "reason": "'muy' is the word every learner needs"
+    },
+    {
+      "id": "en_es_3721",
+      "source": "hundred",
+      "current": "centenar",
+      "recommended": "cien",
+      "reason": "'centenar' means 'about a hundred'; 'cien' is the number"
+    },
+    {
+      "id": "en_es_5052",
+      "source": "meaning, significance",
+      "current": "significación",
+      "recommended": "significado",
+      "reason": "'significado' is the standard word"
+    },
+    {
+      "id": "en_es_4071",
+      "source": "missing",
+      "current": "desaparecido",
+      "recommended": "perdido",
+      "reason": "'desaparecido' means disappeared (people); for objects 'perdido'"
+    },
+    {
+      "id": "en_es_4967",
+      "source": "mode, manner",
+      "current": "modalidad",
+      "recommended": "modo",
+      "reason": "'modo' is the everyday word"
+    },
+    {
+      "id": "en_es_4070",
+      "source": "movement, removal",
+      "current": "desplazamiento",
+      "recommended": "movimiento",
+      "reason": "'movimiento' is the basic word"
+    },
+    {
+      "id": "en_es_4995",
+      "source": "origin, source",
+      "current": "procedencia",
+      "recommended": "origen",
+      "reason": "'origen' is much more common"
+    },
+    {
+      "id": "en_es_3826",
+      "source": "participant in a dialog",
+      "current": "interlocutor",
+      "recommended": "participante",
+      "reason": "'interlocutor' is very formal"
+    },
+    {
+      "id": "en_es_2899",
+      "source": "particularly, personally",
+      "current": "particularmente",
+      "recommended": "en particular",
+      "reason": "both fine but 'en particular' is simpler"
+    },
+    {
+      "id": "en_es_3420",
+      "source": "passing, course, lapse",
+      "current": "transcurso",
+      "recommended": "paso",
+      "reason": "'transcurso' is very formal; 'paso' is everyday"
+    },
+    {
+      "id": "en_es_3283",
+      "source": "piece of clothing",
+      "current": "prenda",
+      "recommended": "ropa",
+      "reason": "'ropa' is the basic word for clothing"
+    },
+    {
+      "id": "en_es_3904",
+      "source": "proposal, exposition",
+      "current": "planteamiento",
+      "recommended": "propuesta",
+      "reason": "'propuesta' is clearer for learners"
+    },
+    {
+      "id": "en_es_2585",
+      "source": "simply",
+      "current": "sencillamente",
+      "recommended": "simplemente",
+      "reason": "'simplemente' is more universal"
+    },
+    {
+      "id": "en_es_0704",
+      "source": "to attempt",
+      "current": "pretender",
+      "recommended": "intentar",
+      "reason": "'pretender' is a false friend; 'intentar' is correct"
+    },
+    {
+      "id": "en_es_1660",
+      "source": "to attribute",
+      "current": "atribuir",
+      "recommended": "asignar",
+      "reason": "DeepL garbled this but 'atribuir' is fine; keep"
+    },
+    {
+      "id": "en_es_2707",
+      "source": "to continue, carry on",
+      "current": "proseguir",
+      "recommended": "continuar",
+      "reason": "'continuar' or 'seguir' is everyday"
+    },
+    {
+      "id": "en_es_5219",
+      "source": "to contradict",
+      "current": "desmentir",
+      "recommended": "contradecir",
+      "reason": "'contradecir' is more transparent"
+    },
+    {
+      "id": "en_es_1691",
+      "source": "to demand, require",
+      "current": "reclamar",
+      "recommended": "exigir",
+      "reason": "'exigir' or 'demandar' is clearer"
+    },
+    {
+      "id": "en_es_3576",
+      "source": "to endanger",
+      "current": "perjudicar",
+      "recommended": "dañar",
+      "reason": "'dañar' is simpler; 'perjudicar' means to harm/prejudice"
+    },
+    {
+      "id": "en_es_5164",
+      "source": "to flow, pass, roam",
+      "current": "discurrir",
+      "recommended": "fluir",
+      "reason": "'fluir' is the standard word"
+    },
+    {
+      "id": "en_es_4710",
+      "source": "to grasp, clutch",
+      "current": "aferrar",
+      "recommended": "agarrar",
+      "reason": "'agarrar' is more common"
+    },
+    {
+      "id": "en_es_4195",
+      "source": "to happen, come about",
+      "current": "acontecer",
+      "recommended": "suceder",
+      "reason": "'acontecer' is literary; 'suceder' or 'pasar' is normal"
+    },
+    {
+      "id": "en_es_4496",
+      "source": "to head for, guide",
+      "current": "encaminar",
+      "recommended": "dirigir",
+      "reason": "'dirigir' or 'dirigirse a' is more standard"
+    },
+    {
+      "id": "en_es_4797",
+      "source": "to heal, cure",
+      "current": "remediar",
+      "recommended": "curar",
+      "reason": "'curar' is the standard medical/everyday word"
+    },
+    {
+      "id": "en_es_4308",
+      "source": "to light, illuminate",
+      "current": "alumbrar",
+      "recommended": "iluminar",
+      "reason": "'iluminar' or 'encender' is more standard"
+    },
+    {
+      "id": "en_es_4645",
+      "source": "to maintain, support",
+      "current": "sustentar",
+      "recommended": "mantener",
+      "reason": "'mantener' is the word learners need"
+    },
+    {
+      "id": "en_es_3893",
+      "source": "to move, affect",
+      "current": "conmover",
+      "recommended": "emocionar",
+      "reason": "'emocionar' is more commonly used"
+    },
+    {
+      "id": "en_es_4319",
+      "source": "to rip/break into pieces",
+      "current": "destrozar",
+      "recommended": "romper",
+      "reason": "'romper' is the basic word"
+    },
+    {
+      "id": "en_es_5194",
+      "source": "to roam, go by",
+      "current": "transitar",
+      "recommended": "pasar",
+      "reason": "'pasar' or 'caminar' is everyday"
+    },
+    {
+      "id": "en_es_4641",
+      "source": "to scare, frighten",
+      "current": "espantar",
+      "recommended": "asustar",
+      "reason": "'asustar' is the everyday word"
+    },
+    {
+      "id": "en_es_4730",
+      "source": "to sense",
+      "current": "intuir",
+      "recommended": "sentir",
+      "reason": "'sentir' is the basic word learners need"
+    },
+    {
+      "id": "en_es_5177",
+      "source": "to sense in advance",
+      "current": "presentir",
+      "recommended": "intuir",
+      "reason": "'presentir' is fine but 'intuir' more useful"
+    },
+    {
+      "id": "en_es_2308",
+      "source": "to solve, settle",
+      "current": "solucionar",
+      "recommended": "resolver",
+      "reason": "'resolver' is more common"
+    },
+    {
+      "id": "en_es_2826",
+      "source": "to spread out",
+      "current": "difundir",
+      "recommended": "extender",
+      "reason": "'extender' or 'propagar' is more common"
+    },
+    {
+      "id": "en_es_5288",
+      "source": "to start, establish",
+      "current": "entablar",
+      "recommended": "empezar",
+      "reason": "'empezar' or 'iniciar' is standard"
+    },
+    {
+      "id": "en_es_3788",
+      "source": "to take power",
+      "current": "apoderar",
+      "recommended": "tomar el poder",
+      "reason": "'apoderarse de' needs the reflexive"
+    },
+    {
+      "id": "en_es_2971",
+      "source": "to tell, narrate",
+      "current": "relatar",
+      "recommended": "contar",
+      "reason": "'contar' is the everyday word"
+    },
+    {
+      "id": "en_es_1220",
+      "source": "to try, seek",
+      "current": "procurar",
+      "recommended": "intentar",
+      "reason": "'intentar' is clearer for 'to try'"
+    },
+    {
+      "id": "en_es_4230",
+      "source": "training",
+      "current": "entrenamiento",
+      "recommended": "formación",
+      "reason": "'formación' is broader/more common in many contexts"
+    },
+    {
+      "id": "en_es_3296",
+      "source": "insight",
+      "current": "perspicacia",
+      "recommended": "percepción",
+      "reason": "'perspicacia' is rare in everyday speech"
+    },
+    {
+      "id": "en_es_2564",
+      "source": "feast",
+      "current": "festín",
+      "recommended": "fiesta",
+      "reason": "'fiesta' is what learners need; 'festín' is literary"
+    },
+    {
+      "id": "en_es_1635",
+      "source": "fur",
+      "current": "pelaje",
+      "recommended": "piel",
+      "reason": "'piel' is more general and common"
+    },
+    {
+      "id": "en_es_3582",
+      "source": "specimen",
+      "current": "espécimen",
+      "recommended": "muestra",
+      "reason": "'muestra' is more everyday"
+    },
+    {
+      "id": "en_es_2570",
+      "source": "infant",
+      "current": "infante",
+      "recommended": "bebé",
+      "reason": "'bebé' is the everyday word; 'infante' is archaic"
+    },
+    {
+      "id": "en_es_3238",
+      "source": "penalty",
+      "current": "penalización",
+      "recommended": "sanción",
+      "reason": "'sanción' or 'multa' is more common"
+    },
+    {
+      "id": "en_es_2825",
+      "source": "sentence",
+      "current": "sentencia",
+      "recommended": "frase",
+      "reason": "'frase' for grammar; 'sentencia' is a court sentence"
+    },
+    {
+      "id": "en_es_2529",
+      "source": "eventually",
+      "current": "eventualmente",
+      "recommended": "finalmente",
+      "reason": "FALSE COGNATE: 'eventualmente' means 'possibly' in Spanish!"
+    },
+    {
+      "id": "en_es_1965",
+      "source": "output",
+      "current": "producción",
+      "recommended": "salida",
+      "reason": "'salida' is more accurate for output"
+    }
+  ],
+  "regional": [
+    {
+      "id": "en_es_5178",
+      "source": "cake",
+      "current": "torta",
+      "alternative": "tarta",
+      "note": "LatAm 'torta' vs Spain 'tarta' for cake"
+    },
+    {
+      "id": "en_es_4100",
+      "source": "juice",
+      "current": "jugo",
+      "alternative": "zumo",
+      "note": "LatAm 'jugo' vs Spain 'zumo'"
+    },
+    {
+      "id": "en_es_4628",
+      "source": "hurry",
+      "current": "apurarse",
+      "alternative": "darse prisa",
+      "note": "LatAm 'apurarse' vs Spain 'darse prisa'"
+    },
+    {
+      "id": "en_es_1102",
+      "source": "pull",
+      "current": "jalar",
+      "alternative": "tirar",
+      "note": "LatAm 'jalar' vs Spain 'tirar' for pull"
+    },
+    {
+      "id": "en_es_3997",
+      "source": "basket",
+      "current": "canasta",
+      "alternative": "cesta",
+      "note": "LatAm 'canasta' vs Spain 'cesta'"
+    },
+    {
+      "id": "en_es_2922",
+      "source": "angry",
+      "current": "enojado",
+      "alternative": "enfadado",
+      "note": "LatAm 'enojado' vs Spain 'enfadado'"
+    },
+    {
+      "id": "en_es_2898",
+      "source": "potato",
+      "current": "papa",
+      "alternative": "patata",
+      "note": "LatAm 'papa' vs Spain 'patata'"
+    },
+    {
+      "id": "en_es_1908",
+      "source": "waiter",
+      "current": "mesero",
+      "alternative": "camarero",
+      "note": "LatAm 'mesero' vs Spain 'camarero'"
+    },
+    {
+      "id": "en_es_0922",
+      "source": "floor",
+      "current": "piso",
+      "alternative": "suelo",
+      "note": "Both valid; 'piso' also means apartment/floor level"
+    },
+    {
+      "id": "en_es_3343",
+      "source": "refrigerator",
+      "current": "refrigerador",
+      "alternative": "frigorífico",
+      "note": "LatAm 'refrigerador' vs Spain 'frigorífico'"
+    },
+    {
+      "id": "en_es_4433",
+      "source": "computer",
+      "current": "computadora",
+      "alternative": "ordenador",
+      "note": "LatAm 'computadora' vs Spain 'ordenador'"
+    },
+    {
+      "id": "en_es_2596",
+      "source": "ticket",
+      "current": "boleto",
+      "alternative": "billete",
+      "note": "LatAm 'boleto' vs Spain 'billete'"
+    },
+    {
+      "id": "en_es_1407",
+      "source": "manager",
+      "current": "gerente",
+      "alternative": "director",
+      "note": "Both valid; 'gerente' more LatAm business"
+    },
+    {
+      "id": "en_es_3861",
+      "source": "portfolio",
+      "current": "portafolio",
+      "alternative": "cartera",
+      "note": "LatAm 'portafolio' vs Spain 'cartera'"
+    }
+  ],
+  "unclear": [
+    {
+      "id": "en_es_2676",
+      "source": "East",
+      "current": "oriente",
+      "deepl": "Este"
+    },
+    {
+      "id": "en_es_4962",
+      "source": "attack, offense",
+      "current": "atentado",
+      "deepl": "ataque, ofensiva"
+    },
+    {
+      "id": "en_es_2642",
+      "source": "ball",
+      "current": "pelota",
+      "deepl": "bola"
+    },
+    {
+      "id": "en_es_0501",
+      "source": "behind",
+      "current": "atrás",
+      "deepl": "detrás de"
+    },
+    {
+      "id": "en_es_5264",
+      "source": "behind, back",
+      "current": "trasero",
+      "deepl": "detrás, espalda"
+    },
+    {
+      "id": "en_es_4599",
+      "source": "behind, slow",
+      "current": "atrasado",
+      "deepl": "detrás, lento"
+    },
+    {
+      "id": "en_es_4077",
+      "source": "cottage",
+      "current": "casita",
+      "deepl": "casa rural"
+    },
+    {
+      "id": "en_es_3418",
+      "source": "cutting edge",
+      "current": "filo",
+      "deepl": "vanguardia"
+    },
+    {
+      "id": "en_es_2624",
+      "source": "dance",
+      "current": "danza",
+      "deepl": "baile"
+    },
+    {
+      "id": "en_es_2592",
+      "source": "dark, brown",
+      "current": "moreno",
+      "deepl": "oscuro, marrón"
+    },
+    {
+      "id": "en_es_2617",
+      "source": "deep",
+      "current": "hondo",
+      "deepl": "profundo"
+    },
+    {
+      "id": "en_es_2441",
+      "source": "drug",
+      "current": "droga",
+      "deepl": "medicamento"
+    },
+    {
+      "id": "en_es_0581",
+      "source": "end, bit",
+      "current": "cabo",
+      "deepl": "fin, bit"
+    },
+    {
+      "id": "en_es_2946",
+      "source": "essential, indispensable",
+      "current": "imprescindible",
+      "deepl": "esencial, indispensable"
+    },
+    {
+      "id": "en_es_0743",
+      "source": "even if",
+      "current": "siquiera",
+      "deepl": "aunque"
+    },
+    {
+      "id": "en_es_3871",
+      "source": "excuse",
+      "current": "excusa",
+      "deepl": "disculpe"
+    },
+    {
+      "id": "en_es_5054",
+      "source": "exhibition, showing",
+      "current": "exhibición",
+      "deepl": "exposición"
+    },
+    {
+      "id": "en_es_2798",
+      "source": "girl",
+      "current": "muchacha",
+      "deepl": "chica"
+    },
+    {
+      "id": "en_es_3585",
+      "source": "hill",
+      "current": "cerro",
+      "deepl": "colina"
+    },
+    {
+      "id": "en_es_2855",
+      "source": "immediately, at once",
+      "current": "enseguida",
+      "deepl": "inmediatamente"
+    },
+    {
+      "id": "en_es_4041",
+      "source": "membership, property",
+      "current": "pertenencia",
+      "deepl": "afiliación, propiedad"
+    },
+    {
+      "id": "en_es_5033",
+      "source": "mistake, misconception",
+      "current": "equivocación",
+      "deepl": "error, idea equivocada"
+    },
+    {
+      "id": "en_es_2838",
+      "source": "mixed",
+      "current": "mezclado",
+      "deepl": "mixto"
+    },
+    {
+      "id": "en_es_1943",
+      "source": "nevertheless",
+      "current": "no + obstante obstante",
+      "deepl": "sin embargo"
+    },
+    {
+      "id": "en_es_4372",
+      "source": "news report",
+      "current": "reportaje",
+      "deepl": "informe de prensa"
+    },
+    {
+      "id": "en_es_2772",
+      "source": "office, study",
+      "current": "despacho",
+      "deepl": "oficina, estudio"
+    },
+    {
+      "id": "en_es_2713",
+      "source": "organized, clean",
+      "current": "ordenado",
+      "deepl": "organizado, limpio"
+    },
+    {
+      "id": "en_es_4940",
+      "source": "outcome, result",
+      "current": "desenlace",
+      "deepl": "resultado"
+    },
+    {
+      "id": "en_es_2197",
+      "source": "outside",
+      "current": "afuera",
+      "deepl": "fuera de"
+    },
+    {
+      "id": "en_es_4143",
+      "source": "round",
+      "current": "ronda",
+      "deepl": "redondo"
+    },
+    {
+      "id": "en_es_3113",
+      "source": "savage, horrible",
+      "current": "bárbaro",
+      "deepl": "salvaje, horrible"
+    },
+    {
+      "id": "en_es_3465",
+      "source": "seriously",
+      "current": "seriamente",
+      "deepl": "en serio"
+    },
+    {
+      "id": "en_es_3780",
+      "source": "side, flank",
+      "current": "costado",
+      "deepl": "lado, flanco"
+    },
+    {
+      "id": "en_es_3623",
+      "source": "specifically, exactly",
+      "current": "concretamente",
+      "deepl": "específicamente, exactamente"
+    },
+    {
+      "id": "en_es_3933",
+      "source": "spread out",
+      "current": "disperso",
+      "deepl": "extender"
+    },
+    {
+      "id": "en_es_5004",
+      "source": "star",
+      "current": "astro",
+      "deepl": "estrella"
+    },
+    {
+      "id": "en_es_4201",
+      "source": "teacher (f)",
+      "current": "maestra",
+      "deepl": "profesor (f)"
+    },
+    {
+      "id": "en_es_4924",
+      "source": "to award",
+      "current": "premiar",
+      "deepl": "conceder"
+    },
+    {
+      "id": "en_es_2348",
+      "source": "to carry out, fulfill",
+      "current": "desempeñar",
+      "deepl": "llevar a cabo, cumplir"
+    },
+    {
+      "id": "en_es_1884",
+      "source": "to not know, not recognize",
+      "current": "desconocer",
+      "deepl": "no saber, no reconocer"
+    },
+    {
+      "id": "en_es_5163",
+      "source": "to resign, relinquish",
+      "current": "resignar",
+      "deepl": "dimitir, renunciar"
+    },
+    {
+      "id": "en_es_0999",
+      "source": "to return to a place",
+      "current": "regresar",
+      "deepl": "volver a un lugar"
+    },
+    {
+      "id": "en_es_0676",
+      "source": "use",
+      "current": "uso",
+      "deepl": "utilice"
+    },
+    {
+      "id": "en_es_2572",
+      "source": "wing, flank",
+      "current": "ala (nf el)",
+      "deepl": "ala, flanco"
+    },
+    {
+      "id": "en_es_2057",
+      "source": "worldwide",
+      "current": "mundial",
+      "deepl": "en todo el mundo"
+    },
+    {
+      "id": "en_es_2908",
+      "source": "young woman",
+      "current": "señorita",
+      "deepl": "mujer joven"
+    },
+    {
+      "id": "en_es_1583",
+      "source": "youth",
+      "current": "juventud",
+      "deepl": "jóvenes"
+    },
+    {
+      "id": "en_es_0241",
+      "source": "to understand",
+      "current": "entender",
+      "deepl": "para comprender"
+    },
+    {
+      "id": "en_es_2320",
+      "source": "blast",
+      "current": "explosión",
+      "deepl": "ráfaga"
+    },
+    {
+      "id": "en_es_2665",
+      "source": "glare",
+      "current": "deslumbramiento",
+      "deepl": "resplandor"
+    },
+    {
+      "id": "en_es_1184",
+      "source": "haunt",
+      "current": "perseguir",
+      "deepl": "acechar"
+    },
+    {
+      "id": "en_es_1527",
+      "source": "press",
+      "current": "prensa",
+      "deepl": "pulse"
+    },
+    {
+      "id": "en_es_4811",
+      "source": "scratch",
+      "current": "rascar",
+      "deepl": "arañar"
+    },
+    {
+      "id": "en_es_0973",
+      "source": "set (collection)",
+      "current": "conjunto",
+      "deepl": "set (colección)"
+    },
+    {
+      "id": "en_es_1846",
+      "source": "settle",
+      "current": "establecerse",
+      "deepl": "resolver"
+    },
+    {
+      "id": "en_es_1138",
+      "source": "succeed",
+      "current": "tener éxito",
+      "deepl": "triunfar"
+    },
+    {
+      "id": "en_es_3612",
+      "source": "surrender",
+      "current": "rendirse",
+      "deepl": "entrega"
+    },
+    {
+      "id": "en_es_1958",
+      "source": "to fight",
+      "current": "pelear",
+      "deepl": "para luchar"
+    },
+    {
+      "id": "en_es_0014",
+      "source": "to happen",
+      "current": "pasar",
+      "deepl": "suceder"
+    },
+    {
+      "id": "en_es_0596",
+      "source": "to raise",
+      "current": "levantar",
+      "deepl": "aumentar"
+    },
+    {
+      "id": "en_es_0012",
+      "source": "to watch",
+      "current": "mirar",
+      "deepl": "para ver"
+    },
+    {
+      "id": "en_es_1229",
+      "source": "undergo",
+      "current": "someterse a",
+      "deepl": "visite"
+    },
+    {
+      "id": "en_es_0083",
+      "source": "would",
+      "current": "haría",
+      "deepl": "sería"
+    },
+    {
+      "id": "en_es_1696",
+      "source": "scholar",
+      "current": "erudito",
+      "deepl": "becario"
+    }
+  ]
+}

@@ -1,0 +1,8172 @@
+[
+  {
+    "id": "en_es_1384",
+    "source": "Christian",
+    "our_target": "cristiano",
+    "deepl_target": "Christian",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_2676",
+    "source": "East",
+    "our_target": "oriente",
+    "deepl_target": "Este",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3345",
+    "source": "I hope that",
+    "our_target": "ojalá",
+    "deepl_target": "Espero que",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_4344",
+    "source": "Latin American",
+    "our_target": "latinoamericano",
+    "deepl_target": "América Latina",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_1245",
+    "source": "North American",
+    "our_target": "norteamericano",
+    "deepl_target": "América del Norte",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_1594",
+    "source": "about, concerning",
+    "our_target": "acerca",
+    "deepl_target": "sobre, relativo a",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_3995",
+    "source": "accuracy",
+    "our_target": "exactitud",
+    "deepl_target": "precisión",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_0670",
+    "source": "act, action",
+    "our_target": "acto",
+    "deepl_target": "actuar, acción",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4430",
+    "source": "advance, progress [also avance]",
+    "our_target": "adelanto",
+    "deepl_target": "avanzar, progresar [también avance]",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2729",
+    "source": "afterwards",
+    "our_target": "posteriormente",
+    "deepl_target": "después",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_3794",
+    "source": "agreeable, pleasant",
+    "our_target": "grato",
+    "deepl_target": "agradable, placentero",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4184",
+    "source": "agreement, accord",
+    "our_target": "acorde",
+    "deepl_target": "acuerdo, convenio",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3882",
+    "source": "amazing",
+    "our_target": "asombroso",
+    "deepl_target": "increíble",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_1456",
+    "source": "anew, again",
+    "our_target": "nuevamente",
+    "deepl_target": "de nuevo, otra vez",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_5068",
+    "source": "answer",
+    "our_target": "contestación",
+    "deepl_target": "responder",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_2672",
+    "source": "application, request",
+    "our_target": "instancia",
+    "deepl_target": "solicitud, petición",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4792",
+    "source": "approach, approximation",
+    "our_target": "acercamiento",
+    "deepl_target": "enfoque, aproximación",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3979",
+    "source": "appropriate, suitable",
+    "our_target": "propicio",
+    "deepl_target": "apropiado, adecuado",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3967",
+    "source": "as well, also, moreover",
+    "our_target": "asimismo",
+    "deepl_target": "además, también, además",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_4256",
+    "source": "assembly",
+    "our_target": "asamblea",
+    "deepl_target": "montaje",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4279",
+    "source": "atrocity",
+    "our_target": "barbaridad",
+    "deepl_target": "atrocidad",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4962",
+    "source": "attack, offense",
+    "our_target": "atentado",
+    "deepl_target": "ataque, ofensiva",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4568",
+    "source": "aware of",
+    "our_target": "enterado",
+    "deepl_target": "consciente de",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_2642",
+    "source": "ball",
+    "our_target": "pelota",
+    "deepl_target": "bola",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_5020",
+    "source": "battle, struggle",
+    "our_target": "pugna",
+    "deepl_target": "batalla, lucha",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_1405",
+    "source": "beautiful, fine",
+    "our_target": "bello",
+    "deepl_target": "hermoso, fino",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4101",
+    "source": "bed",
+    "our_target": "lecho",
+    "deepl_target": "cama",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_0501",
+    "source": "behind",
+    "our_target": "atrás",
+    "deepl_target": "detrás de",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_5264",
+    "source": "behind, back",
+    "our_target": "trasero",
+    "deepl_target": "detrás, espalda",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4599",
+    "source": "behind, slow",
+    "our_target": "atrasado",
+    "deepl_target": "detrás, lento",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3811",
+    "source": "benefit, use",
+    "our_target": "provecho",
+    "deepl_target": "beneficio, uso",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2437",
+    "source": "bird [also pájaro]",
+    "our_target": "ave",
+    "deepl_target": "pájaro [también pájaro]",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3939",
+    "source": "birth",
+    "our_target": "parto",
+    "deepl_target": "nacimiento",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4236",
+    "source": "bloody",
+    "our_target": "sangriento",
+    "deepl_target": "maldito",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_1979",
+    "source": "boy [also chico]",
+    "our_target": "muchacho",
+    "deepl_target": "chico [también chico]",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_5204",
+    "source": "breadth, expanse",
+    "our_target": "envergadura",
+    "deepl_target": "amplitud, extensión",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4061",
+    "source": "brown, dark, dim",
+    "our_target": "pardo",
+    "deepl_target": "marrón, oscuro, tenue",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_5057",
+    "source": "brush, rubbing, contact",
+    "our_target": "roce",
+    "deepl_target": "cepillo, frotamiento, contacto",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4347",
+    "source": "bulk, shape",
+    "our_target": "bulto",
+    "deepl_target": "volumen, forma",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_1067",
+    "source": "by chance, maybe",
+    "our_target": "acaso",
+    "deepl_target": "por casualidad, tal vez",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_5178",
+    "source": "cake",
+    "our_target": "torta",
+    "deepl_target": "tarta",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_1276",
+    "source": "calm, tranquil, relaxed",
+    "our_target": "tranquilo",
+    "deepl_target": "calma, tranquilidad, relajación",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3578",
+    "source": "calmly, peacefully",
+    "our_target": "tranquilamente",
+    "deepl_target": "con calma, pacíficamente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_3793",
+    "source": "categorical",
+    "our_target": "rotundo",
+    "deepl_target": "categórico",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4927",
+    "source": "caution",
+    "our_target": "cautela",
+    "deepl_target": "precaución",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4044",
+    "source": "city block, stable",
+    "our_target": "cuadra",
+    "deepl_target": "bloque de la ciudad, estable",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_5139",
+    "source": "claim, demand, redemption",
+    "our_target": "reivindicación",
+    "deepl_target": "reclamación, demanda, rescate",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_5201",
+    "source": "clear, clean, neat",
+    "our_target": "nítido",
+    "deepl_target": "claro, limpio, ordenado",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4325",
+    "source": "cloak",
+    "our_target": "manto",
+    "deepl_target": "capa",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4535",
+    "source": "coming from [also procedente",
+    "our_target": "proveniente ]",
+    "deepl_target": "procedente de [también procedente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_5061",
+    "source": "coming together, participation",
+    "our_target": "concurrencia",
+    "deepl_target": "unión, participación",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_5017",
+    "source": "command, order",
+    "our_target": "comando",
+    "deepl_target": "mando, orden",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_0858",
+    "source": "company",
+    "our_target": "compañía",
+    "deepl_target": "empresa",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3185",
+    "source": "complaint",
+    "our_target": "queja",
+    "deepl_target": "reclamación",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_0792",
+    "source": "complete, fulfilled (as emotionally)",
+    "our_target": "pleno",
+    "deepl_target": "completo, realizado (como emocionalmente)",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3215",
+    "source": "concerning",
+    "our_target": "referente",
+    "deepl_target": "en relación con",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3497",
+    "source": "confrontation",
+    "our_target": "enfrentamiento",
+    "deepl_target": "confrontación",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4704",
+    "source": "confused, messed up",
+    "our_target": "revuelto",
+    "deepl_target": "confuso, desordenado",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4749",
+    "source": "confusion, trouble, upheaval",
+    "our_target": "trastorno",
+    "deepl_target": "confusión, problemas, agitación",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3487",
+    "source": "connected",
+    "our_target": "vinculado",
+    "deepl_target": "conectado",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4823",
+    "source": "consistency",
+    "our_target": "consistencia",
+    "deepl_target": "coherencia",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4674",
+    "source": "contest, dispute",
+    "our_target": "contienda",
+    "deepl_target": "concurso, litigio",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4212",
+    "source": "contribution",
+    "our_target": "aporte",
+    "deepl_target": "contribución",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2040",
+    "source": "convenient",
+    "our_target": "conveniente",
+    "deepl_target": "cómodo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_2217",
+    "source": "copy, issue",
+    "our_target": "ejemplar",
+    "deepl_target": "copiar, emitir",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4346",
+    "source": "correct, accurate",
+    "our_target": "acertado",
+    "deepl_target": "correcto, exacto",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4077",
+    "source": "cottage",
+    "our_target": "casita",
+    "deepl_target": "casa rural",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_2679",
+    "source": "courtesy title (f), Mrs.",
+    "our_target": "doña",
+    "deepl_target": "título de cortesía (f), Sra.",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_0325",
+    "source": "courtesy title (m), Mr., gift",
+    "our_target": "don",
+    "deepl_target": "título de cortesía (m), Sr., regalo",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_1934",
+    "source": "cry, shout, scream",
+    "our_target": "grito",
+    "deepl_target": "llorar, gritar, chillar",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4583",
+    "source": "crying, weeping",
+    "our_target": "llanto",
+    "deepl_target": "llorar, llorar",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3418",
+    "source": "cutting edge",
+    "our_target": "filo",
+    "deepl_target": "vanguardia",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_1454",
+    "source": "daily[also diario]",
+    "our_target": "cotidiano",
+    "deepl_target": "daily[también diario]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4219",
+    "source": "damage, loss",
+    "our_target": "perjuicio",
+    "deepl_target": "daños, pérdidas",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4335",
+    "source": "damned, wretched",
+    "our_target": "maldito",
+    "deepl_target": "condenado, desdichado",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_2624",
+    "source": "dance",
+    "our_target": "danza",
+    "deepl_target": "baile",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_2592",
+    "source": "dark, brown",
+    "our_target": "moreno",
+    "deepl_target": "oscuro, marrón",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_2571",
+    "source": "dawn, daybreak [also alba]",
+    "our_target": "madrugada",
+    "deepl_target": "alba, amanecer [también alba]",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3951",
+    "source": "decline, descent, lowering",
+    "our_target": "descenso",
+    "deepl_target": "declinar, descender, bajar",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2617",
+    "source": "deep",
+    "our_target": "hondo",
+    "deepl_target": "profundo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4504",
+    "source": "delinquent",
+    "our_target": "delincuente",
+    "deepl_target": "moroso",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "noun",
+    "category": null
+  },
+  {
+    "id": "en_es_1213",
+    "source": "desire",
+    "our_target": "gana",
+    "deepl_target": "deseo",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_5189",
+    "source": "disappointment, letdown",
+    "our_target": "desilusión",
+    "deepl_target": "decepción, decepción",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4958",
+    "source": "disorder, chaos",
+    "our_target": "desconcierto",
+    "deepl_target": "desorden, caos",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_1209",
+    "source": "distant",
+    "our_target": "lejano",
+    "deepl_target": "distante",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3661",
+    "source": "distribution, delivery",
+    "our_target": "reparto",
+    "deepl_target": "distribución, entrega",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3609",
+    "source": "doubtless, undoubtedly",
+    "our_target": "indudablemente",
+    "deepl_target": "sin duda, sin duda",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_4096",
+    "source": "dreadful, awful",
+    "our_target": "pésimo",
+    "deepl_target": "espantoso, horrible",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4543",
+    "source": "drink, [a] swallow",
+    "our_target": "trago",
+    "deepl_target": "beber, [a] tragar",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2904",
+    "source": "drop",
+    "our_target": "gota",
+    "deepl_target": "drop",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_2441",
+    "source": "drug",
+    "our_target": "droga",
+    "deepl_target": "medicamento",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4098",
+    "source": "ease, spontaneity",
+    "our_target": "naturalidad",
+    "deepl_target": "facilidad, espontaneidad",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_2090",
+    "source": "effective [also efectivo]",
+    "our_target": "eficaz",
+    "deepl_target": "effective [también efectivo]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_1993",
+    "source": "effective [also eficaz]",
+    "our_target": "efectivo",
+    "deepl_target": "effective [también eficaz]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_0581",
+    "source": "end, bit",
+    "our_target": "cabo",
+    "deepl_target": "fin, bit",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_5029",
+    "source": "entity, being, firm",
+    "our_target": "ente",
+    "deepl_target": "entidad, ser, empresa",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2946",
+    "source": "essential, indispensable",
+    "our_target": "imprescindible",
+    "deepl_target": "esencial, indispensable",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3985",
+    "source": "eve",
+    "our_target": "víspera",
+    "deepl_target": "eve",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_0743",
+    "source": "even if",
+    "our_target": "siquiera",
+    "deepl_target": "aunque",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_1249",
+    "source": "event, happening",
+    "our_target": "acontecimiento",
+    "deepl_target": "evento, suceso",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3354",
+    "source": "exactly, properly",
+    "our_target": "propiamente",
+    "deepl_target": "exactamente, adecuadamente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_1156",
+    "source": "except for, but",
+    "our_target": "salvo",
+    "deepl_target": "excepto, pero",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_3871",
+    "source": "excuse",
+    "our_target": "excusa",
+    "deepl_target": "disculpe",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_5054",
+    "source": "exhibition, showing",
+    "our_target": "exhibición",
+    "deepl_target": "exposición",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_5130",
+    "source": "extension",
+    "our_target": "prolongación",
+    "deepl_target": "extensión",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_2726",
+    "source": "extremely, highly",
+    "our_target": "sumamente",
+    "deepl_target": "extremadamente, altamente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_1917",
+    "source": "fall, drop, falling",
+    "our_target": "caída",
+    "deepl_target": "caer, caer, caer",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3289",
+    "source": "famous, renowned",
+    "our_target": "célebre",
+    "deepl_target": "famoso, renombrado",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3284",
+    "source": "fan, devotee",
+    "our_target": "aficionado",
+    "deepl_target": "fan, devoto",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2766",
+    "source": "fateful, deadly, awful",
+    "our_target": "fatal",
+    "deepl_target": "fatídico, mortal, horrible",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4664",
+    "source": "favor, mercy",
+    "our_target": "merced",
+    "deepl_target": "favor, misericordia",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_1270",
+    "source": "fear [also miedo]",
+    "our_target": "temor",
+    "deepl_target": "fear [también miedo]",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_5277",
+    "source": "fence, circle, ring",
+    "our_target": "cerco",
+    "deepl_target": "valla, círculo, anillo",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2932",
+    "source": "fierce, angry",
+    "our_target": "bravo",
+    "deepl_target": "feroz, enojado",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3394",
+    "source": "filth, junk",
+    "our_target": "porquería",
+    "deepl_target": "suciedad, basura",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_0929",
+    "source": "finally, at last",
+    "our_target": "finalmente",
+    "deepl_target": "por fin, por fin",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_2960",
+    "source": "fire, conflagration",
+    "our_target": "incendio",
+    "deepl_target": "fuego, conflagración",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4481",
+    "source": "flaw, failure",
+    "our_target": "falla",
+    "deepl_target": "defecto, fallo",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3087",
+    "source": "flight, escape",
+    "our_target": "fuga",
+    "deepl_target": "huida, escape",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3817",
+    "source": "flow, tide, discharge",
+    "our_target": "flujo",
+    "deepl_target": "caudal, marea, descarga",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3148",
+    "source": "focus",
+    "our_target": "foco",
+    "deepl_target": "enfoque",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4278",
+    "source": "foot path",
+    "our_target": "sendero",
+    "deepl_target": "camino para peatones",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_5031",
+    "source": "for a long time, at length",
+    "our_target": "largamente",
+    "deepl_target": "durante mucho tiempo, al final",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_4850",
+    "source": "fortunate, happy",
+    "our_target": "dichoso",
+    "deepl_target": "afortunado, feliz",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4969",
+    "source": "fortune, happiness, luck",
+    "our_target": "dicha",
+    "deepl_target": "fortuna, felicidad, suerte",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_2942",
+    "source": "foundation, ground",
+    "our_target": "fundamento",
+    "deepl_target": "cimientos, suelo",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4657",
+    "source": "friendly",
+    "our_target": "amistoso",
+    "deepl_target": "amable",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3851",
+    "source": "full, overcrowded",
+    "our_target": "repleto",
+    "deepl_target": "lleno, abarrotado",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_2408",
+    "source": "fully",
+    "our_target": "plenamente",
+    "deepl_target": "totalmente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_4499",
+    "source": "fundamental, primary",
+    "our_target": "primordial",
+    "deepl_target": "fundamental, primario",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3167",
+    "source": "future, time to come",
+    "our_target": "porvenir",
+    "deepl_target": "futuro, tiempo por venir",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2798",
+    "source": "girl",
+    "our_target": "muchacha",
+    "deepl_target": "chica",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4592",
+    "source": "good aim, guess, hit",
+    "our_target": "acierto",
+    "deepl_target": "buena puntería, adivinar, acertar",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_5003",
+    "source": "goodbye, farewell",
+    "our_target": "despedida",
+    "deepl_target": "adiós, adiós",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4126",
+    "source": "grief, affliction",
+    "our_target": "duelo",
+    "deepl_target": "pena, aflicción",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3737",
+    "source": "guideline, rule, standard",
+    "our_target": "pauta",
+    "deepl_target": "directriz, regla, norma",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3041",
+    "source": "hair [also pelo]",
+    "our_target": "cabello",
+    "deepl_target": "pelo [también pelo]",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_1707",
+    "source": "hall, room",
+    "our_target": "salón",
+    "deepl_target": "hall, habitación",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2682",
+    "source": "handling, management",
+    "our_target": "manejo",
+    "deepl_target": "manipulación, gestión",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4210",
+    "source": "health, sanitary, clean",
+    "our_target": "sanitario",
+    "deepl_target": "salud, sanidad, limpieza",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_2484",
+    "source": "here, around here",
+    "our_target": "acá",
+    "deepl_target": "aquí, por aquí",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_2673",
+    "source": "hidden",
+    "our_target": "escondido",
+    "deepl_target": "oculto",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_1179",
+    "source": "high school, college",
+    "our_target": "colegio",
+    "deepl_target": "instituto, universidad",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4547",
+    "source": "highly",
+    "our_target": "altamente",
+    "deepl_target": "muy",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_3585",
+    "source": "hill",
+    "our_target": "cerro",
+    "deepl_target": "colina",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4663",
+    "source": "honest, respectable",
+    "our_target": "honrado",
+    "deepl_target": "honesto, respetable",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3721",
+    "source": "hundred",
+    "our_target": "centenar",
+    "deepl_target": "cien",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4870",
+    "source": "idea, witty remark",
+    "our_target": "ocurrencia",
+    "deepl_target": "idea, comentario ingenioso",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_2855",
+    "source": "immediately, at once",
+    "our_target": "enseguida",
+    "deepl_target": "inmediatamente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_5208",
+    "source": "impressive, magnificent",
+    "our_target": "imponente",
+    "deepl_target": "impresionante, magnífico",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_1718",
+    "source": "in agreement",
+    "our_target": "conforme",
+    "deepl_target": "de acuerdo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_1669",
+    "source": "in charge of",
+    "our_target": "encargado",
+    "deepl_target": "a cargo de",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4226",
+    "source": "in days gone by, last year",
+    "our_target": "antaño",
+    "deepl_target": "en días pasados, el año pasado",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_1705",
+    "source": "in fact, actually, indeed",
+    "our_target": "efectivamente",
+    "deepl_target": "de hecho, realmente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_4023",
+    "source": "in force, valid",
+    "our_target": "vigente",
+    "deepl_target": "en vigor, válido",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_2780",
+    "source": "in front of",
+    "our_target": "enfrente",
+    "deepl_target": "delante de",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_0791",
+    "source": "in the back",
+    "our_target": "detrás",
+    "deepl_target": "en la parte de atrás",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_3527",
+    "source": "income, rent",
+    "our_target": "renta",
+    "deepl_target": "ingresos, alquiler",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_5001",
+    "source": "increase, raise",
+    "our_target": "incremento",
+    "deepl_target": "aumentar, elevar",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4946",
+    "source": "insides, bowels",
+    "our_target": "entrañas",
+    "deepl_target": "interior, intestino",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3506",
+    "source": "insistence, determination",
+    "our_target": "empeño",
+    "deepl_target": "insistencia, determinación",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_1607",
+    "source": "job, occupation, function",
+    "our_target": "oficio",
+    "deepl_target": "trabajo, ocupación, función",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_0893",
+    "source": "job, place, position",
+    "our_target": "puesto",
+    "deepl_target": "empleo, lugar, cargo",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2902",
+    "source": "joke, funny story",
+    "our_target": "chiste",
+    "deepl_target": "broma, historia divertida",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2466",
+    "source": "journey, itinerary, route",
+    "our_target": "recorrido",
+    "deepl_target": "viaje, itinerario, ruta",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4100",
+    "source": "juice",
+    "our_target": "jugo",
+    "deepl_target": "zumo",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4320",
+    "source": "kick, punt",
+    "our_target": "patada",
+    "deepl_target": "kick, punt",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_5118",
+    "source": "kid, youngster",
+    "our_target": "chiquillo",
+    "deepl_target": "niño, joven",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3559",
+    "source": "labor, industry",
+    "our_target": "laboral",
+    "deepl_target": "trabajo, industria",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_0307",
+    "source": "lack, shortage [also carencia]",
+    "our_target": "falta",
+    "deepl_target": "carencia, escasez [también carencia]",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3901",
+    "source": "landlady, owner (f)",
+    "our_target": "dueña",
+    "deepl_target": "casera, propietaria (f)",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4397",
+    "source": "large ship",
+    "our_target": "buque",
+    "deepl_target": "barco grande",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_0136",
+    "source": "later, afterwards",
+    "our_target": "luego",
+    "deepl_target": "más tarde, después",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_2489",
+    "source": "laugh, chuckle",
+    "our_target": "risa",
+    "deepl_target": "reír, reírse entre dientes",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3557",
+    "source": "leader, director, manager",
+    "our_target": "dirigente",
+    "deepl_target": "líder, director, gerente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "noun",
+    "category": null
+  },
+  {
+    "id": "en_es_4557",
+    "source": "light, frivolous",
+    "our_target": "liviano",
+    "deepl_target": "ligero, frívolo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3154",
+    "source": "linked, joined",
+    "our_target": "ligado",
+    "deepl_target": "vinculado, unido",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_2796",
+    "source": "little bit",
+    "our_target": "poquito",
+    "deepl_target": "poco",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3186",
+    "source": "loud, resounding",
+    "our_target": "sonoro",
+    "deepl_target": "fuerte, rotundo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_2482",
+    "source": "love, affection",
+    "our_target": "cariño",
+    "deepl_target": "amor, afecto",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3224",
+    "source": "loving, affectionate",
+    "our_target": "amoroso",
+    "deepl_target": "cariñoso, afectuoso",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_2230",
+    "source": "male, man",
+    "our_target": "varón",
+    "deepl_target": "masculino, hombre",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3556",
+    "source": "male, manliness",
+    "our_target": "macho",
+    "deepl_target": "masculino, hombría",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4970",
+    "source": "manuscript, writing",
+    "our_target": "escrito",
+    "deepl_target": "manuscrito, escritura",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3009",
+    "source": "master, boss (m)",
+    "our_target": "amo",
+    "deepl_target": "maestro, jefe (m)",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_5077",
+    "source": "match, match stick",
+    "our_target": "fósforo",
+    "deepl_target": "cerilla, palo de cerilla",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_5052",
+    "source": "meaning, significance",
+    "our_target": "significación",
+    "deepl_target": "sentido, significado",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3555",
+    "source": "meeting, conference, seam",
+    "our_target": "junta",
+    "deepl_target": "reunión, conferencia, costura",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4041",
+    "source": "membership, property",
+    "our_target": "pertenencia",
+    "deepl_target": "afiliación, propiedad",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4459",
+    "source": "mess, problem, bad situation",
+    "our_target": "lío",
+    "deepl_target": "desorden, problema, mala situación",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4071",
+    "source": "missing",
+    "our_target": "desaparecido",
+    "deepl_target": "falta",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4232",
+    "source": "mistake, blunder, fault",
+    "our_target": "fallo",
+    "deepl_target": "error, metedura de pata, falta",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_5033",
+    "source": "mistake, misconception",
+    "our_target": "equivocación",
+    "deepl_target": "error, idea equivocada",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_2838",
+    "source": "mixed",
+    "our_target": "mezclado",
+    "deepl_target": "mixto",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4967",
+    "source": "mode, manner",
+    "our_target": "modalidad",
+    "deepl_target": "modo, manera",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_1625",
+    "source": "moment, while, time",
+    "our_target": "rato",
+    "deepl_target": "momento, mientras, tiempo",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_5233",
+    "source": "move, play",
+    "our_target": "jugada",
+    "deepl_target": "moverse, jugar",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4070",
+    "source": "movement, removal",
+    "our_target": "desplazamiento",
+    "deepl_target": "movimiento, traslado",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3166",
+    "source": "nature, temperament",
+    "our_target": "índole",
+    "deepl_target": "naturaleza, temperamento",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_0940",
+    "source": "never",
+    "our_target": "jamás",
+    "deepl_target": "nunca",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_1943",
+    "source": "nevertheless",
+    "our_target": "no + obstante obstante",
+    "deepl_target": "sin embargo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4372",
+    "source": "news report",
+    "our_target": "reportaje",
+    "deepl_target": "informe de prensa",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_0543",
+    "source": "next",
+    "our_target": "próximo",
+    "deepl_target": "siguiente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_0190",
+    "source": "no, none, nobody",
+    "our_target": "ninguno (adj pron)",
+    "deepl_target": "no, ninguno, nadie",
+    "match": false,
+    "article": null,
+    "partOfSpeech": null,
+    "category": null
+  },
+  {
+    "id": "en_es_5009",
+    "source": "normal, usual",
+    "our_target": "usual",
+    "deepl_target": "normal, habitual",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_1261",
+    "source": "not belonging to, detached",
+    "our_target": "ajeno",
+    "deepl_target": "no perteneciente a, desvinculado",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3818",
+    "source": "note, annotation",
+    "our_target": "apunte",
+    "deepl_target": "nota, anotación",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2525",
+    "source": "now, at present",
+    "our_target": "actualmente",
+    "deepl_target": "ahora, en la actualidad",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_4698",
+    "source": "of the community",
+    "our_target": "comunitario",
+    "deepl_target": "de la comunidad",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_5076",
+    "source": "of the street",
+    "our_target": "callejero",
+    "deepl_target": "de la calle",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_2772",
+    "source": "office, study",
+    "our_target": "despacho",
+    "deepl_target": "oficina, estudio",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_1616",
+    "source": "oh",
+    "our_target": "ah",
+    "deepl_target": "oh",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "interjection",
+    "category": null
+  },
+  {
+    "id": "en_es_2455",
+    "source": "oh no! oh my!",
+    "our_target": "ay",
+    "deepl_target": "¡Oh, no! ¡Oh, Dios!",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "interjection",
+    "category": null
+  },
+  {
+    "id": "en_es_1445",
+    "source": "only [also solamente]",
+    "our_target": "únicamente",
+    "deepl_target": "only [also solamente]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_0269",
+    "source": "only [also únicamente]",
+    "our_target": "solamente",
+    "deepl_target": "only [also únicamente]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_2713",
+    "source": "organized, clean",
+    "our_target": "ordenado",
+    "deepl_target": "organizado, limpio",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4995",
+    "source": "origin, source",
+    "our_target": "procedencia",
+    "deepl_target": "origen, fuente",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3456",
+    "source": "outcome, balance",
+    "our_target": "balance",
+    "deepl_target": "resultado, equilibrio",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4940",
+    "source": "outcome, result",
+    "our_target": "desenlace",
+    "deepl_target": "resultado",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2197",
+    "source": "outside",
+    "our_target": "afuera",
+    "deepl_target": "fuera de",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_3246",
+    "source": "outstanding, leading",
+    "our_target": "destacado",
+    "deepl_target": "sobresaliente, líder",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_1027",
+    "source": "owner, landlord (m)",
+    "our_target": "dueño",
+    "deepl_target": "propietario, arrendador (m)",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4069",
+    "source": "painful, laborious",
+    "our_target": "penoso",
+    "deepl_target": "doloroso, laborioso",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3826",
+    "source": "participant in a dialog",
+    "our_target": "interlocutor",
+    "deepl_target": "participante en un diálogo",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2899",
+    "source": "particularly, personally",
+    "our_target": "particularmente",
+    "deepl_target": "en particular, personalmente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_3420",
+    "source": "passing, course, lapse",
+    "our_target": "transcurso",
+    "deepl_target": "paso, curso, lapso",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4974",
+    "source": "path, lane",
+    "our_target": "senda",
+    "deepl_target": "camino, carril",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_5092",
+    "source": "path, sidewalk",
+    "our_target": "vereda",
+    "deepl_target": "camino, acera",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3279",
+    "source": "peaceful",
+    "our_target": "pacífico",
+    "deepl_target": "tranquilo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3567",
+    "source": "perseverance",
+    "our_target": "constancia",
+    "deepl_target": "perseverancia",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_0411",
+    "source": "personality, nature",
+    "our_target": "carácter",
+    "deepl_target": "personalidad, naturaleza",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3283",
+    "source": "piece of clothing",
+    "our_target": "prenda",
+    "deepl_target": "pieza de ropa",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4352",
+    "source": "piece of property",
+    "our_target": "parcela",
+    "deepl_target": "pedazo de propiedad",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3099",
+    "source": "piece, bit",
+    "our_target": "pedazo",
+    "deepl_target": "pieza, broca",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_0741",
+    "source": "place, space",
+    "our_target": "sitio",
+    "deepl_target": "lugar, espacio",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_5265",
+    "source": "place, spot",
+    "our_target": "paraje",
+    "deepl_target": "lugar, punto",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4761",
+    "source": "positioned, guided",
+    "our_target": "orientado",
+    "deepl_target": "posicionado, guiado",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_1706",
+    "source": "powerful",
+    "our_target": "poderoso",
+    "deepl_target": "potente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_2369",
+    "source": "present time",
+    "our_target": "actualidad",
+    "deepl_target": "momento actual",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_2808",
+    "source": "pretty, nice, lovely",
+    "our_target": "lindo",
+    "deepl_target": "bonito, agradable, encantador",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_2880",
+    "source": "previously [also previamente]",
+    "our_target": "anteriormente",
+    "deepl_target": "previously [también previamente]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_3304",
+    "source": "price, cost, expense",
+    "our_target": "costo",
+    "deepl_target": "precio, coste, gasto",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3528",
+    "source": "prisoner",
+    "our_target": "prisionero",
+    "deepl_target": "preso",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3561",
+    "source": "procedure, step, requirement",
+    "our_target": "trámite",
+    "deepl_target": "procedimiento, paso, requisito",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3928",
+    "source": "production [also producción]",
+    "our_target": "elaboración",
+    "deepl_target": "production [también producción]",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4558",
+    "source": "property, estate",
+    "our_target": "finca",
+    "deepl_target": "propiedad, patrimonio",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3904",
+    "source": "proposal, exposition",
+    "our_target": "planteamiento",
+    "deepl_target": "propuesta, exposición",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4531",
+    "source": "protection, shelter",
+    "our_target": "amparo",
+    "deepl_target": "protección, refugio",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4886",
+    "source": "proud, arrogant [also orgulloso]",
+    "our_target": "soberbio",
+    "deepl_target": "orgulloso, arrogante [también orgulloso]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3434",
+    "source": "purpose, aim",
+    "our_target": "finalidad",
+    "deepl_target": "propósito, objetivo",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_2022",
+    "source": "quality, attribute",
+    "our_target": "cualidad",
+    "deepl_target": "calidad, atributo",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4489",
+    "source": "question, interrogator",
+    "our_target": "interrogante",
+    "deepl_target": "pregunta, interrogador",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "noun",
+    "category": null
+  },
+  {
+    "id": "en_es_0562",
+    "source": "question, matter",
+    "our_target": "cuestión",
+    "deepl_target": "pregunta, asunto",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3316",
+    "source": "quiet, reserved",
+    "our_target": "callado",
+    "deepl_target": "tranquilo, reservado",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3889",
+    "source": "ranch",
+    "our_target": "hacienda",
+    "deepl_target": "rancho",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4626",
+    "source": "range, handheld fan",
+    "our_target": "abanico",
+    "deepl_target": "gama, ventilador de mano",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4861",
+    "source": "red, colored",
+    "our_target": "colorado",
+    "deepl_target": "rojo, de color",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_1567",
+    "source": "related, regarding",
+    "our_target": "relacionado",
+    "deepl_target": "en relación con",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_5056",
+    "source": "related, similar",
+    "our_target": "afín",
+    "deepl_target": "relacionado, similar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3384",
+    "source": "residence, address",
+    "our_target": "domicilio",
+    "deepl_target": "residencia, dirección",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_5022",
+    "source": "resignation, acceptance",
+    "our_target": "resignación",
+    "deepl_target": "renuncia, aceptación",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4121",
+    "source": "rest, peace",
+    "our_target": "reposo",
+    "deepl_target": "descanso, paz",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3362",
+    "source": "return [also regreso]",
+    "our_target": "retorno",
+    "deepl_target": "return [también regreso]",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_1644",
+    "source": "return [also retorno]",
+    "our_target": "regreso",
+    "deepl_target": "retorno [también retorno]",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_0668",
+    "source": "return, turn",
+    "our_target": "vuelta",
+    "deepl_target": "volver, girar",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3173",
+    "source": "right away, at once",
+    "our_target": "seguida: en seguida",
+    "deepl_target": "de inmediato",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_5106",
+    "source": "rod, stick",
+    "our_target": "vara",
+    "deepl_target": "varilla, palo",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_5066",
+    "source": "role",
+    "our_target": "rol",
+    "deepl_target": "papel",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_0779",
+    "source": "room, chamber",
+    "our_target": "cuarto",
+    "deepl_target": "habitación, cámara",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_0920",
+    "source": "room, hall",
+    "our_target": "sala",
+    "deepl_target": "habitación, pasillo",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4143",
+    "source": "round",
+    "our_target": "ronda",
+    "deepl_target": "redondo",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_5091",
+    "source": "rude, crude, coarse",
+    "our_target": "rudo",
+    "deepl_target": "grosero, tosco, tosco",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_1932",
+    "source": "salary, pay",
+    "our_target": "sueldo",
+    "deepl_target": "salario, paga",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3113",
+    "source": "savage, horrible",
+    "our_target": "bárbaro",
+    "deepl_target": "salvaje, horrible",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3706",
+    "source": "saying, proverb",
+    "our_target": "dicho",
+    "deepl_target": "refrán, proverbio",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2820",
+    "source": "school, scholastic",
+    "our_target": "escolar",
+    "deepl_target": "escuela, escolástico",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3830",
+    "source": "sentence in prison, penalty",
+    "our_target": "condena",
+    "deepl_target": "pena de prisión, pena",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_0615",
+    "source": "serious, solemn",
+    "our_target": "grave",
+    "deepl_target": "serio, solemne",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3465",
+    "source": "seriously",
+    "our_target": "seriamente",
+    "deepl_target": "en serio",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_3463",
+    "source": "shame, pity",
+    "our_target": "lástima",
+    "deepl_target": "vergüenza, piedad",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3780",
+    "source": "side, flank",
+    "our_target": "costado",
+    "deepl_target": "lado, flanco",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3929",
+    "source": "sign, mark, seal",
+    "our_target": "seña",
+    "deepl_target": "firmar, marcar, sellar",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_1000",
+    "source": "similar [also similar]",
+    "our_target": "parecido",
+    "deepl_target": "similar [también similar]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_2585",
+    "source": "simply",
+    "our_target": "sencillamente",
+    "deepl_target": "simplemente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_2737",
+    "source": "sin",
+    "our_target": "pecado",
+    "deepl_target": "sin",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4984",
+    "source": "skill",
+    "our_target": "destreza",
+    "deepl_target": "habilidad",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4175",
+    "source": "small boat",
+    "our_target": "bote",
+    "deepl_target": "barco pequeño",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_5257",
+    "source": "socket, basin, bowl",
+    "our_target": "cuenca",
+    "deepl_target": "enchufe, palangana, cuenco",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_0528",
+    "source": "sorrow",
+    "our_target": "pesar",
+    "deepl_target": "pena",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4638",
+    "source": "specifically",
+    "our_target": "específicamente",
+    "deepl_target": "concretamente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_3623",
+    "source": "specifically, exactly",
+    "our_target": "concretamente",
+    "deepl_target": "específicamente, exactamente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_2031",
+    "source": "speed, velocity [also velocidad]",
+    "our_target": "rapidez",
+    "deepl_target": "speed, velocity [también velocidad]",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_1682",
+    "source": "sphere, space",
+    "our_target": "ámbito",
+    "deepl_target": "esfera, espacio",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3933",
+    "source": "spread out",
+    "our_target": "disperso",
+    "deepl_target": "extender",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4196",
+    "source": "spread, hung, laid out",
+    "our_target": "tendido",
+    "deepl_target": "extender, colgar, colocar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3338",
+    "source": "stamp, seal",
+    "our_target": "sello",
+    "deepl_target": "estampar, sellar",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_5004",
+    "source": "star",
+    "our_target": "astro",
+    "deepl_target": "estrella",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_0291",
+    "source": "still, yet [also todavía]",
+    "our_target": "aún",
+    "deepl_target": "still, yet [también todavía]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_3768",
+    "source": "strangely, funnily enough",
+    "our_target": "curiosamente",
+    "deepl_target": "extrañamente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_3881",
+    "source": "strip, stripe, fringe",
+    "our_target": "franja",
+    "deepl_target": "tira, raya, fleco",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3228",
+    "source": "stupidity, stupid thing [also estupidez]",
+    "our_target": "tontería",
+    "deepl_target": "estupidez, estupidez [también estupidez]",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_0149",
+    "source": "such, as, too, so",
+    "our_target": "tan",
+    "deepl_target": "tal, como, también, así",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_4413",
+    "source": "sudden [also repentino]",
+    "our_target": "súbito",
+    "deepl_target": "repentino [también repentino]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3777",
+    "source": "sudden [also súbito]",
+    "our_target": "repentino",
+    "deepl_target": "súbito [también súbito]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_5053",
+    "source": "sunken, drowned",
+    "our_target": "sumido",
+    "deepl_target": "hundido, ahogado",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_5137",
+    "source": "support, endorsement",
+    "our_target": "soporte",
+    "deepl_target": "apoyo, respaldo",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_1066",
+    "source": "surely, securely",
+    "our_target": "seguramente",
+    "deepl_target": "con seguridad",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_5084",
+    "source": "swinging, rocking",
+    "our_target": "vaivén",
+    "deepl_target": "balanceándose, meciéndose",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2469",
+    "source": "tale, story",
+    "our_target": "relato",
+    "deepl_target": "cuento, historia",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3156",
+    "source": "talk, chat",
+    "our_target": "charla",
+    "deepl_target": "hablar, chatear",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4932",
+    "source": "tank, large container",
+    "our_target": "tanque",
+    "deepl_target": "depósito, contenedor grande",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4448",
+    "source": "task, job, performance",
+    "our_target": "faena",
+    "deepl_target": "tarea, trabajo, rendimiento",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4201",
+    "source": "teacher (f)",
+    "our_target": "maestra",
+    "deepl_target": "profesor (f)",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4853",
+    "source": "ten (of something)",
+    "our_target": "decena",
+    "deepl_target": "diez (de algo)",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_0163",
+    "source": "that",
+    "our_target": "ese, esa",
+    "deepl_target": "que",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_0018",
+    "source": "that (over there)",
+    "our_target": "aquel",
+    "deepl_target": "que (allí)",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_0298",
+    "source": "the rest, others",
+    "our_target": "demás",
+    "deepl_target": "el resto, otros",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_0343",
+    "source": "there",
+    "our_target": "ahí",
+    "deepl_target": "allí",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_0317",
+    "source": "there, over there",
+    "our_target": "allá",
+    "deepl_target": "allí, allí",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_3834",
+    "source": "thick, dense, stiff",
+    "our_target": "espeso",
+    "deepl_target": "grueso, denso, rígido",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3952",
+    "source": "thin, frail",
+    "our_target": "flaco",
+    "deepl_target": "delgado, frágil",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3476",
+    "source": "tie, bond, link",
+    "our_target": "vínculo",
+    "deepl_target": "atar, enlazar, vincular",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_0100",
+    "source": "time (specific occurrence)",
+    "our_target": "vez",
+    "deepl_target": "tiempo (suceso específico)",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_0483",
+    "source": "time, age, period",
+    "our_target": "época",
+    "deepl_target": "tiempo, edad, periodo",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4773",
+    "source": "tint, dye",
+    "our_target": "tinte",
+    "deepl_target": "teñir, teñirse",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4778",
+    "source": "to abide by, comply with",
+    "our_target": "atener",
+    "deepl_target": "acatar, cumplir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3807",
+    "source": "to abuse",
+    "our_target": "abusar",
+    "deepl_target": "al abuso",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1873",
+    "source": "to add, gather",
+    "our_target": "agregar",
+    "deepl_target": "añadir, reunir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4636",
+    "source": "to adhere to, fit tightly, encircle",
+    "our_target": "ceñir",
+    "deepl_target": "adherirse, ajustarse, rodear",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2762",
+    "source": "to appear, show, stick (out)",
+    "our_target": "asomar",
+    "deepl_target": "aparecer, mostrarse, sobresalir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3321",
+    "source": "to arouse, provoke",
+    "our_target": "suscitar",
+    "deepl_target": "despertar, provocar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3932",
+    "source": "to assault",
+    "our_target": "asaltar",
+    "deepl_target": "agredir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1078",
+    "source": "to assign, appoint",
+    "our_target": "destinar",
+    "deepl_target": "asignar, nombrar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0704",
+    "source": "to attempt",
+    "our_target": "pretender",
+    "deepl_target": "intentar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1122",
+    "source": "to attend, go to, frequent",
+    "our_target": "acudir",
+    "deepl_target": "asistir, ir, frecuentar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1660",
+    "source": "to attribute",
+    "our_target": "atribuir",
+    "deepl_target": "al atributo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4924",
+    "source": "to award",
+    "our_target": "premiar",
+    "deepl_target": "conceder",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0120",
+    "source": "to be (location, change from norm)",
+    "our_target": "estar",
+    "deepl_target": "ser (ubicación, cambio respecto a la norma)",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0548",
+    "source": "to be accustomed to [also acostumbrar]",
+    "our_target": "soler",
+    "deepl_target": "acostumbrarse [también acostumbrar]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1023",
+    "source": "to be agreeable, be convenient",
+    "our_target": "convenir",
+    "deepl_target": "ser agradable, ser conveniente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3182",
+    "source": "to be plentiful",
+    "our_target": "abundar",
+    "deepl_target": "ser abundante",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3987",
+    "source": "to be present at, witness",
+    "our_target": "presenciar",
+    "deepl_target": "estar presente, ser testigo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0917",
+    "source": "to be sufficient",
+    "our_target": "bastar",
+    "deepl_target": "ser suficiente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1237",
+    "source": "to be unaware",
+    "our_target": "ignorar",
+    "deepl_target": "ser inconsciente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3122",
+    "source": "to be very pleasing to",
+    "our_target": "encantar",
+    "deepl_target": "ser muy agradable para",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2938",
+    "source": "to be/make happy",
+    "our_target": "alegrar",
+    "deepl_target": "ser/hacer feliz",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2574",
+    "source": "to be/make quiet",
+    "our_target": "callar",
+    "deepl_target": "estar en silencio",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3580",
+    "source": "to beat an object",
+    "our_target": "batir",
+    "deepl_target": "golpear un objeto",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3379",
+    "source": "to benefit",
+    "our_target": "beneficiar",
+    "deepl_target": "en beneficio de",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2429",
+    "source": "to board, get in/on",
+    "our_target": "abordar",
+    "deepl_target": "embarcar, subir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_5218",
+    "source": "to border",
+    "our_target": "bordear",
+    "deepl_target": "a la frontera",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4260",
+    "source": "to bore, tire",
+    "our_target": "aburrir",
+    "deepl_target": "agujerear, cansar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2568",
+    "source": "to break, bend, weaken",
+    "our_target": "quebrar",
+    "deepl_target": "romper, doblar, debilitar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2052",
+    "source": "to call, name [also llamar]",
+    "our_target": "denominar",
+    "deepl_target": "llamar, nombrar [también llamar]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4199",
+    "source": "to calm down",
+    "our_target": "tranquilizar",
+    "deepl_target": "calmarse",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2644",
+    "source": "to carry out, cause to happen",
+    "our_target": "efectuar",
+    "deepl_target": "llevar a cabo, hacer que suceda",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2348",
+    "source": "to carry out, fulfill",
+    "our_target": "desempeñar",
+    "deepl_target": "llevar a cabo, cumplir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2690",
+    "source": "to choose, opt for",
+    "our_target": "optar",
+    "deepl_target": "para elegir, opte por",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4829",
+    "source": "to clear up",
+    "our_target": "despejar",
+    "deepl_target": "para aclarar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4538",
+    "source": "to climb",
+    "our_target": "trepar",
+    "deepl_target": "escalar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3141",
+    "source": "to coexist",
+    "our_target": "convivir",
+    "deepl_target": "coexistir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4455",
+    "source": "to coincide, concur, meet",
+    "our_target": "concurrir",
+    "deepl_target": "coincidir, concordar, reunirse",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2104",
+    "source": "to come from, be from",
+    "our_target": "provenir",
+    "deepl_target": "venir de, ser de",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2236",
+    "source": "to come near, closer",
+    "our_target": "aproximar",
+    "deepl_target": "acercarse, acercarse",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1295",
+    "source": "to commit",
+    "our_target": "cometer",
+    "deepl_target": "comprometerse",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_5094",
+    "source": "to confer, talk",
+    "our_target": "dialogar",
+    "deepl_target": "conferenciar, hablar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_5071",
+    "source": "to confine",
+    "our_target": "internar",
+    "deepl_target": "confinar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2707",
+    "source": "to continue, carry on",
+    "our_target": "proseguir",
+    "deepl_target": "continuar, seguir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_5219",
+    "source": "to contradict",
+    "our_target": "desmentir",
+    "deepl_target": "para contradecir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2310",
+    "source": "to cover, wrap",
+    "our_target": "tapar",
+    "deepl_target": "cubrir, envolver",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0901",
+    "source": "to cross [also atravesar]",
+    "our_target": "cruzar",
+    "deepl_target": "atravesar [también atravesar]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1178",
+    "source": "to cross [also cruzar]",
+    "our_target": "atravesar",
+    "deepl_target": "cruzar [también cruzar]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3749",
+    "source": "to delay, take time",
+    "our_target": "demorar",
+    "deepl_target": "retrasar, tomarse tiempo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1691",
+    "source": "to demand, require",
+    "our_target": "reclamar",
+    "deepl_target": "exigir, requerir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4253",
+    "source": "to deprive, rob",
+    "our_target": "despojar",
+    "deepl_target": "privar, robar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3722",
+    "source": "to disguise, hide, pretend",
+    "our_target": "disimular",
+    "deepl_target": "disfrazar, ocultar, fingir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1360",
+    "source": "to divide, deliver, distribute",
+    "our_target": "repartir",
+    "deepl_target": "dividir, entregar, distribuir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2049",
+    "source": "to do exactly, specify",
+    "our_target": "precisar",
+    "deepl_target": "exactamente, especifique",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3143",
+    "source": "to edit, write, compose",
+    "our_target": "redactar",
+    "deepl_target": "editar, escribir, componer",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3449",
+    "source": "to encourage",
+    "our_target": "alentar",
+    "deepl_target": "fomentar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3576",
+    "source": "to endanger",
+    "our_target": "perjudicar",
+    "deepl_target": "poner en peligro",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1541",
+    "source": "to enjoy [also disfrutar]",
+    "our_target": "gozar",
+    "deepl_target": "disfrutar [también disfrutar]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1036",
+    "source": "to entrust, [se] take charge of",
+    "our_target": "encargar",
+    "deepl_target": "confiar, hacerse cargo de",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4326",
+    "source": "to excuse",
+    "our_target": "disculpar",
+    "deepl_target": "excusar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4976",
+    "source": "to expand",
+    "our_target": "expandir",
+    "deepl_target": "ampliar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3177",
+    "source": "to face, confront",
+    "our_target": "afrontar",
+    "deepl_target": "enfrentarse, confrontar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4040",
+    "source": "to favor, foster, aid",
+    "our_target": "propiciar",
+    "deepl_target": "favorecer, fomentar, ayudar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1520",
+    "source": "to fear",
+    "our_target": "temer",
+    "deepl_target": "al miedo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4443",
+    "source": "to feel, touch, fondle",
+    "our_target": "palpar",
+    "deepl_target": "sentir, tocar, acariciar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1869",
+    "source": "to fight against",
+    "our_target": "combatir",
+    "deepl_target": "para luchar contra",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1380",
+    "source": "to find out",
+    "our_target": "hallar",
+    "deepl_target": "para averiguar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1785",
+    "source": "to find out [se]",
+    "our_target": "enterar",
+    "deepl_target": "averiguar [se]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1938",
+    "source": "to find, locate",
+    "our_target": "ubicar",
+    "deepl_target": "encontrar, localizar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4449",
+    "source": "to finish off, finish up",
+    "our_target": "rematar",
+    "deepl_target": "acabar, terminar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0666",
+    "source": "to fit into",
+    "our_target": "caber",
+    "deepl_target": "para encajar en",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4405",
+    "source": "to flaunt, show off",
+    "our_target": "ostentar",
+    "deepl_target": "alardear, presumir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_5164",
+    "source": "to flow, pass, roam",
+    "our_target": "discurrir",
+    "deepl_target": "fluir, pasar, vagar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4159",
+    "source": "to focus",
+    "our_target": "enfocar",
+    "deepl_target": "centrarse",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4062",
+    "source": "to front, confront",
+    "our_target": "encarar",
+    "deepl_target": "al frente, enfrentarse",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0282",
+    "source": "to fulfill, carry out",
+    "our_target": "realizar",
+    "deepl_target": "cumplir, llevar a cabo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3938",
+    "source": "to give birth",
+    "our_target": "parir",
+    "deepl_target": "dar a luz",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4523",
+    "source": "to give the appearance",
+    "our_target": "aparentar",
+    "deepl_target": "para dar la apariencia",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2871",
+    "source": "to go back",
+    "our_target": "retroceder",
+    "deepl_target": "volver",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2864",
+    "source": "to go back to (time)",
+    "our_target": "remontar",
+    "deepl_target": "volver atrás (en el tiempo)",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3863",
+    "source": "to go beyond, cross over",
+    "our_target": "traspasar",
+    "deepl_target": "ir más allá, cruzar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4710",
+    "source": "to grasp, clutch",
+    "our_target": "aferrar",
+    "deepl_target": "asir, agarrar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4195",
+    "source": "to happen, come about",
+    "our_target": "acontecer",
+    "deepl_target": "suceder, producirse",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0033",
+    "source": "to have",
+    "our_target": "haber",
+    "deepl_target": "tener",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2203",
+    "source": "to have influence",
+    "our_target": "influir",
+    "deepl_target": "tener influencia",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0349",
+    "source": "to have just",
+    "our_target": "acabar",
+    "deepl_target": "tener sólo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4496",
+    "source": "to head for, guide",
+    "our_target": "encaminar",
+    "deepl_target": "dirigirse, guiar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4610",
+    "source": "to head, lead off",
+    "our_target": "encabezar",
+    "deepl_target": "a la cabeza",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4797",
+    "source": "to heal, cure",
+    "our_target": "remediar",
+    "deepl_target": "curar, sanar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0318",
+    "source": "to hear",
+    "our_target": "oír",
+    "deepl_target": "escuchar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4693",
+    "source": "to hurry up",
+    "our_target": "apresurar(se) (v)",
+    "deepl_target": "darse prisa",
+    "match": false,
+    "article": null,
+    "partOfSpeech": null,
+    "category": null
+  },
+  {
+    "id": "en_es_2360",
+    "source": "to hurt",
+    "our_target": "doler",
+    "deepl_target": "herir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3518",
+    "source": "to implore, pray, ask",
+    "our_target": "rogar",
+    "deepl_target": "implorar, rezar, pedir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4369",
+    "source": "to increase [also aumentar]",
+    "our_target": "incrementar",
+    "deepl_target": "aumentar [también aumentar]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4563",
+    "source": "to infect, infest",
+    "our_target": "contagiar",
+    "deepl_target": "infectar, infestar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_5167",
+    "source": "to influence, affect",
+    "our_target": "incidir",
+    "deepl_target": "influir, afectar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_5133",
+    "source": "to inform, become aware",
+    "our_target": "percatar",
+    "deepl_target": "informar, tomar conciencia",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0454",
+    "source": "to interest",
+    "our_target": "interesar",
+    "deepl_target": "a interés",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4864",
+    "source": "to investigate [also investigar]",
+    "our_target": "indagar",
+    "deepl_target": "investigar [también investigar]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1603",
+    "source": "to lack",
+    "our_target": "carecer",
+    "deepl_target": "a falta de",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0852",
+    "source": "to last",
+    "our_target": "durar",
+    "deepl_target": "hasta el final",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0304",
+    "source": "to leave, split",
+    "our_target": "partir",
+    "deepl_target": "marcharse, separarse",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_5041",
+    "source": "to let go, start out",
+    "our_target": "largar",
+    "deepl_target": "dejar ir, empezar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2767",
+    "source": "to liberate, set free",
+    "our_target": "librar",
+    "deepl_target": "liberar, poner en libertad",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4138",
+    "source": "to lie, be situated",
+    "our_target": "radicar",
+    "deepl_target": "tumbarse, situarse",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2735",
+    "source": "to lift, raise",
+    "our_target": "alzar",
+    "deepl_target": "levantar, elevar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4308",
+    "source": "to light, illuminate",
+    "our_target": "alumbrar",
+    "deepl_target": "encender, iluminar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4645",
+    "source": "to maintain, support",
+    "our_target": "sustentar",
+    "deepl_target": "mantener, apoyar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1729",
+    "source": "to move away, separate",
+    "our_target": "apartar",
+    "deepl_target": "alejarse, separarse",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1831",
+    "source": "to move forward",
+    "our_target": "adelantar",
+    "deepl_target": "avanzar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3893",
+    "source": "to move, affect",
+    "our_target": "conmover",
+    "deepl_target": "mover, afectar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3868",
+    "source": "to move, change",
+    "our_target": "mudar",
+    "deepl_target": "moverse, cambiar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1884",
+    "source": "to not know, not recognize",
+    "our_target": "desconocer",
+    "deepl_target": "no saber, no reconocer",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2569",
+    "source": "to notify [also notificar]",
+    "our_target": "avisar",
+    "deepl_target": "notificar [también notificar]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1615",
+    "source": "to occur, pass",
+    "our_target": "transcurrir",
+    "deepl_target": "que se produzca, pase",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2379",
+    "source": "to offer",
+    "our_target": "brindar",
+    "deepl_target": "ofrecer",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_5055",
+    "source": "to penetrate, go inside",
+    "our_target": "adentrar",
+    "deepl_target": "penetrar, entrar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3822",
+    "source": "to please",
+    "our_target": "agradar",
+    "deepl_target": "para complacer",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1024",
+    "source": "to practice, exercise",
+    "our_target": "ejercer",
+    "deepl_target": "practicar, ejercitarse",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1160",
+    "source": "to propose, present",
+    "our_target": "plantear",
+    "deepl_target": "proponer, presentar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4619",
+    "source": "to prove, verify",
+    "our_target": "constatar",
+    "deepl_target": "probar, verificar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3010",
+    "source": "to provide",
+    "our_target": "proveer",
+    "deepl_target": "proporcionar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4677",
+    "source": "to put in a group",
+    "our_target": "agrupar",
+    "deepl_target": "poner en un grupo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1374",
+    "source": "to put in order, organize",
+    "our_target": "ordenar",
+    "deepl_target": "poner en orden, organizar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0707",
+    "source": "to put into",
+    "our_target": "meter",
+    "deepl_target": "poner en",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2326",
+    "source": "to rain",
+    "our_target": "llover",
+    "deepl_target": "a la lluvia",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0770",
+    "source": "to remember, remind",
+    "our_target": "acordar",
+    "deepl_target": "recordar, rememorar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3696",
+    "source": "to replace, restore",
+    "our_target": "reponer",
+    "deepl_target": "sustituir, restaurar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4581",
+    "source": "to reply",
+    "our_target": "replicar",
+    "deepl_target": "responder",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1054",
+    "source": "to require",
+    "our_target": "requerir",
+    "deepl_target": "exigir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_5163",
+    "source": "to resign, relinquish",
+    "our_target": "resignar",
+    "deepl_target": "dimitir, renunciar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4835",
+    "source": "to rest, lie down",
+    "our_target": "reposar",
+    "deepl_target": "descansar, acostarse",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0999",
+    "source": "to return to a place",
+    "our_target": "regresar",
+    "deepl_target": "volver a un lugar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4085",
+    "source": "to return, give back [also devolver]",
+    "our_target": "retornar",
+    "deepl_target": "devolver, devolver [también devolver]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4739",
+    "source": "to review, revise",
+    "our_target": "repasar",
+    "deepl_target": "examinar, revisar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4319",
+    "source": "to rip/break into pieces",
+    "our_target": "destrozar",
+    "deepl_target": "romper en pedazos",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_5194",
+    "source": "to roam, go by",
+    "our_target": "transitar",
+    "deepl_target": "vagar, pasar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3579",
+    "source": "to rule, govern, manage",
+    "our_target": "regir",
+    "deepl_target": "gobernar, dirigir, gestionar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4641",
+    "source": "to scare, frighten",
+    "our_target": "espantar",
+    "deepl_target": "asustar, atemorizar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0477",
+    "source": "to send, order",
+    "our_target": "mandar",
+    "deepl_target": "enviar, ordenar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4730",
+    "source": "to sense",
+    "our_target": "intuir",
+    "deepl_target": "sentir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_5177",
+    "source": "to sense in advance",
+    "our_target": "presentir",
+    "deepl_target": "intuir de antemano",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3317",
+    "source": "to show",
+    "our_target": "manifiesto : poner de",
+    "deepl_target": "mostrar",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4450",
+    "source": "to slip in [se]",
+    "our_target": "colar",
+    "deepl_target": "deslizarse [se]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2308",
+    "source": "to solve, settle",
+    "our_target": "solucionar",
+    "deepl_target": "resolver, zanjar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2826",
+    "source": "to spread out",
+    "our_target": "difundir",
+    "deepl_target": "extender",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_5288",
+    "source": "to start, establish",
+    "our_target": "entablar",
+    "deepl_target": "empezar, establecer",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1651",
+    "source": "to suffer",
+    "our_target": "padecer",
+    "deepl_target": "sufrir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3788",
+    "source": "to take power",
+    "our_target": "apoderar",
+    "deepl_target": "tomar el poder",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3953",
+    "source": "to take shelter, give refuge",
+    "our_target": "refugiar",
+    "deepl_target": "cobijarse, dar refugio",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2971",
+    "source": "to tell, narrate",
+    "our_target": "relatar",
+    "deepl_target": "contar, narrar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0482",
+    "source": "to throw",
+    "our_target": "echar",
+    "deepl_target": "lanzar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4067",
+    "source": "to throw out",
+    "our_target": "desechar",
+    "deepl_target": "tirar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3455",
+    "source": "to touch lightly",
+    "our_target": "rozar",
+    "deepl_target": "tocar ligeramente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3491",
+    "source": "to transform, turn",
+    "our_target": "tornar",
+    "deepl_target": "transformar, girar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1220",
+    "source": "to try, seek",
+    "our_target": "procurar",
+    "deepl_target": "intentar, buscar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_2784",
+    "source": "to turn on, apprehend",
+    "our_target": "prender",
+    "deepl_target": "encender, aprehender",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4073",
+    "source": "to use for the first time, debut",
+    "our_target": "estrenar",
+    "deepl_target": "utilizar por primera vez, debutar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3372",
+    "source": "to value",
+    "our_target": "valorar",
+    "deepl_target": "al valor",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0803",
+    "source": "to verify, prove",
+    "our_target": "comprobar",
+    "deepl_target": "verificar, probar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_0723",
+    "source": "to walk [also caminar]",
+    "our_target": "andar",
+    "deepl_target": "caminar [también caminar]",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_1375",
+    "source": "to walk, to work (like a machine)",
+    "our_target": "marchar",
+    "deepl_target": "caminar, trabajar (como una máquina)",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3471",
+    "source": "to watch over",
+    "our_target": "velar",
+    "deepl_target": "para vigilar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4692",
+    "source": "to wear shoes",
+    "our_target": "calzar",
+    "deepl_target": "llevar zapatos",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_4409",
+    "source": "to where",
+    "our_target": "adonde",
+    "deepl_target": "a donde",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_4353",
+    "source": "to where?",
+    "our_target": "adónde",
+    "deepl_target": "¿a dónde?",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_4697",
+    "source": "to work, act",
+    "our_target": "obrar",
+    "deepl_target": "trabajar, actuar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": null
+  },
+  {
+    "id": "en_es_3725",
+    "source": "touch, ringing, warning",
+    "our_target": "toque",
+    "deepl_target": "tacto, timbre, aviso",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4242",
+    "source": "tour",
+    "our_target": "gira",
+    "deepl_target": "visita",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_3700",
+    "source": "track, sign, flea market",
+    "our_target": "rastro",
+    "deepl_target": "pista, cartel, mercadillo",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4230",
+    "source": "training",
+    "our_target": "entrenamiento",
+    "deepl_target": "formación",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3061",
+    "source": "transfer",
+    "our_target": "traslado",
+    "deepl_target": "transferencia",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4652",
+    "source": "traveling",
+    "our_target": "ambulante",
+    "deepl_target": "itinerante",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_0648",
+    "source": "trouble (be of worth)",
+    "our_target": "pena  (valer la pena)",
+    "deepl_target": "problema (ser de valor)",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_2477",
+    "source": "turn; shift",
+    "our_target": "turno; en turno a",
+    "deepl_target": "girar; cambiar",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3494",
+    "source": "understanding",
+    "our_target": "entendimiento",
+    "deepl_target": "comprender",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3574",
+    "source": "unfortunately",
+    "our_target": "desgraciadamente",
+    "deepl_target": "por desgracia",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_4646",
+    "source": "united, jointly shared",
+    "our_target": "solidario",
+    "deepl_target": "unidos, compartidos",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4316",
+    "source": "unquestionable",
+    "our_target": "indudable",
+    "deepl_target": "incuestionable",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4297",
+    "source": "unusual, uncommon",
+    "our_target": "insólito",
+    "deepl_target": "inusual, poco común",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_0676",
+    "source": "use",
+    "our_target": "uso",
+    "deepl_target": "utilice",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3890",
+    "source": "utmost, highest",
+    "our_target": "sumo",
+    "deepl_target": "máximo, más alto",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_3673",
+    "source": "very high, tall",
+    "our_target": "altísimo",
+    "deepl_target": "muy alto, alto",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4830",
+    "source": "very long",
+    "our_target": "larguísimo",
+    "deepl_target": "muy largo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4822",
+    "source": "very small, tiny",
+    "our_target": "pequeñito",
+    "deepl_target": "muy pequeño, diminuto",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4719",
+    "source": "volume, abundance, fortune",
+    "our_target": "caudal",
+    "deepl_target": "volumen, abundancia, fortuna",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_4648",
+    "source": "wager, bet",
+    "our_target": "apuesta",
+    "deepl_target": "apostar, apostar",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_4747",
+    "source": "waiter, youth, bellboy",
+    "our_target": "mozo",
+    "deepl_target": "camarero, joven, botones",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2438",
+    "source": "walk, ride",
+    "our_target": "paseo",
+    "deepl_target": "caminar, montar",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2953",
+    "source": "warning",
+    "our_target": "aviso",
+    "deepl_target": "advertencia",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_5203",
+    "source": "waste, refuse, garbage",
+    "our_target": "desperdicio",
+    "deepl_target": "residuos, desechos, basura",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2806",
+    "source": "well, shaft",
+    "our_target": "pozo",
+    "deepl_target": "bien, eje",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_5162",
+    "source": "whole, entire, honest",
+    "our_target": "íntegro",
+    "deepl_target": "entero, completo, honesto",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_4702",
+    "source": "wild",
+    "our_target": "silvestre",
+    "deepl_target": "salvaje",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_5287",
+    "source": "wild beast",
+    "our_target": "fiera",
+    "deepl_target": "bestia salvaje",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_2572",
+    "source": "wing, flank",
+    "our_target": "ala (nf el)",
+    "deepl_target": "ala, flanco",
+    "match": false,
+    "article": null,
+    "partOfSpeech": null,
+    "category": null
+  },
+  {
+    "id": "en_es_4533",
+    "source": "wire",
+    "our_target": "alambre",
+    "deepl_target": "cable",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_3546",
+    "source": "with difficulty",
+    "our_target": "difícilmente",
+    "deepl_target": "con dificultad",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": null
+  },
+  {
+    "id": "en_es_2057",
+    "source": "worldwide",
+    "our_target": "mundial",
+    "deepl_target": "en todo el mundo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": null
+  },
+  {
+    "id": "en_es_2908",
+    "source": "young woman",
+    "our_target": "señorita",
+    "deepl_target": "mujer joven",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_1583",
+    "source": "youth",
+    "our_target": "juventud",
+    "deepl_target": "jóvenes",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun (f)",
+    "category": null
+  },
+  {
+    "id": "en_es_1298",
+    "source": "zest, spirit, heart",
+    "our_target": "ánimo",
+    "deepl_target": "entusiasmo, espíritu, corazón",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun (m)",
+    "category": null
+  },
+  {
+    "id": "en_es_2861",
+    "source": "arrangement",
+    "our_target": "arreglo",
+    "deepl_target": "acuerdo",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_0680",
+    "source": "awareness",
+    "our_target": "conciencia",
+    "deepl_target": "sensibilización",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_1649",
+    "source": "balance",
+    "our_target": "equilibrio",
+    "deepl_target": "saldo",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_3410",
+    "source": "canvas",
+    "our_target": "lienzo",
+    "deepl_target": "lona",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_3600",
+    "source": "convenience",
+    "our_target": "conveniencia",
+    "deepl_target": "comodidad",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_3698",
+    "source": "courage",
+    "our_target": "coraje",
+    "deepl_target": "valor",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_1488",
+    "source": "failure",
+    "our_target": "fracaso",
+    "deepl_target": "fallo",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_4055",
+    "source": "feat",
+    "our_target": "hazaña",
+    "deepl_target": "feat",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_3296",
+    "source": "insight",
+    "our_target": "perspicacia",
+    "deepl_target": "visión",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_0438",
+    "source": "mean",
+    "our_target": "significar",
+    "deepl_target": "media",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_4622",
+    "source": "overlap",
+    "our_target": "superponer",
+    "deepl_target": "solapamiento",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_0954",
+    "source": "pace",
+    "our_target": "ritmo",
+    "deepl_target": "paso",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_0222",
+    "source": "pathway",
+    "our_target": "camino",
+    "deepl_target": "vía",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_0487",
+    "source": "picture",
+    "our_target": "imagen",
+    "deepl_target": "foto",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_1165",
+    "source": "pitch",
+    "our_target": "tono",
+    "deepl_target": "paso",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_2280",
+    "source": "pledge",
+    "our_target": "promesa",
+    "deepl_target": "compromiso",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_3956",
+    "source": "plot",
+    "our_target": "trama",
+    "deepl_target": "parcela",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_0039",
+    "source": "power",
+    "our_target": "poder",
+    "deepl_target": "potencia",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_2774",
+    "source": "premise",
+    "our_target": "premisa",
+    "deepl_target": "local",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_3299",
+    "source": "range",
+    "our_target": "rango",
+    "deepl_target": "gama",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_4955",
+    "source": "rate",
+    "our_target": "tasa",
+    "deepl_target": "tarifa",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_0220",
+    "source": "reason",
+    "our_target": "razón",
+    "deepl_target": "motivo",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_0180",
+    "source": "think",
+    "our_target": "pensar",
+    "deepl_target": "piense en",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_0129",
+    "source": "to know (fact)",
+    "our_target": "saber",
+    "deepl_target": "conocer (hecho)",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_0241",
+    "source": "to understand",
+    "our_target": "entender",
+    "deepl_target": "para comprender",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_0333",
+    "source": "view",
+    "our_target": "vista",
+    "deepl_target": "ver",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "abstract"
+  },
+  {
+    "id": "en_es_0308",
+    "source": "accomplish",
+    "our_target": "lograr",
+    "deepl_target": "cumplir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0301",
+    "source": "achieve",
+    "our_target": "lograr",
+    "deepl_target": "visite",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0267",
+    "source": "acknowledge",
+    "our_target": "reconocer",
+    "deepl_target": "acuse recibo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_1539",
+    "source": "apologize",
+    "our_target": "disculparse",
+    "deepl_target": "pide disculpas",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0942",
+    "source": "assemble",
+    "our_target": "ensamblar",
+    "deepl_target": "montar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0004",
+    "source": "begin",
+    "our_target": "empezar",
+    "deepl_target": "comience",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_2320",
+    "source": "blast",
+    "our_target": "explosión",
+    "deepl_target": "ráfaga",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_3806",
+    "source": "catch",
+    "our_target": "atrapar",
+    "deepl_target": "captura",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_2134",
+    "source": "commit",
+    "our_target": "comprometerse",
+    "deepl_target": "escriba a",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_1570",
+    "source": "concede",
+    "our_target": "conceder",
+    "deepl_target": "ceda",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0166",
+    "source": "count",
+    "our_target": "contar",
+    "deepl_target": "cuente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_1482",
+    "source": "decline",
+    "our_target": "declinar",
+    "deepl_target": "descenso",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_3308",
+    "source": "defeat",
+    "our_target": "derrotar",
+    "deepl_target": "vencer",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_1812",
+    "source": "disclose",
+    "our_target": "revelar",
+    "deepl_target": "divulgar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0097",
+    "source": "do",
+    "our_target": "hacer",
+    "deepl_target": "do",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_2321",
+    "source": "drain",
+    "our_target": "drenar",
+    "deepl_target": "desagüe",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_1746",
+    "source": "drop",
+    "our_target": "dejar caer",
+    "deepl_target": "drop",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0384",
+    "source": "enable",
+    "our_target": "permitir",
+    "deepl_target": "active",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_2132",
+    "source": "enclose",
+    "our_target": "encerrar",
+    "deepl_target": "incluya",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_1330",
+    "source": "engage",
+    "our_target": "involucrar",
+    "deepl_target": "participar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0629",
+    "source": "ensure",
+    "our_target": "asegurar",
+    "deepl_target": "garantizar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_1320",
+    "source": "erect",
+    "our_target": "erigir",
+    "deepl_target": "erecto",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_4846",
+    "source": "exceed",
+    "our_target": "exceder",
+    "deepl_target": "superar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_2324",
+    "source": "exhibit",
+    "our_target": "exhibir",
+    "deepl_target": "exposición",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0348",
+    "source": "fall",
+    "our_target": "caer",
+    "deepl_target": "otoño",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0309",
+    "source": "finish",
+    "our_target": "terminar",
+    "deepl_target": "acabado",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_1535",
+    "source": "fly",
+    "our_target": "volar",
+    "deepl_target": "mosca",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_2073",
+    "source": "fold",
+    "our_target": "doblar",
+    "deepl_target": "pliegue",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0067",
+    "source": "follow",
+    "our_target": "seguir",
+    "deepl_target": "siga",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_3902",
+    "source": "foster",
+    "our_target": "fomentar",
+    "deepl_target": "acoger",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0076",
+    "source": "give",
+    "our_target": "dar",
+    "deepl_target": "dé",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_2665",
+    "source": "glare",
+    "our_target": "deslumbramiento",
+    "deepl_target": "resplandor",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_1184",
+    "source": "haunt",
+    "our_target": "perseguir",
+    "deepl_target": "acechar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_4141",
+    "source": "highlight",
+    "our_target": "resaltar",
+    "deepl_target": "destacar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_2085",
+    "source": "hit",
+    "our_target": "golpear",
+    "deepl_target": "hit",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0849",
+    "source": "hold",
+    "our_target": "sostener",
+    "deepl_target": "mantenga",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_4628",
+    "source": "hurry",
+    "our_target": "apurarse",
+    "deepl_target": "prisa",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0202",
+    "source": "introduce",
+    "our_target": "presentar",
+    "deepl_target": "introduce",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_2207",
+    "source": "lean",
+    "our_target": "inclinarse",
+    "deepl_target": "lean",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0117",
+    "source": "live",
+    "our_target": "vivir",
+    "deepl_target": "en directo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0523",
+    "source": "match",
+    "our_target": "partido",
+    "deepl_target": "match",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_4575",
+    "source": "melt",
+    "our_target": "derretir",
+    "deepl_target": "fundir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_3366",
+    "source": "neglect",
+    "our_target": "descuidar",
+    "deepl_target": "negligencia",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0606",
+    "source": "notice",
+    "our_target": "notar",
+    "deepl_target": "aviso",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_2377",
+    "source": "pick",
+    "our_target": "escoger",
+    "deepl_target": "elija",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_2309",
+    "source": "plead",
+    "our_target": "suplicar",
+    "deepl_target": "escriba a",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_4616",
+    "source": "plunge",
+    "our_target": "sumergir",
+    "deepl_target": "zambullida",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_5263",
+    "source": "pour",
+    "our_target": "verter",
+    "deepl_target": "pour",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_3753",
+    "source": "preserve",
+    "our_target": "preservar",
+    "deepl_target": "conservar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_1527",
+    "source": "press",
+    "our_target": "prensa",
+    "deepl_target": "pulse",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_1102",
+    "source": "pull",
+    "our_target": "jalar",
+    "deepl_target": "tire de",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_2026",
+    "source": "push",
+    "our_target": "empujar",
+    "deepl_target": "pulse",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_1312",
+    "source": "refuse",
+    "our_target": "rechazar",
+    "deepl_target": "basura",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_3490",
+    "source": "replace",
+    "our_target": "reemplazar",
+    "deepl_target": "sustituir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_2631",
+    "source": "retain",
+    "our_target": "retener",
+    "deepl_target": "conservar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0394",
+    "source": "run",
+    "our_target": "correr",
+    "deepl_target": "ejecute",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_3121",
+    "source": "save",
+    "our_target": "ahorrar",
+    "deepl_target": "guardar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0086",
+    "source": "say",
+    "our_target": "decir",
+    "deepl_target": "diga",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_4811",
+    "source": "scratch",
+    "our_target": "rascar",
+    "deepl_target": "arañar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0306",
+    "source": "search",
+    "our_target": "buscar",
+    "deepl_target": "busque en",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0613",
+    "source": "secure",
+    "our_target": "asegurar",
+    "deepl_target": "seguro",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0010",
+    "source": "see",
+    "our_target": "ver",
+    "deepl_target": "véase",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0973",
+    "source": "set (collection)",
+    "our_target": "conjunto",
+    "deepl_target": "set (colección)",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_1846",
+    "source": "settle",
+    "our_target": "establecerse",
+    "deepl_target": "resolver",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_3323",
+    "source": "shake",
+    "our_target": "sacudir",
+    "deepl_target": "agitar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0045",
+    "source": "sit",
+    "our_target": "sentarse",
+    "deepl_target": "sit",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_4429",
+    "source": "spill",
+    "our_target": "derramar",
+    "deepl_target": "vertido",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_2683",
+    "source": "squeeze",
+    "our_target": "apretar",
+    "deepl_target": "exprimir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0021",
+    "source": "stand",
+    "our_target": "estar de pie",
+    "deepl_target": "stand",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0503",
+    "source": "stay",
+    "our_target": "quedarse",
+    "deepl_target": "permanezca en",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_1138",
+    "source": "succeed",
+    "our_target": "tener éxito",
+    "deepl_target": "triunfar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_3612",
+    "source": "surrender",
+    "our_target": "rendirse",
+    "deepl_target": "entrega",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_1958",
+    "source": "to fight",
+    "our_target": "pelear",
+    "deepl_target": "para luchar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0014",
+    "source": "to happen",
+    "our_target": "pasar",
+    "deepl_target": "suceder",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0071",
+    "source": "to meet",
+    "our_target": "conocer",
+    "deepl_target": "reunirse",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0596",
+    "source": "to raise",
+    "our_target": "levantar",
+    "deepl_target": "aumentar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_1142",
+    "source": "to remain",
+    "our_target": "quedarse",
+    "deepl_target": "permanecer",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0113",
+    "source": "to tell",
+    "our_target": "decir",
+    "deepl_target": "contar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0589",
+    "source": "to use",
+    "our_target": "usar",
+    "deepl_target": "utilizar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0012",
+    "source": "to watch",
+    "our_target": "mirar",
+    "deepl_target": "para ver",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0327",
+    "source": "touch",
+    "our_target": "tocar",
+    "deepl_target": "toque",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0544",
+    "source": "try",
+    "our_target": "intentar",
+    "deepl_target": "pruebe",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_4513",
+    "source": "twist",
+    "our_target": "torcer",
+    "deepl_target": "giro",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_1229",
+    "source": "undergo",
+    "our_target": "someterse a",
+    "deepl_target": "visite",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0964",
+    "source": "warn",
+    "our_target": "advertir",
+    "deepl_target": "avise a",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0425",
+    "source": "wear",
+    "our_target": "usar",
+    "deepl_target": "desgaste",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "actions"
+  },
+  {
+    "id": "en_es_0037",
+    "source": "I",
+    "our_target": "yo",
+    "deepl_target": "I",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "pronoun",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0184",
+    "source": "a",
+    "our_target": "un",
+    "deepl_target": "a",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "article",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0172",
+    "source": "about",
+    "our_target": "sobre",
+    "deepl_target": "acerca de",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "preposition",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0828",
+    "source": "altogether",
+    "our_target": "completamente",
+    "deepl_target": "en total",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0705",
+    "source": "around",
+    "our_target": "alrededor",
+    "deepl_target": "en torno a",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0421",
+    "source": "away",
+    "our_target": "lejos",
+    "deepl_target": "fuera",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_3997",
+    "source": "basket",
+    "our_target": "canasta",
+    "deepl_target": "cesta",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_4292",
+    "source": "blade",
+    "our_target": "cuchilla",
+    "deepl_target": "hoja",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_5058",
+    "source": "booth",
+    "our_target": "cabina",
+    "deepl_target": "stand",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_2328",
+    "source": "counter",
+    "our_target": "mostrador",
+    "deepl_target": "contador",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0934",
+    "source": "entire",
+    "our_target": "entero",
+    "deepl_target": "todo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0035",
+    "source": "few",
+    "our_target": "pocos",
+    "deepl_target": "algunos",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0188",
+    "source": "have",
+    "our_target": "tener",
+    "deepl_target": "tienen",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0114",
+    "source": "he",
+    "our_target": "él",
+    "deepl_target": "he",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "pronoun",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0183",
+    "source": "him",
+    "our_target": "lo",
+    "deepl_target": "le",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "pronoun",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0398",
+    "source": "it",
+    "our_target": "ello",
+    "deepl_target": "it",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "pronoun",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0032",
+    "source": "just (only)",
+    "our_target": "solo",
+    "deepl_target": "just (only)",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0150",
+    "source": "may (permission)",
+    "our_target": "poder",
+    "deepl_target": "puede (permiso)",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0380",
+    "source": "midst",
+    "our_target": "medio",
+    "deepl_target": "entre",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0330",
+    "source": "might",
+    "our_target": "podría",
+    "deepl_target": "puede",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_4678",
+    "source": "off",
+    "our_target": "apagado",
+    "deepl_target": "fuera de",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0182",
+    "source": "on (surface)",
+    "our_target": "sobre",
+    "deepl_target": "en (superficie)",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "preposition",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0194",
+    "source": "over",
+    "our_target": "sobre",
+    "deepl_target": "en",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "preposition",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0105",
+    "source": "part",
+    "our_target": "parte",
+    "deepl_target": "pieza",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0279",
+    "source": "quite",
+    "our_target": "bastante",
+    "deepl_target": "muy",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0109",
+    "source": "side",
+    "our_target": "lado",
+    "deepl_target": "lateral",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_1534",
+    "source": "sign",
+    "our_target": "señal",
+    "deepl_target": "firmar",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0081",
+    "source": "so (therefore)",
+    "our_target": "entonces",
+    "deepl_target": "so (therefore)",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0007",
+    "source": "that (demonstrative)",
+    "our_target": "ese",
+    "deepl_target": "que (demostrativo)",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "pronoun",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_4420",
+    "source": "top",
+    "our_target": "cima",
+    "deepl_target": "top",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0473",
+    "source": "under",
+    "our_target": "debajo de",
+    "deepl_target": "en",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "preposition",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0229",
+    "source": "us",
+    "our_target": "nosotros",
+    "deepl_target": "us",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "pronoun",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0456",
+    "source": "which",
+    "our_target": "cuál",
+    "deepl_target": "que",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "pronoun",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0329",
+    "source": "who",
+    "our_target": "quién",
+    "deepl_target": "que",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "pronoun",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0860",
+    "source": "whole",
+    "our_target": "entero",
+    "deepl_target": "todo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_0083",
+    "source": "would",
+    "our_target": "haría",
+    "deepl_target": "sería",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "basics"
+  },
+  {
+    "id": "en_es_2743",
+    "source": "ear",
+    "our_target": "oreja",
+    "deepl_target": "oído",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "body"
+  },
+  {
+    "id": "en_es_0489",
+    "source": "able",
+    "our_target": "capaz",
+    "deepl_target": "able",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_0819",
+    "source": "accurate",
+    "our_target": "exacto",
+    "deepl_target": "preciso",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_4432",
+    "source": "bold",
+    "our_target": "audaz",
+    "deepl_target": "negrita",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_0341",
+    "source": "clear",
+    "our_target": "claro",
+    "deepl_target": "borrar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_0230",
+    "source": "comprehensive",
+    "our_target": "integral",
+    "deepl_target": "completo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_2209",
+    "source": "cool",
+    "our_target": "fresco",
+    "deepl_target": "genial",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_3243",
+    "source": "dumb",
+    "our_target": "mudo",
+    "deepl_target": "tonto",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_1069",
+    "source": "fair",
+    "our_target": "justo",
+    "deepl_target": "feria",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_0408",
+    "source": "free",
+    "our_target": "libre",
+    "deepl_target": "gratis",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_0418",
+    "source": "full",
+    "our_target": "lleno",
+    "deepl_target": "completo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_3482",
+    "source": "funny",
+    "our_target": "gracioso",
+    "deepl_target": "divertido",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_3650",
+    "source": "gentle",
+    "our_target": "gentil",
+    "deepl_target": "suave",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_1975",
+    "source": "genuine",
+    "our_target": "genuino",
+    "deepl_target": "auténtico",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_0011",
+    "source": "good",
+    "our_target": "bueno",
+    "deepl_target": "bien",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_1960",
+    "source": "gorgeous",
+    "our_target": "magnífico",
+    "deepl_target": "precioso",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_3563",
+    "source": "great",
+    "our_target": "genial",
+    "deepl_target": "gran",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_0652",
+    "source": "harsh",
+    "our_target": "duro",
+    "deepl_target": "áspero",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_5192",
+    "source": "lucky",
+    "our_target": "afortunado",
+    "deepl_target": "suerte",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_1773",
+    "source": "multiple",
+    "our_target": "múltiple",
+    "deepl_target": "varios",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_0251",
+    "source": "old",
+    "our_target": "viejo",
+    "deepl_target": "antiguo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_5123",
+    "source": "polite",
+    "our_target": "educado",
+    "deepl_target": "cortés",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_2392",
+    "source": "prominent",
+    "our_target": "prominente",
+    "deepl_target": "destacado",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_3643",
+    "source": "quiet",
+    "our_target": "silencioso",
+    "deepl_target": "tranquilo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_2027",
+    "source": "severe",
+    "our_target": "severo",
+    "deepl_target": "grave",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_1278",
+    "source": "sharp",
+    "our_target": "afilado",
+    "deepl_target": "agudo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_3900",
+    "source": "smooth",
+    "our_target": "liso",
+    "deepl_target": "suave",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_1684",
+    "source": "substantial",
+    "our_target": "sustancial",
+    "deepl_target": "importante",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_3259",
+    "source": "thin",
+    "our_target": "delgado",
+    "deepl_target": "fino",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_2797",
+    "source": "thorough",
+    "our_target": "exhaustivo",
+    "deepl_target": "minucioso",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_4392",
+    "source": "tiny",
+    "our_target": "diminuto",
+    "deepl_target": "pequeño",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_4676",
+    "source": "wet",
+    "our_target": "mojado",
+    "deepl_target": "húmedo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "descriptions"
+  },
+  {
+    "id": "en_es_2304",
+    "source": "curriculum",
+    "our_target": "plan de estudios",
+    "deepl_target": "curriculum",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "education"
+  },
+  {
+    "id": "en_es_0883",
+    "source": "journal",
+    "our_target": "diario",
+    "deepl_target": "revista",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "education"
+  },
+  {
+    "id": "en_es_0865",
+    "source": "principal",
+    "our_target": "director",
+    "deepl_target": "principal",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "education"
+  },
+  {
+    "id": "en_es_1696",
+    "source": "scholar",
+    "our_target": "erudito",
+    "deepl_target": "becario",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "education"
+  },
+  {
+    "id": "en_es_3805",
+    "source": "afraid",
+    "our_target": "asustado",
+    "deepl_target": "miedo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "emotions"
+  },
+  {
+    "id": "en_es_2922",
+    "source": "angry",
+    "our_target": "enojado",
+    "deepl_target": "enfadado",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "emotions"
+  },
+  {
+    "id": "en_es_2420",
+    "source": "comfort",
+    "our_target": "comodidad",
+    "deepl_target": "confort",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "emotions"
+  },
+  {
+    "id": "en_es_1973",
+    "source": "cope",
+    "our_target": "lidiar",
+    "deepl_target": "cope",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "emotions"
+  },
+  {
+    "id": "en_es_1529",
+    "source": "encourage",
+    "our_target": "animar",
+    "deepl_target": "fomentar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "emotions"
+  },
+  {
+    "id": "en_es_4768",
+    "source": "excite",
+    "our_target": "emocionar",
+    "deepl_target": "excite",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "emotions"
+  },
+  {
+    "id": "en_es_0142",
+    "source": "feel",
+    "our_target": "sentir",
+    "deepl_target": "siente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "emotions"
+  },
+  {
+    "id": "en_es_2791",
+    "source": "grieve",
+    "our_target": "lamentar",
+    "deepl_target": "grieve",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "emotions"
+  },
+  {
+    "id": "en_es_1799",
+    "source": "laugh",
+    "our_target": "reír",
+    "deepl_target": "ríete",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "emotions"
+  },
+  {
+    "id": "en_es_0047",
+    "source": "lonely",
+    "our_target": "solo",
+    "deepl_target": "solitario",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "emotions"
+  },
+  {
+    "id": "en_es_4206",
+    "source": "praise",
+    "our_target": "elogio",
+    "deepl_target": "alabanza",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "emotions"
+  },
+  {
+    "id": "en_es_4398",
+    "source": "relief",
+    "our_target": "alivio",
+    "deepl_target": "ayuda",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "emotions"
+  },
+  {
+    "id": "en_es_2911",
+    "source": "to miss (feel absence)",
+    "our_target": "extrañar",
+    "deepl_target": "echar de menos (sentir ausencia)",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "emotions"
+  },
+  {
+    "id": "en_es_0154",
+    "source": "want",
+    "our_target": "querer",
+    "deepl_target": "desea",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "emotions"
+  },
+  {
+    "id": "en_es_3105",
+    "source": "chop",
+    "our_target": "picar",
+    "deepl_target": "chop",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "food"
+  },
+  {
+    "id": "en_es_2564",
+    "source": "feast",
+    "our_target": "festín",
+    "deepl_target": "fiesta",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "food"
+  },
+  {
+    "id": "en_es_2703",
+    "source": "fish",
+    "our_target": "pez",
+    "deepl_target": "pescado",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "food"
+  },
+  {
+    "id": "en_es_0930",
+    "source": "food",
+    "our_target": "comida",
+    "deepl_target": "alimentos",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "food"
+  },
+  {
+    "id": "en_es_2898",
+    "source": "potato",
+    "our_target": "papa",
+    "deepl_target": "patata",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "food"
+  },
+  {
+    "id": "en_es_3083",
+    "source": "raw",
+    "our_target": "crudo",
+    "deepl_target": "en bruto",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "food"
+  },
+  {
+    "id": "en_es_2234",
+    "source": "taste",
+    "our_target": "sabor",
+    "deepl_target": "pruebe",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "food"
+  },
+  {
+    "id": "en_es_1936",
+    "source": "tip",
+    "our_target": "propina",
+    "deepl_target": "consejo",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "food"
+  },
+  {
+    "id": "en_es_3547",
+    "source": "vegetable",
+    "our_target": "vegetal",
+    "deepl_target": "verduras",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "food"
+  },
+  {
+    "id": "en_es_1908",
+    "source": "waiter",
+    "our_target": "mesero",
+    "deepl_target": "camarero",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "food"
+  },
+  {
+    "id": "en_es_1987",
+    "source": "to thank",
+    "our_target": "agradecer",
+    "deepl_target": "dar las gracias",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "greetings"
+  },
+  {
+    "id": "en_es_2476",
+    "source": "disorder",
+    "our_target": "desorden",
+    "deepl_target": "trastorno",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "health"
+  },
+  {
+    "id": "en_es_0765",
+    "source": "doctor",
+    "our_target": "médico",
+    "deepl_target": "doctor",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "health"
+  },
+  {
+    "id": "en_es_1633",
+    "source": "heal",
+    "our_target": "sanar",
+    "deepl_target": "curar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "health"
+  },
+  {
+    "id": "en_es_0320",
+    "source": "hurt",
+    "our_target": "lastimar",
+    "deepl_target": "herido",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "health"
+  },
+  {
+    "id": "en_es_4751",
+    "source": "pill",
+    "our_target": "pastilla",
+    "deepl_target": "píldora",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "health"
+  },
+  {
+    "id": "en_es_1676",
+    "source": "plague",
+    "our_target": "plaga",
+    "deepl_target": "peste",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "health"
+  },
+  {
+    "id": "en_es_2859",
+    "source": "prescribe",
+    "our_target": "recetar",
+    "deepl_target": "prescribir",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "health"
+  },
+  {
+    "id": "en_es_2986",
+    "source": "dwell",
+    "our_target": "habitar",
+    "deepl_target": "morar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "home"
+  },
+  {
+    "id": "en_es_0485",
+    "source": "fence",
+    "our_target": "cerca",
+    "deepl_target": "valla",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "home"
+  },
+  {
+    "id": "en_es_0922",
+    "source": "floor",
+    "our_target": "piso",
+    "deepl_target": "suelo",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "home"
+  },
+  {
+    "id": "en_es_2687",
+    "source": "fork",
+    "our_target": "tenedor",
+    "deepl_target": "horquilla",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "home"
+  },
+  {
+    "id": "en_es_2396",
+    "source": "glass",
+    "our_target": "vaso",
+    "deepl_target": "vidrio",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "home"
+  },
+  {
+    "id": "en_es_1181",
+    "source": "home",
+    "our_target": "hogar",
+    "deepl_target": "Inicio",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "home"
+  },
+  {
+    "id": "en_es_4261",
+    "source": "iron",
+    "our_target": "plancha",
+    "deepl_target": "hierro",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "home"
+  },
+  {
+    "id": "en_es_2370",
+    "source": "key",
+    "our_target": "llave",
+    "deepl_target": "clave",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "home"
+  },
+  {
+    "id": "en_es_0677",
+    "source": "ornament",
+    "our_target": "ornamento",
+    "deepl_target": "adorno",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "home"
+  },
+  {
+    "id": "en_es_3343",
+    "source": "refrigerator",
+    "our_target": "refrigerador",
+    "deepl_target": "frigorífico",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "home"
+  },
+  {
+    "id": "en_es_1572",
+    "source": "roof",
+    "our_target": "techo",
+    "deepl_target": "tejado",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "home"
+  },
+  {
+    "id": "en_es_0401",
+    "source": "table",
+    "our_target": "mesa",
+    "deepl_target": "tabla",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "home"
+  },
+  {
+    "id": "en_es_2003",
+    "source": "breed",
+    "our_target": "criar",
+    "deepl_target": "raza",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "nature"
+  },
+  {
+    "id": "en_es_1447",
+    "source": "cat",
+    "our_target": "gato",
+    "deepl_target": "cat",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "nature"
+  },
+  {
+    "id": "en_es_3046",
+    "source": "crop",
+    "our_target": "cosecha",
+    "deepl_target": "cultivo",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "nature"
+  },
+  {
+    "id": "en_es_2184",
+    "source": "disaster",
+    "our_target": "desastre",
+    "deepl_target": "catástrofe",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "nature"
+  },
+  {
+    "id": "en_es_1587",
+    "source": "erupt",
+    "our_target": "erupcionar",
+    "deepl_target": "entrar en erupción",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "nature"
+  },
+  {
+    "id": "en_es_1273",
+    "source": "forecast",
+    "our_target": "pronóstico",
+    "deepl_target": "previsión",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "nature"
+  },
+  {
+    "id": "en_es_1635",
+    "source": "fur",
+    "our_target": "pelaje",
+    "deepl_target": "piel",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "nature"
+  },
+  {
+    "id": "en_es_0356",
+    "source": "land",
+    "our_target": "tierra",
+    "deepl_target": "terreno",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "nature"
+  },
+  {
+    "id": "en_es_3926",
+    "source": "pole",
+    "our_target": "polo",
+    "deepl_target": "poste",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "nature"
+  },
+  {
+    "id": "en_es_3582",
+    "source": "specimen",
+    "our_target": "espécimen",
+    "deepl_target": "muestra",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "nature"
+  },
+  {
+    "id": "en_es_2730",
+    "source": "wave",
+    "our_target": "ola",
+    "deepl_target": "onda",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "nature"
+  },
+  {
+    "id": "en_es_1788",
+    "source": "weather",
+    "our_target": "clima",
+    "deepl_target": "tiempo",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "nature"
+  },
+  {
+    "id": "en_es_0636",
+    "source": "average",
+    "our_target": "promedio",
+    "deepl_target": "media",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "numbers"
+  },
+  {
+    "id": "en_es_0637",
+    "source": "half",
+    "our_target": "mitad",
+    "deepl_target": "medio",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "numbers"
+  },
+  {
+    "id": "en_es_2218",
+    "source": "ratio",
+    "our_target": "proporción",
+    "deepl_target": "relación",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "numbers"
+  },
+  {
+    "id": "en_es_1675",
+    "source": "advocate",
+    "our_target": "abogar",
+    "deepl_target": "defensor",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "society"
+  },
+  {
+    "id": "en_es_1159",
+    "source": "alien",
+    "our_target": "extranjero",
+    "deepl_target": "alien",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "society"
+  },
+  {
+    "id": "en_es_4315",
+    "source": "ally",
+    "our_target": "aliado",
+    "deepl_target": "ally",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "society"
+  },
+  {
+    "id": "en_es_0223",
+    "source": "boy",
+    "our_target": "niño",
+    "deepl_target": "chico",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "society"
+  },
+  {
+    "id": "en_es_1926",
+    "source": "crime",
+    "our_target": "crimen",
+    "deepl_target": "delito",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "society"
+  },
+  {
+    "id": "en_es_0695",
+    "source": "custom",
+    "our_target": "costumbre",
+    "deepl_target": "personalizado",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "society"
+  },
+  {
+    "id": "en_es_1282",
+    "source": "enforce",
+    "our_target": "hacer cumplir",
+    "deepl_target": "aplicar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "society"
+  },
+  {
+    "id": "en_es_2366",
+    "source": "evidence",
+    "our_target": "evidencia",
+    "deepl_target": "pruebas",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "society"
+  },
+  {
+    "id": "en_es_1077",
+    "source": "girl",
+    "our_target": "niña",
+    "deepl_target": "chica",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "society"
+  },
+  {
+    "id": "en_es_2313",
+    "source": "heritage",
+    "our_target": "herencia",
+    "deepl_target": "patrimonio",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "society"
+  },
+  {
+    "id": "en_es_2924",
+    "source": "husband",
+    "our_target": "esposo",
+    "deepl_target": "marido",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "society"
+  },
+  {
+    "id": "en_es_2570",
+    "source": "infant",
+    "our_target": "infante",
+    "deepl_target": "bebé",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "society"
+  },
+  {
+    "id": "en_es_2013",
+    "source": "offense",
+    "our_target": "ofensa",
+    "deepl_target": "delito",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "society"
+  },
+  {
+    "id": "en_es_0619",
+    "source": "peer",
+    "our_target": "compañero",
+    "deepl_target": "peer",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "society"
+  },
+  {
+    "id": "en_es_3238",
+    "source": "penalty",
+    "our_target": "penalización",
+    "deepl_target": "sanción",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "society"
+  },
+  {
+    "id": "en_es_2825",
+    "source": "sentence",
+    "our_target": "sentencia",
+    "deepl_target": "frase",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "society"
+  },
+  {
+    "id": "en_es_0381",
+    "source": "town",
+    "our_target": "pueblo",
+    "deepl_target": "ciudad",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "society"
+  },
+  {
+    "id": "en_es_0885",
+    "source": "trial",
+    "our_target": "juicio",
+    "deepl_target": "ensayo",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "society"
+  },
+  {
+    "id": "en_es_3738",
+    "source": "village",
+    "our_target": "aldea",
+    "deepl_target": "pueblo",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "society"
+  },
+  {
+    "id": "en_es_4234",
+    "source": "broadcast",
+    "our_target": "transmisión",
+    "deepl_target": "difusión",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "technology"
+  },
+  {
+    "id": "en_es_1452",
+    "source": "compute",
+    "our_target": "computar",
+    "deepl_target": "calcula",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "technology"
+  },
+  {
+    "id": "en_es_4433",
+    "source": "computer",
+    "our_target": "computadora",
+    "deepl_target": "ordenador",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "technology"
+  },
+  {
+    "id": "en_es_0432",
+    "source": "again",
+    "our_target": "otra vez",
+    "deepl_target": "de nuevo",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": "time"
+  },
+  {
+    "id": "en_es_1383",
+    "source": "early",
+    "our_target": "temprano",
+    "deepl_target": "principios de",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "time"
+  },
+  {
+    "id": "en_es_2529",
+    "source": "eventually",
+    "our_target": "eventualmente",
+    "deepl_target": "finalmente",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": "time"
+  },
+  {
+    "id": "en_es_4039",
+    "source": "frequently",
+    "our_target": "frecuentemente",
+    "deepl_target": "con frecuencia",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": "time"
+  },
+  {
+    "id": "en_es_0003",
+    "source": "later",
+    "our_target": "después",
+    "deepl_target": "más tarde",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": "time"
+  },
+  {
+    "id": "en_es_1500",
+    "source": "previous",
+    "our_target": "previo",
+    "deepl_target": "anterior",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "time"
+  },
+  {
+    "id": "en_es_1595",
+    "source": "prior",
+    "our_target": "previo",
+    "deepl_target": "anterior",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adjective",
+    "category": "time"
+  },
+  {
+    "id": "en_es_0311",
+    "source": "yet",
+    "our_target": "todavía",
+    "deepl_target": "pero",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "adverb",
+    "category": "time"
+  },
+  {
+    "id": "en_es_1364",
+    "source": "departure",
+    "our_target": "partida",
+    "deepl_target": "salida",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "travel"
+  },
+  {
+    "id": "en_es_2781",
+    "source": "lodge",
+    "our_target": "alojamiento",
+    "deepl_target": "albergue",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "travel"
+  },
+  {
+    "id": "en_es_2596",
+    "source": "ticket",
+    "our_target": "boleto",
+    "deepl_target": "billete",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "travel"
+  },
+  {
+    "id": "en_es_1231",
+    "source": "appoint",
+    "our_target": "nombrar",
+    "deepl_target": "designar",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "work"
+  },
+  {
+    "id": "en_es_0216",
+    "source": "bill",
+    "our_target": "cuenta",
+    "deepl_target": "bill",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "work"
+  },
+  {
+    "id": "en_es_4721",
+    "source": "bonus",
+    "our_target": "bono",
+    "deepl_target": "bonificación",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "work"
+  },
+  {
+    "id": "en_es_0809",
+    "source": "business",
+    "our_target": "negocio",
+    "deepl_target": "empresa",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "work"
+  },
+  {
+    "id": "en_es_1227",
+    "source": "counsel",
+    "our_target": "consejo",
+    "deepl_target": "abogado",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "work"
+  },
+  {
+    "id": "en_es_2399",
+    "source": "deadline",
+    "our_target": "fecha límite",
+    "deepl_target": "plazo",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "work"
+  },
+  {
+    "id": "en_es_1407",
+    "source": "manager",
+    "our_target": "gerente",
+    "deepl_target": "director",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "work"
+  },
+  {
+    "id": "en_es_1965",
+    "source": "output",
+    "our_target": "producción",
+    "deepl_target": "salida",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "work"
+  },
+  {
+    "id": "en_es_3861",
+    "source": "portfolio",
+    "our_target": "portafolio",
+    "deepl_target": "cartera",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "work"
+  },
+  {
+    "id": "en_es_3524",
+    "source": "premium",
+    "our_target": "prima",
+    "deepl_target": "premium",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "work"
+  },
+  {
+    "id": "en_es_4572",
+    "source": "profit",
+    "our_target": "ganancia",
+    "deepl_target": "beneficio",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "work"
+  },
+  {
+    "id": "en_es_4750",
+    "source": "qualification",
+    "our_target": "calificación",
+    "deepl_target": "cualificación",
+    "match": false,
+    "article": "la",
+    "partOfSpeech": "noun",
+    "category": "work"
+  },
+  {
+    "id": "en_es_1768",
+    "source": "resign",
+    "our_target": "renunciar",
+    "deepl_target": "dimita",
+    "match": false,
+    "article": null,
+    "partOfSpeech": "verb",
+    "category": "work"
+  },
+  {
+    "id": "en_es_2888",
+    "source": "stock",
+    "our_target": "existencias",
+    "deepl_target": "stock",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "work"
+  },
+  {
+    "id": "en_es_3048",
+    "source": "tax",
+    "our_target": "impuesto",
+    "deepl_target": "fiscal",
+    "match": false,
+    "article": "el",
+    "partOfSpeech": "noun",
+    "category": "work"
+  }
+]

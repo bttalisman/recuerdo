@@ -94,12 +94,16 @@ def score_sentence(text, word):
     elif length > 30:
         score -= 5
 
-    # Strong preference for sentences containing the exact word
+    # HARD REQUIREMENT: sentence must contain the target word
     pattern = r'\b' + re.escape(word.lower()) + r'\b'
     if re.search(pattern, text.lower()):
         score += 20
     else:
-        score -= 30
+        # Also try matching without word boundaries (for Spanish conjugations)
+        if word.lower() in text.lower():
+            score += 10
+        else:
+            return None  # reject entirely
 
     # Penalize sentences with unusual characters or likely metadata
     if any(c in text for c in ['[', ']', '{', '}', '<', '>']):

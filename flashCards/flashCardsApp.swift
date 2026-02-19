@@ -44,8 +44,11 @@ struct flashCardsApp: App {
         .modelContainer(sharedModelContainer)
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
-                let context = ModelContext(sharedModelContainer)
-                NotificationManager.shared.rescheduleNotifications(context: context)
+                let container = sharedModelContainer
+                DispatchQueue.global(qos: .utility).async {
+                    let context = ModelContext(container)
+                    NotificationManager.shared.rescheduleNotifications(context: context)
+                }
             }
         }
     }
