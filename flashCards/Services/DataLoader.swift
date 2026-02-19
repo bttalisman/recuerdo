@@ -53,12 +53,16 @@ struct DataLoader {
                 existingMeta!.totalWords = deck.words.count
                 existingMeta!.lastSeedDate = Date()
 
+                // Batch-fetch all cards for this deck once to avoid per-word queries
+                let allDescriptor = FetchDescriptor<FlashCard>()
+                let allCards = (try? context.fetch(allDescriptor)) ?? []
+                var cardMap: [String: FlashCard] = [:]
+                for card in allCards where card.deckId == deckId {
+                    cardMap[card.wordId] = card
+                }
+
                 for (index, word) in deck.words.enumerated() {
-                    let wordId = word.id
-                    let cardDescriptor = FetchDescriptor<FlashCard>(
-                        predicate: #Predicate { $0.wordId == wordId }
-                    )
-                    if let existingCard = try? context.fetch(cardDescriptor).first {
+                    if let existingCard = cardMap[word.id] {
                         // Update JSON-sourced fields only, preserve SR state
                         existingCard.sourceText = word.source
                         existingCard.targetText = word.target

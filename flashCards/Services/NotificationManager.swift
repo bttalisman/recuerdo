@@ -53,7 +53,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
 
     func sendTestNotification() {
         let content = UNMutableNotificationContent()
-        content.title = "Chispa"
+        content.title = "Recuerdo"
         content.body = "This is a test notification. Your words are waiting!"
         content.sound = .default
 
@@ -139,7 +139,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
 
     private func scheduleReminder(day: Date, hour: Int, dueCount: Int, identifier: String) {
         let content = UNMutableNotificationContent()
-        content.title = "Chispa"
+        content.title = "Recuerdo"
         if dueCount == 1 {
             content.body = "1 word is ready for review."
         } else {

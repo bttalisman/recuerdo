@@ -141,7 +141,7 @@ struct SettingsView: View {
                         NavigationLink {
                             AboutView()
                         } label: {
-                            Label("About Chispa", systemImage: "info.circle")
+                            Label("About Recuerdo", systemImage: "info.circle")
                         }
                     }
 

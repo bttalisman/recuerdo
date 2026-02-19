@@ -37,7 +37,10 @@ struct flashCardsApp: App {
         WindowGroup {
             ContentView()
                 .onAppear {
-                    DataLoader.seedIfNeeded(container: sharedModelContainer)
+                    let container = sharedModelContainer
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        DataLoader.seedIfNeeded(container: container)
+                    }
                     NotificationManager.shared.requestAuthorization()
                 }
         }

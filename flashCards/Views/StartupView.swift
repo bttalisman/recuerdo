@@ -74,7 +74,7 @@ struct StartupView: View {
                     .opacity(boltOpacity)
 
                 VStack(spacing: 6) {
-                    Text("Chispa")
+                    Text("Recuerdo")
                         .font(.system(size: 42, weight: .bold, design: .rounded))
                         .foregroundStyle(
                             LinearGradient(
@@ -106,7 +106,7 @@ struct StartupView: View {
         }
 
         // Bolt drops in
-        withAnimation(.spring(response: 0.6, dampingFraction: 0.55).delay(0.6)) {
+        withAnimation(.spring(response: 0.25, dampingFraction: 0.55).delay(0.6)) {
             boltOffset = 0
             boltOpacity = 1
         }

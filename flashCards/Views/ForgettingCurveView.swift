@@ -253,7 +253,7 @@ struct ForgettingCurveView: View {
             }
 
             if showTimingInfo {
-                Text("Each word has a **stability** value (S) — the number of days it takes for your recall to drop to 90%. Higher stability means the memory lasts longer.\n\n**\"Review by day X\"** is the latest you should review words in that tier before retention drops below 90%. Chispa uses these values to schedule your reviews automatically.\n\n**Strong** words have high stability and can wait longer between reviews. **Weak** words fade faster and need more frequent practice.")
+                Text("Each word has a **stability** value (S) — the number of days it takes for your recall to drop to 90%. Higher stability means the memory lasts longer.\n\n**\"Review by day X\"** is the latest you should review words in that tier before retention drops below 90%. Recuerdo uses these values to schedule your reviews automatically.\n\n**Strong** words have high stability and can wait longer between reviews. **Weak** words fade faster and need more frequent practice.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .padding(10)

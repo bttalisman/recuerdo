@@ -4,7 +4,7 @@
   "sourceLanguageCode": "en",
   "targetLanguage": "Spanish",
   "targetLanguageCode": "es",
-  "version": 12,
+  "version": 13,
   "words": [
     {
       "id": "en_es_0001",
@@ -3208,7 +3208,7 @@
       "source": "envelope",
       "target": "sobre",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "home",
       "difficulty": 48,
       "article": "el",
       "examples": [
@@ -5071,7 +5071,7 @@
       "source": "pathway",
       "target": "camino",
       "partOfSpeech": "noun",
-      "category": "abstract",
+      "category": "travel",
       "difficulty": 319,
       "article": "el",
       "examples": [
@@ -5417,7 +5417,7 @@
       "target": "obra",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "work",
       "difficulty": 206,
       "examples": [
         {
@@ -6567,7 +6567,7 @@
       "target": "ciento",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 300,
       "examples": [
         {
@@ -7832,7 +7832,7 @@
       "target": "estudio",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "education",
       "difficulty": 321,
       "examples": [
         {
@@ -8532,7 +8532,7 @@
       "target": "trabajar",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "work",
       "difficulty": 183,
       "examples": [
         {
@@ -8623,7 +8623,7 @@
       "source": "cluster",
       "target": "grupo",
       "partOfSpeech": "noun",
-      "category": "abstract",
+      "category": "society",
       "difficulty": 216,
       "article": "el",
       "examples": [
@@ -9129,7 +9129,7 @@
       "source": "die",
       "target": "morir",
       "partOfSpeech": "verb",
-      "category": "abstract",
+      "category": "actions",
       "difficulty": 293,
       "article": null,
       "examples": [
@@ -9770,7 +9770,7 @@
       "target": "viaje",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "travel",
       "difficulty": 431,
       "examples": [
         {
@@ -11720,7 +11720,7 @@
       "source": "game",
       "target": "juego",
       "partOfSpeech": "noun",
-      "category": "actions",
+      "category": "society",
       "difficulty": 371,
       "article": "el",
       "examples": [
@@ -11973,7 +11973,7 @@
       "source": "match",
       "target": "partido",
       "partOfSpeech": "noun",
-      "category": "actions",
+      "category": "society",
       "difficulty": 425,
       "article": "el",
       "examples": [
@@ -13604,7 +13604,7 @@
       "target": "animal",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "nature",
       "difficulty": 497,
       "examples": [
         {
@@ -14309,7 +14309,7 @@
       "target": "gusto",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "emotions",
       "difficulty": 593,
       "examples": [
         {
@@ -14600,7 +14600,7 @@
       "target": "funcionar",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "work",
       "difficulty": 692,
       "examples": [
         {
@@ -16858,7 +16858,7 @@
       "target": "veinte",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 582,
       "examples": [
         {
@@ -18263,7 +18263,7 @@
       "target": "cincuenta",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 782,
       "examples": [
         {
@@ -18493,7 +18493,7 @@
       "target": "treinta",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 722,
       "examples": [
         {
@@ -19504,7 +19504,7 @@
       "source": "investigation",
       "target": "investigación",
       "partOfSpeech": "noun",
-      "category": "society",
+      "category": "education",
       "difficulty": 890,
       "article": "la",
       "examples": [
@@ -19574,7 +19574,7 @@
       "target": "compañía",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "work",
       "difficulty": 798,
       "examples": [
         {
@@ -20118,7 +20118,7 @@
       "target": "verano",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 893,
       "examples": [
         {
@@ -20371,7 +20371,7 @@
       "target": "puesto",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "work",
       "difficulty": 755,
       "examples": [
         {
@@ -20601,7 +20601,7 @@
       "target": "preocupar(se) (v)",
       "article": null,
       "partOfSpeech": null,
-      "category": null,
+      "category": "emotions",
       "difficulty": 766,
       "examples": [
         {
@@ -20670,7 +20670,7 @@
       "target": "letra",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "education",
       "difficulty": 865,
       "examples": [
         {
@@ -20693,7 +20693,7 @@
       "target": "lenguaje",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "education",
       "difficulty": 841,
       "examples": [
         {
@@ -20831,7 +20831,7 @@
       "target": "doctor",
       "article": null,
       "partOfSpeech": "noun",
-      "category": null,
+      "category": "health",
       "difficulty": 778,
       "examples": [
         {
@@ -21010,7 +21010,7 @@
       "source": "movie",
       "target": "película",
       "partOfSpeech": "noun",
-      "category": "abstract",
+      "category": "society",
       "difficulty": 826,
       "article": "la",
       "examples": [
@@ -21655,7 +21655,7 @@
       "target": "terreno",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "nature",
       "difficulty": 796,
       "examples": [
         {
@@ -21908,7 +21908,7 @@
       "target": "doce",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 823,
       "examples": [
         {
@@ -22382,7 +22382,7 @@
       "source": "encounter",
       "target": "encuentro",
       "partOfSpeech": "noun",
-      "category": "actions",
+      "category": "society",
       "difficulty": 836,
       "article": "el",
       "examples": [
@@ -23899,7 +23899,7 @@
       "target": "quince",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 1033,
       "examples": [
         {
@@ -24128,7 +24128,7 @@
       "source": "bacteria",
       "target": "bacteria",
       "partOfSpeech": "noun",
-      "category": "nature",
+      "category": "health",
       "difficulty": 1091,
       "article": "la",
       "examples": [
@@ -24543,7 +24543,7 @@
       "target": "manejar",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "travel",
       "difficulty": 916,
       "examples": [
         {
@@ -24922,7 +24922,7 @@
       "target": "labor",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "work",
       "difficulty": 930,
       "examples": [
         {
@@ -24987,7 +24987,7 @@
       "target": "marido",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "society",
       "difficulty": 1032,
       "examples": [
         {
@@ -25554,7 +25554,7 @@
       "target": "alumno",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "education",
       "difficulty": 969,
       "examples": [
         {
@@ -26125,7 +26125,7 @@
       "target": "cuarenta",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 943,
       "examples": [
         {
@@ -26194,7 +26194,7 @@
       "target": "maestro",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "education",
       "difficulty": 961,
       "examples": [
         {
@@ -27059,7 +27059,7 @@
       "source": "gesture",
       "target": "gesto",
       "partOfSpeech": "noun",
-      "category": "actions",
+      "category": "body",
       "difficulty": 1065,
       "article": "el",
       "examples": [
@@ -27658,7 +27658,7 @@
       "target": "gana",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "emotions",
       "difficulty": 1177,
       "examples": [
         {
@@ -28907,7 +28907,7 @@
       "target": "agosto",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 1244,
       "examples": [
         {
@@ -28949,7 +28949,7 @@
       "target": "temor",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "emotions",
       "difficulty": 1154,
       "examples": [
         {
@@ -29087,7 +29087,7 @@
       "target": "tranquilo",
       "article": null,
       "partOfSpeech": "adjective",
-      "category": null,
+      "category": "emotions",
       "difficulty": 1144,
       "examples": [
         {
@@ -30365,7 +30365,7 @@
       "target": "alimento",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "food",
       "difficulty": 1143,
       "examples": [
         {
@@ -31149,7 +31149,7 @@
       "target": "domingo",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 1121,
       "examples": [
         {
@@ -31938,7 +31938,7 @@
       "target": "ropa",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "clothing",
       "difficulty": 1285,
       "examples": [
         {
@@ -32122,7 +32122,7 @@
       "target": "diciembre",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 1341,
       "examples": [
         {
@@ -32191,7 +32191,7 @@
       "target": "enero",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 1449,
       "examples": [
         {
@@ -32214,7 +32214,7 @@
       "target": "invierno",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 1340,
       "examples": [
         {
@@ -32547,7 +32547,7 @@
       "target": "confiar",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "emotions",
       "difficulty": 1423,
       "examples": [
         {
@@ -32723,7 +32723,7 @@
       "target": "tratamiento",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "health",
       "difficulty": 1418,
       "examples": [
         {
@@ -33341,7 +33341,7 @@
       "source": "show (performance)",
       "target": "espectáculo",
       "partOfSpeech": "verb",
-      "category": "actions",
+      "category": "society",
       "difficulty": 1420,
       "article": null,
       "examples": [
@@ -33495,7 +33495,7 @@
       "target": "triste",
       "article": null,
       "partOfSpeech": "adjective",
-      "category": null,
+      "category": "emotions",
       "difficulty": 1314,
       "examples": [
         {
@@ -33518,7 +33518,7 @@
       "target": "plazo",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "work",
       "difficulty": 1295,
       "examples": [
         {
@@ -33804,7 +33804,7 @@
       "target": "vestir",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "clothing",
       "difficulty": 1317,
       "examples": [
         {
@@ -34057,7 +34057,7 @@
       "target": "sorprender",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "emotions",
       "difficulty": 1320,
       "examples": [
         {
@@ -34417,7 +34417,7 @@
       "target": "empleo",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "work",
       "difficulty": 1436,
       "examples": [
         {
@@ -34478,7 +34478,7 @@
       "target": "temer",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "emotions",
       "difficulty": 1387,
       "examples": [
         {
@@ -34630,7 +34630,7 @@
       "source": "press",
       "target": "prensa",
       "partOfSpeech": "noun",
-      "category": "actions",
+      "category": "society",
       "difficulty": 1318,
       "article": "la",
       "examples": [
@@ -35240,7 +35240,7 @@
       "target": "once",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 1455,
       "examples": [
         {
@@ -35446,7 +35446,7 @@
       "source": "hook",
       "target": "gancho",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "home",
       "difficulty": 1296,
       "article": "el",
       "examples": [
@@ -35665,7 +35665,7 @@
       "target": "sesenta",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 1306,
       "examples": [
         {
@@ -35688,7 +35688,7 @@
       "target": "mayo",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 1422,
       "examples": [
         {
@@ -36426,7 +36426,7 @@
       "target": "oficio",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "work",
       "difficulty": 1644,
       "examples": [
         {
@@ -36541,7 +36541,7 @@
       "target": "julio",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 1559,
       "examples": [
         {
@@ -37547,7 +37547,7 @@
       "source": "arena",
       "target": "arena",
       "partOfSpeech": "noun",
-      "category": "actions",
+      "category": "travel",
       "difficulty": 1635,
       "article": "la",
       "examples": [
@@ -38784,7 +38784,7 @@
       "target": "contento",
       "article": null,
       "partOfSpeech": "adjective",
-      "category": null,
+      "category": "emotions",
       "difficulty": 1642,
       "examples": [
         {
@@ -39171,7 +39171,7 @@
       "target": "soñar",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "emotions",
       "difficulty": 1593,
       "examples": [
         {
@@ -39687,7 +39687,7 @@
       "target": "amar",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "emotions",
       "difficulty": 1486,
       "examples": [
         {
@@ -39825,7 +39825,7 @@
       "target": "fruto",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "food",
       "difficulty": 1490,
       "examples": [
         {
@@ -40078,7 +40078,7 @@
       "target": "quejar",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "emotions",
       "difficulty": 1530,
       "examples": [
         {
@@ -40317,7 +40317,7 @@
       "source": "pump",
       "target": "bomba",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "technology",
       "difficulty": 1562,
       "article": "la",
       "examples": [
@@ -40870,7 +40870,7 @@
       "target": "octubre",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 1688,
       "examples": [
         {
@@ -41419,7 +41419,7 @@
       "target": "traje",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "clothing",
       "difficulty": 1710,
       "examples": [
         {
@@ -41554,7 +41554,7 @@
       "target": "setenta",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 1773,
       "examples": [
         {
@@ -42062,7 +42062,7 @@
       "target": "amiga",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "society",
       "difficulty": 1817,
       "examples": [
         {
@@ -42177,7 +42177,7 @@
       "target": "febrero",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 1722,
       "examples": [
         {
@@ -43075,7 +43075,7 @@
       "source": "waiter",
       "target": "mesero",
       "partOfSpeech": "noun",
-      "category": "food",
+      "category": "work",
       "difficulty": 1683,
       "article": "el",
       "examples": [
@@ -43145,7 +43145,7 @@
       "target": "vuelo",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "travel",
       "difficulty": 1665,
       "examples": [
         {
@@ -43604,7 +43604,7 @@
       "target": "sueldo",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "work",
       "difficulty": 1770,
       "examples": [
         {
@@ -43650,7 +43650,7 @@
       "target": "grito",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "emotions",
       "difficulty": 1671,
       "examples": [
         {
@@ -43695,7 +43695,7 @@
       "source": "tip",
       "target": "propina",
       "partOfSpeech": "noun",
-      "category": "food",
+      "category": "work",
       "difficulty": 1683,
       "article": "la",
       "examples": [
@@ -43784,7 +43784,7 @@
       "target": "sábado",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 1816,
       "examples": [
         {
@@ -45750,7 +45750,7 @@
       "target": "carro",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "travel",
       "difficulty": 1871,
       "examples": [
         {
@@ -47189,7 +47189,7 @@
       "source": "dress",
       "target": "vestido",
       "partOfSpeech": "noun",
-      "category": "home",
+      "category": "clothing",
       "difficulty": 1870,
       "article": "el",
       "examples": [
@@ -47661,7 +47661,7 @@
       "target": "abril",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 1922,
       "examples": [
         {
@@ -47730,7 +47730,7 @@
       "target": "marzo",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 2002,
       "examples": [
         {
@@ -48579,7 +48579,7 @@
       "target": "monte",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "nature",
       "difficulty": 1844,
       "examples": [
         {
@@ -48808,7 +48808,7 @@
       "source": "shoe",
       "target": "zapato",
       "partOfSpeech": "noun",
-      "category": "home",
+      "category": "clothing",
       "difficulty": 1932,
       "article": "el",
       "examples": [
@@ -49206,7 +49206,7 @@
       "target": "felicidad",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "emotions",
       "difficulty": 1892,
       "examples": [
         {
@@ -50407,7 +50407,7 @@
       "target": "pata",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "body",
       "difficulty": 2052,
       "examples": [
         {
@@ -50568,7 +50568,7 @@
       "target": "rostro",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "body",
       "difficulty": 2040,
       "examples": [
         {
@@ -50999,7 +50999,7 @@
       "target": "ruta",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "travel",
       "difficulty": 2113,
       "examples": [
         {
@@ -51068,7 +51068,7 @@
       "target": "noviembre",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 2148,
       "examples": [
         {
@@ -51136,7 +51136,7 @@
       "source": "sport",
       "target": "deporte",
       "partOfSpeech": "noun",
-      "category": "actions",
+      "category": "society",
       "difficulty": 2019,
       "article": "el",
       "examples": [
@@ -52136,7 +52136,7 @@
       "target": "ochenta",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 2120,
       "examples": [
         {
@@ -52364,7 +52364,7 @@
       "target": "llover",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "nature",
       "difficulty": 2053,
       "examples": [
         {
@@ -52448,7 +52448,7 @@
       "target": "soledad",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "emotions",
       "difficulty": 2116,
       "examples": [
         {
@@ -53130,7 +53130,7 @@
       "target": "doler",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "health",
       "difficulty": 2037,
       "examples": [
         {
@@ -53153,7 +53153,7 @@
       "target": "selva",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "nature",
       "difficulty": 2138,
       "examples": [
         {
@@ -53613,7 +53613,7 @@
       "target": "trece",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 2115,
       "examples": [
         {
@@ -53727,7 +53727,7 @@
       "source": "pocket",
       "target": "bolsillo",
       "partOfSpeech": "noun",
-      "category": "home",
+      "category": "clothing",
       "difficulty": 2121,
       "article": "el",
       "examples": [
@@ -53888,7 +53888,7 @@
       "source": "league",
       "target": "liga",
       "partOfSpeech": "noun",
-      "category": "actions",
+      "category": "society",
       "difficulty": 2022,
       "article": "la",
       "examples": [
@@ -54004,7 +54004,7 @@
       "target": "lunes",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 2187,
       "examples": [
         {
@@ -54279,7 +54279,7 @@
       "source": "log",
       "target": "registro",
       "partOfSpeech": "noun",
-      "category": "nature",
+      "category": "work",
       "difficulty": 2214,
       "article": "el",
       "examples": [
@@ -54640,7 +54640,7 @@
       "target": "primavera",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "time",
       "difficulty": 2325,
       "examples": [
         {
@@ -54885,7 +54885,7 @@
       "target": "ave",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "nature",
       "difficulty": 2207,
       "examples": [
         {
@@ -55268,7 +55268,7 @@
       "target": "veinticinco",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 2311,
       "examples": [
         {
@@ -55528,7 +55528,7 @@
       "target": "recorrido",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "travel",
       "difficulty": 2231,
       "examples": [
         {
@@ -55574,7 +55574,7 @@
       "target": "catorce",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 2278,
       "examples": [
         {
@@ -55807,7 +55807,7 @@
       "target": "mamá",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "society",
       "difficulty": 2286,
       "examples": [
         {
@@ -55876,7 +55876,7 @@
       "target": "cariño",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "emotions",
       "difficulty": 2246,
       "examples": [
         {
@@ -56037,7 +56037,7 @@
       "target": "risa",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "emotions",
       "difficulty": 2192,
       "examples": [
         {
@@ -56083,7 +56083,7 @@
       "target": "bar",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "food",
       "difficulty": 2359,
       "examples": [
         {
@@ -56221,7 +56221,7 @@
       "target": "junio",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 2349,
       "examples": [
         {
@@ -56305,7 +56305,7 @@
       "target": "papá",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "society",
       "difficulty": 2281,
       "examples": [
         {
@@ -56512,7 +56512,7 @@
       "target": "pariente",
       "article": null,
       "partOfSpeech": "noun",
-      "category": null,
+      "category": "society",
       "difficulty": 2297,
       "examples": [
         {
@@ -56830,7 +56830,7 @@
       "target": "alegre",
       "article": null,
       "partOfSpeech": "adjective",
-      "category": null,
+      "category": "emotions",
       "difficulty": 2304,
       "examples": [
         {
@@ -57608,7 +57608,7 @@
       "target": "cero",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 2284,
       "examples": [
         {
@@ -57699,7 +57699,7 @@
       "source": "feast",
       "target": "fiesta",
       "partOfSpeech": "noun",
-      "category": "food",
+      "category": "society",
       "difficulty": 2350,
       "article": "el",
       "examples": [
@@ -58160,7 +58160,7 @@
       "target": "doscientos",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 2344,
       "examples": [
         {
@@ -58741,7 +58741,7 @@
       "source": "shirt",
       "target": "camisa",
       "partOfSpeech": "noun",
-      "category": "home",
+      "category": "clothing",
       "difficulty": 2443,
       "article": "la",
       "examples": [
@@ -59056,7 +59056,7 @@
       "source": "bow",
       "target": "arco",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "home",
       "difficulty": 2412,
       "article": "el",
       "examples": [
@@ -59302,7 +59302,7 @@
       "target": "guiar",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "travel",
       "difficulty": 2522,
       "examples": [
         {
@@ -59608,7 +59608,7 @@
       "target": "viernes",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 2483,
       "examples": [
         {
@@ -59856,7 +59856,7 @@
       "source": "glimpse",
       "target": "vistazo",
       "partOfSpeech": "noun",
-      "category": "actions",
+      "category": "descriptions",
       "difficulty": 2454,
       "article": "el",
       "examples": [
@@ -59948,7 +59948,7 @@
       "source": "glare",
       "target": "deslumbramiento",
       "partOfSpeech": "noun",
-      "category": "actions",
+      "category": "nature",
       "difficulty": 2454,
       "article": "el",
       "examples": []
@@ -60143,7 +60143,7 @@
       "target": "rumbo",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "travel",
       "difficulty": 2414,
       "examples": [
         {
@@ -62102,7 +62102,7 @@
       "target": "pantalón",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "clothing",
       "difficulty": 2489,
       "examples": [
         {
@@ -62286,7 +62286,7 @@
       "target": "despacho",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "work",
       "difficulty": 2487,
       "examples": [
         {
@@ -62760,7 +62760,7 @@
       "source": "lobby",
       "target": "vestíbulo",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "home",
       "difficulty": 2404,
       "article": "el",
       "examples": [
@@ -63170,7 +63170,7 @@
       "source": "contest",
       "target": "concurso",
       "partOfSpeech": "noun",
-      "category": "actions",
+      "category": "society",
       "difficulty": 2628,
       "article": "el",
       "examples": [
@@ -63242,7 +63242,7 @@
       "target": "jueves",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 2606,
       "examples": [
         {
@@ -63445,7 +63445,7 @@
       "source": "sentence",
       "target": "frase",
       "partOfSpeech": "noun",
-      "category": "society",
+      "category": "education",
       "difficulty": 2709,
       "article": "la",
       "examples": [
@@ -63492,7 +63492,7 @@
       "target": "pescado",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "food",
       "difficulty": 2584,
       "examples": [
         {
@@ -63998,7 +63998,7 @@
       "target": "septiembre",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 2574,
       "examples": [
         {
@@ -64673,7 +64673,7 @@
       "target": "bota",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "clothing",
       "difficulty": 2735,
       "examples": [
         {
@@ -66334,7 +66334,7 @@
       "source": "litter",
       "target": "basura",
       "partOfSpeech": "noun",
-      "category": "nature",
+      "category": "home",
       "difficulty": 2594,
       "article": "la",
       "examples": [
@@ -66404,7 +66404,7 @@
       "target": "dieciocho",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 2694,
       "examples": [
         {
@@ -66450,7 +66450,7 @@
       "target": "novio",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "society",
       "difficulty": 2730,
       "examples": [
         {
@@ -66764,7 +66764,7 @@
       "target": "novia",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "society",
       "difficulty": 2726,
       "examples": [
         {
@@ -67194,7 +67194,7 @@
       "target": "nieto",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "society",
       "difficulty": 2615,
       "examples": [
         {
@@ -67351,7 +67351,7 @@
       "target": "dieciséis",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 2793,
       "examples": [
         {
@@ -68041,7 +68041,7 @@
       "target": "sonrisa",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "emotions",
       "difficulty": 2754,
       "examples": [
         {
@@ -68173,7 +68173,7 @@
       "target": "cabello",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "body",
       "difficulty": 2920,
       "examples": [
         {
@@ -70697,7 +70697,7 @@
       "source": "crash",
       "target": "choque",
       "partOfSpeech": "noun",
-      "category": "actions",
+      "category": "travel",
       "difficulty": 2930,
       "article": "el",
       "examples": [
@@ -71711,7 +71711,7 @@
       "target": "billete",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "travel",
       "difficulty": 3070,
       "examples": [
         {
@@ -72108,7 +72108,7 @@
       "target": "miel",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "food",
       "difficulty": 2990,
       "examples": [
         {
@@ -72279,7 +72279,7 @@
       "target": "herir",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "health",
       "difficulty": 3109,
       "examples": [
         {
@@ -72883,7 +72883,7 @@
       "target": "veinticuatro",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 2998,
       "examples": [
         {
@@ -73154,7 +73154,7 @@
       "source": "barrel",
       "target": "barril",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "home",
       "difficulty": 2988,
       "article": "el",
       "examples": [
@@ -76125,7 +76125,7 @@
       "source": "poster",
       "target": "cartel",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "home",
       "difficulty": 3169,
       "article": "el",
       "examples": [
@@ -77045,7 +77045,7 @@
       "target": "alentar",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "emotions",
       "difficulty": 3189,
       "examples": [
         {
@@ -77351,7 +77351,7 @@
       "target": "lástima",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "emotions",
       "difficulty": 3294,
       "examples": [
         {
@@ -77512,7 +77512,7 @@
       "target": "falda",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "clothing",
       "difficulty": 3143,
       "examples": [
         {
@@ -77792,7 +77792,7 @@
       "source": "player (male)",
       "target": "jugador",
       "partOfSpeech": "noun",
-      "category": "actions",
+      "category": "society",
       "difficulty": 3168,
       "article": "el",
       "examples": [
@@ -78890,7 +78890,7 @@
       "source": "ring",
       "target": "anillo",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "clothing",
       "difficulty": 3150,
       "article": "el",
       "examples": [
@@ -79497,7 +79497,7 @@
       "target": "maíz",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "food",
       "difficulty": 3314,
       "examples": [
         {
@@ -80758,7 +80758,7 @@
       "source": "mask",
       "target": "máscara",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "clothing",
       "difficulty": 3449,
       "article": "la",
       "examples": [
@@ -80857,7 +80857,7 @@
       "target": "sierra",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "nature",
       "difficulty": 3390,
       "examples": [
         {
@@ -80903,7 +80903,7 @@
       "target": "miércoles",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 3431,
       "examples": [
         {
@@ -80967,7 +80967,7 @@
       "source": "portion",
       "target": "porción",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "food",
       "difficulty": 3403,
       "article": "la",
       "examples": [
@@ -81098,7 +81098,7 @@
       "target": "trescientos",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 3341,
       "examples": [
         {
@@ -81458,7 +81458,7 @@
       "target": "martes",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "time",
       "difficulty": 3490,
       "examples": [
         {
@@ -81944,7 +81944,7 @@
       "target": "noventa",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 3417,
       "examples": [
         {
@@ -81990,7 +81990,7 @@
       "target": "quinientos",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 3426,
       "examples": [
         {
@@ -82662,7 +82662,7 @@
       "source": "balloon",
       "target": "globo",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "home",
       "difficulty": 3408,
       "article": "el",
       "examples": [
@@ -83050,7 +83050,7 @@
       "target": "bebé",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "society",
       "difficulty": 3406,
       "examples": [
         {
@@ -83390,7 +83390,7 @@
       "target": "diecisiete",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 3446,
       "examples": [
         {
@@ -83436,7 +83436,7 @@
       "target": "taxi",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "travel",
       "difficulty": 3402,
       "examples": [
         {
@@ -83611,7 +83611,7 @@
       "source": "knot",
       "target": "nudo",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "home",
       "difficulty": 3488,
       "article": "el",
       "examples": [
@@ -83757,7 +83757,7 @@
       "target": "calmar",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "emotions",
       "difficulty": 3331,
       "examples": [
         {
@@ -85398,7 +85398,7 @@
       "target": "sobrino",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "society",
       "difficulty": 3593,
       "examples": [
         {
@@ -85624,7 +85624,7 @@
       "target": "océano",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "nature",
       "difficulty": 3646,
       "examples": [
         {
@@ -86428,7 +86428,7 @@
       "target": "vena",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "body",
       "difficulty": 3512,
       "examples": [
         {
@@ -87335,7 +87335,7 @@
       "target": "harina",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "food",
       "difficulty": 3614,
       "examples": [
         {
@@ -88005,7 +88005,7 @@
       "source": "lure",
       "target": "señuelo",
       "partOfSpeech": "noun",
-      "category": "actions",
+      "category": "nature",
       "difficulty": 3670,
       "article": "el",
       "examples": []
@@ -88414,7 +88414,7 @@
       "target": "recobrar",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "health",
       "difficulty": 3580,
       "examples": []
     },
@@ -88721,7 +88721,7 @@
       "source": "basket",
       "target": "canasta",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "home",
       "difficulty": 3582,
       "article": "la",
       "examples": [
@@ -90334,7 +90334,7 @@
       "target": "cabecera",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "body",
       "difficulty": 3723,
       "examples": [
         {
@@ -90631,7 +90631,7 @@
       "target": "chocolate",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "food",
       "difficulty": 3776,
       "examples": [
         {
@@ -90880,7 +90880,7 @@
       "target": "jugo",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "food",
       "difficulty": 3712,
       "examples": [
         {
@@ -91532,7 +91532,7 @@
       "source": "label",
       "target": "etiqueta",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "home",
       "difficulty": 3810,
       "article": "la",
       "examples": [
@@ -92014,7 +92014,7 @@
       "target": "diagnóstico",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "health",
       "difficulty": 3825,
       "examples": [
         {
@@ -92623,7 +92623,7 @@
       "target": "albergar",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "travel",
       "difficulty": 3822,
       "examples": [
         {
@@ -93055,7 +93055,7 @@
       "target": "tranquilizar",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "emotions",
       "difficulty": 3848,
       "examples": []
     },
@@ -93080,7 +93080,7 @@
       "target": "maestra",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "education",
       "difficulty": 3966,
       "examples": [
         {
@@ -93145,7 +93145,7 @@
       "target": "consuelo",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "emotions",
       "difficulty": 4031,
       "examples": [
         {
@@ -93168,7 +93168,7 @@
       "target": "trigo",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "food",
       "difficulty": 3961,
       "examples": [
         {
@@ -93237,7 +93237,7 @@
       "target": "cocinero",
       "article": null,
       "partOfSpeech": "noun",
-      "category": null,
+      "category": "food",
       "difficulty": 4023,
       "examples": [
         {
@@ -93283,7 +93283,7 @@
       "target": "sanitario",
       "article": null,
       "partOfSpeech": "adjective",
-      "category": null,
+      "category": "health",
       "difficulty": 4047,
       "examples": [
         {
@@ -93438,7 +93438,7 @@
       "target": "bicicleta",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "travel",
       "difficulty": 3955,
       "examples": [
         {
@@ -94020,7 +94020,7 @@
       "target": "peste",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "health",
       "difficulty": 3943,
       "examples": [
         {
@@ -94822,7 +94822,7 @@
       "target": "cátedra",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "education",
       "difficulty": 4070,
       "examples": [
         {
@@ -94984,7 +94984,7 @@
       "source": "blade",
       "target": "cuchilla",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "home",
       "difficulty": 4017,
       "article": "la",
       "examples": [
@@ -97311,7 +97311,7 @@
       "target": "ida",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "travel",
       "difficulty": 4164,
       "examples": [
         {
@@ -97661,7 +97661,7 @@
       "source": "top",
       "target": "cima",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "nature",
       "difficulty": 4291,
       "article": "la",
       "examples": [
@@ -98167,7 +98167,7 @@
       "target": "palpar",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "emotions",
       "difficulty": 4191,
       "examples": [
         {
@@ -101936,7 +101936,7 @@
       "target": "cordillera",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "nature",
       "difficulty": 4432,
       "examples": [
         {
@@ -102683,7 +102683,7 @@
       "target": "camiseta",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "clothing",
       "difficulty": 4427,
       "examples": [
         {
@@ -102968,7 +102968,7 @@
       "target": "chaqueta",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "clothing",
       "difficulty": 4372,
       "examples": [
         {
@@ -103208,7 +103208,7 @@
       "target": "calzar",
       "article": null,
       "partOfSpeech": "verb",
-      "category": null,
+      "category": "clothing",
       "difficulty": 4414,
       "examples": [
         {
@@ -104619,7 +104619,7 @@
       "source": "bench",
       "target": "banca",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "home",
       "difficulty": 4398,
       "article": "la",
       "examples": [
@@ -104851,7 +104851,7 @@
       "source": "leisure",
       "target": "ocio",
       "partOfSpeech": "noun",
-      "category": "actions",
+      "category": "time",
       "difficulty": 4366,
       "article": "el",
       "examples": [
@@ -105806,7 +105806,7 @@
       "target": "mejilla",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "body",
       "difficulty": 4528,
       "examples": [
         {
@@ -106651,7 +106651,7 @@
       "target": "medicamento",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "health",
       "difficulty": 4669,
       "examples": [
         {
@@ -107702,7 +107702,7 @@
       "source": "handful",
       "target": "puñado",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "descriptions",
       "difficulty": 4693,
       "article": "el",
       "examples": [
@@ -109625,7 +109625,7 @@
       "target": "astro",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "nature",
       "difficulty": 4746,
       "examples": [
         {
@@ -110162,7 +110162,7 @@
       "target": "infección",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "health",
       "difficulty": 4703,
       "examples": [
         {
@@ -110277,7 +110277,7 @@
       "target": "lomo",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "body",
       "difficulty": 4868,
       "examples": [
         {
@@ -110645,7 +110645,7 @@
       "source": "booth",
       "target": "cabina",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "home",
       "difficulty": 4882,
       "article": "la",
       "examples": [
@@ -110749,7 +110749,7 @@
       "target": "cráneo",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "body",
       "difficulty": 4750,
       "examples": [
         {
@@ -110918,7 +110918,7 @@
       "target": "muslo",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "body",
       "difficulty": 4807,
       "examples": [
         {
@@ -110959,7 +110959,7 @@
       "source": "arrow",
       "target": "flecha",
       "partOfSpeech": "noun",
-      "category": "basics",
+      "category": "home",
       "difficulty": 4781,
       "article": "la",
       "examples": [
@@ -112067,7 +112067,7 @@
       "target": "facción",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "body",
       "difficulty": 4718,
       "examples": [
         {
@@ -113057,7 +113057,7 @@
       "target": "torta",
       "article": "la",
       "partOfSpeech": "noun (f)",
-      "category": null,
+      "category": "food",
       "difficulty": 4715,
       "examples": [
         {
@@ -113170,7 +113170,7 @@
       "target": "veintidós",
       "article": null,
       "partOfSpeech": "numeral",
-      "category": null,
+      "category": "numbers",
       "difficulty": 4873,
       "examples": [
         {
@@ -115272,7 +115272,7 @@
       "target": "volcán",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": null,
+      "category": "nature",
       "difficulty": 4981,
       "examples": [
         {

@@ -5,7 +5,7 @@ struct AboutView: View {
         List {
             Section {
                 VStack(spacing: 8) {
-                    Text("Chispa")
+                    Text("Recuerdo")
                         .font(.largeTitle.bold())
                     Text("Spanish Flashcards")
                         .font(.subheadline)

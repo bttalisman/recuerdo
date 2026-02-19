@@ -506,7 +506,7 @@ struct ProgressDashboardView: View {
             }
 
             if showSchedulingInfo {
-                Text("Chispa uses spaced repetition to schedule your reviews. Words you get right are shown less often; words you struggle with come back sooner. Over time, the intervals grow and words move to mastered status. This is based on the SM-2 algorithm, the same approach used by Anki.")
+                Text("Recuerdo uses spaced repetition to schedule your reviews. Words you get right are shown less often; words you struggle with come back sooner. Over time, the intervals grow and words move to mastered status. This is based on the SM-2 algorithm, the same approach used by Anki.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
                     .padding(10)

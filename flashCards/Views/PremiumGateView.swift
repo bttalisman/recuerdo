@@ -22,7 +22,7 @@ struct PremiumGateView: View {
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 32)
 
-            Text("Coming soon with Chispa Premium")
+            Text("Coming soon with Recuerdo Premium")
                 .font(.caption)
                 .foregroundStyle(.tertiary)
 
