@@ -28,10 +28,16 @@ struct SettingsView: View {
                         LabeledContent("Total Words") {
                             Text("\(deck.totalWords)")
                         }
+                    }
 
+                    Section {
                         directionRow(deck: deck, label: "\(deck.sourceLanguage) → \(deck.targetLanguage)", value: "source_first")
                         directionRow(deck: deck, label: "\(deck.targetLanguage) → \(deck.sourceLanguage)", value: "target_first")
                         directionRow(deck: deck, label: "Mix It Up!", value: "mixed")
+                    } header: {
+                        Text("Review Direction")
+                    } footer: {
+                        Text("Controls which side of the card you see first during reviews. Learning new words is always \(deck.sourceLanguage) → \(deck.targetLanguage).")
                     }
 
                     Section("New Words Mode") {

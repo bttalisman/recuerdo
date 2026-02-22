@@ -15,6 +15,7 @@ struct ReviewSessionView: View {
     @State private var hasRevealedCard = false
     @State private var completedFirstLap = false
     @State private var cardsSeenInLap = 0
+    @State private var dragOffset: CGFloat = 0
     private let hapticGenerator = UINotificationFeedbackGenerator()
 
     var body: some View {
@@ -81,10 +82,13 @@ struct ReviewSessionView: View {
             .frame(height: 300)
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(ratingFlash == .correct ? Color.green.opacity(0.25) : ratingFlash == .incorrect ? Color.red.opacity(0.25) : Color.clear)
+                    .fill(swipeOverlayColor)
                     .allowsHitTesting(false)
                     .accessibilityHidden(true)
             )
+            .offset(x: dragOffset)
+            .rotationEffect(.degrees(Double(dragOffset) / 20), anchor: .bottom)
+            .gesture(reviewDragGesture)
             .padding(.horizontal)
             .padding(.top, 16)
 
@@ -191,9 +195,54 @@ struct ReviewSessionView: View {
             withTransaction(transaction) {
                 ratingFlash = nil
                 hasRevealedCard = false
+                dragOffset = 0
                 viewModel.submitRating(quality, context: modelContext)
             }
         }
+    }
+
+    // MARK: - Swipe Gesture
+
+    private var swipeOverlayColor: Color {
+        if dragOffset > 0 {
+            return Color.green.opacity(Double(min(abs(dragOffset), 100)) / 400)
+        } else if dragOffset < 0 {
+            return Color.red.opacity(Double(min(abs(dragOffset), 100)) / 400)
+        }
+        if ratingFlash == .correct { return Color.green.opacity(0.25) }
+        if ratingFlash == .incorrect { return Color.red.opacity(0.25) }
+        return .clear
+    }
+
+    private var reviewDragGesture: some Gesture {
+        DragGesture(minimumDistance: 15)
+            .onChanged { value in
+                guard viewModel.mode == .review && hasRevealedCard else { return }
+                dragOffset = value.translation.width
+            }
+            .onEnded { value in
+                guard viewModel.mode == .review && hasRevealedCard else {
+                    withAnimation(.spring(response: 0.3)) { dragOffset = 0 }
+                    return
+                }
+                let threshold: CGFloat = 100
+                if value.translation.width > threshold {
+                    // Swipe right → correct
+                    withAnimation(.easeOut(duration: 0.15)) { dragOffset = 400 }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        submitWithFeedback(quality: 4)
+                    }
+                } else if value.translation.width < -threshold {
+                    // Swipe left → incorrect
+                    withAnimation(.easeOut(duration: 0.15)) { dragOffset = -400 }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        submitWithFeedback(quality: 1)
+                    }
+                } else {
+                    // Snap back
+                    withAnimation(.spring(response: 0.3)) { dragOffset = 0 }
+                }
+            }
     }
 
     // MARK: - Session Complete

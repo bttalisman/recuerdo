@@ -6,7 +6,8 @@
       "Bash(bunzip2:*)",
       "Bash(wc:*)",
       "WebFetch(domain:reword.app)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(git add:*)"
     ]
   }
 }

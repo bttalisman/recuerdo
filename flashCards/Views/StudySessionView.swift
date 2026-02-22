@@ -153,7 +153,8 @@ struct StudySessionView: View {
                 Button {
                     let vm = StudySessionViewModel()
                     if let deckId = activeDeckId {
-                        vm.loadReviewSession(deckId: deckId, cardDirection: "source_first", context: modelContext)
+                        let direction = decks.first?.cardDirection ?? "source_first"
+                        vm.loadReviewSession(deckId: deckId, cardDirection: direction, context: modelContext)
                     }
                     viewModel = vm
                 } label: {
