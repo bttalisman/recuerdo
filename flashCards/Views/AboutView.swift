@@ -55,6 +55,19 @@ struct AboutView: View {
                 .padding(.vertical, 4)
             }
 
+            Section("Support") {
+                Link(destination: URL(string: "mailto:recuerdoapp@gmail.com")!) {
+                    HStack {
+                        Label("recuerdoapp@gmail.com", systemImage: "envelope")
+                            .font(.subheadline)
+                        Spacer()
+                        Image(systemName: "arrow.up.right")
+                            .font(.caption)
+                            .foregroundStyle(.tertiary)
+                    }
+                }
+            }
+
             Section {
                 Text("Made with care for language learners everywhere.")
                     .font(.footnote)

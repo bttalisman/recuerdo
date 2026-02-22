@@ -99,34 +99,76 @@ struct CardScheduler {
 
     // MARK: - Category Sessions
 
-    /// All distinct categories with word counts, sorted by total descending.
+    /// All parent categories with word counts, sorted by total descending.
     static func allCategories(deckId: String, context: ModelContext) -> [(name: String, total: Int, learned: Int)] {
+        let (categories, _) = allCategoriesWithSubcategories(deckId: deckId, context: context)
+        return categories
+    }
+
+    /// Subcategories within a parent category, sorted by total descending.
+    static func subcategories(deckId: String, parent: String, context: ModelContext) -> [(name: String, total: Int, learned: Int)] {
+        let (_, subs) = allCategoriesWithSubcategories(deckId: deckId, context: context)
+        return subs[parent] ?? []
+    }
+
+    /// Single-fetch method that computes both parent categories and all subcategories at once.
+    static func allCategoriesWithSubcategories(deckId: String, context: ModelContext) -> (
+        categories: [(name: String, total: Int, learned: Int)],
+        subcategories: [String: [(name: String, total: Int, learned: Int)]]
+    ) {
         let descriptor = FetchDescriptor<FlashCard>()
-        guard let allCards = try? context.fetch(descriptor) else { return [] }
+        guard let allCards = try? context.fetch(descriptor) else { return ([], [:]) }
 
         let deckCards = allCards.filter { $0.deckId == deckId }
-        var grouped: [String: (total: Int, learned: Int)] = [:]
+        var parentGrouped: [String: (total: Int, learned: Int)] = [:]
+        var subGrouped: [String: [String: (total: Int, learned: Int)]] = [:]
 
         for card in deckCards {
             guard let category = card.category, !category.isEmpty else { continue }
-            let existing = grouped[category] ?? (total: 0, learned: 0)
+            let parts = category.split(separator: "/", maxSplits: 1)
+            let parent = String(parts[0])
+            let sub = parts.count > 1 ? String(parts[1]) : "general"
             let isLearned = card.status != "new" ? 1 : 0
-            grouped[category] = (total: existing.total + 1, learned: existing.learned + isLearned)
+
+            let existing = parentGrouped[parent] ?? (total: 0, learned: 0)
+            parentGrouped[parent] = (total: existing.total + 1, learned: existing.learned + isLearned)
+
+            var parentSubs = subGrouped[parent] ?? [:]
+            let subExisting = parentSubs[sub] ?? (total: 0, learned: 0)
+            parentSubs[sub] = (total: subExisting.total + 1, learned: subExisting.learned + isLearned)
+            subGrouped[parent] = parentSubs
         }
 
-        return grouped
+        let categories = parentGrouped
             .map { (name: $0.key, total: $0.value.total, learned: $0.value.learned) }
             .sorted { $0.total > $1.total }
+
+        var subcategories: [String: [(name: String, total: Int, learned: Int)]] = [:]
+        for (parent, subs) in subGrouped {
+            subcategories[parent] = subs
+                .map { (name: $0.key, total: $0.value.total, learned: $0.value.learned) }
+                .sorted { $0.total > $1.total }
+        }
+
+        return (categories, subcategories)
     }
 
     /// Build a category learn session — bypasses the unlock system.
     /// Prefers new cards first, then due cards, then already-learned.
+    /// Matches by parent category or exact "parent/sub" category.
     static func buildCategoryLearnSession(deckId: String, category: String, limit: Int = 10, context: ModelContext) -> [FlashCard] {
         let descriptor = FetchDescriptor<FlashCard>()
         guard let allCards = try? context.fetch(descriptor) else { return [] }
 
         let categoryCards = allCards.filter {
-            $0.deckId == deckId && $0.category == category
+            guard $0.deckId == deckId, let cat = $0.category else { return false }
+            if category.contains("/") {
+                // Exact subcategory match
+                return cat == category
+            }
+            // Parent match: "actions" matches "actions" and "actions/movement & physical"
+            let parent = cat.split(separator: "/").first.map(String.init) ?? cat
+            return parent == category
         }
 
         // Prioritize: new cards first, then due, then the rest

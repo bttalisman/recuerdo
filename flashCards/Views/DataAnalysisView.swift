@@ -182,7 +182,9 @@ struct DataAnalysisView: View {
         var byPOS: [String: (correct: Int, total: Int)] = [:]
 
         for review in allReviews {
-            let pos = review.card?.partOfSpeech ?? "unknown"
+            guard let rawPOS = review.card?.partOfSpeech, !rawPOS.isEmpty else { continue }
+            // Normalize: "noun (f)", "noun (m)" → "noun"
+            let pos = rawPOS.split(separator: " ").first.map(String.init) ?? rawPOS
             var entry = byPOS[pos, default: (correct: 0, total: 0)]
             entry.total += 1
             if review.wasCorrect { entry.correct += 1 }
@@ -216,10 +218,28 @@ struct DataAnalysisView: View {
                         y: .value("Type", item.pos)
                     )
                     .foregroundStyle(barColor(for: item.accuracy))
-                    .annotation(position: .trailing, spacing: 4) {
-                        Text("\(Int(item.accuracy * 100))%")
-                            .font(.caption2)
-                            .foregroundStyle(.secondary)
+                    .annotation(position: item.accuracy > 0.85 ? .overlay : .trailing, spacing: 4) {
+                        if item.accuracy > 0.85 {
+                            Text("\(Int(item.accuracy * 100))%")
+                                .font(.caption2.bold())
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 2)
+                                .background(
+                                    Capsule()
+                                        .fill(
+                                            .linearGradient(
+                                                colors: [.clear, .black.opacity(0.4), .black.opacity(0.4), .clear],
+                                                startPoint: .leading,
+                                                endPoint: .trailing
+                                            )
+                                        )
+                                )
+                        } else {
+                            Text("\(Int(item.accuracy * 100))%")
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                        }
                     }
                 }
                 .chartXScale(domain: 0...1)

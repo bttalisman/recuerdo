@@ -34,8 +34,10 @@ struct WordListView: View {
     private var isPremium: Bool { PremiumManager.shared.isPremium }
 
     private var availableCategories: [String] {
-        let cats = Set(learnedCards.compactMap(\.category).filter { !$0.isEmpty })
-        return cats.sorted()
+        let parents = Set(learnedCards.compactMap(\.category).filter { !$0.isEmpty }.map {
+            $0.split(separator: "/").first.map(String.init) ?? $0
+        })
+        return parents.sorted()
     }
 
     private var filteredCards: [FlashCard] {
@@ -44,7 +46,11 @@ struct WordListView: View {
             cards = cards.filter { $0.status == filterStatus }
         }
         if let filterCategory {
-            cards = cards.filter { $0.category == filterCategory }
+            cards = cards.filter {
+                guard let cat = $0.category else { return false }
+                let parent = cat.split(separator: "/").first.map(String.init) ?? cat
+                return parent == filterCategory
+            }
         }
         if !searchText.isEmpty {
             let query = searchText.lowercased()
