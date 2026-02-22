@@ -26,8 +26,8 @@ struct ForgettingCurveView: View {
 
     var body: some View {
         ScrollViewReader { proxy in
-            ScrollView {
-                VStack(spacing: 20) {
+            List {
+                Section {
                     if let card = selectedCard {
                         wordCurveSection(card)
                             .id("curveChart")
@@ -35,15 +35,15 @@ struct ForgettingCurveView: View {
                         aggregateCurveSection
                             .id("curveChart")
                     }
-                    summaryStatsSection
-                    wordPickerSection(scrollProxy: proxy)
                 }
-                .padding()
+                Section { summaryStatsSection }
+                Section { wordPickerSection(scrollProxy: proxy) }
             }
         }
         .navigationTitle("Word Retention")
         .navigationBarTitleDisplayMode(.large)
         .searchable(text: $searchText, prompt: "Search words...")
+        .enhancedDarkContrast()
     }
 
     // MARK: - Aggregate Curve
@@ -148,8 +148,6 @@ struct ForgettingCurveView: View {
                 }
             }
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     // MARK: - Single Word Curve
@@ -228,8 +226,6 @@ struct ForgettingCurveView: View {
             .accessibilityElement(children: .ignore)
             .accessibilityLabel("Stability \(String(format: "%.1f", data.stability)) days, Interval \(card.interval) days, Ease \(String(format: "%.2f", card.easeFactor))")
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     // MARK: - Summary Stats
@@ -283,8 +279,6 @@ struct ForgettingCurveView: View {
                 }
             }
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     // MARK: - Word Picker
@@ -337,8 +331,6 @@ struct ForgettingCurveView: View {
                 }
             }
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     // MARK: - Helpers

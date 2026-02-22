@@ -25,6 +25,14 @@ struct FlashCardView: View {
     private var backArticle: String? { showTargetFirst ? nil : article }
     private var backLanguageCode: String { showTargetFirst ? sourceLanguageCode : targetLanguageCode }
 
+    /// Pick the example whose Spanish sentence contains the target word (case-insensitive).
+    /// Falls back to the first example if none match.
+    private var bestExample: ExampleSentence? {
+        guard !examples.isEmpty else { return nil }
+        let word = targetText.lowercased()
+        return examples.first { $0.es.lowercased().contains(word) } ?? examples.first
+    }
+
     var statusColor: Color {
         switch status {
         case "new": return .blue
@@ -103,21 +111,13 @@ struct FlashCardView: View {
                     .buttonStyle(.plain)
                     .accessibilityLabel("Pronounce word")
 
-                    if let example = examples.first {
-                        VStack(spacing: 2) {
-                            Text(example.es)
-                                .font(.subheadline)
-                                .italic()
-                                .minimumScaleFactor(0.7)
-                            if !isFront {
-                                Text(example.en)
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                                    .minimumScaleFactor(0.7)
-                            }
-                        }
-                        .multilineTextAlignment(.center)
-                        .lineLimit(3)
+                    if let example = bestExample {
+                        Text(example.es)
+                            .font(.subheadline)
+                            .italic()
+                            .multilineTextAlignment(.center)
+                            .lineLimit(3)
+                            .minimumScaleFactor(0.7)
 
                         if !isFront && examples.count > 1 {
                             Button {
@@ -131,10 +131,21 @@ struct FlashCardView: View {
                             .accessibilityHint("Shows all example sentences")
                         }
                     }
-                } else if isFront {
-                    Text("Tap to reveal")
-                        .font(.caption2)
-                        .foregroundStyle(.tertiary)
+                } else {
+                    if let example = bestExample {
+                        Text(example.en)
+                            .font(.subheadline)
+                            .italic()
+                            .multilineTextAlignment(.center)
+                            .lineLimit(3)
+                            .minimumScaleFactor(0.7)
+                            .foregroundStyle(.secondary)
+                    }
+                    if isFront {
+                        Text("Tap to reveal")
+                            .font(.caption2)
+                            .foregroundStyle(.tertiary)
+                    }
                 }
             }
             .frame(minHeight: 70, alignment: .top)

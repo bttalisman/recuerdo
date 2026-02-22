@@ -111,10 +111,11 @@ struct WordListView: View {
 
     var body: some View {
         NavigationStack {
-            if let viewModel {
-                reviewSessionView(viewModel: viewModel)
-            } else {
-                wordListContent
+            wordListContent
+        }
+        .fullScreenCover(item: $viewModel) { (vm: StudySessionViewModel) in
+            NavigationStack {
+                reviewSessionView(viewModel: vm)
             }
         }
     }

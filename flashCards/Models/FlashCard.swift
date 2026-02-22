@@ -36,8 +36,13 @@ final class FlashCard {
     var reviewHistory: [ReviewRecord]
 
     /// Display-friendly English text: prepends "to " for verbs that don't already have it.
+    /// Modal verbs (could, should, would, etc.) are excluded since "to could" is ungrammatical.
+    private static let modalVerbs: Set<String> = ["can", "could", "may", "might", "must", "shall", "should", "will", "would"]
+
     var displaySourceText: String {
-        if partOfSpeech == "verb" && !sourceText.lowercased().hasPrefix("to ") {
+        if partOfSpeech == "verb"
+            && !sourceText.lowercased().hasPrefix("to ")
+            && !Self.modalVerbs.contains(sourceText.lowercased()) {
             return "to \(sourceText)"
         }
         return sourceText

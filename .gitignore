@@ -1,0 +1,9 @@
+# Anki decks and extracted data
+ankiDecks/
+
+# Large data files
+*.apkg
+*.tsv
+
+# Tatoeba cache
+tatoeba_cache.json

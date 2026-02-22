@@ -27,7 +27,14 @@ struct ReviewSessionView: View {
                 emptyStateView
             }
         }
-        .onAppear { hapticGenerator.prepare() }
+        .onAppear {
+            hapticGenerator.prepare()
+            modelContext.autosaveEnabled = false
+        }
+        .onDisappear {
+            try? modelContext.save()
+            modelContext.autosaveEnabled = true
+        }
         .navigationTitle(title)
         .toolbar {
             if !viewModel.sessionCards.isEmpty && !viewModel.isSessionComplete {

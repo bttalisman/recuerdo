@@ -35,25 +35,24 @@ struct DataAnalysisView: View {
     @State private var showWordsAtRiskInfo = false
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 20) {
-                accuracyTrendSection
-                forgettingCurvesLink
-                responseTimeTrendSection
-                accuracyByPOSSection
-                directionComparisonSection
-                timeOfDaySection
-                wordsAtRiskSection
-                difficultyInsightsLink
-                activityHeatmapSection
-                learningVelocitySection
-                estimatedCompletionSection
-                wordConnectionsLink
-            }
-            .padding()
+        List {
+            Section { accuracyTrendSection }
+            Section { forgettingCurvesLink }
+            Section { responseTimeTrendSection }
+            Section { responseTimeByWordSection }
+            Section { accuracyByPOSSection }
+            Section { directionComparisonSection }
+            Section { timeOfDaySection }
+            Section { wordsAtRiskSection }
+            Section { difficultyInsightsLink }
+            Section { activityHeatmapSection }
+            Section { learningVelocitySection }
+            Section { estimatedCompletionSection }
+            Section { wordConnectionsLink }
         }
         .navigationTitle("Analysis")
         .navigationBarTitleDisplayMode(.large)
+        .enhancedDarkContrast()
     }
 
     // MARK: - 1. Accuracy Trend
@@ -170,8 +169,6 @@ struct DataAnalysisView: View {
                 .accessibilityLabel(accuracyTrendAccessibilityLabel)
             }
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     private var accuracyTrendAccessibilityLabel: String {
@@ -241,8 +238,6 @@ struct DataAnalysisView: View {
                 .accessibilityLabel(posChartAccessibilityLabel)
             }
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     private var posChartAccessibilityLabel: String {
@@ -399,8 +394,6 @@ struct DataAnalysisView: View {
             }
             .accessibilityHidden(true)
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     private func calculateStudyStreak(activity: [Date: Int], today: Date, calendar: Calendar) -> Int {
@@ -475,13 +468,90 @@ struct DataAnalysisView: View {
                 .accessibilityLabel(responseTimeAccessibilityLabel)
             }
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     private var responseTimeAccessibilityLabel: String {
         guard let latest = dailyResponseTime.last else { return "Response time chart" }
         return "Response time chart. Latest average: \(String(format: "%.1f", latest.avgTime)) seconds per card"
+    }
+
+    // MARK: - Response Time by Word
+
+    private var responseTimeByWord: [(card: FlashCard, avgTime: Double, count: Int)] {
+        var byCard: [String: (card: FlashCard, total: Double, count: Int)] = [:]
+
+        for review in allReviews where review.responseTimeSeconds > 0 && review.responseTimeSeconds < 60 {
+            guard let card = review.card else { continue }
+            var entry = byCard[card.wordId, default: (card: card, total: 0, count: 0)]
+            entry.total += review.responseTimeSeconds
+            entry.count += 1
+            byCard[card.wordId] = entry
+        }
+
+        return byCard.values
+            .filter { $0.count >= 3 }
+            .map { (card: $0.card, avgTime: $0.total / Double($0.count), count: $0.count) }
+            .sorted { $0.avgTime > $1.avgTime }
+    }
+
+    @State private var showFastestWords = false
+
+    private var responseTimeByWordSection: some View {
+        let slowest = Array(responseTimeByWord.prefix(10))
+        let fastest = Array(responseTimeByWord.suffix(10).reversed())
+
+        return VStack(alignment: .leading, spacing: 12) {
+            Text("Response Time by Word")
+                .font(.headline)
+
+            Picker("", selection: $showFastestWords) {
+                Text("Slowest").tag(false)
+                Text("Fastest").tag(true)
+            }
+            .pickerStyle(.segmented)
+
+            if responseTimeByWord.isEmpty {
+                Text("Not enough data yet. Need at least 3 reviews per word.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, minHeight: 60)
+            } else {
+                let items = showFastestWords ? fastest : slowest
+                ForEach(items, id: \.card.wordId) { item in
+                    HStack {
+                        VStack(alignment: .leading, spacing: 2) {
+                            HStack(spacing: 4) {
+                                if let article = item.card.article, !article.isEmpty {
+                                    Text(article)
+                                        .foregroundStyle(.secondary)
+                                }
+                                Text(item.card.targetText)
+                                    .fontWeight(.semibold)
+                            }
+                            Text(item.card.displaySourceText)
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        VStack(alignment: .trailing, spacing: 2) {
+                            Text(String(format: "%.1fs", item.avgTime))
+                                .font(.subheadline.bold().monospacedDigit())
+                                .foregroundStyle(responseTimeColor(item.avgTime))
+                            Text("\(item.count) reviews")
+                                .font(.caption2)
+                                .foregroundStyle(.tertiary)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private func responseTimeColor(_ seconds: Double) -> Color {
+        if seconds >= 10 { return .red }
+        if seconds >= 6 { return .orange }
+        if seconds >= 3 { return .primary }
+        return .green
     }
 
     // MARK: - 5. Direction Comparison
@@ -540,8 +610,6 @@ struct DataAnalysisView: View {
                 }
             }
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     // MARK: - 6. Time of Day Performance
@@ -601,8 +669,6 @@ struct DataAnalysisView: View {
                 .accessibilityLabel(timeOfDayAccessibilityLabel)
             }
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     private var timeOfDayAccessibilityLabel: String {
@@ -709,8 +775,6 @@ struct DataAnalysisView: View {
                 }
             }
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     // MARK: - 8. Learning Velocity
@@ -803,8 +867,6 @@ struct DataAnalysisView: View {
                 completionDetailsView(est: est)
             }
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     private func completionCelebrationView(totalWords: Int) -> some View {
@@ -874,72 +936,60 @@ struct DataAnalysisView: View {
         NavigationLink {
             ForgettingCurveView()
         } label: {
-            HStack {
+            HStack(spacing: 12) {
+                Image(systemName: "brain.head.profile")
+                    .font(.title2)
+                    .foregroundStyle(.purple)
+                    .frame(width: 32)
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Word Retention")
                         .font(.headline)
-                        .foregroundStyle(.primary)
                     Text("See how your memory strength changes over time")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .font(.caption)
-                    .foregroundStyle(.tertiary)
             }
-            .padding()
-            .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
         }
-        .buttonStyle(.plain)
     }
 
     private var difficultyInsightsLink: some View {
         NavigationLink {
             DifficultyInsightsView()
         } label: {
-            HStack {
+            HStack(spacing: 12) {
+                Image(systemName: "puzzlepiece.extension")
+                    .font(.title2)
+                    .foregroundStyle(.orange)
+                    .frame(width: 32)
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Difficulty Insights")
                         .font(.headline)
-                        .foregroundStyle(.primary)
                     Text("Discover patterns in what trips you up")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .font(.caption)
-                    .foregroundStyle(.tertiary)
             }
-            .padding()
-            .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
         }
-        .buttonStyle(.plain)
     }
 
     private var wordConnectionsLink: some View {
         NavigationLink {
             WordGraphView()
         } label: {
-            HStack {
+            HStack(spacing: 12) {
+                Image(systemName: "point.3.connected.trianglepath.dotted")
+                    .font(.title2)
+                    .foregroundStyle(.blue)
+                    .frame(width: 32)
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Word Connections")
                         .font(.headline)
-                        .foregroundStyle(.primary)
                     Text("Explore how your words relate to each other")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .font(.caption)
-                    .foregroundStyle(.tertiary)
             }
-            .padding()
-            .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
         }
-        .buttonStyle(.plain)
     }
 
     // MARK: - 8. Learning Velocity
@@ -980,8 +1030,6 @@ struct DataAnalysisView: View {
                 .accessibilityLabel(velocityAccessibilityLabel)
             }
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     private var velocityAccessibilityLabel: String {

@@ -94,10 +94,11 @@ struct StudySessionView: View {
 
     var body: some View {
         NavigationStack {
-            if let viewModel {
-                sessionView(viewModel: viewModel)
-            } else {
-                modeSelectionView
+            modeSelectionView
+        }
+        .fullScreenCover(item: $viewModel) { (vm: StudySessionViewModel) in
+            NavigationStack {
+                sessionView(viewModel: vm)
             }
         }
     }

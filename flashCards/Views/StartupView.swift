@@ -92,6 +92,7 @@ struct StartupView: View {
                         .foregroundStyle(.white.opacity(0.4))
                         .opacity(subtitleOpacity)
                 }
+                .compositingGroup()
             }
         }
         .onAppear {

@@ -8,7 +8,8 @@ enum StudyMode {
 }
 
 @Observable
-class StudySessionViewModel {
+class StudySessionViewModel: Identifiable {
+    let id = UUID()
     var mode: StudyMode = .learn
     var currentCardIndex: Int = 0
     var sessionCards: [FlashCard] = []

@@ -9,22 +9,20 @@ struct DifficultyInsightsView: View {
     @State private var insights: [Insight] = []
 
     var body: some View {
-        ScrollView {
-            VStack(spacing: 16) {
-                if allReviews.count < 50 {
-                    emptyState
-                } else if insights.isEmpty {
-                    noInsightsState
-                } else {
-                    ForEach(insights) { insight in
-                        insightCard(insight)
-                    }
+        List {
+            if allReviews.count < 50 {
+                Section { emptyState }
+            } else if insights.isEmpty {
+                Section { noInsightsState }
+            } else {
+                ForEach(insights) { insight in
+                    Section { insightCard(insight) }
                 }
             }
-            .padding()
         }
         .navigationTitle("Difficulty Insights")
         .navigationBarTitleDisplayMode(.large)
+        .enhancedDarkContrast()
         .onAppear {
             insights = DifficultyAnalyzer.generateInsights(cards: allCards, reviews: allReviews)
         }
@@ -146,8 +144,6 @@ struct DifficultyInsightsView: View {
                 }
             }
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     // MARK: - Helpers

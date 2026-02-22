@@ -41,14 +41,14 @@ struct ProgressDashboardView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 20) {
-                    overviewChart
-                    todayStatsSection
-                    workloadSection
-                    pipelineSection
-                    upcomingSection
+            List {
+                Section { overviewChart }
+                Section { todayStatsSection }
+                Section { workloadSection }
+                Section { pipelineSection }
+                Section { upcomingSection }
 
+                Section {
                     NavigationLink {
                         DataAnalysisView()
                     } label: {
@@ -63,19 +63,12 @@ struct ProgressDashboardView: View {
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
                             }
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .foregroundStyle(.secondary)
-                                .accessibilityHidden(true)
                         }
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
                     }
-                    .buttonStyle(.plain)
                 }
-                .padding()
             }
             .navigationTitle("")
+            .enhancedDarkContrast()
         }
     }
 
@@ -111,8 +104,6 @@ struct ProgressDashboardView: View {
                 legendItem(color: .green, label: "Mastered", count: masteredCount)
             }
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     private func legendItem(color: Color, label: String, count: Int) -> some View {
@@ -142,8 +133,6 @@ struct ProgressDashboardView: View {
                 statCard(title: "Due Now", value: "\(dueNowCount)", icon: "clock")
             }
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     private func statCard(title: String, value: String, icon: String) -> some View {
@@ -303,8 +292,6 @@ struct ProgressDashboardView: View {
                     .foregroundStyle(.secondary)
             }
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     // MARK: - Learning Pipeline
@@ -357,8 +344,6 @@ struct ProgressDashboardView: View {
                 .font(.headline)
             pipelineContent(p: p)
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 
     private func pipelineContent(p: PipelineData) -> some View {
@@ -525,7 +510,5 @@ struct ProgressDashboardView: View {
                 }
             }
         }
-        .padding()
-        .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
     }
 }
