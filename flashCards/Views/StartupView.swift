@@ -112,7 +112,7 @@ struct StartupView: View {
         }
 
         // Bolt drops in
-        withAnimation(.spring(response: 0.25, dampingFraction: 0.55).delay(0.6)) {
+        withAnimation(.spring(response: 0.35, dampingFraction: 0.25).delay(0.6)) {
             boltOffset = 0
             boltOpacity = 1
         }

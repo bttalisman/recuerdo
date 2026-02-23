@@ -20,7 +20,7 @@ struct ContentView: View {
 
             if showStartup {
                 StartupView {
-                    withAnimation(.easeIn(duration: 0.5)) {
+                    withAnimation(.easeIn(duration: 0.3)) {
                         showStartup = false
                     }
                 }

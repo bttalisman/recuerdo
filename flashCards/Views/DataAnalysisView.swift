@@ -36,19 +36,19 @@ struct DataAnalysisView: View {
 
     var body: some View {
         List {
-            Section { accuracyTrendSection }
-            Section { forgettingCurvesLink }
-            Section { responseTimeTrendSection }
-            Section { responseTimeByWordSection }
-            Section { accuracyByPOSSection }
-            Section { directionComparisonSection }
-            Section { timeOfDaySection }
-            Section { wordsAtRiskSection }
-            Section { difficultyInsightsLink }
-            Section { activityHeatmapSection }
-            Section { learningVelocitySection }
-            Section { estimatedCompletionSection }
-            Section { wordConnectionsLink }
+            Section { accuracyTrendSection.subtleSectionGlow() }
+            Section { forgettingCurvesLink.subtleSectionGlow() }
+            Section { responseTimeTrendSection.subtleSectionGlow() }
+            Section { responseTimeByWordSection.subtleSectionGlow() }
+            Section { accuracyByPOSSection.subtleSectionGlow() }
+            Section { directionComparisonSection.subtleSectionGlow() }
+            Section { timeOfDaySection.subtleSectionGlow() }
+            Section { wordsAtRiskSection.subtleSectionGlow() }
+            Section { difficultyInsightsLink.subtleSectionGlow() }
+            Section { activityHeatmapSection.subtleSectionGlow() }
+            Section { learningVelocitySection.subtleSectionGlow() }
+            Section { estimatedCompletionSection.subtleSectionGlow() }
+            Section { wordConnectionsLink.subtleSectionGlow() }
         }
         .navigationTitle("Analysis")
         .navigationBarTitleDisplayMode(.large)

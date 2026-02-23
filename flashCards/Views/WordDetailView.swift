@@ -121,6 +121,7 @@ struct WordDetailView: View {
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 8)
+            .subtleSectionGlow()
         }
     }
 
@@ -149,6 +150,7 @@ struct WordDetailView: View {
                         .foregroundStyle(.secondary)
                 }
                 .padding(.vertical, 2)
+                .subtleSectionGlow()
             }
         }
     }
@@ -157,63 +159,15 @@ struct WordDetailView: View {
 
     private var statsSection: some View {
         Section("Stats") {
-            HStack {
-                Text("Total reviews")
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Text("\(card.totalReviews)")
-                    .fontWeight(.semibold)
-            }
-            HStack {
-                Text("Overall accuracy")
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Text(overallAccuracy)
-                    .fontWeight(.semibold)
-            }
-            HStack {
-                Text("Last 10 accuracy")
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Text(recentAccuracy)
-                    .fontWeight(.semibold)
-            }
-            HStack {
-                Text("Current streak")
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Text("\(card.currentStreak)")
-                    .fontWeight(.semibold)
-            }
-            HStack {
-                Text("Longest streak")
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Text("\(card.longestStreak)")
-                    .fontWeight(.semibold)
-            }
-            HStack {
-                Text("Misses before first correct")
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Text("\(missesBeforeFirstCorrect)")
-                    .fontWeight(.semibold)
-            }
-            HStack {
-                Text("Lapses after learning")
-                    .foregroundStyle(.secondary)
-                Spacer()
-                Text("\(lapsesAfterFirstCorrect)")
-                    .fontWeight(.semibold)
-            }
+            statRow("Total reviews", "\(card.totalReviews)")
+            statRow("Overall accuracy", overallAccuracy)
+            statRow("Last 10 accuracy", recentAccuracy)
+            statRow("Current streak", "\(card.currentStreak)")
+            statRow("Longest streak", "\(card.longestStreak)")
+            statRow("Misses before first correct", "\(missesBeforeFirstCorrect)")
+            statRow("Lapses after learning", "\(lapsesAfterFirstCorrect)")
             if let avg = averageResponseTime {
-                HStack {
-                    Text("Avg response time")
-                        .foregroundStyle(.secondary)
-                    Spacer()
-                    Text(String(format: "%.1fs", avg))
-                        .fontWeight(.semibold)
-                }
+                statRow("Avg response time", String(format: "%.1fs", avg))
             }
             if let introduced = card.introducedDate {
                 HStack {
@@ -223,8 +177,20 @@ struct WordDetailView: View {
                     Text(introduced, style: .date)
                         .fontWeight(.semibold)
                 }
+                .subtleSectionGlow()
             }
         }
+    }
+
+    private func statRow(_ label: String, _ value: String) -> some View {
+        HStack {
+            Text(label)
+                .foregroundStyle(.secondary)
+            Spacer()
+            Text(value)
+                .fontWeight(.semibold)
+        }
+        .subtleSectionGlow()
     }
 
     // MARK: - Streak Chart
@@ -256,6 +222,7 @@ struct WordDetailView: View {
             .chartXAxisLabel("Review #")
             .frame(height: 120)
             .padding(.vertical, 4)
+            .subtleSectionGlow()
         }
     }
 
@@ -290,6 +257,7 @@ struct WordDetailView: View {
                     }
                 }
                 .padding(.vertical, 2)
+                .subtleSectionGlow()
             }
         }
     }

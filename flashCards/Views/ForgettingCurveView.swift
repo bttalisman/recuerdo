@@ -31,13 +31,15 @@ struct ForgettingCurveView: View {
                     if let card = selectedCard {
                         wordCurveSection(card)
                             .id("curveChart")
+                            .subtleSectionGlow()
                     } else {
                         aggregateCurveSection
                             .id("curveChart")
+                            .subtleSectionGlow()
                     }
                 }
-                Section { summaryStatsSection }
-                Section { wordPickerSection(scrollProxy: proxy) }
+                Section { summaryStatsSection.subtleSectionGlow() }
+                Section { wordPickerSection(scrollProxy: proxy).subtleSectionGlow() }
             }
         }
         .navigationTitle("Word Retention")

@@ -32,6 +32,7 @@ struct CategoryBrowserView: View {
             List {
                 Section {
                     Stepper("\(wordCount) words per session", value: $wordCount, in: 5...30, step: 5)
+                        .subtleSectionGlow()
                 } header: {
                     Text("Session Size")
                 }
@@ -152,6 +153,7 @@ struct CategoryBrowserView: View {
                 startSession(category: category.name)
             }
         }
+        .subtleSectionGlow()
 
         // Subcategory rows
         if !displayedSubs.isEmpty {
@@ -186,6 +188,7 @@ struct CategoryBrowserView: View {
                     .buttonStyle(.borderless)
                 }
                 .padding(.leading, 28)
+                .subtleSectionGlow()
             }
         }
     }

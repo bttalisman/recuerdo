@@ -11,12 +11,12 @@ struct DifficultyInsightsView: View {
     var body: some View {
         List {
             if allReviews.count < 50 {
-                Section { emptyState }
+                Section { emptyState.subtleSectionGlow() }
             } else if insights.isEmpty {
-                Section { noInsightsState }
+                Section { noInsightsState.subtleSectionGlow() }
             } else {
                 ForEach(insights) { insight in
-                    Section { insightCard(insight) }
+                    Section { insightCard(insight).subtleSectionGlow() }
                 }
             }
         }

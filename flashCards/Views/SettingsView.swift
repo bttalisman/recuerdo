@@ -28,12 +28,16 @@ struct SettingsView: View {
                         LabeledContent("Total Words") {
                             Text("\(deck.totalWords)")
                         }
+                        .subtleSectionGlow()
                     }
 
                     Section {
                         directionRow(deck: deck, label: "\(deck.sourceLanguage) → \(deck.targetLanguage)", value: "source_first")
+                            .subtleSectionGlow()
                         directionRow(deck: deck, label: "\(deck.targetLanguage) → \(deck.sourceLanguage)", value: "target_first")
+                            .subtleSectionGlow()
                         directionRow(deck: deck, label: "Mix It Up!", value: "mixed")
+                            .subtleSectionGlow()
                     } header: {
                         Text("Review Direction")
                     } footer: {
@@ -45,11 +49,13 @@ struct SettingsView: View {
                             modeButton(deck: deck, label: "Free", value: "free")
                             modeButton(deck: deck, label: "Scheduled", value: "scheduled")
                         }
+                        .subtleSectionGlow()
 
                         if deck.newWordsMode == "free" {
                             Text("Learn new words anytime you want.")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
+                                .subtleSectionGlow()
 
                             Stepper(
                                 "\(deck.dailyNewCardLimit) words per session",
@@ -59,10 +65,12 @@ struct SettingsView: View {
                                 ),
                                 in: 1...30
                             )
+                            .subtleSectionGlow()
                         } else {
                             Text("A fresh batch of new words arrives each day.")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
+                                .subtleSectionGlow()
 
                             Stepper(
                                 "\(deck.newWordsAccumulationRate) words per day",
@@ -72,6 +80,7 @@ struct SettingsView: View {
                                 ),
                                 in: 1...50
                             )
+                            .subtleSectionGlow()
                         }
                     }
 
@@ -86,9 +95,11 @@ struct SettingsView: View {
                                 in: 100...deck.totalWords,
                                 step: 100
                             )
+                            .subtleSectionGlow()
                             Text("New words are introduced, most common first. Expand this pool as you progress.")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
+                                .subtleSectionGlow()
                         } else {
                             HStack {
                                 Text("\(deck.unlockedWordCount) of \(deck.totalWords) words unlocked")
@@ -96,9 +107,11 @@ struct SettingsView: View {
                                 Image(systemName: "lock.fill")
                                     .foregroundStyle(.secondary)
                             }
+                            .subtleSectionGlow()
                             Text("Get Recuerdo Premium to unlock more words.")
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
+                                .subtleSectionGlow()
                         }
                     }
 
@@ -109,6 +122,7 @@ struct SettingsView: View {
                             Text("Dark").tag("dark")
                         }
                         .pickerStyle(.segmented)
+                        .subtleSectionGlow()
                     }
 
                     Section {
@@ -120,11 +134,13 @@ struct SettingsView: View {
                                     NotificationManager.shared.cancelAll()
                                 }
                             }
+                            .subtleSectionGlow()
 
                         if let notificationStatus {
                             Text(notificationStatus)
                                 .font(.caption)
                                 .foregroundStyle(notificationStatus.contains("denied") ? .orange : .green)
+                                .subtleSectionGlow()
                         }
                     } header: {
                         Text("Notifications")
@@ -140,6 +156,7 @@ struct SettingsView: View {
                             ) {
                                 Label("Export Backup", systemImage: "square.and.arrow.up")
                             }
+                            .subtleSectionGlow()
                         }
 
                         Button {
@@ -147,11 +164,13 @@ struct SettingsView: View {
                         } label: {
                             Label("Restore from Backup", systemImage: "square.and.arrow.down")
                         }
+                        .subtleSectionGlow()
 
                         if let backupStatus {
                             Text(backupStatus)
                                 .font(.caption)
                                 .foregroundStyle(backupStatus.contains("Restored") ? .green : .red)
+                                .subtleSectionGlow()
                         }
                     }
 
@@ -161,6 +180,7 @@ struct SettingsView: View {
                         } label: {
                             Label("About Recuerdo", systemImage: "info.circle")
                         }
+                        .subtleSectionGlow()
                     }
 
                     Section("Premium") {
@@ -170,12 +190,14 @@ struct SettingsView: View {
                             Text(premiumManager.isPremium ? "Active" : "Not purchased")
                                 .foregroundStyle(premiumManager.isPremium ? .green : .secondary)
                         }
+                        .subtleSectionGlow()
 
                         Button {
                             Task { await premiumManager.restorePurchases() }
                         } label: {
                             Label("Restore Purchase", systemImage: "arrow.clockwise")
                         }
+                        .subtleSectionGlow()
                     }
 
                     #if DEBUG
@@ -184,6 +206,7 @@ struct SettingsView: View {
                             get: { premiumManager.devOverride },
                             set: { premiumManager.devOverride = $0 }
                         ))
+                        .subtleSectionGlow()
                     }
                     #endif
 

@@ -42,11 +42,11 @@ struct ProgressDashboardView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section { overviewChart }
-                Section { todayStatsSection }
-                Section { workloadSection }
-                Section { pipelineSection }
-                Section { upcomingSection }
+                Section { overviewChart.subtleSectionGlow() }
+                Section { todayStatsSection.subtleSectionGlow() }
+                Section { workloadSection.subtleSectionGlow() }
+                Section { pipelineSection.subtleSectionGlow() }
+                Section { upcomingSection.subtleSectionGlow() }
 
                 Section {
                     NavigationLink {
@@ -65,6 +65,7 @@ struct ProgressDashboardView: View {
                             }
                         }
                     }
+                    .subtleSectionGlow()
                 }
             }
             .navigationTitle("")

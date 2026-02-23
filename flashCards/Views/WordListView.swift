@@ -162,6 +162,7 @@ struct WordListView: View {
                                     Text(cat.capitalized).tag(cat as String?)
                                 }
                             }
+                            .subtleSectionGlow()
                         }
                     }
 
@@ -171,6 +172,7 @@ struct WordListView: View {
                                 Text(option.rawValue).tag(option)
                             }
                         }
+                        .subtleSectionGlow()
 
                         Button {
                             withAnimation {
@@ -180,6 +182,7 @@ struct WordListView: View {
                             Label(showReviewSetup ? "Cancel Review" : "Review These Words",
                                   systemImage: showReviewSetup ? "xmark.circle.fill" : "play.circle.fill")
                         }
+                        .subtleSectionGlow()
                     }
 
                     if showReviewSetup && !filteredCards.isEmpty {
@@ -210,6 +213,7 @@ struct WordListView: View {
                             } label: {
                                 WordRow(card: card, showTargetFirst: showTargetFirst)
                             }
+                            .subtleSectionGlow()
                         }
                     }
                 }

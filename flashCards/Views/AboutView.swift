@@ -26,6 +26,7 @@ struct AboutView: View {
                     description: "Example sentences and translations",
                     license: "CC BY 2.0 FR"
                 )
+                .subtleSectionGlow()
 
                 creditRow(
                     name: "Anki Shared Decks",
@@ -33,6 +34,7 @@ struct AboutView: View {
                     description: "Core vocabulary word list",
                     license: nil
                 )
+                .subtleSectionGlow()
             }
 
             Section("Translation Verification") {
@@ -42,6 +44,7 @@ struct AboutView: View {
                     description: "Used to cross-check translation accuracy",
                     license: nil
                 )
+                .subtleSectionGlow()
             }
 
             Section("Spaced Repetition") {
@@ -53,6 +56,7 @@ struct AboutView: View {
                         .foregroundStyle(.secondary)
                 }
                 .padding(.vertical, 4)
+                .subtleSectionGlow()
             }
 
             Section("Support") {
@@ -66,6 +70,7 @@ struct AboutView: View {
                             .foregroundStyle(.tertiary)
                     }
                 }
+                .subtleSectionGlow()
             }
 
             Section {
