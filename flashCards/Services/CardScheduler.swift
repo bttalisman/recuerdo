@@ -42,7 +42,8 @@ struct CardScheduler {
         return due
     }
 
-    /// Free new words: return up to `limit` new cards from the unlocked pool, in curated order
+    /// Free new words: return up to `limit` new cards from the unlocked pool.
+    /// Silently prioritises curated starter words for new users before falling back to frequency order.
     static func buildFreeNewWordsSession(deckId: String, limit: Int, context: ModelContext) -> [FlashCard] {
         guard limit > 0 else { return [] }
 
@@ -50,6 +51,28 @@ struct CardScheduler {
             predicate: #Predicate { $0.deckId == deckId }
         )
         guard let deckMeta = try? context.fetch(metaDescriptor).first else { return [] }
+
+        // If starter list hasn't been completed, serve curated words first
+        if !deckMeta.hasCompletedStarterList {
+            let newDescriptor = FetchDescriptor<FlashCard>(
+                predicate: #Predicate { $0.deckId == deckId && $0.status == "new" }
+            )
+            let allNew = (try? context.fetch(newDescriptor)) ?? []
+            let cardMap = Dictionary(uniqueKeysWithValues: allNew.map { ($0.wordId, $0) })
+
+            var starterCards: [FlashCard] = []
+            for id in StarterWords.wordIds {
+                guard let card = cardMap[id] else { continue }
+                starterCards.append(card)
+                if starterCards.count >= limit { break }
+            }
+
+            if !starterCards.isEmpty { return starterCards }
+
+            // All starter words learned — mark complete, fall through to normal flow
+            deckMeta.hasCompletedStarterList = true
+            try? context.save()
+        }
 
         let maxIndex = deckMeta.unlockedWordCount
         var descriptor = FetchDescriptor<FlashCard>(
@@ -83,6 +106,27 @@ struct CardScheduler {
 
         let remaining = max(0, deckMeta.dailyNewCardLimit - introducedTodayCount)
         if remaining == 0 { return [] }
+
+        // Prioritise curated starter words for new users
+        if !deckMeta.hasCompletedStarterList {
+            let newDescriptor = FetchDescriptor<FlashCard>(
+                predicate: #Predicate { $0.deckId == deckId && $0.status == "new" }
+            )
+            let allNew = (try? context.fetch(newDescriptor)) ?? []
+            let cardMap = Dictionary(uniqueKeysWithValues: allNew.map { ($0.wordId, $0) })
+
+            var starterCards: [FlashCard] = []
+            for id in StarterWords.wordIds {
+                guard let card = cardMap[id] else { continue }
+                starterCards.append(card)
+                if starterCards.count >= remaining { break }
+            }
+
+            if !starterCards.isEmpty { return starterCards }
+
+            deckMeta.hasCompletedStarterList = true
+            try? context.save()
+        }
 
         // Only offer new cards within the unlocked range
         let maxIndex = deckMeta.unlockedWordCount

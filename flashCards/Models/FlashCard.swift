@@ -20,13 +20,20 @@ final class FlashCard {
     var examplesData: Data?
 
     @Transient
+    private var _cachedExamples: [ExampleSentence]?
+
+    @Transient
     var examples: [ExampleSentence] {
         get {
+            if let cached = _cachedExamples { return cached }
             guard let data = examplesData else { return [] }
-            return (try? JSONDecoder().decode([ExampleSentence].self, from: data)) ?? []
+            let decoded = (try? JSONDecoder().decode([ExampleSentence].self, from: data)) ?? []
+            _cachedExamples = decoded
+            return decoded
         }
         set {
             examplesData = try? JSONEncoder().encode(newValue)
+            _cachedExamples = newValue
         }
     }
 
@@ -53,7 +60,9 @@ final class FlashCard {
     var displaySourceText: String {
         if partOfSpeech == "verb"
             && !sourceText.lowercased().hasPrefix("to ")
-            && !Self.modalVerbs.contains(sourceText.lowercased()) {
+            && !sourceText.lowercased()
+                .components(separatedBy: CharacterSet.letters.inverted)
+                .contains(where: { Self.modalVerbs.contains($0) }) {
             return "to \(sourceText)"
         }
         return sourceText

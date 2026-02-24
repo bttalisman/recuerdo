@@ -112,7 +112,6 @@ class StudySessionViewModel: Identifiable {
         card.status = "learning"
         card.nextReviewDate = Date()
         wordsLearned += 1
-        try? context.save()
     }
 
     // MARK: - Category Learn Mode

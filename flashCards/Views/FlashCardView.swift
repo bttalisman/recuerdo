@@ -27,7 +27,7 @@ struct FlashCardView: View {
 
     /// Pick the example whose Spanish sentence contains the target word (case-insensitive).
     /// Falls back to the first example if none match.
-    private var bestExample: ExampleSentence? {
+    private func computeBestExample() -> ExampleSentence? {
         guard !examples.isEmpty else { return nil }
         let word = targetText.lowercased()
         return examples.first { $0.es.lowercased().contains(word) } ?? examples.first
@@ -43,14 +43,15 @@ struct FlashCardView: View {
     }
 
     var body: some View {
+        let bestExample = computeBestExample()
         ZStack {
             // Front
-            cardFace(text: frontText, article: frontArticle, language: frontLanguage, languageCode: frontLanguageCode, isFront: true, isTargetLanguage: showTargetFirst)
+            cardFace(text: frontText, article: frontArticle, language: frontLanguage, languageCode: frontLanguageCode, isFront: true, isTargetLanguage: showTargetFirst, bestExample: bestExample)
                 .opacity(isFlipped ? 0 : 1)
                 .rotation3DEffect(.degrees(isFlipped ? 180 : 0), axis: (x: 0, y: 1, z: 0))
 
             // Back
-            cardFace(text: backText, article: backArticle, language: backLanguage, languageCode: backLanguageCode, isFront: false, isTargetLanguage: !showTargetFirst)
+            cardFace(text: backText, article: backArticle, language: backLanguage, languageCode: backLanguageCode, isFront: false, isTargetLanguage: !showTargetFirst, bestExample: bestExample)
                 .opacity(isFlipped ? 1 : 0)
                 .rotation3DEffect(.degrees(isFlipped ? 0 : -180), axis: (x: 0, y: 1, z: 0))
         }
@@ -70,7 +71,7 @@ struct FlashCardView: View {
     }
 
     @ViewBuilder
-    private func cardFace(text: String, article: String?, language: String, languageCode: String, isFront: Bool, isTargetLanguage: Bool) -> some View {
+    private func cardFace(text: String, article: String?, language: String, languageCode: String, isFront: Bool, isTargetLanguage: Bool, bestExample: ExampleSentence?) -> some View {
         VStack(spacing: 16) {
             VStack(spacing: 2) {
                 Text(language.uppercased())

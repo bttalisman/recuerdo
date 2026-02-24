@@ -1936,29 +1936,6 @@
       ]
     },
     {
-      "id": "en_es_0063",
-      "source": "children",
-      "target": "niños",
-      "partOfSpeech": "noun",
-      "category": "society/family & relationships",
-      "difficulty": 132,
-      "article": "el",
-      "examples": [
-        {
-          "es": "Estoy casada y tengo dos niños.",
-          "en": "I am married and have two children."
-        },
-        {
-          "es": "Cuando abrí la ventana vi a los niños jugando al béisbol.",
-          "en": "When I opened the window, I saw children playing baseball."
-        },
-        {
-          "es": "Las niñas maduran antes que los niños.",
-          "en": "Girls mature faster than boys."
-        }
-      ]
-    },
-    {
       "id": "en_es_0064",
       "source": "almost",
       "target": "casi",
@@ -109880,29 +109857,6 @@
         {
           "es": "Gracias por hornear esta deliciosa torta.",
           "en": "Thank you for baking this delicious cake."
-        }
-      ]
-    },
-    {
-      "id": "en_es_3721",
-      "source": "hundred",
-      "target": "cien",
-      "article": "el",
-      "partOfSpeech": "noun (m)",
-      "category": "numbers",
-      "difficulty": 3480,
-      "examples": [
-        {
-          "es": "Él no tiene más de cien libros.",
-          "en": "He has no more than one hundred books."
-        },
-        {
-          "es": "Ella sólo tiene dos años pero es capaz de contar hasta cien.",
-          "en": "She is only two years old but is able to count to 100."
-        },
-        {
-          "es": "El billete cuesta cien euros.",
-          "en": "The ticket costs 100 euros."
         }
       ]
     },

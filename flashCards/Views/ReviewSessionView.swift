@@ -8,9 +8,9 @@ struct ReviewSessionView: View {
     let title: String
     let backLabel: String
     let onDismiss: () -> Void
+    var deckMeta: DeckMetadata?
 
     @Environment(\.modelContext) private var modelContext
-    @Query private var decks: [DeckMetadata]
     @State private var ratingFlash: RatingFlash?
     @State private var hasRevealedCard = false
     @State private var completedFirstLap = false
@@ -53,7 +53,6 @@ struct ReviewSessionView: View {
 
     @ViewBuilder
     private func cardView(card: FlashCard) -> some View {
-        let deckMeta = decks.first
         VStack(spacing: 0) {
             FlashCardView(
                 sourceText: card.displaySourceText,
@@ -79,7 +78,6 @@ struct ReviewSessionView: View {
                 )
             )
             .id(card.wordId)
-            .transition(.identity)
             .frame(height: 300)
             .overlay(
                 RoundedRectangle(cornerRadius: 20)

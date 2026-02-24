@@ -153,7 +153,7 @@ struct WordListView: View {
                             Text("Mastered").tag("mastered" as String?)
                         }
                         .pickerStyle(.segmented)
-                        .listRowBackground(Color.clear)
+                        .subtleSectionGlow()
 
                         if isPremium && !availableCategories.isEmpty {
                             Picker("Category", selection: $filterCategory) {
@@ -230,7 +230,8 @@ struct WordListView: View {
             viewModel: viewModel,
             title: "Custom Review",
             backLabel: "Back to Words",
-            onDismiss: { self.viewModel = nil }
+            onDismiss: { self.viewModel = nil },
+            deckMeta: decks.first
         )
     }
 

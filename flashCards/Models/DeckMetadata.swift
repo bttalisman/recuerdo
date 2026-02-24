@@ -17,6 +17,7 @@ final class DeckMetadata {
     var newWordsMode: String // "free" or "scheduled"
     var newWordsAccumulationRate: Int // words per day, used in scheduled mode
     var lastNewWordsDrainDate: Date? // when scheduled-mode accumulation was last drained
+    var hasCompletedStarterList: Bool // true once curated beginner words are done (default true for existing users)
 
     init(deckId: String, sourceLanguage: String, sourceLanguageCode: String,
          targetLanguage: String, targetLanguageCode: String,
@@ -35,5 +36,6 @@ final class DeckMetadata {
         self.newWordsMode = "free"
         self.newWordsAccumulationRate = 10
         self.lastNewWordsDrainDate = nil
+        self.hasCompletedStarterList = true
     }
 }

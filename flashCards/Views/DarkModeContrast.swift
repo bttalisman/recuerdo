@@ -23,8 +23,8 @@ struct SubtleSectionGlow: ViewModifier {
         content.listRowBackground(
             LinearGradient(
                 colors: colorScheme == .dark
-                    ? [Color(red: 0.22, green: 0.15, blue: 0.10),
-                       Color(red: 0.12, green: 0.11, blue: 0.10)]
+                    ? [Color(red: 0.185, green: 0.13, blue: 0.10),
+                       Color(red: 0.085, green: 0.085, blue: 0.085)]
 
                     : [Color(red: 1.0, green: 0.995, blue: 0.985),
                        Color(red: 1.0, green: 0.96, blue: 0.90)],

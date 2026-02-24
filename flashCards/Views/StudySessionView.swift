@@ -101,6 +101,13 @@ struct StudySessionView: View {
                 sessionView(viewModel: vm)
             }
         }
+        .transaction { $0.animation = .easeOut(duration: 0.15) }
+    }
+
+    private func presentSession(_ vm: StudySessionViewModel) {
+        DispatchQueue.main.async {
+            viewModel = vm
+        }
     }
 
     // MARK: - Mode Selection
@@ -133,7 +140,7 @@ struct StudySessionView: View {
                             context: modelContext
                         )
                     }
-                    viewModel = vm
+                    presentSession(vm)
                 } label: {
                     modeButtonLabel(
                         icon: learnEnabled ? "sparkles" : "lock.fill",
@@ -156,7 +163,7 @@ struct StudySessionView: View {
                         let direction = decks.first?.cardDirection ?? "source_first"
                         vm.loadReviewSession(deckId: deckId, cardDirection: direction, context: modelContext)
                     }
-                    viewModel = vm
+                    presentSession(vm)
                 } label: {
                     modeButtonLabel(
                         icon: dueReviewCount > 0 ? "arrow.clockwise" : "lock.fill",
@@ -314,7 +321,8 @@ struct StudySessionView: View {
             viewModel: viewModel,
             title: viewModel.mode == .learn ? "Learn" : "Review",
             backLabel: "Back to Study",
-            onDismiss: { self.viewModel = nil }
+            onDismiss: { self.viewModel = nil },
+            deckMeta: decks.first
         )
     }
 

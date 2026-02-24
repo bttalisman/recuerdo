@@ -7,6 +7,7 @@ struct DifficultyInsightsView: View {
     @Query private var allCards: [FlashCard]
     @State private var expandedInsightId: String?
     @State private var insights: [Insight] = []
+    @State private var detailInsight: Insight?
 
     var body: some View {
         List {
@@ -23,6 +24,22 @@ struct DifficultyInsightsView: View {
         .navigationTitle("Difficulty Insights")
         .navigationBarTitleDisplayMode(.large)
         .enhancedDarkContrast()
+        .sheet(item: $detailInsight) { insight in
+            NavigationStack {
+                ScrollView {
+                    Text(insight.detail ?? "")
+                        .padding()
+                }
+                .navigationTitle(insight.title)
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button("Done") { detailInsight = nil }
+                    }
+                }
+            }
+            .presentationDetents([.medium])
+        }
         .onAppear {
             insights = DifficultyAnalyzer.generateInsights(cards: allCards, reviews: allReviews)
         }
@@ -89,6 +106,17 @@ struct DifficultyInsightsView: View {
                                 .fill(severityColor(insight.severity))
                                 .frame(width: 8, height: 8)
                                 .accessibilityHidden(true)
+                            if insight.detail != nil {
+                                Button {
+                                    detailInsight = insight
+                                } label: {
+                                    Image(systemName: "info.circle")
+                                        .font(.subheadline)
+                                        .foregroundStyle(.blue)
+                                }
+                                .buttonStyle(.plain)
+                                .accessibilityLabel("More info about \(insight.title)")
+                            }
                         }
                         Text(insight.description)
                             .font(.subheadline)

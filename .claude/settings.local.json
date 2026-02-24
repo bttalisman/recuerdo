@@ -7,7 +7,8 @@
       "Bash(wc:*)",
       "WebFetch(domain:reword.app)",
       "WebSearch",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(tail:*)"
     ]
   }
 }

@@ -99,6 +99,7 @@ struct DataLoader {
                     totalWords: deck.words.count,
                     jsonVersion: deck.version
                 )
+                meta.hasCompletedStarterList = false
                 meta.lastSeedDate = Date()
                 context.insert(meta)
 

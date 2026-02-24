@@ -15,6 +15,7 @@ struct Insight: Identifiable {
     let icon: String
     let title: String
     let description: String
+    var detail: String? = nil
     let severity: Severity
     let supportingWords: [FlashCard]
 }
@@ -282,18 +283,20 @@ struct DifficultyAnalyzer {
 
         guard !matched.isEmpty else { return nil }
 
-        let tips = matched.prefix(3).compactMap { card -> String? in
+        let desc = "Your deck has \(matched.count) false cognate\(matched.count == 1 ? "" : "s") — words that look like English but mean something different."
+
+        let tips = matched.compactMap { card -> String? in
             guard let entry = falseCognateMap[card.targetText.lowercased()] else { return nil }
             return "\"\(card.targetText)\" looks like \"\(entry.looksLike)\" but means \"\(entry.actualMeaning)\""
         }
-
-        let desc = "Your deck has \(matched.count) false cognate\(matched.count == 1 ? "" : "s") — Spanish words that look like English but mean something different. " + tips.joined(separator: ". ") + "."
+        let detail = "False cognates (\"false friends\") are Spanish words that resemble English words but have different meanings. Watch out for these:\n\n" + tips.map { "• \($0)" }.joined(separator: "\n")
 
         return Insight(
             id: "falsecognate",
             icon: "exclamationmark.triangle",
             title: "False Friends",
             description: desc,
+            detail: detail,
             severity: .warning,
             supportingWords: matched
         )
