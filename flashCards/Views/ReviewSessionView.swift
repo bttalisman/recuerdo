@@ -247,14 +247,30 @@ struct ReviewSessionView: View {
     // MARK: - Session Complete
 
     private var sessionCompleteView: some View {
-        SessionCompleteContent(
+        let verge = computeVergeSummary()
+        return SessionCompleteContent(
             mode: viewModel.mode,
             wordsLearned: viewModel.wordsLearned,
             totalReviewed: viewModel.totalReviewed,
             correctCount: viewModel.correctCount,
             accuracy: viewModel.accuracy,
             backLabel: backLabel,
-            onDismiss: onDismiss
+            onDismiss: onDismiss,
+            almostMasteredCount: verge.almostMastered,
+            tipOfTongueCount: verge.tipOfTongue,
+            stillBuildingCount: verge.stillBuilding
+        )
+    }
+
+    private func computeVergeSummary() -> (almostMastered: Int, tipOfTongue: Int, stillBuilding: Int) {
+        guard viewModel.mode == .review else { return (0, 0, 0) }
+        let cards = (try? modelContext.fetch(FetchDescriptor<FlashCard>())) ?? []
+        let reviews = (try? modelContext.fetch(FetchDescriptor<ReviewRecord>())) ?? []
+        let vergeWords = VergeAnalyzer.analyze(cards: cards, reviews: reviews)
+        return (
+            almostMastered: vergeWords.filter { $0.category == .almostMastered }.count,
+            tipOfTongue: vergeWords.filter { $0.category == .tipOfTongue }.count,
+            stillBuilding: vergeWords.filter { $0.category == .stillBuilding }.count
         )
     }
 
@@ -303,6 +319,9 @@ private struct SessionCompleteContent: View {
     let accuracy: Double
     let backLabel: String
     let onDismiss: () -> Void
+    var almostMasteredCount: Int = 0
+    var tipOfTongueCount: Int = 0
+    var stillBuildingCount: Int = 0
 
     @State private var boltScale: CGFloat = 0.3
     @State private var boltOpacity: Double = 0
@@ -314,6 +333,8 @@ private struct SessionCompleteContent: View {
     )
     @State private var textOpacity: Double = 0
     @State private var statsOpacity: Double = 0
+    @State private var vergeOffset: CGFloat = 300
+    @State private var vergeOpacity: Double = 0
 
     var body: some View {
         VStack(spacing: 20) {
@@ -386,6 +407,12 @@ private struct SessionCompleteContent: View {
             .opacity(statsOpacity)
             .accessibilityElement(children: .combine)
 
+            if mode == .review && hasVergeWords {
+                vergeSummary
+                    .offset(x: vergeOffset)
+                    .opacity(vergeOpacity)
+            }
+
             Button(backLabel) { onDismiss() }
                 .buttonStyle(.borderedProminent)
                 .padding(.top)
@@ -402,6 +429,45 @@ private struct SessionCompleteContent: View {
             Spacer()
             Text(value)
                 .fontWeight(.semibold)
+        }
+    }
+
+    private var hasVergeWords: Bool {
+        almostMasteredCount + tipOfTongueCount + stillBuildingCount > 0
+    }
+
+    private var vergeSummary: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "flame")
+                .foregroundStyle(.orange)
+                .font(.caption)
+
+            VStack(alignment: .leading, spacing: 3) {
+                if almostMasteredCount > 0 {
+                    vergeRow(color: .green, label: "Almost mastered", count: almostMasteredCount)
+                }
+                if tipOfTongueCount > 0 {
+                    vergeRow(color: .orange, label: "Tip of tongue", count: tipOfTongueCount)
+                }
+                if stillBuildingCount > 0 {
+                    vergeRow(color: .blue, label: "Still building", count: stillBuildingCount)
+                }
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 10)
+        .frame(maxWidth: 320, alignment: .leading)
+        .background(RoundedRectangle(cornerRadius: 10).fill(.background).shadow(radius: 1))
+    }
+
+    private func vergeRow(color: Color, label: String, count: Int) -> some View {
+        HStack(spacing: 6) {
+            Circle()
+                .fill(color)
+                .frame(width: 6, height: 6)
+            Text("\(count) \(label.lowercased())")
+                .font(.caption)
+                .foregroundStyle(.secondary)
         }
     }
 
@@ -447,6 +513,12 @@ private struct SessionCompleteContent: View {
         // Stats slide in
         withAnimation(.easeOut(duration: 0.4).delay(0.6)) {
             statsOpacity = 1
+        }
+
+        // Verge slides in from the right
+        withAnimation(.spring(response: 0.5, dampingFraction: 0.75).delay(1.0)) {
+            vergeOffset = 0
+            vergeOpacity = 1
         }
     }
 }

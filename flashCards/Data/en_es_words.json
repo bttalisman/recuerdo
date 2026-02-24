@@ -5754,7 +5754,7 @@
     },
     {
       "id": "en_es_0208",
-      "source": "comprise",
+      "source": "comprise, understand",
       "target": "comprender",
       "partOfSpeech": "verb",
       "category": "abstract",
@@ -5992,35 +5992,35 @@
     {
       "id": "en_es_0215",
       "source": "change",
-      "target": "cambio",
+      "target": "cambiar",
       "partOfSpeech": "verb",
       "category": "actions",
       "difficulty": 186,
       "article": null,
       "examples": [
         {
-          "es": "Quiero hacer una llamada, pero no ando con cambio.",
-          "en": "I want to make a phone call, but I don't have any change now."
+          "es": "Quiero cambiar mi contraseña.",
+          "en": "I want to change my password."
         },
         {
-          "es": "Cuente el cambio siempre.",
-          "en": "Always count your change."
+          "es": "No puedes cambiar el pasado.",
+          "en": "You can't change the past."
         },
         {
-          "es": "Perdone, pero no tengo cambio.",
-          "en": "Forgive me, but I have no change."
+          "es": "Necesito cambiar de ropa antes de salir.",
+          "en": "I need to change clothes before going out."
         },
         {
-          "es": "El cambio de clima ha afectado la agricultura.",
-          "en": "The change in climate has affected agriculture."
+          "es": "El clima puede cambiar rápidamente.",
+          "en": "The weather can change quickly."
         },
         {
-          "es": "Necesito hacer un cambio de dólares a euros.",
-          "en": "I need to make an exchange from dollars to euros."
+          "es": "Voy a cambiar dólares a euros.",
+          "en": "I'm going to exchange dollars for euros."
         },
         {
-          "es": "El cambio climático es un gran problema.",
-          "en": "Climate change is a big problem."
+          "es": "Es difícil cambiar los malos hábitos.",
+          "en": "It's hard to change bad habits."
         }
       ]
     },
@@ -6236,7 +6236,7 @@
     },
     {
       "id": "en_es_0222",
-      "source": "pathway",
+      "source": "road, pathway",
       "target": "camino",
       "partOfSpeech": "noun",
       "category": "travel/journey & navigation",
@@ -8587,45 +8587,6 @@
       ]
     },
     {
-      "id": "en_es_0293",
-      "source": "to change",
-      "target": "cambiar",
-      "article": null,
-      "partOfSpeech": "verb",
-      "category": "abstract/existence & being",
-      "difficulty": 246,
-      "examples": [
-        {
-          "es": "Eso no va a cambiar nada.",
-          "en": "That won't change anything."
-        },
-        {
-          "es": "Me gustaría cambiar mi reserva.",
-          "en": "I'd like to change my reservation."
-        },
-        {
-          "es": "Necesito cambiar dólares por pesos.",
-          "en": "I need to exchange dollars for pesos."
-        },
-        {
-          "es": "Quiero cambiar mi ropa de invierno por la de verano.",
-          "en": "I want to change my winter clothes for summer ones."
-        },
-        {
-          "es": "Ella va a cambiar su libro por uno nuevo.",
-          "en": "She is going to exchange her book for a new one."
-        },
-        {
-          "es": "Necesitamos cambiar nuestra estrategia para tener mejores resultados.",
-          "en": "We need to change our strategy to achieve better results."
-        },
-        {
-          "es": "¿Qué cambiarías de ti?",
-          "en": "What would you change about yourself?"
-        }
-      ]
-    },
-    {
       "id": "en_es_0294",
       "source": "center",
       "target": "centro",
@@ -9153,7 +9114,7 @@
     {
       "id": "en_es_0310",
       "source": "finally, in the end",
-      "target": "al final final",
+      "target": "al final",
       "article": null,
       "partOfSpeech": "noun",
       "category": "time/sequence & temporal",
@@ -10000,7 +9961,7 @@
     {
       "id": "en_es_0338",
       "source": "measure: to the extent",
-      "target": "medida ; a medida que",
+      "target": "a medida que",
       "article": "la",
       "partOfSpeech": "noun (f)",
       "category": "abstract",
@@ -11028,7 +10989,7 @@
     {
       "id": "en_es_0372",
       "source": "accord: in agreement",
-      "target": "acuerdo ; de",
+      "target": "de acuerdo",
       "article": "el",
       "partOfSpeech": "noun (m)",
       "category": "work",
@@ -13752,7 +13713,7 @@
     {
       "id": "en_es_0460",
       "source": "supposed: of course",
-      "target": "supuesto ; por",
+      "target": "por supuesto",
       "article": null,
       "partOfSpeech": "adjective",
       "category": "education/teaching & assessment",
@@ -16272,7 +16233,7 @@
     {
       "id": "en_es_0537",
       "source": "respect: with regards to",
-      "target": "respecto ; con respecto a",
+      "target": "con respecto a",
       "article": "el",
       "partOfSpeech": "noun (m)",
       "category": "basics",
@@ -29858,10 +29819,10 @@
       "id": "en_es_0973",
       "source": "set (collection)",
       "target": "conjunto",
-      "partOfSpeech": "verb",
+      "partOfSpeech": "noun",
       "category": "actions/possession & exchange",
       "difficulty": 721,
-      "article": null,
+      "article": "el",
       "examples": [
         {
           "es": "La religión consiste en un conjunto de cosas que el hombre medio piensa que cree, y desearía estar seguro.",
@@ -40770,10 +40731,10 @@
       "id": "en_es_1327",
       "source": "exercise",
       "target": "ejercicio",
-      "partOfSpeech": "verb",
+      "partOfSpeech": "noun",
       "category": "health",
       "difficulty": 1242,
-      "article": null,
+      "article": "el",
       "examples": [
         {
           "es": "El ejercicio es indispensable para un perro.",
@@ -44930,10 +44891,10 @@
       "id": "en_es_1469",
       "source": "show (performance)",
       "target": "espectáculo",
-      "partOfSpeech": "verb",
+      "partOfSpeech": "noun",
       "category": "society",
       "difficulty": 1420,
-      "article": null,
+      "article": "el",
       "examples": [
         {
           "es": "Es un espectáculo que no olvidará.",
@@ -48914,7 +48875,7 @@
       "source": "to lack",
       "target": "a falta de",
       "article": null,
-      "partOfSpeech": "verb",
+      "partOfSpeech": "phrase",
       "category": "abstract",
       "difficulty": 1633,
       "examples": [
@@ -50323,8 +50284,8 @@
     },
     {
       "id": "en_es_1652",
-      "source": "and a bit :beak, peak",
-      "target": "y pico :pico",
+      "source": "beak, peak",
+      "target": "pico",
       "article": "el",
       "partOfSpeech": "noun (m)",
       "category": null,
@@ -50990,10 +50951,10 @@
       "id": "en_es_1675",
       "source": "advocate",
       "target": "defensor",
-      "partOfSpeech": "verb",
+      "partOfSpeech": "noun",
       "category": "society",
       "difficulty": 1564,
-      "article": null,
+      "article": "el",
       "examples": [
         {
           "es": "Ella es una gran defensora de los derechos humanos.",
@@ -58678,7 +58639,7 @@
     {
       "id": "en_es_1943",
       "source": "nevertheless",
-      "target": "no + obstante obstante",
+      "target": "no obstante",
       "article": null,
       "partOfSpeech": "adjective",
       "category": "descriptions",
@@ -62820,7 +62781,7 @@
     {
       "id": "en_es_2083",
       "source": "backwards, upside down, inside out",
-      "target": "revés : al revés:",
+      "target": "al revés",
       "article": "el",
       "partOfSpeech": "noun (m)",
       "category": "basics",
@@ -67400,7 +67361,7 @@
     {
       "id": "en_es_2240",
       "source": "suddenly",
-      "target": "repente: de + repente",
+      "target": "de repente",
       "article": null,
       "partOfSpeech": "adverb",
       "category": "descriptions",
@@ -78779,7 +78740,7 @@
     {
       "id": "en_es_2629",
       "source": "trick, trap; to cheat",
-      "target": "trampa ; hacer",
+      "target": "hacer trampa",
       "article": "la",
       "partOfSpeech": "noun (f)",
       "category": "actions",
@@ -98459,7 +98420,7 @@
     {
       "id": "en_es_3317",
       "source": "to show",
-      "target": "manifiesto : poner de",
+      "target": "poner de manifiesto",
       "article": "el",
       "partOfSpeech": "noun (m)",
       "category": "basics",
@@ -131474,8 +131435,8 @@
     },
     {
       "id": "en_es_4535",
-      "source": "coming from [also procedente",
-      "target": "proveniente ]",
+      "source": "coming from",
+      "target": "proveniente",
       "article": null,
       "partOfSpeech": "adjective",
       "category": "basics",

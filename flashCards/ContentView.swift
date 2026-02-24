@@ -50,6 +50,11 @@ struct ContentView: View {
                     Label("Progress", systemImage: "chart.bar")
                 }
 
+            VergeView()
+                .tabItem {
+                    Label("Verge", systemImage: "flame")
+                }
+
             SettingsView()
                 .tabItem {
                     Label("Settings", systemImage: "gear")
