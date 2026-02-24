@@ -168,9 +168,9 @@ class StudySessionViewModel: Identifiable {
     func submitRating(_ quality: Int, context: ModelContext) {
         guard let card = currentCard else { return }
 
+        // Capture everything we need BEFORE advancing the card
         let previousInterval = card.interval
         let previousEF = card.easeFactor
-
         let result = SpacedRepetitionEngine.processReview(
             currentInterval: card.interval,
             currentEaseFactor: card.easeFactor,
@@ -178,42 +178,11 @@ class StudySessionViewModel: Identifiable {
             currentStatus: card.status,
             quality: quality
         )
-
-        card.interval = result.newInterval
-        card.easeFactor = result.newEaseFactor
-        card.repetitionCount = result.newRepetitionCount
-        card.status = result.newStatus
-        card.lastReviewDate = Date()
-        card.nextReviewDate = Calendar.current.date(
-            byAdding: .day, value: max(result.newInterval, 1), to: Date()
-        )
-        card.totalReviews += 1
-
         let wasCorrect = quality >= 3
-        if wasCorrect {
-            card.totalCorrect += 1
-            card.currentStreak += 1
-            card.longestStreak = max(card.longestStreak, card.currentStreak)
-        } else {
-            card.currentStreak = 0
-        }
-
         let responseTime = Date().timeIntervalSince(cardShownAt)
-        let record = ReviewRecord(
-            card: card,
-            reviewDate: Date(),
-            quality: quality,
-            wasCorrect: wasCorrect,
-            previousInterval: previousInterval,
-            newInterval: result.newInterval,
-            previousEaseFactor: previousEF,
-            newEaseFactor: result.newEaseFactor,
-            studyMode: "review",
-            responseTimeSeconds: responseTime,
-            cardDirection: effectiveShowTargetFirst ? "target_to_source" : "source_to_target"
-        )
-        pendingRecords.append(record)
+        let direction = effectiveShowTargetFirst ? "target_to_source" : "source_to_target"
 
+        // --- Phase 1: Advance the UI immediately (no @Model mutations) ---
         totalReviewed += 1
         if wasCorrect { correctCount += 1 }
 
@@ -231,14 +200,57 @@ class StudySessionViewModel: Identifiable {
         isFlipped = false
         cardShownAt = Date()
 
-        if sessionCards.isEmpty {
+        let sessionDone = sessionCards.isEmpty
+        if sessionDone {
             isSessionComplete = true
-            flushPendingRecords(context: context)
-            try? context.save()
-            let container = context.container
-            DispatchQueue.global(qos: .utility).async {
-                let bgContext = ModelContext(container)
-                NotificationManager.shared.rescheduleNotifications(context: bgContext)
+        }
+
+        // --- Phase 2: Defer @Model mutations to after the render ---
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+
+            // Apply spaced repetition updates to the card
+            card.interval = result.newInterval
+            card.easeFactor = result.newEaseFactor
+            card.repetitionCount = result.newRepetitionCount
+            card.status = result.newStatus
+            card.lastReviewDate = Date()
+            card.nextReviewDate = Calendar.current.date(
+                byAdding: .day, value: max(result.newInterval, 1), to: Date()
+            )
+            card.totalReviews += 1
+            if wasCorrect {
+                card.totalCorrect += 1
+                card.currentStreak += 1
+                card.longestStreak = max(card.longestStreak, card.currentStreak)
+            } else {
+                card.currentStreak = 0
+            }
+
+            // Create review record
+            let record = ReviewRecord(
+                card: card,
+                reviewDate: Date(),
+                quality: quality,
+                wasCorrect: wasCorrect,
+                previousInterval: previousInterval,
+                newInterval: result.newInterval,
+                previousEaseFactor: previousEF,
+                newEaseFactor: result.newEaseFactor,
+                studyMode: "review",
+                responseTimeSeconds: responseTime,
+                cardDirection: direction
+            )
+            self.pendingRecords.append(record)
+
+            if sessionDone {
+                self.flushPendingRecords(context: context)
+                try? context.save()
+                let container = context.container
+                DispatchQueue.global(qos: .utility).async {
+                    let bgContext = ModelContext(container)
+                    NotificationManager.shared.rescheduleNotifications(context: bgContext)
+                }
             }
         }
     }

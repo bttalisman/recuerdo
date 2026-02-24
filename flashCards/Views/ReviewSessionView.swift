@@ -188,7 +188,7 @@ struct ReviewSessionView: View {
         hapticGenerator.notificationOccurred(correct ? .success : .error)
         hapticGenerator.prepare()
         ratingFlash = correct ? .correct : .incorrect
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
             var transaction = Transaction(animation: nil)
             transaction.disablesAnimations = true
             withTransaction(transaction) {

@@ -8,7 +8,8 @@
       "WebFetch(domain:reword.app)",
       "WebSearch",
       "Bash(git add:*)",
-      "Bash(tail:*)"
+      "Bash(tail:*)",
+      "WebFetch(domain:apps.apple.com)"
     ]
   }
 }
