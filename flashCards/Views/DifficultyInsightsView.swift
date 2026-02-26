@@ -112,7 +112,7 @@ struct DifficultyInsightsView: View {
                                 } label: {
                                     Image(systemName: "info.circle")
                                         .font(.subheadline)
-                                        .foregroundStyle(.blue)
+                                        .foregroundStyle(.secondary)
                                 }
                                 .buttonStyle(.plain)
                                 .accessibilityLabel("More info about \(insight.title)")

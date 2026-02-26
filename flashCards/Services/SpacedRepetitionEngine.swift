@@ -13,7 +13,8 @@ struct SpacedRepetitionEngine {
         currentEaseFactor: Double,
         currentRepetitionCount: Int,
         currentStatus: String,
-        quality: Int
+        quality: Int,
+        introducedDate: Date? = nil
     ) -> ReviewResult {
         var ef = currentEaseFactor
         var interval = currentInterval
@@ -43,7 +44,10 @@ struct SpacedRepetitionEngine {
 
             interval = min(interval, 180)
 
-            if reps >= 6 && interval >= 21 {
+            let daysSinceIntroduced = introducedDate.map {
+                Calendar.current.dateComponents([.day], from: $0, to: Date()).day ?? 0
+            } ?? 0
+            if reps >= 6 && interval >= 21 && daysSinceIntroduced >= 21 {
                 status = "mastered"
             } else {
                 status = "learning"

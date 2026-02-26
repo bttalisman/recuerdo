@@ -24,6 +24,9 @@ class StudySessionViewModel: Identifiable {
     var isCategorySession: Bool = false
     private var mixedDirections: [String: Bool] = [:]
     private var pendingRecords: [ReviewRecord] = []
+    var sessionRecordsFlushed: Bool = false
+    var pendingRecordCount: Int { pendingRecords.count }
+    var masteredCount: Int = 0
 
     var effectiveShowTargetFirst: Bool {
         guard let card = currentCard else { return cardDirection == "target_first" }
@@ -110,7 +113,8 @@ class StudySessionViewModel: Identifiable {
         guard let card = currentCard, card.status == "new" else { return }
         card.introducedDate = Date()
         card.status = "learning"
-        card.nextReviewDate = Date()
+        // First review tomorrow — don't make cards immediately due
+        card.nextReviewDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())
         wordsLearned += 1
     }
 
@@ -176,7 +180,8 @@ class StudySessionViewModel: Identifiable {
             currentEaseFactor: card.easeFactor,
             currentRepetitionCount: card.repetitionCount,
             currentStatus: card.status,
-            quality: quality
+            quality: quality,
+            introducedDate: card.introducedDate
         )
         let wasCorrect = quality >= 3
         let responseTime = Date().timeIntervalSince(cardShownAt)
@@ -214,6 +219,9 @@ class StudySessionViewModel: Identifiable {
             card.easeFactor = result.newEaseFactor
             card.repetitionCount = result.newRepetitionCount
             card.status = result.newStatus
+            if result.newStatus == "mastered" {
+                self.masteredCount += 1
+            }
             card.lastReviewDate = Date()
             card.nextReviewDate = Calendar.current.date(
                 byAdding: .day, value: max(result.newInterval, 1), to: Date()
@@ -246,6 +254,7 @@ class StudySessionViewModel: Identifiable {
             if sessionDone {
                 self.flushPendingRecords(context: context)
                 try? context.save()
+                self.sessionRecordsFlushed = true
                 let container = context.container
                 DispatchQueue.global(qos: .utility).async {
                     let bgContext = ModelContext(container)

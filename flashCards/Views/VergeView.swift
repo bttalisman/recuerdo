@@ -3,9 +3,16 @@ import SwiftData
 
 struct VergeView: View {
     @Query private var allCards: [FlashCard]
-    @Query(sort: \ReviewRecord.reviewDate)
-    private var allReviews: [ReviewRecord]
+    @Query private var decks: [DeckMetadata]
+    @Environment(\.modelContext) private var modelContext
     @State private var vergeWords: [VergeWord] = []
+    @State private var reviewViewModel: StudySessionViewModel?
+    @State private var isLoading = true
+    @State private var reviewCount: Int = 0
+
+    private static let sectionCap = 15
+
+    private var cardDirection: String { decks.first?.cardDirection ?? "source_first" }
 
     private var almostMastered: [VergeWord] {
         vergeWords.filter { $0.category == .almostMastered }
@@ -22,73 +29,109 @@ struct VergeView: View {
     var body: some View {
         NavigationStack {
             List {
-                if allReviews.count < 50 {
+                if isLoading {
+                    Section {
+                        ProgressView()
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 60)
+                    }
+                } else if reviewCount < 50 {
                     Section { earlyState.subtleSectionGlow() }
                 } else if vergeWords.isEmpty {
                     Section { emptyState.subtleSectionGlow() }
                 } else {
-                    if !almostMastered.isEmpty {
-                        Section {
-                            summaryHeader
-                                .subtleSectionGlow()
-                        }
-                    }
-
-                    if !almostMastered.isEmpty {
-                        Section {
-                            ForEach(almostMastered) { word in
-                                wordRow(word)
-                            }
+                    Section {
+                        summaryHeader
                             .subtleSectionGlow()
-                        } header: {
-                            categoryHeader(
-                                title: "Almost Mastered",
-                                icon: "checkmark.circle",
-                                color: .green,
-                                count: almostMastered.count
-                            )
-                        }
-                    }
-
-                    if !tipOfTongue.isEmpty {
-                        Section {
-                            ForEach(tipOfTongue) { word in
-                                wordRow(word)
-                            }
-                            .subtleSectionGlow()
-                        } header: {
-                            categoryHeader(
-                                title: "Tip of Tongue",
-                                icon: "lightbulb",
-                                color: .orange,
-                                count: tipOfTongue.count
-                            )
-                        }
                     }
 
                     if !stillBuilding.isEmpty {
-                        Section {
-                            ForEach(stillBuilding) { word in
-                                wordRow(word)
-                            }
-                            .subtleSectionGlow()
-                        } header: {
-                            categoryHeader(
-                                title: "Still Building",
-                                icon: "hammer",
-                                color: .blue,
-                                count: stillBuilding.count
-                            )
-                        }
+                        vergeSection(
+                            title: "Still Building",
+                            icon: "hammer",
+                            color: .blue,
+                            words: stillBuilding
+                        )
+                    }
+
+                    if !tipOfTongue.isEmpty {
+                        vergeSection(
+                            title: "Tip of Tongue",
+                            icon: "lightbulb",
+                            color: .orange,
+                            words: tipOfTongue
+                        )
+                    }
+
+                    if !almostMastered.isEmpty {
+                        vergeSection(
+                            title: "Almost Mastered",
+                            icon: "checkmark.circle",
+                            color: .green,
+                            words: almostMastered
+                        )
                     }
                 }
             }
             .navigationTitle("On the Verge")
             .navigationBarTitleDisplayMode(.large)
             .enhancedDarkContrast()
-            .onAppear {
-                vergeWords = VergeAnalyzer.analyze(cards: allCards, reviews: allReviews)
+            .onAppear { loadVergeData() }
+        }
+        .fullScreenCover(item: $reviewViewModel) { vm in
+            NavigationStack {
+                ReviewSessionView(
+                    viewModel: vm,
+                    title: "Verge Review",
+                    backLabel: "Back to Verge",
+                    onDismiss: {
+                        reviewViewModel = nil
+                        loadVergeData()
+                    },
+                    deckMeta: decks.first
+                )
             }
+        }
+    }
+
+    private func vergeSection(title: String, icon: String, color: Color, words: [VergeWord]) -> some View {
+        let capped = Array(words.prefix(Self.sectionCap))
+        let overflow = words.count - capped.count
+        return Section {
+            ForEach(capped) { word in
+                wordRow(word)
+            }
+            if overflow > 0 {
+                Text("+\(overflow) more")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            EmptyView().subtleSectionGlow()
+        } header: {
+            categoryHeader(title: title, icon: icon, color: color, words: words)
+        }
+    }
+
+    private func loadVergeData() {
+        let container = modelContext.container
+        let mainCards = allCards
+        isLoading = true
+        Task {
+            let results = await VergeAnalyzer.analyzeInBackground(container: container)
+            let cardMap = Dictionary(uniqueKeysWithValues: mainCards.map { ($0.wordId, $0) })
+            vergeWords = results.compactMap { r in
+                guard let card = cardMap[r.id] else { return nil }
+                return VergeWord(id: r.id, card: card, category: r.category,
+                                 avgAttemptsBeforeCorrect: r.avgAttemptsBeforeCorrect,
+                                 sessionsAnalyzed: r.sessionsAnalyzed)
+            }
+            // Get review count for early state check
+            let count = await Task.detached {
+                let ctx = ModelContext(container)
+                return (try? ctx.fetchCount(FetchDescriptor<ReviewRecord>())) ?? 0
+            }.value
+            reviewCount = count
+            isLoading = false
         }
     }
 
@@ -112,11 +155,25 @@ struct VergeView: View {
 
     // MARK: - Category Header
 
-    private func categoryHeader(title: String, icon: String, color: Color, count: Int) -> some View {
+    private func categoryHeader(title: String, icon: String, color: Color, words: [VergeWord]) -> some View {
         HStack(spacing: 6) {
             Image(systemName: icon)
                 .foregroundStyle(color)
-            Text("\(title) (\(count))")
+            Text("\(title) (\(words.count))")
+
+            Spacer()
+
+            Button {
+                let cards = words.map(\.card)
+                let vm = StudySessionViewModel()
+                vm.loadCustomReviewSession(cards: cards, cardDirection: cardDirection)
+                reviewViewModel = vm
+            } label: {
+                Label("Review", systemImage: "play.fill")
+                    .font(.caption2.bold())
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(color)
         }
     }
 
@@ -177,7 +234,7 @@ struct VergeView: View {
                 .accessibilityHidden(true)
             Text("Keep studying!")
                 .font(.headline)
-            Text("Verge analysis appears after 50+ reviews. You have \(allReviews.count) so far.")
+            Text("Verge analysis appears after 50+ reviews. You have \(reviewCount) so far.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)

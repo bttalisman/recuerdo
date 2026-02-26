@@ -4668,7 +4668,7 @@
     },
     {
       "id": "en_es_0164",
-      "source": "own",
+      "source": "own, proper",
       "target": "propio",
       "partOfSpeech": "adjective",
       "category": "basics",
@@ -6787,18 +6787,6 @@
         {
           "es": "El juguete está hecho de madera.",
           "en": "That toy is made of wood."
-        },
-        {
-          "es": "El hecho de que llueva me molesta.",
-          "en": "The fact that it is raining bothers me."
-        },
-        {
-          "es": "El hecho ocurrió el pasado sábado.",
-          "en": "The event happened last Saturday."
-        },
-        {
-          "es": "El hecho de que haya pasado el examen no quiere decir que pasaré la clase.",
-          "en": "The fact that I happened to pass the exam doesn't meant that I will pass the class."
         }
       ]
     },
@@ -11549,19 +11537,7 @@
         },
         {
           "es": "El hecho de que haya pasado el examen no quiere decir que pasaré la clase.",
-          "en": "The fact that I happened to pass the exam doesn't meant that I will pass the class."
-        },
-        {
-          "es": "No podría haberlo hecho sin ti. Gracias.",
-          "en": "I couldn't have done it without you. Thank you."
-        },
-        {
-          "es": "He hecho negocios con esta tienda durante muchos años.",
-          "en": "I've dealt with this store for years."
-        },
-        {
-          "es": "El juguete está hecho de madera.",
-          "en": "That toy is made of wood."
+          "en": "The fact that I happened to pass the exam doesn't mean that I will pass the class."
         },
         {
           "es": "El hecho ocurrió el pasado sábado.",

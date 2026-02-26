@@ -480,7 +480,7 @@ struct ProgressDashboardView: View {
                     .font(.headline)
                 Spacer()
                 Button {
-                    withAnimation { showSchedulingInfo.toggle() }
+                    showSchedulingInfo = true
                 } label: {
                     Image(systemName: "info.circle")
                         .font(.subheadline)
@@ -488,15 +488,11 @@ struct ProgressDashboardView: View {
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("Info")
-                .accessibilityHint("Shows explanation of spaced repetition scheduling")
             }
-
-            if showSchedulingInfo {
+            .alert("About Scheduled Reviews", isPresented: $showSchedulingInfo) {
+                Button("Got it", role: .cancel) { }
+            } message: {
                 Text("Recuerdo uses spaced repetition to schedule your reviews. Words you get right are shown less often; words you struggle with come back sooner. Over time, the intervals grow and words move to mastered status. This is based on the SM-2 algorithm, the same approach used by Anki.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .padding(10)
-                    .background(RoundedRectangle(cornerRadius: 8).fill(Color(.secondarySystemBackground)))
             }
 
             ForEach(Array(upcomingDays.enumerated()), id: \.offset) { index, day in

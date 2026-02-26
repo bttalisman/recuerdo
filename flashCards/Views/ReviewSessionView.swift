@@ -16,6 +16,13 @@ struct ReviewSessionView: View {
     @State private var completedFirstLap = false
     @State private var cardsSeenInLap = 0
     @State private var dragOffset: CGFloat = 0
+    @State private var sessionStartTime: Date = Date()
+    @State private var preSessionVerge: [String: VergeCategory] = [:]
+    @State private var newAlmostMastered: Int = 0
+    @State private var newTipOfTongue: Int = 0
+    @State private var newStillBuilding: Int = 0
+    @State private var vergeSlideOffset: CGFloat = 300
+    @State private var vergeSlideOpacity: Double = 0
     private let hapticGenerator = UINotificationFeedbackGenerator()
 
     var body: some View {
@@ -31,11 +38,36 @@ struct ReviewSessionView: View {
         .onAppear {
             hapticGenerator.prepare()
             modelContext.autosaveEnabled = false
+            snapshotVergeState()
         }
         .onDisappear {
             viewModel.flushPendingRecords(context: modelContext)
             try? modelContext.save()
             modelContext.autosaveEnabled = true
+        }
+        .onChange(of: viewModel.isSessionComplete) { _, complete in
+            guard complete, viewModel.mode == .review else { return }
+            // When session ends via "Done" button (not last card answered),
+            // Phase 2 won't run, so we flush here and trigger verge computation.
+            // We use asyncAfter to yield to Phase 2 first if it was enqueued.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                if !viewModel.sessionRecordsFlushed {
+                    viewModel.flushPendingRecords(context: modelContext)
+                    try? modelContext.save()
+                    viewModel.sessionRecordsFlushed = true
+                }
+            }
+        }
+        .onChange(of: viewModel.sessionRecordsFlushed) { _, flushed in
+            guard flushed, viewModel.mode == .review else { return }
+            Task { await computeVergeSummary() }
+        }
+        .onChange(of: newAlmostMastered + newTipOfTongue + newStillBuilding + viewModel.masteredCount) { _, total in
+            guard total > 0 else { return }
+            withAnimation(.spring(response: 0.5, dampingFraction: 0.75)) {
+                vergeSlideOffset = 0
+                vergeSlideOpacity = 1
+            }
         }
         .navigationTitle(title)
         .toolbar {
@@ -247,8 +279,7 @@ struct ReviewSessionView: View {
     // MARK: - Session Complete
 
     private var sessionCompleteView: some View {
-        let verge = computeVergeSummary()
-        return SessionCompleteContent(
+        SessionCompleteContent(
             mode: viewModel.mode,
             wordsLearned: viewModel.wordsLearned,
             totalReviewed: viewModel.totalReviewed,
@@ -256,22 +287,64 @@ struct ReviewSessionView: View {
             accuracy: viewModel.accuracy,
             backLabel: backLabel,
             onDismiss: onDismiss,
-            almostMasteredCount: verge.almostMastered,
-            tipOfTongueCount: verge.tipOfTongue,
-            stillBuildingCount: verge.stillBuilding
+            masteredCount: viewModel.masteredCount,
+            almostMasteredCount: newAlmostMastered,
+            tipOfTongueCount: newTipOfTongue,
+            stillBuildingCount: newStillBuilding,
+            vergeOffset: vergeSlideOffset,
+            vergeOpacity: vergeSlideOpacity
         )
     }
 
-    private func computeVergeSummary() -> (almostMastered: Int, tipOfTongue: Int, stillBuilding: Int) {
-        guard viewModel.mode == .review else { return (0, 0, 0) }
-        let cards = (try? modelContext.fetch(FetchDescriptor<FlashCard>())) ?? []
-        let reviews = (try? modelContext.fetch(FetchDescriptor<ReviewRecord>())) ?? []
-        let vergeWords = VergeAnalyzer.analyze(cards: cards, reviews: reviews)
-        return (
-            almostMastered: vergeWords.filter { $0.category == .almostMastered }.count,
-            tipOfTongue: vergeWords.filter { $0.category == .tipOfTongue }.count,
-            stillBuilding: vergeWords.filter { $0.category == .stillBuilding }.count
+    private func snapshotVergeState() {
+        guard viewModel.mode == .review else { return }
+        sessionStartTime = Date()
+        let container = modelContext.container
+        Task {
+            let results = await VergeAnalyzer.analyzeInBackground(container: container)
+            preSessionVerge = Dictionary(uniqueKeysWithValues: results.map { ($0.id, $0.category) })
+            print("[VERGE] PRE-snapshot: \(results.count) verge words")
+        }
+    }
+
+    private func computeVergeSummary() async {
+        guard viewModel.mode == .review else { return }
+
+        let container = modelContext.container
+        let boundary = sessionStartTime
+        let preSnapshot = preSessionVerge
+
+        let results = await VergeAnalyzer.analyzeInBackground(
+            container: container,
+            forcedSessionBoundary: boundary
         )
+        print("[VERGE] Post-analysis: \(results.count) verge words (pre had \(preSnapshot.count))")
+
+        var newAlmost = 0, newTip = 0, newBuilding = 0
+        let postIds = Set(results.map(\.id))
+
+        for word in results {
+            let previous = preSnapshot[word.id]
+            let changed = previous == nil || previous != word.category
+            if changed {
+                print("[VERGE]   CHANGED \(word.id): \(previous.map { "\($0)" } ?? "new") → \(word.category)")
+                switch word.category {
+                case .almostMastered: newAlmost += 1
+                case .tipOfTongue: newTip += 1
+                case .stillBuilding: newBuilding += 1
+                }
+            }
+        }
+
+        for (id, previous) in preSnapshot where !postIds.contains(id) {
+            print("[VERGE]   GRADUATED \(id): was \(previous), no longer on verge")
+            newAlmost += 1
+        }
+
+        print("[VERGE] Result: \(newAlmost) new almostMastered, \(newTip) new tipOfTongue, \(newBuilding) new stillBuilding")
+        newAlmostMastered = newAlmost
+        newTipOfTongue = newTip
+        newStillBuilding = newBuilding
     }
 
     private func statRow(label: String, value: String) -> some View {
@@ -319,9 +392,12 @@ private struct SessionCompleteContent: View {
     let accuracy: Double
     let backLabel: String
     let onDismiss: () -> Void
+    var masteredCount: Int = 0
     var almostMasteredCount: Int = 0
     var tipOfTongueCount: Int = 0
     var stillBuildingCount: Int = 0
+    var vergeOffset: CGFloat = 300
+    var vergeOpacity: Double = 0
 
     @State private var boltScale: CGFloat = 0.3
     @State private var boltOpacity: Double = 0
@@ -333,8 +409,6 @@ private struct SessionCompleteContent: View {
     )
     @State private var textOpacity: Double = 0
     @State private var statsOpacity: Double = 0
-    @State private var vergeOffset: CGFloat = 300
-    @State private var vergeOpacity: Double = 0
 
     var body: some View {
         VStack(spacing: 20) {
@@ -407,11 +481,9 @@ private struct SessionCompleteContent: View {
             .opacity(statsOpacity)
             .accessibilityElement(children: .combine)
 
-            if mode == .review && hasVergeWords {
-                vergeSummary
-                    .offset(x: vergeOffset)
-                    .opacity(vergeOpacity)
-            }
+            vergeSummary
+                .offset(x: vergeOffset)
+                .opacity(vergeOpacity)
 
             Button(backLabel) { onDismiss() }
                 .buttonStyle(.borderedProminent)
@@ -433,7 +505,7 @@ private struct SessionCompleteContent: View {
     }
 
     private var hasVergeWords: Bool {
-        almostMasteredCount + tipOfTongueCount + stillBuildingCount > 0
+        masteredCount + almostMasteredCount + tipOfTongueCount + stillBuildingCount > 0
     }
 
     private var vergeSummary: some View {
@@ -443,6 +515,9 @@ private struct SessionCompleteContent: View {
                 .font(.caption)
 
             VStack(alignment: .leading, spacing: 3) {
+                if masteredCount > 0 {
+                    vergeRow(color: .yellow, label: "Mastered", count: masteredCount)
+                }
                 if almostMasteredCount > 0 {
                     vergeRow(color: .green, label: "Almost mastered", count: almostMasteredCount)
                 }
@@ -465,7 +540,7 @@ private struct SessionCompleteContent: View {
             Circle()
                 .fill(color)
                 .frame(width: 6, height: 6)
-            Text("\(count) \(label.lowercased())")
+            Text("\(count) new \(label.lowercased())")
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
@@ -515,11 +590,6 @@ private struct SessionCompleteContent: View {
             statsOpacity = 1
         }
 
-        // Verge slides in from the right
-        withAnimation(.spring(response: 0.5, dampingFraction: 0.75).delay(1.0)) {
-            vergeOffset = 0
-            vergeOpacity = 1
-        }
     }
 }
 

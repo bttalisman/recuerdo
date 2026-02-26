@@ -1,16 +1,16 @@
 import Foundation
 import SwiftData
 
-enum VergeCategory: Comparable {
+enum VergeCategory: Comparable, Sendable {
     case almostMastered
     case tipOfTongue
     case stillBuilding
 
     var sortOrder: Int {
         switch self {
-        case .almostMastered: return 0
+        case .stillBuilding: return 0
         case .tipOfTongue: return 1
-        case .stillBuilding: return 2
+        case .almostMastered: return 2
         }
     }
 }
@@ -23,7 +23,29 @@ struct VergeWord: Identifiable {
     let sessionsAnalyzed: Int
 }
 
+/// Lightweight result for passing across thread boundaries (no @Model references).
+struct VergeAnalysisResult: Sendable {
+    let id: String
+    let category: VergeCategory
+    let avgAttemptsBeforeCorrect: Double
+    let sessionsAnalyzed: Int
+}
+
 struct VergeAnalyzer {
+
+    /// Run analysis on a background thread using a fresh ModelContext.
+    static func analyzeInBackground(
+        container: ModelContainer,
+        forcedSessionBoundary: Date? = nil
+    ) async -> [VergeAnalysisResult] {
+        await Task.detached {
+            let context = ModelContext(container)
+            let cards = (try? context.fetch(FetchDescriptor<FlashCard>())) ?? []
+            let reviews = (try? context.fetch(FetchDescriptor<ReviewRecord>())) ?? []
+            return analyze(cards: cards, reviews: reviews, forcedSessionBoundary: forcedSessionBoundary)
+                .map { VergeAnalysisResult(id: $0.id, category: $0.category, avgAttemptsBeforeCorrect: $0.avgAttemptsBeforeCorrect, sessionsAnalyzed: $0.sessionsAnalyzed) }
+        }.value
+    }
 
     /// Minimum total reviews a card must have to be considered.
     private static let minReviews = 3
@@ -34,7 +56,7 @@ struct VergeAnalyzer {
     /// Number of recent sessions to analyze per card.
     private static let recentSessionCount = 3
 
-    static func analyze(cards: [FlashCard], reviews: [ReviewRecord]) -> [VergeWord] {
+    static func analyze(cards: [FlashCard], reviews: [ReviewRecord], forcedSessionBoundary: Date? = nil) -> [VergeWord] {
         // Only consider learning cards with enough reviews
         let candidates = cards.filter { $0.status == "learning" && $0.totalReviews >= minReviews }
         guard !candidates.isEmpty else { return [] }
@@ -57,7 +79,7 @@ struct VergeAnalyzer {
             let sorted = cardReviews.sorted { $0.reviewDate < $1.reviewDate }
 
             // Split into sessions
-            let sessions = splitIntoSessions(sorted)
+            let sessions = splitIntoSessions(sorted, forcedBoundary: forcedSessionBoundary)
             guard !sessions.isEmpty else { continue }
 
             // Take the most recent sessions
@@ -99,13 +121,16 @@ struct VergeAnalyzer {
 
     /// Split a chronologically-sorted array of reviews into sessions.
     /// A new session starts when the gap between consecutive reviews exceeds `sessionGap`.
-    private static func splitIntoSessions(_ reviews: [ReviewRecord]) -> [[ReviewRecord]] {
+    private static func splitIntoSessions(_ reviews: [ReviewRecord], forcedBoundary: Date? = nil) -> [[ReviewRecord]] {
         guard let first = reviews.first else { return [] }
         var sessions: [[ReviewRecord]] = [[first]]
 
         for i in 1..<reviews.count {
             let gap = reviews[i].reviewDate.timeIntervalSince(reviews[i - 1].reviewDate)
-            if gap > sessionGap {
+            let crossesBoundary = forcedBoundary.map { boundary in
+                reviews[i - 1].reviewDate < boundary && reviews[i].reviewDate >= boundary
+            } ?? false
+            if gap > sessionGap || crossesBoundary {
                 sessions.append([reviews[i]])
             } else {
                 sessions[sessions.count - 1].append(reviews[i])

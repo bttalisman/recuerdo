@@ -65,7 +65,7 @@ struct ForgettingCurveView: View {
                     .font(.headline)
                 Spacer()
                 Button {
-                    withAnimation { showCurveInfo.toggle() }
+                    showCurveInfo = true
                 } label: {
                     Image(systemName: "info.circle")
                         .font(.subheadline)
@@ -73,19 +73,15 @@ struct ForgettingCurveView: View {
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("Info")
-                .accessibilityHint("Shows explanation of the memory decay chart")
+            }
+            .alert("About Memory Decay", isPresented: $showCurveInfo) {
+                Button("Got it", role: .cancel) { }
+            } message: {
+                Text("This chart groups your reviewed words into three tiers by ease factor, then models a decay curve for each tier.\n\nStrong (green): words you find easy — memory decays slowly.\nModerate (orange): average difficulty — medium decay.\nWeak (red): words you struggle with — memory fades quickly.\n\nThe Y-axis is retention: 100% means perfect recall. The scattered dots are your real results — green = correct, red = incorrect. Use \"Explore Individual Words\" below to see any single word's curve.")
             }
             Text("How retention drops over days since review")
                 .font(.caption)
                 .foregroundStyle(.secondary)
-
-            if showCurveInfo {
-                Text("This chart groups all your reviewed words into three tiers by ease factor, then models a single decay curve for each tier — so you see 3 lines, not one per word.\n\n**Strong** (green): words you find easy — memory decays slowly.\n**Moderate** (orange): average difficulty — medium decay.\n**Weak** (red): words you struggle with — memory fades quickly.\n\nThe Y-axis is retention: 100% means perfect recall, and the curves show how it drops over days since your last review. The scattered dots are your real results — green (top) = correct, red (bottom) = incorrect — showing how well you actually did after that many days. Use \"Explore Individual Words\" below to see any single word's curve.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .padding(10)
-                    .background(RoundedRectangle(cornerRadius: 8).fill(Color(.secondarySystemBackground)))
-            }
 
             if tierCurves.isEmpty {
                 Text("Not enough reviewed cards to show curves.")
@@ -239,7 +235,7 @@ struct ForgettingCurveView: View {
                     .font(.headline)
                 Spacer()
                 Button {
-                    withAnimation { showTimingInfo.toggle() }
+                    showTimingInfo = true
                 } label: {
                     Image(systemName: "info.circle")
                         .font(.subheadline)
@@ -247,15 +243,11 @@ struct ForgettingCurveView: View {
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("Info")
-                .accessibilityHint("Shows explanation of optimal review timing")
             }
-
-            if showTimingInfo {
-                Text("Each word has a **stability** value (S) — the number of days it takes for your recall to drop to 90%. Higher stability means the memory lasts longer.\n\n**\"Review by day X\"** is the latest you should review words in that tier before retention drops below 90%. Recuerdo uses these values to schedule your reviews automatically.\n\n**Strong** words have high stability and can wait longer between reviews. **Weak** words fade faster and need more frequent practice.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .padding(10)
-                    .background(RoundedRectangle(cornerRadius: 8).fill(Color(.secondarySystemBackground)))
+            .alert("About Review Timing", isPresented: $showTimingInfo) {
+                Button("Got it", role: .cancel) { }
+            } message: {
+                Text("Each word has a stability value (S) — the number of days it takes for your recall to drop to 90%. Higher stability means the memory lasts longer.\n\n\"Review by day X\" is the latest you should review words in that tier before retention drops below 90%. Recuerdo uses these values to schedule your reviews automatically.\n\nStrong words have high stability and can wait longer between reviews. Weak words fade faster and need more frequent practice.")
             }
 
             if tierCurves.isEmpty {

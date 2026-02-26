@@ -33,22 +33,24 @@ struct DataAnalysisView: View {
     @Query private var allCards: [FlashCard]
     @State private var trendRange: TrendRange = .month
     @State private var showWordsAtRiskInfo = false
+    @State private var showAccuracyInfo = false
 
     var body: some View {
         List {
+            Section { vocabularyGrowthSection.subtleSectionGlow() }
+            Section { learningVelocitySection.subtleSectionGlow() }
             Section { accuracyTrendSection.subtleSectionGlow() }
-            Section { forgettingCurvesLink.subtleSectionGlow() }
+            Section { accuracyByPOSSection.subtleSectionGlow() }
             Section { responseTimeTrendSection.subtleSectionGlow() }
             Section { responseTimeByWordSection.subtleSectionGlow() }
-            Section { accuracyByPOSSection.subtleSectionGlow() }
             Section { directionComparisonSection.subtleSectionGlow() }
             Section { timeOfDaySection.subtleSectionGlow() }
-            Section { wordsAtRiskSection.subtleSectionGlow() }
-            Section { difficultyInsightsLink.subtleSectionGlow() }
             Section { activityHeatmapSection.subtleSectionGlow() }
-            Section { learningVelocitySection.subtleSectionGlow() }
-            Section { estimatedCompletionSection.subtleSectionGlow() }
+            Section { difficultyInsightsLink.subtleSectionGlow() }
             Section { wordConnectionsLink.subtleSectionGlow() }
+            Section { estimatedCompletionSection.subtleSectionGlow() }
+            Section { forgettingCurvesLink.subtleSectionGlow() }
+            Section { wordsAtRiskSection.subtleSectionGlow() }
         }
         .navigationTitle("Analysis")
         .navigationBarTitleDisplayMode(.large)
@@ -117,17 +119,31 @@ struct DataAnalysisView: View {
 
     private var accuracyTrendSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            HStack {
-                Text("Accuracy Trend")
-                    .font(.headline)
-                Spacer()
+            VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                    Text("Accuracy Trend")
+                        .font(.headline)
+                    Button {
+                        showAccuracyInfo = true
+                    } label: {
+                        Image(systemName: "info.circle")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel("Info")
+                }
                 Picker("Range", selection: $trendRange) {
                     ForEach(TrendRange.allCases, id: \.self) { range in
                         Text(range.rawValue).tag(range)
                     }
                 }
                 .pickerStyle(.segmented)
-                .frame(width: 200)
+            }
+            .alert("About Accuracy Trend", isPresented: $showAccuracyInfo) {
+                Button("Got it", role: .cancel) { }
+            } message: {
+                Text("This measures your accuracy on due review cards — the words the system thinks you're most likely to forget.\n\nAs you master easy words, they stop appearing in reviews. The remaining cards are increasingly the ones you find hardest, so a steady accuracy around 70-80% means the system is working well.\n\nCheck Vocabulary Growth for a metric that shows your cumulative progress.")
             }
 
             if rollingAverage.count < 2 {
@@ -174,6 +190,144 @@ struct DataAnalysisView: View {
     private var accuracyTrendAccessibilityLabel: String {
         guard let latest = rollingAverage.last else { return "Accuracy trend chart" }
         return "Accuracy trend chart. Latest rolling average: \(Int(latest.accuracy * 100)) percent"
+    }
+
+    // MARK: - Vocabulary Growth
+
+    private var vocabularyMilestones: [(date: Date, learned: Int, mastered: Int)] {
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+
+        // Build cumulative learned count from introducedDate
+        let introduced = allCards
+            .filter { $0.status != "new" && $0.introducedDate != nil }
+            .sorted { $0.introducedDate! < $1.introducedDate! }
+
+        guard !introduced.isEmpty else { return [] }
+
+        // Build daily mastered events from reviews where card became mastered
+        var masteredByDay: [Date: Int] = [:]
+        for review in allReviews {
+            guard let card = review.card, card.status == "mastered" else { continue }
+            // Check if this review likely caused mastery (correct + card is now mastered)
+            if review.wasCorrect && review.newInterval >= 21 {
+                let day = calendar.startOfDay(for: review.reviewDate)
+                masteredByDay[day, default: 0] += 1
+            }
+        }
+
+        // Count words introduced per day
+        var byDay: [Date: Int] = [:]
+        for card in introduced {
+            let day = calendar.startOfDay(for: card.introducedDate!)
+            byDay[day, default: 0] += 1
+        }
+
+        // Fill every day from first event to today so steps stay flat between events
+        var eventDays = Set(byDay.keys).union(masteredByDay.keys)
+        eventDays.insert(today)
+        let sortedDays = eventDays.sorted()
+        guard let firstDay = sortedDays.first else { return [] }
+
+        var result: [(date: Date, learned: Int, mastered: Int)] = []
+        var cumulativeLearned = 0
+        var cumulativeMastered = 0
+        var day = firstDay
+        while day <= today {
+            cumulativeLearned += byDay[day, default: 0]
+            cumulativeMastered += masteredByDay[day, default: 0]
+            result.append((date: day, learned: cumulativeLearned, mastered: cumulativeMastered))
+            day = calendar.date(byAdding: .day, value: 1, to: day)!
+        }
+
+        return result
+    }
+
+    private var vocabularyGrowthSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Vocabulary Growth")
+                .font(.headline)
+
+            if vocabularyMilestones.count < 2 {
+                Text("Not enough data yet. Keep learning!")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, minHeight: 150)
+            } else {
+                let latest = vocabularyMilestones.last!
+                HStack(spacing: 16) {
+                    VStack {
+                        Text("\(latest.learned)")
+                            .font(.title2.bold())
+                            .foregroundStyle(.purple)
+                        Text("Learned")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                    .frame(maxWidth: .infinity)
+                    VStack {
+                        Text("\(latest.mastered)")
+                            .font(.title2.bold())
+                            .foregroundStyle(.green)
+                        Text("Mastered")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+
+                Chart {
+                    ForEach(Array(vocabularyMilestones.enumerated()), id: \.offset) { _, point in
+                        LineMark(
+                            x: .value("Date", point.date),
+                            y: .value("Words", point.learned),
+                            series: .value("Series", "Learned")
+                        )
+                        .foregroundStyle(.purple)
+                        .interpolationMethod(.stepEnd)
+
+                        AreaMark(
+                            x: .value("Date", point.date),
+                            y: .value("Words", point.learned),
+                            series: .value("Series", "Learned")
+                        )
+                        .foregroundStyle(.purple.opacity(0.1))
+                        .interpolationMethod(.stepEnd)
+                    }
+                    ForEach(Array(vocabularyMilestones.enumerated()), id: \.offset) { _, point in
+                        LineMark(
+                            x: .value("Date", point.date),
+                            y: .value("Words", point.mastered),
+                            series: .value("Series", "Mastered")
+                        )
+                        .foregroundStyle(.green)
+                        .interpolationMethod(.stepEnd)
+
+                        AreaMark(
+                            x: .value("Date", point.date),
+                            y: .value("Words", point.mastered),
+                            series: .value("Series", "Mastered")
+                        )
+                        .foregroundStyle(.green.opacity(0.1))
+                        .interpolationMethod(.stepEnd)
+                    }
+                }
+                .frame(height: 180)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel("Vocabulary growth chart. \(latest.learned) words learned, \(latest.mastered) mastered")
+
+                HStack(spacing: 16) {
+                    HStack(spacing: 4) {
+                        Circle().fill(.purple).frame(width: 8, height: 8)
+                        Text("Learned").font(.caption).foregroundStyle(.secondary)
+                    }
+                    HStack(spacing: 4) {
+                        Circle().fill(.green).frame(width: 8, height: 8)
+                        Text("Mastered").font(.caption).foregroundStyle(.secondary)
+                    }
+                }
+            }
+        }
     }
 
     // MARK: - 2. Accuracy by Part of Speech
@@ -740,7 +894,7 @@ struct DataAnalysisView: View {
                     .font(.headline)
                 Spacer()
                 Button {
-                    withAnimation { showWordsAtRiskInfo.toggle() }
+                    showWordsAtRiskInfo = true
                 } label: {
                     Image(systemName: "info.circle")
                         .font(.subheadline)
@@ -748,19 +902,15 @@ struct DataAnalysisView: View {
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel("Info")
-                .accessibilityHint("Shows explanation of words at risk criteria")
+            }
+            .alert("About Words at Risk", isPresented: $showWordsAtRiskInfo) {
+                Button("Got it", role: .cancel) { }
+            } message: {
+                Text("A word lands here if any of these are true:\n\nLow Ease — The ease factor dropped below 1.8. Ease starts at 2.5 for every word and adjusts after each review: correct answers raise it, incorrect answers lower it.\n\nLow Accuracy — Less than 50% correct after 5+ reviews.\n\nStreak Broken — You had 3+ correct answers in a row, then got it wrong.")
             }
             Text("Words you're struggling with most")
                 .font(.caption)
                 .foregroundStyle(.secondary)
-
-            if showWordsAtRiskInfo {
-                Text("A word lands here if any of these are true:\n\n**Low Ease** — The ease factor dropped below 1.8. Ease starts at 2.5 for every word and adjusts after each review: correct answers raise it, incorrect answers lower it. A low value means the word has been missed repeatedly, so it gets reviewed more frequently.\n\n**Low Accuracy** — Less than 50% correct after 5+ reviews.\n\n**Streak Broken** — You had 3+ correct answers in a row, then got it wrong. The word may need reinforcement.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .padding(10)
-                    .background(RoundedRectangle(cornerRadius: 8).fill(Color(.secondarySystemBackground)))
-            }
 
             if wordsAtRisk.isEmpty {
                 Text("No struggling words detected. Nice work!")
@@ -799,7 +949,7 @@ struct DataAnalysisView: View {
 
     // MARK: - 8. Learning Velocity
 
-    private var cumulativeWordsLearned: [(date: Date, count: Int)] {
+    private var dailyLearningVelocity: [(date: Date, wordsPerDay: Double)] {
         let calendar = Calendar.current
         let learned = allCards
             .filter { $0.introducedDate != nil }
@@ -807,24 +957,37 @@ struct DataAnalysisView: View {
 
         guard !learned.isEmpty else { return [] }
 
-        var byDay: [(date: Date, count: Int)] = []
-        var cumulative = 0
-        var currentDay: Date?
-
+        // Count words introduced per day
+        var countByDay: [Date: Int] = [:]
         for card in learned {
             let day = calendar.startOfDay(for: card.introducedDate!)
-            cumulative += 1
-            if day != currentDay {
-                if currentDay != nil && byDay.last?.date != currentDay {
-                    byDay.append((date: currentDay!, count: cumulative - 1))
-                }
-                currentDay = day
-            }
-            byDay = byDay.filter { $0.date != day }
-            byDay.append((date: day, count: cumulative))
+            countByDay[day, default: 0] += 1
         }
 
-        return byDay
+        // Fill in zero-days between first and last
+        let sortedDays = countByDay.keys.sorted()
+        guard let firstDay = sortedDays.first, let lastDay = sortedDays.last else { return [] }
+
+        var allDays: [(date: Date, count: Int)] = []
+        var day = firstDay
+        while day <= lastDay {
+            allDays.append((date: day, count: countByDay[day, default: 0]))
+            day = calendar.date(byAdding: .day, value: 1, to: day)!
+        }
+
+        guard allDays.count >= 2 else { return allDays.map { ($0.date, Double($0.count)) } }
+
+        // 7-day rolling average
+        let window = min(7, max(1, allDays.count / 2))
+        var result: [(date: Date, wordsPerDay: Double)] = []
+        for i in 0..<allDays.count {
+            let start = max(0, i - (window - 1))
+            let slice = allDays[start...i]
+            let avg = Double(slice.reduce(0) { $0 + $1.count }) / Double(slice.count)
+            result.append((date: allDays[i].date, wordsPerDay: avg))
+        }
+
+        return result
     }
 
     // MARK: - 9. Estimated Completion
@@ -1018,31 +1181,31 @@ struct DataAnalysisView: View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Learning Velocity")
                 .font(.headline)
-            Text("Cumulative words learned over time")
+            Text("New words per day (7-day average)")
                 .font(.caption)
                 .foregroundStyle(.secondary)
 
-            if cumulativeWordsLearned.count < 2 {
+            if dailyLearningVelocity.count < 2 {
                 Text("Not enough data yet. Keep learning!")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, minHeight: 150)
             } else {
                 Chart {
-                    ForEach(Array(cumulativeWordsLearned.enumerated()), id: \.offset) { _, point in
+                    ForEach(Array(dailyLearningVelocity.enumerated()), id: \.offset) { _, point in
                         LineMark(
                             x: .value("Date", point.date),
-                            y: .value("Words", point.count)
+                            y: .value("Words/Day", point.wordsPerDay)
                         )
                         .foregroundStyle(.purple)
-                        .interpolationMethod(.stepEnd)
+                        .interpolationMethod(.catmullRom)
 
                         AreaMark(
                             x: .value("Date", point.date),
-                            y: .value("Words", point.count)
+                            y: .value("Words/Day", point.wordsPerDay)
                         )
                         .foregroundStyle(.purple.opacity(0.1))
-                        .interpolationMethod(.stepEnd)
+                        .interpolationMethod(.catmullRom)
                     }
                 }
                 .frame(height: 180)
@@ -1053,7 +1216,7 @@ struct DataAnalysisView: View {
     }
 
     private var velocityAccessibilityLabel: String {
-        guard let latest = cumulativeWordsLearned.last else { return "Learning velocity chart" }
-        return "Learning velocity chart. \(latest.count) words learned total"
+        guard let latest = dailyLearningVelocity.last else { return "Learning velocity chart" }
+        return "Learning velocity chart. Current pace: \(String(format: "%.1f", latest.wordsPerDay)) words per day"
     }
 }
