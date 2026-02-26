@@ -4,6 +4,8 @@ import SwiftData
 struct ContentView: View {
     @AppStorage("appearance") private var appearance: String = "system"
     @State private var showStartup = true
+    @State private var selectedTab = 0
+    @State private var loadedTabs: Set<Int> = [0]
 
     private var colorScheme: ColorScheme? {
         switch appearance {
@@ -34,34 +36,55 @@ struct ContentView: View {
     }
 
     private var mainContent: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             StudySessionView()
+                .tag(0)
                 .tabItem {
                     Label("Study", image: "StudyIcon")
                 }
 
-            WordListView()
+            LazyTab(isLoaded: loadedTabs.contains(1)) { WordListView() }
+                .tag(1)
                 .tabItem {
                     Label("Words", systemImage: "book")
                 }
 
-            ProgressDashboardView()
+            LazyTab(isLoaded: loadedTabs.contains(2)) { ProgressDashboardView() }
+                .tag(2)
                 .tabItem {
                     Label("Progress", systemImage: "chart.bar")
                 }
 
-            VergeView()
+            LazyTab(isLoaded: loadedTabs.contains(3)) { VergeView() }
+                .tag(3)
                 .tabItem {
                     Label("Verge", systemImage: "flame")
                 }
 
-            SettingsView()
+            LazyTab(isLoaded: loadedTabs.contains(4)) { SettingsView() }
+                .tag(4)
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }
-
+        }
+        .onChange(of: selectedTab) { _, newTab in
+            loadedTabs.insert(newTab)
         }
         .preferredColorScheme(colorScheme)
+    }
+}
+
+/// Defers building a tab's content until the tab is first selected.
+private struct LazyTab<Content: View>: View {
+    let isLoaded: Bool
+    @ViewBuilder let content: () -> Content
+
+    var body: some View {
+        if isLoaded {
+            content()
+        } else {
+            Color.clear
+        }
     }
 }
 

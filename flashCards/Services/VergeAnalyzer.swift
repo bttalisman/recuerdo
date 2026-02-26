@@ -140,16 +140,29 @@ struct VergeAnalyzer {
         return sessions
     }
 
+    /// Minimum gap (seconds) between a miss and a correct to count as a real recall.
+    /// If the correct comes faster than this after a miss, the card was likely the only
+    /// one left in the review set — immediate repetition, not real retrieval.
+    private static let minRecallGap: TimeInterval = 20
+
     /// How many attempts before the first correct answer in a session.
     /// Returns 0 if the first attempt was correct.
     /// Returns the total session count if no correct answer was given.
     private static func attemptsBeforeCorrect(_ session: [ReviewRecord]) -> Int {
         for (index, review) in session.enumerated() {
             if review.wasCorrect {
+                // If this correct came right after a miss with almost no gap,
+                // the card was likely the only one left — don't count it.
+                if index > 0 {
+                    let gap = review.reviewDate.timeIntervalSince(session[index - 1].reviewDate)
+                    if gap < minRecallGap {
+                        continue // treat as if this correct didn't happen
+                    }
+                }
                 return index // 0 = got it first try, 1 = missed once then got it, etc.
             }
         }
-        return session.count // never got it right
+        return session.count // never got it right (or only got it via immediate repetition)
     }
 
     /// Classify a card based on its recent session patterns.

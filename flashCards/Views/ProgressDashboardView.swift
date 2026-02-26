@@ -5,8 +5,10 @@ import Charts
 struct ProgressDashboardView: View {
     @Query private var allCards: [FlashCard]
     @Query private var decks: [DeckMetadata]
-    @Query(sort: \ReviewRecord.reviewDate, order: .reverse)
-    private var recentReviews: [ReviewRecord]
+    @Environment(\.modelContext) private var modelContext
+    @State private var todayReviewCount: Int = 0
+    @State private var todayCorrectCount: Int = 0
+    @State private var weekReviewCount: Int = 0
 
     private var newCount: Int {
         allCards.filter { $0.status == "new" }.count
@@ -20,16 +22,9 @@ struct ProgressDashboardView: View {
         allCards.filter { $0.status == "mastered" }.count
     }
 
-    private var todayReviews: [ReviewRecord] {
-        let startOfToday = Calendar.current.startOfDay(for: Date())
-        return recentReviews.filter { $0.reviewDate >= startOfToday }
-    }
-
     private var todayAccuracy: Double {
-        let today = todayReviews
-        guard !today.isEmpty else { return 0 }
-        let correct = today.filter(\.wasCorrect).count
-        return Double(correct) / Double(today.count)
+        guard todayReviewCount > 0 else { return 0 }
+        return Double(todayCorrectCount) / Double(todayReviewCount)
     }
 
     private var dueNowCount: Int {
@@ -70,6 +65,40 @@ struct ProgressDashboardView: View {
             }
             .navigationTitle("")
             .enhancedDarkContrast()
+            .onAppear { loadReviewCounts() }
+        }
+    }
+
+    private func loadReviewCounts() {
+        let calendar = Calendar.current
+        let startOfToday = calendar.startOfDay(for: Date())
+        let weekAgo = calendar.date(byAdding: .day, value: -7, to: startOfToday) ?? startOfToday
+
+        let container = modelContext.container
+        Task.detached {
+            let context = ModelContext(container)
+
+            // Today's stats
+            var todayDescriptor = FetchDescriptor<ReviewRecord>(
+                predicate: #Predicate { $0.reviewDate >= startOfToday }
+            )
+            todayDescriptor.propertiesToFetch = [\.wasCorrect]
+            let todayRecords = (try? context.fetch(todayDescriptor)) ?? []
+            let todayTotal = todayRecords.count
+            let todayCorrect = todayRecords.filter(\.wasCorrect).count
+
+            // Week count
+            var weekDescriptor = FetchDescriptor<ReviewRecord>(
+                predicate: #Predicate { $0.reviewDate >= weekAgo }
+            )
+            weekDescriptor.propertiesToFetch = [\.reviewDate]
+            let weekTotal = (try? context.fetchCount(weekDescriptor)) ?? 0
+
+            await MainActor.run {
+                todayReviewCount = todayTotal
+                todayCorrectCount = todayCorrect
+                weekReviewCount = weekTotal
+            }
         }
     }
 
@@ -129,8 +158,8 @@ struct ProgressDashboardView: View {
                 .font(.headline)
 
             HStack(spacing: 16) {
-                statCard(title: "Reviewed", value: "\(todayReviews.count)", icon: "bolt.fill")
-                statCard(title: "Accuracy", value: todayReviews.isEmpty ? "-" : "\(Int(todayAccuracy * 100))%", icon: "target")
+                statCard(title: "Reviewed", value: "\(todayReviewCount)", icon: "bolt.fill")
+                statCard(title: "Accuracy", value: todayReviewCount == 0 ? "-" : "\(Int(todayAccuracy * 100))%", icon: "target")
                 statCard(title: "Due Now", value: "\(dueNowCount)", icon: "clock")
             }
         }
@@ -201,9 +230,7 @@ struct ProgressDashboardView: View {
         }.count
 
         // Average daily reviews over the last 7 days
-        let weekAgo = calendar.date(byAdding: .day, value: -7, to: today) ?? today
-        let recentCount = recentReviews.filter { $0.reviewDate >= weekAgo }.count
-        let avgDaily = Double(recentCount) / 7.0
+        let avgDaily = Double(weekReviewCount) / 7.0
 
         // New words per day setting
         let newPerDay = decks.first?.newWordsAccumulationRate ?? 10

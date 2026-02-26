@@ -146,8 +146,8 @@ struct StartupView: View {
             subtitleOpacity = 1
         }
 
-        // Signal ready to dismiss after animations complete + hold
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+        // Signal ready to dismiss after animations complete + brief hold
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             onFinished?()
         }
     }
