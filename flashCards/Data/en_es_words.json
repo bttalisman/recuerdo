@@ -4451,7 +4451,7 @@
     },
     {
       "id": "en_es_0155",
-      "source": "them",
+      "source": "them (dir obj-m)",
       "target": "los",
       "partOfSpeech": "pronoun",
       "category": "basics",
@@ -4463,12 +4463,12 @@
           "en": "I'll call them tomorrow when I come back."
         },
         {
-          "es": "Sólo puedo preguntarme si acaso es lo mismo para todos los demás.",
-          "en": "I can only wonder if this is the same for everyone else."
+          "es": "Los vi en la tienda ayer.",
+          "en": "I saw them in the store yesterday."
         },
         {
-          "es": "Siempre me gustaron más los personajes misteriosos.",
-          "en": "I always liked mysterious characters more."
+          "es": "No los entiendo cuando hablan rápido.",
+          "en": "I don't understand them when they speak fast."
         }
       ]
     },
@@ -4730,7 +4730,7 @@
     },
     {
       "id": "en_es_0167",
-      "source": "her (object)",
+      "source": "her (dir obj)",
       "target": "la",
       "partOfSpeech": "pronoun",
       "category": "basics",
@@ -4746,12 +4746,8 @@
           "en": "I saw her in the park yesterday."
         },
         {
-          "es": "La casa es grande.",
-          "en": "The house is big."
-        },
-        {
-          "es": "La vi en el parque.",
-          "en": "I saw her in the park."
+          "es": "La llamé pero no contestó.",
+          "en": "I called her but she didn't answer."
         }
       ]
     },
@@ -5130,7 +5126,7 @@
     },
     {
       "id": "en_es_0183",
-      "source": "him",
+      "source": "him (dir obj)",
       "target": "lo",
       "partOfSpeech": "pronoun",
       "category": "basics",
@@ -5138,20 +5134,16 @@
       "article": null,
       "examples": [
         {
-          "es": "Sólo puedo preguntarme si acaso es lo mismo para todos los demás.",
-          "en": "I can only wonder if this is the same for everyone else."
+          "es": "Lo vi en el parque ayer.",
+          "en": "I saw him in the park yesterday."
         },
         {
-          "es": "Supongo que es diferente cuando lo consideras a largo plazo.",
-          "en": "I suppose it's different when you think about it over the long term."
+          "es": "No lo conozco, pero me han hablado de él.",
+          "en": "I don't know him, but they've told me about him."
         },
         {
-          "es": "Eso fue probablemente lo que influenció su decisión.",
-          "en": "That was probably what influenced their decision."
-        },
-        {
-          "es": "Lo importante es disfrutar la vida.",
-          "en": "The important thing is to enjoy life."
+          "es": "Lo llamé pero no contestó.",
+          "en": "I called him but he didn't answer."
         }
       ]
     },
@@ -6450,7 +6442,7 @@
     },
     {
       "id": "en_es_0229",
-      "source": "us, we",
+      "source": "we (subj/prep)",
       "target": "nosotros",
       "partOfSpeech": "pronoun",
       "category": "basics",
@@ -6478,8 +6470,8 @@
           "en": "In our family, we always support each other."
         },
         {
-          "es": "Nosotros estamos en el parque.",
-          "en": "We are at the park."
+          "es": "Este regalo es para nosotros.",
+          "en": "This gift is for us."
         }
       ]
     },
@@ -20583,7 +20575,7 @@
     },
     {
       "id": "en_es_0682",
-      "source": "you (informal)",
+      "source": "you (subj/+fam)",
       "target": "tú",
       "partOfSpeech": "pronoun",
       "category": "basics",
@@ -149526,7 +149518,7 @@
           "en": "This book is for me."
         },
         {
-          "es": "Mí no me importa lo que digan.",
+          "es": "A mí no me importa lo que digan.",
           "en": "I don't care what they say."
         },
         {
@@ -149606,8 +149598,8 @@
       "article": null,
       "examples": [
         {
-          "es": "Ti eres mi mejor amigo.",
-          "en": "You are my best friend."
+          "es": "Esto es para ti.",
+          "en": "This is for you."
         },
         {
           "es": "Este regalo es para ti.",
