@@ -219,8 +219,11 @@ class StudySessionViewModel: Identifiable {
             card.easeFactor = result.newEaseFactor
             card.repetitionCount = result.newRepetitionCount
             card.status = result.newStatus
-            if result.newStatus == "mastered" {
+            if result.newStatus == "mastered" && card.masteredDate == nil {
+                card.masteredDate = Date()
                 self.masteredCount += 1
+            } else if result.newStatus != "mastered" {
+                card.masteredDate = nil
             }
             card.lastReviewDate = Date()
             card.nextReviewDate = Calendar.current.date(

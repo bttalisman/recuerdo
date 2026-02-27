@@ -35,12 +35,13 @@ struct flashCardsApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .onAppear {
+            ContentView(onStartupComplete: {
                     let container = sharedModelContainer
                     DispatchQueue.global(qos: .userInitiated).async {
                         DataLoader.seedIfNeeded(container: container)
                     }
+                })
+                .onAppear {
                     NotificationManager.shared.requestAuthorization()
                 }
         }

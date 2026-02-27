@@ -2,6 +2,8 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
+    var onStartupComplete: (() -> Void)? = nil
+
     @AppStorage("appearance") private var appearance: String = "system"
     @State private var showStartup = true
     @State private var selectedTab = 0
@@ -17,11 +19,14 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            mainContent
-                .opacity(showStartup ? 0 : 1)
+            if !showStartup {
+                mainContent
+                    .transition(.opacity)
+            }
 
             if showStartup {
                 StartupView {
+                    onStartupComplete?()
                     withAnimation(.easeIn(duration: 0.3)) {
                         showStartup = false
                     }
@@ -89,6 +94,6 @@ private struct LazyTab<Content: View>: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(onStartupComplete: nil)
         .modelContainer(for: [FlashCard.self, ReviewRecord.self, DeckMetadata.self], inMemory: true)
 }

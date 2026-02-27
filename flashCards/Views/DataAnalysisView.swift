@@ -27,6 +27,31 @@ enum TrendRange: String, CaseIterable {
     }
 }
 
+private enum EngagementZone: String, CaseIterable {
+    case effortZone
+    case lockedIn
+    case guessing
+    case struggling
+
+    var label: String {
+        switch self {
+        case .effortZone: return "Effort"
+        case .lockedIn: return "Locked In"
+        case .guessing: return "Guessing"
+        case .struggling: return "Struggling"
+        }
+    }
+
+    var color: Color {
+        switch self {
+        case .effortZone: return .yellow
+        case .lockedIn: return .green
+        case .guessing: return .red
+        case .struggling: return .orange
+        }
+    }
+}
+
 struct DataAnalysisView: View {
     @Query(sort: \ReviewRecord.reviewDate)
     private var allReviews: [ReviewRecord]
@@ -34,6 +59,8 @@ struct DataAnalysisView: View {
     @State private var trendRange: TrendRange = .month
     @State private var showWordsAtRiskInfo = false
     @State private var showAccuracyInfo = false
+    @State private var selectedZone: EngagementZone = .effortZone
+    @State private var showEngagementInfo = false
 
     var body: some View {
         List {
@@ -205,15 +232,12 @@ struct DataAnalysisView: View {
 
         guard !introduced.isEmpty else { return [] }
 
-        // Build daily mastered events from reviews where card became mastered
+        // Build daily mastered count from masteredDate (fall back to lastReviewDate)
         var masteredByDay: [Date: Int] = [:]
-        for review in allReviews {
-            guard let card = review.card, card.status == "mastered" else { continue }
-            // Check if this review likely caused mastery (correct + card is now mastered)
-            if review.wasCorrect && review.newInterval >= 21 {
-                let day = calendar.startOfDay(for: review.reviewDate)
-                masteredByDay[day, default: 0] += 1
-            }
+        for card in allCards where card.status == "mastered" {
+            guard let date = card.masteredDate ?? card.lastReviewDate else { continue }
+            let day = calendar.startOfDay(for: date)
+            masteredByDay[day, default: 0] += 1
         }
 
         // Count words introduced per day
@@ -649,49 +673,124 @@ struct DataAnalysisView: View {
         return "Response time chart. Latest average: \(String(format: "%.1f", latest.avgTime)) seconds per card"
     }
 
-    // MARK: - Response Time by Word
+    // MARK: - Word Engagement
 
-    private var responseTimeByWord: [(card: FlashCard, avgTime: Double, count: Int)] {
-        var byCard: [String: (card: FlashCard, total: Double, count: Int)] = [:]
+    private struct WordEngagement {
+        let card: FlashCard
+        let avgTime: Double
+        let accuracy: Double
+        let reviewCount: Int
+        let zone: EngagementZone
+    }
+
+    private var engagementAnalysis: (medianTime: Double, words: [WordEngagement]) {
+        var byCard: [String: (card: FlashCard, totalTime: Double, correct: Int, total: Int)] = [:]
 
         for review in allReviews where review.responseTimeSeconds > 0 && review.responseTimeSeconds < 60 {
             guard let card = review.card else { continue }
-            var entry = byCard[card.wordId, default: (card: card, total: 0, count: 0)]
-            entry.total += review.responseTimeSeconds
-            entry.count += 1
+            var entry = byCard[card.wordId, default: (card: card, totalTime: 0, correct: 0, total: 0)]
+            entry.totalTime += review.responseTimeSeconds
+            entry.total += 1
+            if review.wasCorrect { entry.correct += 1 }
             byCard[card.wordId] = entry
         }
 
-        return byCard.values
-            .filter { $0.count >= 3 }
-            .map { (card: $0.card, avgTime: $0.total / Double($0.count), count: $0.count) }
-            .sorted { $0.avgTime > $1.avgTime }
+        let qualified = byCard.values.filter { $0.total >= 3 }
+        let avgTimes = qualified.map { $0.totalTime / Double($0.total) }.sorted()
+        let median = avgTimes.isEmpty ? 5.0 : avgTimes[avgTimes.count / 2]
+
+        let words = qualified.map { entry in
+            let avgTime = entry.totalTime / Double(entry.total)
+            let accuracy = Double(entry.correct) / Double(entry.total)
+            let isSlow = avgTime >= median
+            let isCorrect = accuracy >= 0.6
+
+            let zone: EngagementZone
+            switch (isSlow, isCorrect) {
+            case (true, true): zone = .effortZone
+            case (false, true): zone = .lockedIn
+            case (false, false): zone = .guessing
+            case (true, false): zone = .struggling
+            }
+
+            return WordEngagement(card: entry.card, avgTime: avgTime, accuracy: accuracy, reviewCount: entry.total, zone: zone)
+        }
+
+        return (medianTime: median, words: words)
     }
 
-    @State private var showFastestWords = false
+    private func sortedEngagementWords(_ words: [WordEngagement], for zone: EngagementZone) -> [WordEngagement] {
+        switch zone {
+        case .effortZone, .struggling:
+            return words.sorted { $0.avgTime > $1.avgTime }
+        case .lockedIn:
+            return words.sorted { $0.avgTime < $1.avgTime }
+        case .guessing:
+            return words.sorted { $0.accuracy < $1.accuracy }
+        }
+    }
 
     private var responseTimeByWordSection: some View {
-        let slowest = Array(responseTimeByWord.prefix(10))
-        let fastest = Array(responseTimeByWord.suffix(10).reversed())
+        let analysis = engagementAnalysis
+        let grouped = Dictionary(grouping: analysis.words, by: \.zone)
+        let selectedWords = sortedEngagementWords(grouped[selectedZone] ?? [], for: selectedZone)
 
         return VStack(alignment: .leading, spacing: 12) {
-            Text("Response Time by Word")
-                .font(.headline)
+            HStack {
+                Text("Word Engagement")
+                    .font(.headline)
+                Button {
+                    showEngagementInfo = true
+                } label: {
+                    Image(systemName: "info.circle")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Info")
+            }
+            .alert("About Word Engagement", isPresented: $showEngagementInfo) {
+                Button("Got it", role: .cancel) { }
+            } message: {
+                Text("This groups your words by how you engage with them.\n\nEffort Zone — You take your time and get it right. Effortful recall builds the strongest memories. These words are actively deepening.\n\nLocked In — Fast and correct. These words are solid in your memory.\n\nGuessing — Quick but wrong. You may be jumping to an answer rather than truly recalling.\n\nStruggling — Slow and wrong. These words need more exposure.\n\nSlow vs fast is based on your personal median response time. Correct vs wrong uses a 60% accuracy threshold.")
+            }
 
-            Picker("", selection: $showFastestWords) {
-                Text("Slowest").tag(false)
-                Text("Fastest").tag(true)
+            // Summary counts
+            HStack(spacing: 0) {
+                ForEach(EngagementZone.allCases, id: \.self) { zone in
+                    let count = grouped[zone]?.count ?? 0
+                    VStack(spacing: 4) {
+                        Text("\(count)")
+                            .font(.title3.bold())
+                            .foregroundStyle(zone.color)
+                        Text(zone.label)
+                            .font(.system(size: 10))
+                            .foregroundStyle(.secondary)
+                    }
+                    .frame(maxWidth: .infinity)
+                }
+            }
+
+            // Zone picker
+            Picker("Zone", selection: $selectedZone) {
+                ForEach(EngagementZone.allCases, id: \.self) { zone in
+                    Text(zone.label).tag(zone)
+                }
             }
             .pickerStyle(.segmented)
 
-            if responseTimeByWord.isEmpty {
+            if analysis.words.isEmpty {
                 Text("Not enough data yet. Need at least 3 reviews per word.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, minHeight: 60)
+            } else if selectedWords.isEmpty {
+                Text("No words in this zone yet.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, minHeight: 60)
             } else {
-                let items = showFastestWords ? fastest : slowest
-                ForEach(items, id: \.card.wordId) { item in
+                ForEach(selectedWords.prefix(10), id: \.card.wordId) { item in
                     HStack {
                         VStack(alignment: .leading, spacing: 2) {
                             HStack(spacing: 4) {
@@ -710,8 +809,8 @@ struct DataAnalysisView: View {
                         VStack(alignment: .trailing, spacing: 2) {
                             Text(String(format: "%.1fs", item.avgTime))
                                 .font(.subheadline.bold().monospacedDigit())
-                                .foregroundStyle(responseTimeColor(item.avgTime))
-                            Text("\(item.count) reviews")
+                                .foregroundStyle(item.zone.color)
+                            Text("\(Int(item.accuracy * 100))% · \(item.reviewCount) reviews")
                                 .font(.caption2)
                                 .foregroundStyle(.tertiary)
                         }
@@ -719,13 +818,6 @@ struct DataAnalysisView: View {
                 }
             }
         }
-    }
-
-    private func responseTimeColor(_ seconds: Double) -> Color {
-        if seconds >= 10 { return .red }
-        if seconds >= 6 { return .orange }
-        if seconds >= 3 { return .primary }
-        return .green
     }
 
     // MARK: - 5. Direction Comparison
@@ -862,8 +954,15 @@ struct DataAnalysisView: View {
     // MARK: - 7. Words at Risk
 
     private var wordsAtRisk: [(card: FlashCard, reason: String)] {
-        allCards
-            .filter { $0.status != "new" }
+        // Exclude effort zone cards — slow but correct is progress, not risk
+        let effortZoneIds = Set(
+            engagementAnalysis.words
+                .filter { $0.zone == .effortZone }
+                .map { $0.card.wordId }
+        )
+
+        return allCards
+            .filter { $0.status != "new" && !effortZoneIds.contains($0.wordId) }
             .compactMap { card -> (card: FlashCard, reason: String)? in
                 // Low ease factor = struggling
                 if card.easeFactor < 1.8 && card.totalReviews >= 3 {

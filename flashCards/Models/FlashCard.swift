@@ -40,6 +40,7 @@ final class FlashCard {
     // Spaced repetition state
     var status: String // "new", "learning", "mastered"
     var introducedDate: Date?
+    var masteredDate: Date?
     var easeFactor: Double
     var interval: Int // days
     var repetitionCount: Int
