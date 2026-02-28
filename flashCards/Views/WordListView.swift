@@ -41,9 +41,14 @@ struct WordListView: View {
     }
 
     private var filteredCards: [FlashCard] {
-        var cards = learnedCards
-        if let filterStatus {
-            cards = cards.filter { $0.status == filterStatus }
+        var cards: [FlashCard]
+        if filterStatus == "trashed" {
+            cards = learnedCards.filter { $0.isTrashed }
+        } else {
+            cards = learnedCards.filter { !$0.isTrashed }
+            if let filterStatus {
+                cards = cards.filter { $0.status == filterStatus }
+            }
         }
         if let filterCategory {
             cards = cards.filter {
@@ -107,12 +112,20 @@ struct WordListView: View {
         }
     }
 
+    private var activeCards: [FlashCard] {
+        learnedCards.filter { !$0.isTrashed }
+    }
+
     private var learningCount: Int {
-        learnedCards.filter { $0.status == "learning" }.count
+        activeCards.filter { $0.status == "learning" }.count
     }
 
     private var masteredCount: Int {
-        learnedCards.filter { $0.status == "mastered" }.count
+        activeCards.filter { $0.status == "mastered" }.count
+    }
+
+    private var trashedCount: Int {
+        learnedCards.filter { $0.isTrashed }.count
     }
 
     var body: some View {
@@ -138,7 +151,7 @@ struct WordListView: View {
                 List {
                     Section {
                         HStack(spacing: 16) {
-                            statBadge(count: learnedCards.count, label: "Total", color: .blue)
+                            statBadge(count: activeCards.count, label: "Total", color: .blue)
                             statBadge(count: learningCount, label: "Learning", color: .orange)
                             statBadge(count: masteredCount, label: "Mastered", color: .green)
                         }
@@ -151,6 +164,9 @@ struct WordListView: View {
                             Text("All").tag(nil as String?)
                             Text("Learning").tag("learning" as String?)
                             Text("Mastered").tag("mastered" as String?)
+                            if trashedCount > 0 {
+                                Text("Trashed").tag("trashed" as String?)
+                            }
                         }
                         .pickerStyle(.segmented)
                         .subtleSectionGlow()
@@ -174,18 +190,20 @@ struct WordListView: View {
                         }
                         .subtleSectionGlow()
 
-                        Button {
-                            withAnimation {
-                                showReviewSetup.toggle()
+                        if filterStatus != "trashed" {
+                            Button {
+                                withAnimation {
+                                    showReviewSetup.toggle()
+                                }
+                            } label: {
+                                Label(showReviewSetup ? "Cancel Review" : "Review These Words",
+                                      systemImage: showReviewSetup ? "xmark.circle.fill" : "play.circle.fill")
                             }
-                        } label: {
-                            Label(showReviewSetup ? "Cancel Review" : "Review These Words",
-                                  systemImage: showReviewSetup ? "xmark.circle.fill" : "play.circle.fill")
+                            .subtleSectionGlow()
                         }
-                        .subtleSectionGlow()
                     }
 
-                    if showReviewSetup && !filteredCards.isEmpty {
+                    if showReviewSetup && !filteredCards.isEmpty && filterStatus != "trashed" {
                         let effectiveCount = min(reviewCount, filteredCards.count)
                         Section {
                             Stepper("\(effectiveCount) cards", value: $reviewCount, in: 1...max(filteredCards.count, 1))
@@ -213,6 +231,7 @@ struct WordListView: View {
                             } label: {
                                 WordRow(card: card, showTargetFirst: showTargetFirst)
                             }
+                            .opacity(card.isTrashed ? 0.4 : 1.0)
                             .subtleSectionGlow()
                         }
                     }

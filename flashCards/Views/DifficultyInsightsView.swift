@@ -4,7 +4,8 @@ import SwiftData
 struct DifficultyInsightsView: View {
     @Query(sort: \ReviewRecord.reviewDate)
     private var allReviews: [ReviewRecord]
-    @Query private var allCards: [FlashCard]
+    @Query(filter: #Predicate<FlashCard> { $0.isTrashed != true })
+    private var allCards: [FlashCard]
     @State private var expandedInsightId: String?
     @State private var insights: [Insight] = []
     @State private var detailInsight: Insight?

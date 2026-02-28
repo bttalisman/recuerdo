@@ -62,7 +62,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         let descriptor = FetchDescriptor<FlashCard>()
         let cards = (try? context.fetch(descriptor)) ?? []
         let dueCount = cards.filter {
-            $0.status != "new" && $0.nextReviewDate != nil && $0.nextReviewDate! <= now
+            !$0.isTrashed && $0.status != "new" && $0.nextReviewDate != nil && $0.nextReviewDate! <= now
         }.count
         center.setBadgeCount(dueCount)
     }
@@ -85,7 +85,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         }
 
         let cardDescriptor = FetchDescriptor<FlashCard>()
-        let allCards = (try? context.fetch(cardDescriptor)) ?? []
+        let allCards = (try? context.fetch(cardDescriptor))?.filter { !$0.isTrashed } ?? []
 
         let calendar = Calendar.current
         let now = Date()

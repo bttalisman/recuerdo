@@ -50,6 +50,7 @@ final class FlashCard {
     var totalCorrect: Int
     var currentStreak: Int
     var longestStreak: Int
+    var isTrashed: Bool
 
     @Relationship(deleteRule: .cascade, inverse: \ReviewRecord.card)
     var reviewHistory: [ReviewRecord]
@@ -94,6 +95,7 @@ final class FlashCard {
         self.totalCorrect = 0
         self.currentStreak = 0
         self.longestStreak = 0
+        self.isTrashed = false
         self.reviewHistory = []
     }
 }

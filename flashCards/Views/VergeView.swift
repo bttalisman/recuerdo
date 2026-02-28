@@ -2,7 +2,8 @@ import SwiftUI
 import SwiftData
 
 struct VergeView: View {
-    @Query private var allCards: [FlashCard]
+    @Query(filter: #Predicate<FlashCard> { $0.isTrashed != true })
+    private var allCards: [FlashCard]
     @Query private var decks: [DeckMetadata]
     @Environment(\.modelContext) private var modelContext
     @State private var vergeWords: [VergeWord] = []

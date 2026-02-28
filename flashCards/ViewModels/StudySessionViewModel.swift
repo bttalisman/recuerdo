@@ -65,21 +65,8 @@ class StudySessionViewModel: Identifiable {
         // Study tab always shows English -> Spanish
         cardDirection = "source_first"
 
-        let metaDescriptor = FetchDescriptor<DeckMetadata>(
-            predicate: #Predicate { $0.deckId == deckId }
-        )
+        let newCards = CardScheduler.buildFreeNewWordsSession(deckId: deckId, limit: accumulatedCount, context: context)
 
-        let newCards: [FlashCard]
-        if scheduled {
-            newCards = CardScheduler.buildFreeNewWordsSession(deckId: deckId, limit: accumulatedCount, context: context)
-            // Drain accumulation: reset the drain date
-            if let deckMeta = try? context.fetch(metaDescriptor).first {
-                deckMeta.lastNewWordsDrainDate = Date()
-                try? context.save()
-            }
-        } else {
-            newCards = CardScheduler.buildFreeNewWordsSession(deckId: deckId, limit: accumulatedCount, context: context)
-        }
 
         wordsLearned = 0
         sessionCards = newCards.shuffled()

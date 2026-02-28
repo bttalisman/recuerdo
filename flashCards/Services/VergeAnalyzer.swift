@@ -40,7 +40,7 @@ struct VergeAnalyzer {
     ) async -> [VergeAnalysisResult] {
         await Task.detached {
             let context = ModelContext(container)
-            let cards = (try? context.fetch(FetchDescriptor<FlashCard>())) ?? []
+            let cards = ((try? context.fetch(FetchDescriptor<FlashCard>())) ?? []).filter { !$0.isTrashed }
             let reviews = (try? context.fetch(FetchDescriptor<ReviewRecord>())) ?? []
             return analyze(cards: cards, reviews: reviews, forcedSessionBoundary: forcedSessionBoundary)
                 .map { VergeAnalysisResult(id: $0.id, category: $0.category, avgAttemptsBeforeCorrect: $0.avgAttemptsBeforeCorrect, sessionsAnalyzed: $0.sessionsAnalyzed) }

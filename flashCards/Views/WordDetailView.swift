@@ -3,6 +3,7 @@ import SwiftData
 import Charts
 
 struct WordDetailView: View {
+    @Environment(\.modelContext) private var modelContext
     let card: FlashCard
     let showTargetFirst: Bool
 
@@ -58,6 +59,18 @@ struct WordDetailView: View {
         }
         .navigationTitle(showTargetFirst ? card.targetText : card.displaySourceText)
         .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    card.isTrashed.toggle()
+                    try? modelContext.save()
+                } label: {
+                    Image(systemName: card.isTrashed ? "arrow.uturn.backward" : "trash")
+                }
+                .tint(card.isTrashed ? .blue : .red)
+                .accessibilityLabel(card.isTrashed ? "Restore word" : "Trash word")
+            }
+        }
     }
 
     // MARK: - Word Header
@@ -117,6 +130,16 @@ struct WordDetailView: View {
                         .background(statusColor.opacity(0.15))
                         .foregroundStyle(statusColor)
                         .clipShape(Capsule())
+
+                    if card.isTrashed {
+                        Text("Trashed")
+                            .font(.caption.bold())
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 3)
+                            .background(.red.opacity(0.15))
+                            .foregroundStyle(.red)
+                            .clipShape(Capsule())
+                    }
                 }
             }
             .frame(maxWidth: .infinity)

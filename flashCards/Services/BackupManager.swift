@@ -14,6 +14,7 @@ struct CardBackup: Codable {
     let totalCorrect: Int
     let currentStreak: Int
     let longestStreak: Int
+    let isTrashed: Bool?
 }
 
 struct ReviewBackup: Codable {
@@ -74,7 +75,8 @@ struct BackupManager {
                 totalReviews: card.totalReviews,
                 totalCorrect: card.totalCorrect,
                 currentStreak: card.currentStreak,
-                longestStreak: card.longestStreak
+                longestStreak: card.longestStreak,
+                isTrashed: card.isTrashed
             )
         }
 
@@ -141,6 +143,7 @@ struct BackupManager {
             card.totalCorrect = cardBackup.totalCorrect
             card.currentStreak = cardBackup.currentStreak
             card.longestStreak = cardBackup.longestStreak
+            card.isTrashed = cardBackup.isTrashed ?? false
             restoredCards += 1
         }
 

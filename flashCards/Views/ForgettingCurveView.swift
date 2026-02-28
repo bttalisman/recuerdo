@@ -5,7 +5,8 @@ import Charts
 struct ForgettingCurveView: View {
     @Query(sort: \ReviewRecord.reviewDate)
     private var allReviews: [ReviewRecord]
-    @Query private var allCards: [FlashCard]
+    @Query(filter: #Predicate<FlashCard> { $0.isTrashed != true })
+    private var allCards: [FlashCard]
     @State private var selectedCard: FlashCard?
     @State private var searchText = ""
     @State private var showCurveInfo = false

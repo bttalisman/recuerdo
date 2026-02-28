@@ -353,6 +353,7 @@ struct SettingsView: View {
             card.totalCorrect = 0
             card.currentStreak = 0
             card.longestStreak = 0
+            card.isTrashed = false
         }
 
         // Delete all review records

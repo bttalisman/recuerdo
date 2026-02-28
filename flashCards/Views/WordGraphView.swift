@@ -2,7 +2,8 @@ import SwiftUI
 import SwiftData
 
 struct WordGraphView: View {
-    @Query private var allCards: [FlashCard]
+    @Query(filter: #Predicate<FlashCard> { $0.isTrashed != true })
+    private var allCards: [FlashCard]
     @State private var searchText = ""
     @State private var selectedWordId: String?
     @State private var activeTypes: Set<RelationshipType> = Set(RelationshipType.allCases)

@@ -55,7 +55,8 @@ private enum EngagementZone: String, CaseIterable {
 struct DataAnalysisView: View {
     @Query(sort: \ReviewRecord.reviewDate)
     private var allReviews: [ReviewRecord]
-    @Query private var allCards: [FlashCard]
+    @Query(filter: #Predicate<FlashCard> { $0.isTrashed != true })
+    private var allCards: [FlashCard]
     @State private var trendRange: TrendRange = .month
     @State private var showWordsAtRiskInfo = false
     @State private var showAccuracyInfo = false

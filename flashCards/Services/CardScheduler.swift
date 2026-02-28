@@ -11,6 +11,7 @@ struct CardScheduler {
 
         var due = allCards.filter {
             $0.deckId == deckId &&
+            !$0.isTrashed &&
             $0.status != "new" &&
             $0.nextReviewDate != nil &&
             $0.nextReviewDate! <= now
@@ -19,6 +20,7 @@ struct CardScheduler {
         // Also pick up lapsed cards that lost their nextReviewDate
         let lapsed = allCards.filter {
             $0.deckId == deckId &&
+            !$0.isTrashed &&
             $0.status == "learning" &&
             $0.interval == 0 &&
             $0.nextReviewDate == nil &&
@@ -55,7 +57,7 @@ struct CardScheduler {
         // If starter list hasn't been completed, serve curated words first
         if !deckMeta.hasCompletedStarterList {
             let newDescriptor = FetchDescriptor<FlashCard>(
-                predicate: #Predicate { $0.deckId == deckId && $0.status == "new" }
+                predicate: #Predicate { $0.deckId == deckId && $0.status == "new" && $0.isTrashed != true }
             )
             let allNew = (try? context.fetch(newDescriptor)) ?? []
             let cardMap = Dictionary(uniqueKeysWithValues: allNew.map { ($0.wordId, $0) })
@@ -77,7 +79,7 @@ struct CardScheduler {
         let maxIndex = deckMeta.unlockedWordCount
         var descriptor = FetchDescriptor<FlashCard>(
             predicate: #Predicate {
-                $0.deckId == deckId && $0.status == "new" && $0.wordIndex < maxIndex
+                $0.deckId == deckId && $0.status == "new" && $0.wordIndex < maxIndex && $0.isTrashed != true
             },
             sortBy: [SortDescriptor(\.wordIndex)]
         )
@@ -92,6 +94,7 @@ struct CardScheduler {
         let introducedDescriptor = FetchDescriptor<FlashCard>(
             predicate: #Predicate {
                 $0.deckId == deckId &&
+                $0.isTrashed != true &&
                 $0.introducedDate != nil &&
                 $0.introducedDate! >= startOfToday
             }
@@ -110,7 +113,7 @@ struct CardScheduler {
         // Prioritise curated starter words for new users
         if !deckMeta.hasCompletedStarterList {
             let newDescriptor = FetchDescriptor<FlashCard>(
-                predicate: #Predicate { $0.deckId == deckId && $0.status == "new" }
+                predicate: #Predicate { $0.deckId == deckId && $0.status == "new" && $0.isTrashed != true }
             )
             let allNew = (try? context.fetch(newDescriptor)) ?? []
             let cardMap = Dictionary(uniqueKeysWithValues: allNew.map { ($0.wordId, $0) })
@@ -132,7 +135,7 @@ struct CardScheduler {
         let maxIndex = deckMeta.unlockedWordCount
         var newDescriptor = FetchDescriptor<FlashCard>(
             predicate: #Predicate {
-                $0.deckId == deckId && $0.status == "new" && $0.wordIndex < maxIndex
+                $0.deckId == deckId && $0.status == "new" && $0.wordIndex < maxIndex && $0.isTrashed != true
             },
             sortBy: [SortDescriptor(\.wordIndex)]
         )
@@ -163,7 +166,7 @@ struct CardScheduler {
         let descriptor = FetchDescriptor<FlashCard>()
         guard let allCards = try? context.fetch(descriptor) else { return ([], [:]) }
 
-        let deckCards = allCards.filter { $0.deckId == deckId }
+        let deckCards = allCards.filter { $0.deckId == deckId && !$0.isTrashed }
         var parentGrouped: [String: (total: Int, learned: Int)] = [:]
         var subGrouped: [String: [String: (total: Int, learned: Int)]] = [:]
 
@@ -205,7 +208,7 @@ struct CardScheduler {
         guard let allCards = try? context.fetch(descriptor) else { return [] }
 
         let categoryCards = allCards.filter {
-            guard $0.deckId == deckId, let cat = $0.category else { return false }
+            guard $0.deckId == deckId, !$0.isTrashed, let cat = $0.category else { return false }
             if category.contains("/") {
                 // Exact subcategory match
                 return cat == category
@@ -244,6 +247,7 @@ struct CardScheduler {
             let descriptor = FetchDescriptor<FlashCard>(
                 predicate: #Predicate {
                     $0.deckId == deckId &&
+                    $0.isTrashed != true &&
                     $0.nextReviewDate != nil &&
                     $0.nextReviewDate! >= dayStart &&
                     $0.nextReviewDate! < dayEnd

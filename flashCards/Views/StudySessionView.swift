@@ -10,7 +10,13 @@ struct StudySessionView: View {
     private var isPremium: Bool { PremiumManager.shared.isPremium }
     @Query(filter: #Predicate<DeckMetadata> { _ in true })
     private var decks: [DeckMetadata]
-    @Query private var allCards: [FlashCard]
+
+    // On-demand card stats — loaded in onAppear, not reactive during sessions
+    @State private var availableNewInPool: Int = 0
+    @State private var dueReviewCount: Int = 0
+    @State private var learnedCardCount: Int = 0
+    @State private var unlockedLearnedCount: Int = 0
+    @State private var introducedTodayCount: Int = 0
 
     private var activeDeckId: String? {
         decks.first?.deckId
@@ -20,19 +26,11 @@ struct StudySessionView: View {
         decks.first?.newWordsMode == "scheduled"
     }
 
-    private var availableNewInPool: Int {
-        guard let deckId = activeDeckId, let deck = decks.first else { return 0 }
-        let maxIndex = deck.unlockedWordCount
-        return allCards.filter { $0.deckId == deckId && $0.status == "new" && $0.wordIndex < maxIndex }.count
-    }
-
     private var accumulatedNewWordsCount: Int {
         guard let deck = decks.first else { return 0 }
         guard availableNewInPool > 0 else { return 0 }
-        let drainDate = deck.lastNewWordsDrainDate ?? deck.lastSeedDate ?? Date.distantPast
-        let alreadyDrainedToday = Calendar.current.isDateInToday(drainDate)
-        if alreadyDrainedToday { return 0 }
-        return min(deck.newWordsAccumulationRate, availableNewInPool)
+        let remaining = max(0, deck.newWordsAccumulationRate - introducedTodayCount)
+        return min(remaining, availableNewInPool)
     }
 
     private var freeModeBatchSize: Int {
@@ -50,20 +48,12 @@ struct StudySessionView: View {
     private var learnSubtitle: String {
         guard decks.first != nil else { return "No deck" }
         if !isScheduledNewWordsMode {
-            // Free mode: always available
             if availableNewInPool == 0 { return "All words introduced" }
             return "\(freeModeBatchSize) new words available"
         }
-        // Scheduled mode: daily batch
         if availableNewInPool == 0 { return "All words introduced" }
         if accumulatedNewWordsCount == 0 { return "Today's words done — come back tomorrow" }
         return "\(accumulatedNewWordsCount) new words ready"
-    }
-
-    private var unlockedLearnedCount: Int {
-        guard let deckId = activeDeckId, let deck = decks.first else { return 0 }
-        let maxIndex = deck.unlockedWordCount
-        return allCards.filter { $0.deckId == deckId && $0.status != "new" && $0.wordIndex < maxIndex }.count
     }
 
     private var shouldShowExpansionPrompt: Bool {
@@ -71,19 +61,6 @@ struct StudySessionView: View {
         let unlocked = deck.unlockedWordCount
         guard unlocked < deck.totalWords else { return false }
         return Double(unlockedLearnedCount) / Double(unlocked) >= 0.8
-    }
-
-    private var learnedCardCount: Int {
-        guard let deckId = activeDeckId else { return 0 }
-        return allCards.filter { $0.deckId == deckId && $0.status != "new" }.count
-    }
-
-    private var dueReviewCount: Int {
-        guard let deckId = activeDeckId else { return 0 }
-        let now = Date()
-        return allCards.filter {
-            $0.deckId == deckId && $0.status != "new" && $0.nextReviewDate != nil && $0.nextReviewDate! <= now
-        }.count
     }
 
     private var reviewSubtitle: String {
@@ -95,14 +72,52 @@ struct StudySessionView: View {
         return "\(dueReviewCount) cards due"
     }
 
+    private func loadCardStats() {
+        guard let deckId = activeDeckId, let deck = decks.first else { return }
+        let maxIndex = deck.unlockedWordCount
+        let container = modelContext.container
+        Task.detached {
+            let context = ModelContext(container)
+            let descriptor = FetchDescriptor<FlashCard>()
+            guard let allCards = try? context.fetch(descriptor) else { return }
+            let deckCards = allCards.filter { $0.deckId == deckId && !$0.isTrashed }
+
+            let newInPool = deckCards.filter { $0.status == "new" && $0.wordIndex < maxIndex }.count
+            let learned = deckCards.filter { $0.status != "new" }.count
+            let unlockedLearned = deckCards.filter { $0.status != "new" && $0.wordIndex < maxIndex }.count
+            let now = Date()
+            let due = deckCards.filter {
+                $0.status != "new" && $0.nextReviewDate != nil && $0.nextReviewDate! <= now
+            }.count
+            let startOfToday = Calendar.current.startOfDay(for: now)
+            let introducedToday = deckCards.filter {
+                $0.introducedDate != nil && $0.introducedDate! >= startOfToday
+            }.count
+
+            await MainActor.run {
+                availableNewInPool = newInPool
+                learnedCardCount = learned
+                unlockedLearnedCount = unlockedLearned
+                dueReviewCount = due
+                introducedTodayCount = introducedToday
+            }
+        }
+    }
+
     var body: some View {
         NavigationStack {
             modeSelectionView
         }
+        .onAppear { loadCardStats() }
+        .onChange(of: activeDeckId) { _, _ in loadCardStats() }
         .fullScreenCover(item: $viewModel) { (vm: StudySessionViewModel) in
             NavigationStack {
                 sessionView(viewModel: vm)
             }
+        }
+        .onChange(of: viewModel == nil) { _, dismissed in
+            // Refresh stats when returning from a session
+            if dismissed { loadCardStats() }
         }
         .transaction { $0.animation = .easeOut(duration: 0.15) }
     }

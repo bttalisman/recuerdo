@@ -4,7 +4,8 @@ import SwiftData
 struct DebugView: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var decks: [DeckMetadata]
-    @Query private var allCards: [FlashCard]
+    @Query(filter: #Predicate<FlashCard> { $0.isTrashed != true })
+    private var allCards: [FlashCard]
     @State private var confirmAction: ConfirmAction?
     @State private var notificationStatus: String = "Tap to check"
     @State private var showStartup = false

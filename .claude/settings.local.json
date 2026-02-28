@@ -9,7 +9,9 @@
       "WebSearch",
       "Bash(git add:*)",
       "Bash(tail:*)",
-      "WebFetch(domain:apps.apple.com)"
+      "WebFetch(domain:apps.apple.com)",
+      "Bash(grep error::*)",
+      "Bash(grep:*)"
     ]
   }
 }
