@@ -89,6 +89,9 @@ struct StudySessionView: View {
     private var reviewSubtitle: String {
         if learnedCardCount == 0 { return "No words learned yet" }
         if dueReviewCount == 0 { return "No cards due" }
+        if dueReviewCount > 30 {
+            return "\(dueReviewCount) cards due (30 per session)"
+        }
         return "\(dueReviewCount) cards due"
     }
 

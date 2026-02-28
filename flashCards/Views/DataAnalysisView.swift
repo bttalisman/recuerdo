@@ -44,7 +44,7 @@ private enum EngagementZone: String, CaseIterable {
 
     var color: Color {
         switch self {
-        case .effortZone: return .yellow
+        case .effortZone: return .blue
         case .lockedIn: return .green
         case .guessing: return .red
         case .struggling: return .orange

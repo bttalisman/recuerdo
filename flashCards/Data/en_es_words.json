@@ -9594,11 +9594,11 @@
     },
     {
       "id": "en_es_0325",
-      "source": "courtesy title (m), Mr., gift",
+      "source": "courtesy title, gift",
       "target": "don",
       "article": "el",
       "partOfSpeech": "noun (m)",
-      "category": "society/law & justice",
+      "category": "society/people & relationships",
       "difficulty": 303,
       "examples": [
         {
@@ -9606,8 +9606,8 @@
           "en": "She has a gift for music."
         },
         {
-          "es": "A John, el chico más alto de nuestra clase, le llamamos \"Don Alto\".",
-          "en": "John, the tallest boy in our class, is nicknamed \"Mr High\"."
+          "es": "Don Carlos llegó temprano a la reunión.",
+          "en": "Mr. Carlos arrived early to the meeting."
         },
         {
           "es": "Sólo soy un don nadie.",
@@ -9618,8 +9618,8 @@
           "en": "Money talks."
         },
         {
-          "es": "El don José es muy querido en la comunidad.",
-          "en": "Mr. José is very well-liked in the community."
+          "es": "Don José es muy querido en la comunidad.",
+          "en": "Don José is very well-liked in the community."
         }
       ]
     },

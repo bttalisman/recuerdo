@@ -94,6 +94,7 @@ class StudySessionViewModel: Identifiable {
     }
 
     func advanceToNextCard(context: ModelContext) {
+        let previousCard = currentCard
         isFlipped = false
         currentCardIndex += 1
         if currentCardIndex >= sessionCards.count {
@@ -101,7 +102,17 @@ class StudySessionViewModel: Identifiable {
             currentCardIndex = 0
         }
         cardShownAt = Date()
-        introduceCurrentCard(context: context)
+
+        // Defer @Model mutations so the card transition renders first
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            if let card = previousCard, card.status == "new" {
+                card.introducedDate = Date()
+                card.status = "learning"
+                card.nextReviewDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())
+                self.wordsLearned += 1
+            }
+        }
     }
 
     func endLearnSession(context: ModelContext) {
