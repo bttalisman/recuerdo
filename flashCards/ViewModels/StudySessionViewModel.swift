@@ -23,6 +23,7 @@ class StudySessionViewModel: Identifiable {
     var cardDirection: String = "source_first" // "source_first", "target_first", "mixed"
     var isCategorySession: Bool = false
     private var mixedDirections: [String: Bool] = [:]
+    private var pendingRecords: [ReviewRecord] = []
 
     var effectiveShowTargetFirst: Bool {
         guard let card = currentCard else { return cardDirection == "target_first" }
@@ -212,7 +213,7 @@ class StudySessionViewModel: Identifiable {
             responseTimeSeconds: responseTime,
             cardDirection: effectiveShowTargetFirst ? "target_to_source" : "source_to_target"
         )
-        context.insert(record)
+        pendingRecords.append(record)
 
         totalReviewed += 1
         if wasCorrect { correctCount += 1 }
@@ -233,6 +234,7 @@ class StudySessionViewModel: Identifiable {
 
         if sessionCards.isEmpty {
             isSessionComplete = true
+            flushPendingRecords(context: context)
             try? context.save()
             let container = context.container
             DispatchQueue.global(qos: .utility).async {
@@ -240,6 +242,14 @@ class StudySessionViewModel: Identifiable {
                 NotificationManager.shared.rescheduleNotifications(context: bgContext)
             }
         }
+    }
+
+    /// Insert all pending ReviewRecords into the context at once.
+    func flushPendingRecords(context: ModelContext) {
+        for record in pendingRecords {
+            context.insert(record)
+        }
+        pendingRecords.removeAll()
     }
 
     private func generateMixedDirections() {

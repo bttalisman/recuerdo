@@ -4,7 +4,7 @@
   "sourceLanguageCode": "en",
   "targetLanguage": "Spanish",
   "targetLanguageCode": "es",
-  "version": 23,
+  "version": 24,
   "words": [
     {
       "id": "en_es_0001",
@@ -1723,7 +1723,7 @@
     },
     {
       "id": "en_es_0056",
-      "source": "than",
+      "source": "than, that",
       "target": "que",
       "partOfSpeech": "conjunction",
       "category": "basics",
@@ -1736,7 +1736,7 @@
         },
         {
           "es": "Supongo que es diferente cuando lo consideras a largo plazo.",
-          "en": "I suppose it's different when you think about it over the long term."
+          "en": "I suppose that it's different when you think about it over the long term."
         },
         {
           "es": "Les dije que me mandaran otro boleto.",
@@ -1747,8 +1747,8 @@
           "en": "I want you to come to the party."
         },
         {
-          "es": "El libro que leí es interesante.",
-          "en": "The book that I read is interesting."
+          "es": "Ella es más alta que su hermano.",
+          "en": "She is taller than her brother."
         }
       ]
     },
@@ -1906,7 +1906,7 @@
     },
     {
       "id": "en_es_0062",
-      "source": "other",
+      "source": "other, another",
       "target": "otro",
       "partOfSpeech": "adjective",
       "category": "basics",
@@ -2112,10 +2112,6 @@
       "article": null,
       "examples": [
         {
-          "es": "Sólo puedo preguntarme si acaso es lo mismo para todos los demás.",
-          "en": "I can only wonder if this is the same for everyone else."
-        },
-        {
           "es": "Están muy ocupados peleándose entre ellos, como para preocuparse por los ideales comunes.",
           "en": "They are too busy fighting against each other to care for common ideals."
         },
@@ -2143,7 +2139,7 @@
     },
     {
       "id": "en_es_0069",
-      "source": "by",
+      "source": "by, to, for",
       "target": "por",
       "partOfSpeech": "preposition",
       "category": "basics",
@@ -2151,8 +2147,8 @@
       "article": null,
       "examples": [
         {
-          "es": "Todo el mundo debe aprender por sí mismo al final.",
-          "en": "Everyone must learn on their own in the end."
+          "es": "El libro fue escrito por un autor famoso.",
+          "en": "The book was written by a famous author."
         },
         {
           "es": "Quizás me dé pronto por vencido y en lugar de eso me eche una siesta.",
@@ -2172,7 +2168,7 @@
         },
         {
           "es": "Te doy cinco euros por el libro.",
-          "en": "I’ll give you five euros for the book."
+          "en": "I'll give you five euros for the book."
         },
         {
           "es": "No me siento bien por mi enfermedad.",

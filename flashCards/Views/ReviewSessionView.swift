@@ -33,6 +33,7 @@ struct ReviewSessionView: View {
             modelContext.autosaveEnabled = false
         }
         .onDisappear {
+            viewModel.flushPendingRecords(context: modelContext)
             try? modelContext.save()
             modelContext.autosaveEnabled = true
         }
@@ -382,6 +383,7 @@ private struct SessionCompleteContent: View {
                 }
             }
             .padding()
+            .frame(maxWidth: 320)
             .background(RoundedRectangle(cornerRadius: 12).fill(.background).shadow(radius: 2))
             .opacity(statsOpacity)
             .accessibilityElement(children: .combine)
@@ -427,7 +429,7 @@ private struct SessionCompleteContent: View {
         let angles: [Double] = [0, 60, 120, 180, 240, 300]
         for i in 0..<6 {
             let rad = angles[i] * .pi / 180
-            let dist: CGFloat = CGFloat.random(in: 35...55)
+            let dist: CGFloat = CGFloat.random(in: 35...75)
             withAnimation(.easeOut(duration: 0.5).delay(0.3)) {
                 sparkles[i] = (
                     offset: CGSize(width: cos(rad) * dist, height: sin(rad) * dist),
