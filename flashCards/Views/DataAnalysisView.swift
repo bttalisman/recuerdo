@@ -537,7 +537,7 @@ struct DataAnalysisView: View {
                 VStack {
                     Text("\(currentStreak)")
                         .font(.title3.bold())
-                    Text("Day Streak")
+                    Text("Current Streak")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }
@@ -597,16 +597,18 @@ struct DataAnalysisView: View {
 
     private func calculateStudyStreak(activity: [Date: Int], today: Date, calendar: Calendar) -> Int {
         var streak = 0
-        var date = today
+        var dayOffset = 0
 
-        // Check if studied today; if not, start from yesterday
-        if activity[date] == nil {
-            date = calendar.date(byAdding: .day, value: -1, to: date) ?? date
+        if activity[today] == nil {
+            dayOffset = -1
         }
 
-        while activity[date] != nil {
+        while true {
+            guard let date = calendar.date(byAdding: .day, value: dayOffset, to: today) else { break }
+            let normalized = calendar.startOfDay(for: date)
+            guard activity[normalized] != nil else { break }
             streak += 1
-            date = calendar.date(byAdding: .day, value: -1, to: date) ?? date
+            dayOffset -= 1
         }
         return streak
     }
@@ -915,10 +917,19 @@ struct DataAnalysisView: View {
             } else {
                 Chart(hourlyAccuracy, id: \.hour) { item in
                     BarMark(
-                        x: .value("Hour", formatHour(item.hour)),
+                        x: .value("Hour", item.hour),
                         y: .value("Accuracy", item.accuracy)
                     )
                     .foregroundStyle(barColor(for: item.accuracy))
+                }
+                .chartXAxis {
+                    AxisMarks(values: .automatic(desiredCount: 6)) { value in
+                        AxisValueLabel {
+                            if let h = value.as(Int.self) {
+                                Text(formatHour(h))
+                            }
+                        }
+                    }
                 }
                 .chartYScale(domain: 0...1)
                 .chartYAxis {

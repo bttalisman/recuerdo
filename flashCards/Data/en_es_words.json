@@ -5746,7 +5746,7 @@
     },
     {
       "id": "en_es_0208",
-      "source": "comprise, understand",
+      "source": "grasp, understand",
       "target": "comprender",
       "partOfSpeech": "verb",
       "category": "abstract",
@@ -6763,7 +6763,7 @@
       "id": "en_es_0238",
       "source": "done",
       "target": "hecho",
-      "partOfSpeech": "adjective",
+      "partOfSpeech": "past participle",
       "category": "basics",
       "difficulty": 235,
       "article": null,
@@ -8883,7 +8883,7 @@
     },
     {
       "id": "en_es_0303",
-      "source": "there",
+      "source": "there (specific place)",
       "target": "allí",
       "partOfSpeech": "adverb",
       "category": "basics",
@@ -9318,7 +9318,7 @@
     },
     {
       "id": "en_es_0317",
-      "source": "there, over there",
+      "source": "over there (far away)",
       "target": "allá",
       "article": null,
       "partOfSpeech": "adverb",
@@ -10068,7 +10068,7 @@
     },
     {
       "id": "en_es_0343",
-      "source": "there",
+      "source": "there (nearby)",
       "target": "ahí",
       "article": null,
       "partOfSpeech": "adverb",

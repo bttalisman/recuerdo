@@ -23,6 +23,7 @@ struct ReviewSessionView: View {
     @State private var newStillBuilding: Int = 0
     @State private var vergeSlideOffset: CGFloat = 300
     @State private var vergeSlideOpacity: Double = 0
+    @State private var showMasteredCelebration = false
     private let hapticGenerator = UINotificationFeedbackGenerator()
 
     var body: some View {
@@ -67,6 +68,20 @@ struct ReviewSessionView: View {
             withAnimation(.spring(response: 0.5, dampingFraction: 0.75)) {
                 vergeSlideOffset = 0
                 vergeSlideOpacity = 1
+            }
+        }
+        .onChange(of: viewModel.masteredCount) { old, new in
+            guard new > old else { return }
+            showMasteredCelebration = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                showMasteredCelebration = false
+            }
+        }
+        .overlay {
+            if showMasteredCelebration {
+                MasteredCelebrationView()
+                    .allowsHitTesting(false)
+                    .transition(.opacity)
             }
         }
         .navigationTitle(title)
@@ -380,6 +395,103 @@ struct ReviewSessionView: View {
 
 enum RatingFlash {
     case correct, incorrect
+}
+
+// MARK: - Mastered Celebration
+
+private struct MasteredCelebrationView: View {
+    @State private var particles: [CelebrationParticle] = []
+    @State private var bannerScale: CGFloat = 0.3
+    @State private var bannerOpacity: Double = 0
+
+    var body: some View {
+        ZStack {
+            // Particles
+            ForEach(particles) { particle in
+                Circle()
+                    .fill(particle.color)
+                    .frame(width: particle.size, height: particle.size)
+                    .position(particle.position)
+                    .opacity(particle.opacity)
+            }
+
+            // Banner
+            VStack(spacing: 4) {
+                Image(systemName: "star.fill")
+                    .font(.title)
+                    .foregroundStyle(.yellow)
+                Text("Mastered!")
+                    .font(.title2.bold())
+                    .foregroundStyle(.white)
+            }
+            .padding(.horizontal, 24)
+            .padding(.vertical, 16)
+            .background(.ultraThinMaterial)
+            .background(Color.yellow.opacity(0.2))
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .shadow(color: .yellow.opacity(0.4), radius: 12)
+            .scaleEffect(bannerScale)
+            .opacity(bannerOpacity)
+        }
+        .onAppear {
+            spawnParticles()
+            withAnimation(.spring(response: 0.4, dampingFraction: 0.6)) {
+                bannerScale = 1.0
+                bannerOpacity = 1.0
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                withAnimation(.easeOut(duration: 2.0)) {
+                    bannerOpacity = 0
+                }
+            }
+        }
+    }
+
+    private func spawnParticles() {
+        let colors: [Color] = [.yellow, .orange, .green, .blue, .purple, .red]
+        let center = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
+
+        // Create all particles at center with zero opacity (invisible)
+        var initial: [CelebrationParticle] = []
+        for i in 0..<30 {
+            initial.append(CelebrationParticle(
+                id: i,
+                color: colors.randomElement()!,
+                size: CGFloat.random(in: 4...10),
+                position: center,
+                opacity: 0
+            ))
+        }
+        particles = initial
+
+        // Animate them outward on the next frame
+        DispatchQueue.main.async {
+            for i in 0..<particles.count {
+                let angle = Double.random(in: 0...(2 * .pi))
+                let speed = Double.random(in: 80...200)
+                let dx = CGFloat(cos(angle) * speed)
+                let dy = CGFloat(sin(angle) * speed)
+                let duration = Double.random(in: 0.8...1.5)
+
+                withAnimation(.easeOut(duration: duration)) {
+                    particles[i].position = CGPoint(x: center.x + dx, y: center.y + dy)
+                    particles[i].opacity = 1.0
+                }
+                // Fade out after burst
+                withAnimation(.easeOut(duration: duration).delay(duration * 0.5)) {
+                    particles[i].opacity = 0
+                }
+            }
+        }
+    }
+}
+
+private struct CelebrationParticle: Identifiable {
+    let id: Int
+    let color: Color
+    let size: CGFloat
+    var position: CGPoint
+    var opacity: Double
 }
 
 // MARK: - Session Complete (animated)
