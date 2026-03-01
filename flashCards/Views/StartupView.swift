@@ -12,6 +12,11 @@ struct StartupView: View {
     @State private var starsOpacity: Double = 0
     @State private var flashOpacity: Double = 0
 
+    // Bolt sits above center, text below
+    private let boltY: CGFloat = -50
+    private let titleY: CGFloat = 36
+    private let subtitleY: CGFloat = 68
+
     var body: some View {
         ZStack {
             // Background gradient
@@ -34,6 +39,7 @@ struct StartupView: View {
                 .fill(.white)
                 .frame(width: 200, height: 200)
                 .blur(radius: 60)
+                .offset(y: boltY)
                 .opacity(flashOpacity)
 
             // Glow behind bolt
@@ -52,48 +58,47 @@ struct StartupView: View {
                 )
                 .frame(width: 200, height: 200)
                 .scaleEffect(glowScale)
+                .offset(y: boltY)
                 .opacity(glowOpacity)
 
-            VStack(spacing: 24) {
-                // Lightning bolt
-                BoltShape()
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                Color(red: 1.0, green: 0.95, blue: 0.7),
-                                Color(red: 1.0, green: 0.8, blue: 0.2),
-                                Color(red: 0.95, green: 0.65, blue: 0.0)
-                            ],
-                            startPoint: .top,
-                            endPoint: .bottom
-                        )
+            // Lightning bolt
+            BoltShape()
+                .fill(
+                    LinearGradient(
+                        colors: [
+                            Color(red: 1.0, green: 0.95, blue: 0.7),
+                            Color(red: 1.0, green: 0.8, blue: 0.2),
+                            Color(red: 0.95, green: 0.65, blue: 0.0)
+                        ],
+                        startPoint: .top,
+                        endPoint: .bottom
                     )
-                    .frame(width: 70, height: 100)
-                    .shadow(color: Color(red: 1.0, green: 0.85, blue: 0.2).opacity(0.6), radius: 12, y: 4)
-                    .offset(y: boltOffset)
-                    .opacity(boltOpacity)
+                )
+                .frame(width: 70, height: 100)
+                .shadow(color: Color(red: 1.0, green: 0.85, blue: 0.2).opacity(0.6), radius: 12, y: 4)
+                .offset(y: boltY + boltOffset)
+                .opacity(boltOpacity)
 
-                VStack(spacing: 6) {
-                    Text("Recuerdo")
-                        .font(.system(size: 42, weight: .bold, design: .rounded))
-                        .foregroundStyle(
-                            LinearGradient(
-                                colors: [.white, Color(red: 0.9, green: 0.85, blue: 0.7)],
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                        )
-                        .opacity(titleOpacity)
-                        .offset(y: titleOffset)
+            // Title
+            Text("Recuerdo")
+                .font(.system(size: 42, weight: .bold, design: .rounded))
+                .foregroundStyle(
+                    LinearGradient(
+                        colors: [.white, Color(red: 0.9, green: 0.85, blue: 0.7)],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                )
+                .offset(y: titleY + titleOffset)
+                .opacity(titleOpacity)
 
-                    Text("flashcards")
-                        .font(.system(size: 15, weight: .medium, design: .rounded))
-                        .tracking(4)
-                        .foregroundStyle(.white.opacity(0.4))
-                        .opacity(subtitleOpacity)
-                }
-                .compositingGroup()
-            }
+            // Subtitle
+            Text("flashcards")
+                .font(.system(size: 15, weight: .medium, design: .rounded))
+                .tracking(4)
+                .foregroundStyle(.white.opacity(0.4))
+                .offset(y: subtitleY)
+                .opacity(subtitleOpacity)
         }
         .onAppear {
             animate()

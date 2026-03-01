@@ -17,7 +17,18 @@ final class FlashCard {
     var frequencyRank: Int
     var deckId: String
     var wordIndex: Int
-    var examples: [ExampleSentence]
+    var examplesData: Data?
+
+    @Transient
+    var examples: [ExampleSentence] {
+        get {
+            guard let data = examplesData else { return [] }
+            return (try? JSONDecoder().decode([ExampleSentence].self, from: data)) ?? []
+        }
+        set {
+            examplesData = try? JSONEncoder().encode(newValue)
+        }
+    }
 
     // Spaced repetition state
     var status: String // "new", "learning", "mastered"
@@ -61,7 +72,7 @@ final class FlashCard {
         self.frequencyRank = frequencyRank
         self.deckId = deckId
         self.wordIndex = wordIndex
-        self.examples = examples
+        self.examplesData = try? JSONEncoder().encode(examples)
         self.status = "new"
         self.introducedDate = nil
         self.easeFactor = 2.5

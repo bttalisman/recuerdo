@@ -29,7 +29,6 @@ class PronunciationManager {
         let voice = sorted.first ?? AVSpeechSynthesisVoice(language: languageCode)
         if let voice {
             voiceCache[languageCode] = voice
-            print("[TTS] Using voice: \(voice.name) (\(voice.language)) quality=\(voice.quality.rawValue)")
         }
         return voice
     }

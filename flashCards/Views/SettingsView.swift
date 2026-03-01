@@ -178,12 +178,14 @@ struct SettingsView: View {
                         }
                     }
 
+                    #if DEBUG
                     Section("Developer") {
                         Toggle("Premium Override", isOn: Binding(
                             get: { premiumManager.devOverride },
                             set: { premiumManager.devOverride = $0 }
                         ))
                     }
+                    #endif
 
                     Section {
                         Button("Reset All Progress", role: .destructive) {

@@ -24,12 +24,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     }
 
     func requestAuthorization() {
-        center.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
-            if let error {
-                print("[Notifications] Authorization error: \(error)")
-            }
-            print("[Notifications] Authorization granted: \(granted)")
-        }
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { _, _ in }
     }
 
     func checkStatus(completion: @escaping (String) -> Void) {
@@ -59,13 +54,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
 
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
         let request = UNNotificationRequest(identifier: "test_\(UUID())", content: content, trigger: trigger)
-        center.add(request) { error in
-            if let error {
-                print("[Notifications] Test notification error: \(error)")
-            } else {
-                print("[Notifications] Test notification scheduled in 3 seconds")
-            }
-        }
+        center.add(request)
     }
 
     func updateBadgeCount(context: ModelContext) {
@@ -82,7 +71,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     func cancelAll() {
         center.removeAllPendingNotificationRequests()
         center.setBadgeCount(0)
-        print("[Notifications] Cancelled all notifications")
     }
 
     /// Schedule review-due notifications at daytime check points (9 AM, 1 PM, 6 PM)
@@ -93,7 +81,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
 
         // Respect user opt-out
         guard UserDefaults.standard.bool(forKey: "notificationsEnabled") else {
-            print("[Notifications] Disabled by user — skipping schedule")
             return
         }
 
@@ -124,7 +111,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
                 scheduled += 1
             }
         }
-        print("[Notifications] Scheduled \(scheduled) reminders across \(checkHours.count) daily check points")
     }
 
     private func estimatedDueCount(cards: [FlashCard], onDay day: Date, atHour hour: Int) -> Int {

@@ -11,15 +11,21 @@ class PremiumManager {
     private(set) var isLoading = false
     private(set) var errorMessage: String?
 
+    #if DEBUG
     @ObservationIgnored
     @AppStorage("isPremiumOverride") var devOverride = false
+    #endif
 
     @ObservationIgnored
     private var updateTask: Task<Void, Never>?
 
     static let productId = "com.recuerdo.premium"
 
+    #if DEBUG
     var isPremium: Bool { isPurchased || devOverride }
+    #else
+    var isPremium: Bool { isPurchased }
+    #endif
     var displayPrice: String { product?.displayPrice ?? "$24.99" }
 
     private init() {
@@ -45,7 +51,7 @@ class PremiumManager {
                 self.product = products.first
             }
         } catch {
-            print("[Premium] Failed to load product: \(error)")
+            // Product loading failed silently
         }
     }
 
