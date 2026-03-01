@@ -7,3 +7,10 @@ ankiDecks/
 
 # Tatoeba cache
 tatoeba_cache.json
+
+# Screenshots
+screenshots/
+
+# Python scripts
+*.py
+__pycache__/
