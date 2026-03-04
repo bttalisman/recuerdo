@@ -29,6 +29,7 @@ struct ReviewBackup: Codable {
     let studyMode: String
     let responseTimeSeconds: Double
     let cardDirection: String
+    let recallModality: String?
 }
 
 struct SettingsBackup: Codable {
@@ -92,7 +93,8 @@ struct BackupManager {
                 newEaseFactor: review.newEaseFactor,
                 studyMode: review.studyMode,
                 responseTimeSeconds: review.responseTimeSeconds,
-                cardDirection: review.cardDirection
+                cardDirection: review.cardDirection,
+                recallModality: review.recallModality
             )
         }
 
@@ -174,7 +176,8 @@ struct BackupManager {
                 newEaseFactor: reviewBackup.newEaseFactor,
                 studyMode: reviewBackup.studyMode,
                 responseTimeSeconds: reviewBackup.responseTimeSeconds,
-                cardDirection: reviewBackup.cardDirection
+                cardDirection: reviewBackup.cardDirection,
+                recallModality: reviewBackup.recallModality ?? "visual"
             )
             context.insert(record)
             restoredReviews += 1

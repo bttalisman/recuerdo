@@ -12,6 +12,12 @@ struct FlashCardView: View {
     var sourceLanguageCode: String = "en"
     var targetLanguageCode: String = "es"
     var examples: [ExampleSentence] = []
+    var onMicTap: (() -> Void)? = nil
+    var isRecording: Bool = false
+    var isProcessing: Bool = false
+    var audioLevel: Float = 0
+    var pronunciationResult: PronunciationResult? = nil
+    var disableFlip: Bool = false
     @Binding var isFlipped: Bool
     @State private var showAllExamples = false
 
@@ -60,6 +66,7 @@ struct FlashCardView: View {
         .accessibilityHint("Double tap to flip card")
         .accessibilityValue(isFlipped ? "showing answer" : "showing prompt")
         .onTapGesture {
+            guard !disableFlip else { return }
             withAnimation(.easeInOut(duration: 0.4)) {
                 isFlipped.toggle()
             }
@@ -99,18 +106,58 @@ struct FlashCardView: View {
 
             VStack(spacing: 8) {
                 if isTargetLanguage {
-                    Button {
-                        PronunciationManager.shared.speak(
-                            buildSpeechText(text, article: article),
-                            languageCode: languageCode
-                        )
-                    } label: {
-                        Image(systemName: "speaker.wave.2.fill")
-                            .font(.title3)
-                            .foregroundStyle(.blue)
+                    HStack(spacing: 16) {
+                        Button {
+                            PronunciationManager.shared.speak(
+                                buildSpeechText(text, article: article),
+                                languageCode: languageCode
+                            )
+                        } label: {
+                            Image(systemName: "speaker.wave.2.fill")
+                                .font(.title3)
+                                .foregroundStyle(.blue)
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel("Pronounce word")
+
+                        if let onMicTap {
+                            if isProcessing {
+                                ProgressView()
+                                    .tint(.blue)
+                                    .scaleEffect(0.8)
+                                    .transition(.opacity)
+                            } else {
+                                Button {
+                                    onMicTap()
+                                } label: {
+                                    Image(systemName: isRecording ? "mic.fill" : "mic")
+                                        .font(.title3)
+                                        .foregroundStyle(isRecording ? .red : .blue)
+                                        .symbolEffect(.pulse, isActive: isRecording)
+                                }
+                                .buttonStyle(.plain)
+                                .accessibilityLabel(isRecording ? "Stop recording" : "Record pronunciation")
+                            }
+                        }
                     }
-                    .buttonStyle(.plain)
-                    .accessibilityLabel("Pronounce word")
+
+                    if isRecording {
+                        AudioLevelBars(level: audioLevel)
+                            .frame(height: 24)
+                            .transition(.opacity)
+                    }
+
+                    if isProcessing && pronunciationResult == nil {
+                        Text("Analyzing...")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                            .transition(.opacity)
+                    }
+
+                    if let pronunciationResult {
+                        PronunciationResultBadge(result: pronunciationResult)
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
+                    }
 
                     if let example = bestExample {
                         Text(example.es)
@@ -187,6 +234,33 @@ struct FlashCardView: View {
     }
 }
 
+// MARK: - Audio Level Bars
+
+struct AudioLevelBars: View {
+    let level: Float  // 0...1
+
+    var body: some View {
+        HStack(spacing: 3) {
+            ForEach(0..<5, id: \.self) { i in
+                let barLevel = barHeight(for: i)
+                RoundedRectangle(cornerRadius: 2)
+                    .fill(Color.red.opacity(0.7))
+                    .frame(width: 4, height: barLevel)
+                    .animation(.easeInOut(duration: 0.08), value: level)
+            }
+        }
+    }
+
+    private func barHeight(for index: Int) -> CGFloat {
+        let base: CGFloat = 4
+        let maxExtra: CGFloat = 18
+        // Each bar responds slightly differently for a natural look
+        let phase = Float(index) * 0.3
+        let adjusted = max(0, min(1, level + Float(sin(Double(phase))) * 0.15))
+        return base + maxExtra * CGFloat(adjusted)
+    }
+}
+
 private struct ExamplesSheet: View {
     let word: String
     let examples: [ExampleSentence]
@@ -214,6 +288,40 @@ private struct ExamplesSheet: View {
                     Button("Done") { dismiss() }
                 }
             }
+        }
+    }
+}
+
+// MARK: - Pronunciation Result Badge
+
+struct PronunciationResultBadge: View {
+    let result: PronunciationResult
+
+    private var badgeColor: Color {
+        switch result.score {
+        case .excellent: return .green
+        case .good: return .mint
+        case .partial: return .yellow
+        case .poor: return .orange
+        case .noMatch: return .red
+        }
+    }
+
+    var body: some View {
+        VStack(spacing: 4) {
+            HStack(spacing: 4) {
+                Image(systemName: result.score.icon)
+                    .font(.caption2)
+                Text(result.score.label)
+                    .font(.caption2.bold())
+            }
+            .foregroundStyle(badgeColor)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 4)
+            .background(
+                Capsule()
+                    .fill(badgeColor.opacity(0.15))
+            )
         }
     }
 }

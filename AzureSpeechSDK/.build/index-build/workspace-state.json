@@ -1,0 +1,33 @@
+{
+  "object" : {
+    "artifacts" : [
+      {
+        "kind" : {
+          "xcframework" : {
+
+          }
+        },
+        "packageRef" : {
+          "identity" : "azurespeechsdk",
+          "kind" : "root",
+          "location" : "/Users/benjamintalisman/repos/counter/flashCards/AzureSpeechSDK",
+          "name" : "AzureSpeechSDK"
+        },
+        "path" : "/Users/benjamintalisman/repos/counter/flashCards/AzureSpeechSDK/.build/index-build/artifacts/azurespeechsdk/MicrosoftCognitiveServicesSpeech/MicrosoftCognitiveServicesSpeech.xcframework",
+        "source" : {
+          "checksum" : "ac702611b2cdf0192c30c929fb6235e51c54354135708632d9dd80622b5ae277",
+          "type" : "remote",
+          "url" : "https://csspeechstorage.blob.core.windows.net/drop/1.48.1/MicrosoftCognitiveServicesSpeech-XCFramework-1.48.1.zip"
+        },
+        "targetName" : "MicrosoftCognitiveServicesSpeech"
+      }
+    ],
+    "dependencies" : [
+
+    ],
+    "prebuilts" : [
+
+    ]
+  },
+  "version" : 7
+}

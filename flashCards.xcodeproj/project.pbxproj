@@ -6,14 +6,67 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		29D4BB0D2F58A44D0035740E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29D4BB0C2F58A44D0035740E /* WidgetKit.framework */; };
+		29D4BB0F2F58A44D0035740E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29D4BB0E2F58A44D0035740E /* SwiftUI.framework */; };
+		29D4BB1C2F58A44E0035740E /* RecuerdoWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 29D4BB0A2F58A44D0035740E /* RecuerdoWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		AA000001000000000000000A /* MicrosoftCognitiveServicesSpeech in Frameworks */ = {isa = PBXBuildFile; productRef = AA000002000000000000000A /* MicrosoftCognitiveServicesSpeech */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		29D4BB1A2F58A44E0035740E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 290A17612F43A36C00C86DD6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 29D4BB092F58A44D0035740E;
+			remoteInfo = RecuerdoWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		29D4BB212F58A44E0035740E /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				29D4BB1C2F58A44E0035740E /* RecuerdoWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		290A17692F43A36C00C86DD6 /* flashCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flashCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		29D4BB0A2F58A44D0035740E /* RecuerdoWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RecuerdoWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		29D4BB0C2F58A44D0035740E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		29D4BB0E2F58A44D0035740E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		29D4BB252F58A4EB0035740E /* RecuerdoWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RecuerdoWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		29D4BB1D2F58A44E0035740E /* Exceptions for "RecuerdoWidget" folder in "RecuerdoWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 29D4BB092F58A44D0035740E /* RecuerdoWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		290A176B2F43A36C00C86DD6 /* flashCards */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = flashCards;
+			sourceTree = "<group>";
+		};
+		29D4BB102F58A44D0035740E /* RecuerdoWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				29D4BB1D2F58A44E0035740E /* Exceptions for "RecuerdoWidget" folder in "RecuerdoWidgetExtension" target */,
+			);
+			path = RecuerdoWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -23,6 +76,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA000001000000000000000A /* MicrosoftCognitiveServicesSpeech in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29D4BB072F58A44D0035740E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				29D4BB0F2F58A44D0035740E /* SwiftUI.framework in Frameworks */,
+				29D4BB0D2F58A44D0035740E /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -32,7 +95,10 @@
 		290A17602F43A36C00C86DD6 = {
 			isa = PBXGroup;
 			children = (
+				29D4BB252F58A4EB0035740E /* RecuerdoWidgetExtension.entitlements */,
 				290A176B2F43A36C00C86DD6 /* flashCards */,
+				29D4BB102F58A44D0035740E /* RecuerdoWidget */,
+				29D4BB0B2F58A44D0035740E /* Frameworks */,
 				290A176A2F43A36C00C86DD6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,8 +107,18 @@
 			isa = PBXGroup;
 			children = (
 				290A17692F43A36C00C86DD6 /* flashCards.app */,
+				29D4BB0A2F58A44D0035740E /* RecuerdoWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		29D4BB0B2F58A44D0035740E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29D4BB0C2F58A44D0035740E /* WidgetKit.framework */,
+				29D4BB0E2F58A44D0035740E /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,20 +131,45 @@
 				290A17652F43A36C00C86DD6 /* Sources */,
 				290A17662F43A36C00C86DD6 /* Frameworks */,
 				290A17672F43A36C00C86DD6 /* Resources */,
+				29D4BB212F58A44E0035740E /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				29D4BB1B2F58A44E0035740E /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				290A176B2F43A36C00C86DD6 /* flashCards */,
 			);
 			name = flashCards;
 			packageProductDependencies = (
+				AA000002000000000000000A /* MicrosoftCognitiveServicesSpeech */,
 			);
 			productName = flashCards;
 			productReference = 290A17692F43A36C00C86DD6 /* flashCards.app */;
 			productType = "com.apple.product-type.application";
+		};
+		29D4BB092F58A44D0035740E /* RecuerdoWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 29D4BB1E2F58A44E0035740E /* Build configuration list for PBXNativeTarget "RecuerdoWidgetExtension" */;
+			buildPhases = (
+				29D4BB062F58A44D0035740E /* Sources */,
+				29D4BB072F58A44D0035740E /* Frameworks */,
+				29D4BB082F58A44D0035740E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				29D4BB102F58A44D0035740E /* RecuerdoWidget */,
+			);
+			name = RecuerdoWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = RecuerdoWidgetExtension;
+			productReference = 29D4BB0A2F58A44D0035740E /* RecuerdoWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -83,6 +184,9 @@
 					290A17682F43A36C00C86DD6 = {
 						CreatedOnToolsVersion = 26.2;
 					};
+					29D4BB092F58A44D0035740E = {
+						CreatedOnToolsVersion = 26.2;
+					};
 				};
 			};
 			buildConfigurationList = 290A17642F43A36C00C86DD6 /* Build configuration list for PBXProject "flashCards" */;
@@ -94,18 +198,29 @@
 			);
 			mainGroup = 290A17602F43A36C00C86DD6;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				AA000003000000000000000A /* XCLocalSwiftPackageReference "AzureSpeechSDK" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 290A176A2F43A36C00C86DD6 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				290A17682F43A36C00C86DD6 /* flashCards */,
+				29D4BB092F58A44D0035740E /* RecuerdoWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		290A17672F43A36C00C86DD6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29D4BB082F58A44D0035740E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +237,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		29D4BB062F58A44D0035740E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		29D4BB1B2F58A44E0035740E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 29D4BB092F58A44D0035740E /* RecuerdoWidgetExtension */;
+			targetProxy = 29D4BB1A2F58A44E0035740E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		290A17742F43A36D00C86DD6 /* Debug */ = {
@@ -246,6 +376,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = flashCards/flashCards.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
@@ -255,6 +386,8 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Recuerdo uses the microphone to listen to your pronunciation and provide feedback.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Recuerdo uses speech recognition to evaluate your Spanish pronunciation.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -292,6 +425,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = flashCards/flashCards.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 8;
@@ -301,6 +435,8 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Recuerdo uses the microphone to listen to your pronunciation and provide feedback.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Recuerdo uses speech recognition to evaluate your Spanish pronunciation.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -333,6 +469,75 @@
 			};
 			name = Release;
 		};
+		29D4BB1F2F58A44E0035740E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = RecuerdoWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R7JTLW7GD2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RecuerdoWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RecuerdoWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.recuerdoapp.flash.RecuerdoWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		29D4BB202F58A44E0035740E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = RecuerdoWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = R7JTLW7GD2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RecuerdoWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = RecuerdoWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.recuerdoapp.flash.RecuerdoWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -354,7 +559,30 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		29D4BB1E2F58A44E0035740E /* Build configuration list for PBXNativeTarget "RecuerdoWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				29D4BB1F2F58A44E0035740E /* Debug */,
+				29D4BB202F58A44E0035740E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		AA000003000000000000000A /* XCLocalSwiftPackageReference "AzureSpeechSDK" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = AzureSpeechSDK;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AA000002000000000000000A /* MicrosoftCognitiveServicesSpeech */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = MicrosoftCognitiveServicesSpeech;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 290A17612F43A36C00C86DD6 /* Project object */;
 }

@@ -11,7 +11,9 @@
       "Bash(tail:*)",
       "WebFetch(domain:apps.apple.com)",
       "Bash(grep error::*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(find:*)",
+      "Bash(xcodebuild:*)"
     ]
   }
 }

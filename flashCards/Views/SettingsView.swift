@@ -365,5 +365,10 @@ struct SettingsView: View {
         }
 
         try? modelContext.save()
+
+        let container = modelContext.container
+        DispatchQueue.global(qos: .utility).async {
+            WidgetStatsWriter.update(container: container)
+        }
     }
 }

@@ -14,3 +14,6 @@ screenshots/
 # Python scripts
 *.py
 __pycache__/
+
+# Azure Speech SDK credentials (use AzureSpeech.plist.example as template)
+flashCards/AzureSpeech.plist

@@ -20,6 +20,7 @@ class StudySessionViewModel: Identifiable {
     var correctCount: Int = 0
     var wordsLearned: Int = 0
     var cardShownAt: Date = Date()
+    var flipResponseTime: Double? = nil
     var cardDirection: String = "source_first" // "source_first", "target_first", "mixed"
     var isCategorySession: Bool = false
     private var mixedDirections: [String: Bool] = [:]
@@ -75,6 +76,7 @@ class StudySessionViewModel: Identifiable {
         isFlipped = false
         isSessionComplete = newCards.isEmpty
         cardShownAt = Date()
+        flipResponseTime = nil
         generateMixedDirections()
 
         introduceCurrentCard(context: context)
@@ -89,6 +91,7 @@ class StudySessionViewModel: Identifiable {
             currentCardIndex = 0
         }
         cardShownAt = Date()
+        flipResponseTime = nil
 
         // Defer @Model mutations so the card transition renders first
         DispatchQueue.main.async { [weak self] in
@@ -105,6 +108,10 @@ class StudySessionViewModel: Identifiable {
     func endLearnSession(context: ModelContext) {
         isSessionComplete = true
         NotificationManager.shared.rescheduleNotifications(context: context)
+        let container = context.container
+        DispatchQueue.global(qos: .utility).async {
+            WidgetStatsWriter.update(container: container)
+        }
     }
 
     private func introduceCurrentCard(context: ModelContext) {
@@ -129,6 +136,7 @@ class StudySessionViewModel: Identifiable {
         isFlipped = false
         isSessionComplete = cards.isEmpty
         cardShownAt = Date()
+        flipResponseTime = nil
         generateMixedDirections()
         // Don't introduce until user flips the card
     }
@@ -150,6 +158,7 @@ class StudySessionViewModel: Identifiable {
         isFlipped = false
         isSessionComplete = cards.isEmpty
         cardShownAt = Date()
+        flipResponseTime = nil
         generateMixedDirections()
     }
 
@@ -164,10 +173,11 @@ class StudySessionViewModel: Identifiable {
         isFlipped = false
         isSessionComplete = cards.isEmpty
         cardShownAt = Date()
+        flipResponseTime = nil
         generateMixedDirections()
     }
 
-    func submitRating(_ quality: Int, context: ModelContext) {
+    func submitRating(_ quality: Int, recallModality: String = "visual", context: ModelContext) {
         guard let card = currentCard else { return }
 
         // Capture everything we need BEFORE advancing the card
@@ -182,7 +192,7 @@ class StudySessionViewModel: Identifiable {
             introducedDate: card.introducedDate
         )
         let wasCorrect = quality >= 3
-        let responseTime = Date().timeIntervalSince(cardShownAt)
+        let responseTime = flipResponseTime ?? Date().timeIntervalSince(cardShownAt)
         let direction = effectiveShowTargetFirst ? "target_to_source" : "source_to_target"
 
         // --- Phase 1: Advance the UI immediately (no @Model mutations) ---
@@ -202,6 +212,7 @@ class StudySessionViewModel: Identifiable {
         }
         isFlipped = false
         cardShownAt = Date()
+        flipResponseTime = nil
 
         let sessionDone = sessionCards.isEmpty
         if sessionDone {
@@ -248,7 +259,8 @@ class StudySessionViewModel: Identifiable {
                 newEaseFactor: result.newEaseFactor,
                 studyMode: "review",
                 responseTimeSeconds: responseTime,
-                cardDirection: direction
+                cardDirection: direction,
+                recallModality: recallModality
             )
             self.pendingRecords.append(record)
 
@@ -260,6 +272,7 @@ class StudySessionViewModel: Identifiable {
                 DispatchQueue.global(qos: .utility).async {
                     let bgContext = ModelContext(container)
                     NotificationManager.shared.rescheduleNotifications(context: bgContext)
+                    WidgetStatsWriter.update(container: container)
                 }
             }
         }

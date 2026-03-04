@@ -4,7 +4,7 @@
   "sourceLanguageCode": "en",
   "targetLanguage": "Spanish",
   "targetLanguageCode": "es",
-  "version": 24,
+  "version": 25,
   "words": [
     {
       "id": "en_es_0001",
@@ -9143,7 +9143,7 @@
     },
     {
       "id": "en_es_0312",
-      "source": "high",
+      "source": "tall, high",
       "target": "alto",
       "partOfSpeech": "adjective",
       "category": "descriptions/appearance & physical",
@@ -9660,7 +9660,7 @@
     },
     {
       "id": "en_es_0327",
-      "source": "touch",
+      "source": "touch, play",
       "target": "tocar",
       "partOfSpeech": "verb",
       "category": "actions",

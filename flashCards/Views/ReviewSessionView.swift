@@ -1,6 +1,8 @@
 import SwiftUI
 import SwiftData
+import Speech
 import UIKit
+import AudioToolbox
 
 /// Shared review/learn session view used by StudySessionView, WordListView, and DebugView.
 struct ReviewSessionView: View {
@@ -24,6 +26,15 @@ struct ReviewSessionView: View {
     @State private var vergeSlideOffset: CGFloat = 300
     @State private var vergeSlideOpacity: Double = 0
     @State private var showMasteredCelebration = false
+    @State private var isRecording = false
+    @State private var isProcessing = false
+    @State private var audioLevel: Float = 0
+    @State private var pronunciationResult: PronunciationResult? = nil
+    @State private var levelPollTimer: Timer? = nil
+    @State private var pronunciationStartTime: Date? = nil
+    @State private var pronunciationTimeAccumulator: Double = 0
+    @State private var handsFree = HandsFreeController()
+    @State private var handsFreeTimer: Timer? = nil
     private let hapticGenerator = UINotificationFeedbackGenerator()
 
     var body: some View {
@@ -42,6 +53,8 @@ struct ReviewSessionView: View {
             snapshotVergeState()
         }
         .onDisappear {
+            if handsFree.isActive { handsFree.stop() }
+            handsFreeTimer?.invalidate()
             viewModel.flushPendingRecords(context: modelContext)
             try? modelContext.save()
             modelContext.autosaveEnabled = true
@@ -77,6 +90,15 @@ struct ReviewSessionView: View {
                 showMasteredCelebration = false
             }
         }
+        .onChange(of: viewModel.isFlipped) { _, _ in
+            guard !handsFree.isActive else { return }
+            if SpeechRecognitionManager.shared.isRecording {
+                SpeechRecognitionManager.shared.stopRecording()
+                isRecording = false
+                isProcessing = false
+                stopLevelPolling()
+            }
+        }
         .overlay {
             if showMasteredCelebration {
                 MasteredCelebrationView()
@@ -92,6 +114,33 @@ struct ReviewSessionView: View {
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
+                if viewModel.mode == .review {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            if handsFree.isActive {
+                                handsFree.stop()
+                                handsFreeTimer?.invalidate()
+                                handsFreeTimer = nil
+                            } else {
+                                startHandsFreeWithPermissions()
+                            }
+                        } label: {
+                            Image(systemName: handsFree.isActive ? "hand.raised.slash.fill" : "hand.raised.fill")
+                                .foregroundStyle(handsFree.isActive ? .green : .secondary)
+                        }
+                    }
+                }
+            }
+        }
+        .onChange(of: handsFree.state) { _, newState in
+            guard handsFree.isActive, let card = viewModel.currentCard else { return }
+            handleHandsFreeState(newState, card: card)
+        }
+        .onChange(of: viewModel.isSessionComplete) { _, complete in
+            if complete && handsFree.isActive {
+                handsFree.stop()
+                handsFreeTimer?.invalidate()
+                handsFreeTimer = nil
             }
         }
     }
@@ -113,12 +162,22 @@ struct ReviewSessionView: View {
                 sourceLanguageCode: deckMeta?.sourceLanguageCode ?? "en",
                 targetLanguageCode: deckMeta?.targetLanguageCode ?? "es",
                 examples: card.examples,
+                onMicTap: handsFree.isActive ? nil : { handleMicTap(card: card) },
+                isRecording: isRecording,
+                isProcessing: isProcessing,
+                audioLevel: audioLevel,
+                pronunciationResult: pronunciationResult,
+                disableFlip: handsFree.isActive,
                 isFlipped: Binding(
                     get: { viewModel.isFlipped },
                     set: {
                         viewModel.isFlipped = $0
                         if $0 {
                             hasRevealedCard = true
+                            if viewModel.flipResponseTime == nil {
+                                let rawTime = Date().timeIntervalSince(viewModel.cardShownAt)
+                                viewModel.flipResponseTime = max(0, rawTime - pronunciationTimeAccumulator)
+                            }
                             viewModel.introduceOnFlipIfNeeded(context: modelContext)
                         }
                     }
@@ -132,6 +191,12 @@ struct ReviewSessionView: View {
                     .allowsHitTesting(false)
                     .accessibilityHidden(true)
             )
+            .overlay {
+                if handsFree.isActive {
+                    handsFreeOverlay
+                        .allowsHitTesting(false)
+                }
+            }
             .offset(x: dragOffset)
             .rotationEffect(.degrees(Double(dragOffset) / 20), anchor: .bottom)
             .gesture(reviewDragGesture)
@@ -142,6 +207,8 @@ struct ReviewSessionView: View {
 
             if viewModel.mode == .learn {
                 learnButtons
+            } else if handsFree.isActive {
+                handsFreeBottomBar
             } else {
                 VStack(spacing: 12) {
                     reviewButtons
@@ -242,8 +309,357 @@ struct ReviewSessionView: View {
                 ratingFlash = nil
                 hasRevealedCard = false
                 dragOffset = 0
-                viewModel.submitRating(quality, context: modelContext)
+                isRecording = false
+                isProcessing = false
+                self.stopLevelPolling()
+                pronunciationResult = nil
+                pronunciationStartTime = nil
+                pronunciationTimeAccumulator = 0
+                viewModel.submitRating(quality, recallModality: "visual", context: modelContext)
             }
+        }
+    }
+
+    // MARK: - Pronunciation
+
+    private func handleMicTap(card: FlashCard) {
+        let manager = SpeechRecognitionManager.shared
+
+        if manager.isRecording {
+            manager.stopRecording()
+            isRecording = false
+            return
+        }
+
+        guard manager.hasPermissions else {
+            manager.requestPermissions { granted in
+                if granted {
+                    beginRecording(card: card)
+                }
+            }
+            return
+        }
+
+        beginRecording(card: card)
+    }
+
+    private func beginRecording(card: FlashCard) {
+        AudioServicesPlayAlertSound(1113)
+        withAnimation { pronunciationResult = nil }
+        isRecording = true
+        isProcessing = false
+        pronunciationStartTime = Date()
+
+        // Delay recording start so beep plays at full volume before audio session switches
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+            self.startLevelPolling()
+
+            SpeechRecognitionManager.shared.startRecording(
+                expectedText: card.targetText,
+                article: card.article
+            ) { result in
+                self.stopLevelPolling()
+                self.isRecording = false
+                self.isProcessing = false
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                    self.pronunciationResult = result
+                }
+
+                // Auto-play correct pronunciation if not excellent
+                if result.score < .excellent {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        let speechText: String
+                        if let article = card.article, !article.isEmpty {
+                            speechText = "\(article) \(card.targetText)"
+                        } else {
+                            speechText = card.targetText
+                        }
+                        PronunciationManager.shared.speak(speechText, languageCode: "es")
+                    }
+                }
+
+                // Clear result after 4 seconds, accumulate pronunciation time
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+                    withAnimation { self.pronunciationResult = nil }
+                    if let start = self.pronunciationStartTime {
+                        self.pronunciationTimeAccumulator += Date().timeIntervalSince(start)
+                        self.pronunciationStartTime = nil
+                    }
+                }
+            }
+        }
+    }
+
+    private func startLevelPolling() {
+        levelPollTimer?.invalidate()
+        levelPollTimer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true) { _ in
+            let manager = SpeechRecognitionManager.shared
+            audioLevel = manager.audioLevel
+            if manager.isProcessing && !isProcessing {
+                withAnimation(.easeInOut(duration: 0.2)) {
+                    isRecording = false
+                    isProcessing = true
+                }
+            }
+        }
+    }
+
+    private func stopLevelPolling() {
+        levelPollTimer?.invalidate()
+        levelPollTimer = nil
+        audioLevel = 0
+    }
+
+    // MARK: - Hands-Free Mode
+
+    private func startHandsFreeWithPermissions() {
+        let manager = SpeechRecognitionManager.shared
+        guard manager.hasPermissions else {
+            manager.requestPermissions { granted in
+                if granted {
+                    // Also need SFSpeech authorization for hands-free
+                    if SFSpeechRecognizer.authorizationStatus() == .authorized {
+                        handsFree.start()
+                    } else {
+                        SFSpeechRecognizer.requestAuthorization { status in
+                            DispatchQueue.main.async {
+                                if status == .authorized { handsFree.start() }
+                            }
+                        }
+                    }
+                }
+            }
+            return
+        }
+        // Also check SFSpeech auth since hands-free always uses SFSpeech
+        if SFSpeechRecognizer.authorizationStatus() != .authorized {
+            SFSpeechRecognizer.requestAuthorization { status in
+                DispatchQueue.main.async {
+                    if status == .authorized { handsFree.start() }
+                }
+            }
+            return
+        }
+        handsFree.start()
+    }
+
+    private func handleHandsFreeState(_ state: HandsFreeState, card: FlashCard) {
+        handsFreeTimer?.invalidate()
+        handsFreeTimer = nil
+
+        switch state {
+        case .idle:
+            break
+
+        case .speakingPrompt:
+            // Determine prompt text and language based on card direction
+            let showTargetFirst = viewModel.effectiveShowTargetFirst
+            let promptText: String
+            let promptLang: String
+
+            if showTargetFirst {
+                // Spanish shown first — speak the Spanish word
+                if let article = card.article, !article.isEmpty {
+                    promptText = "\(article) \(card.targetText)"
+                } else {
+                    promptText = card.targetText
+                }
+                promptLang = deckMeta?.targetLanguageCode ?? "es"
+            } else {
+                // English shown first — speak the English word
+                promptText = card.displaySourceText
+                promptLang = deckMeta?.sourceLanguageCode ?? "en"
+            }
+
+            PronunciationManager.shared.speak(promptText, languageCode: promptLang) {
+                guard self.handsFree.isActive else { return }
+                self.handsFree.state = .thinkPause
+            }
+
+        case .thinkPause:
+            handsFreeTimer = Timer.scheduledTimer(withTimeInterval: handsFree.thinkPauseDuration, repeats: false) { _ in
+                guard self.handsFree.isActive else { return }
+                // Play beep while still in .playback mode, then delay before recording starts
+                AudioServicesPlayAlertSound(1113)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                    guard self.handsFree.isActive else { return }
+                    self.handsFree.state = .listening
+                }
+            }
+
+        case .listening:
+            // Determine expected answer and locale
+            let showTargetFirst = viewModel.effectiveShowTargetFirst
+            let expectedAnswer: String
+            let listenLang: String
+
+            if showTargetFirst {
+                // Spanish shown, user says English
+                expectedAnswer = card.displaySourceText
+                listenLang = "en-US"
+            } else {
+                // English shown, user says Spanish — require article if present
+                if let article = card.article, !article.isEmpty {
+                    expectedAnswer = "\(article) \(card.targetText)"
+                } else {
+                    expectedAnswer = card.targetText
+                }
+                listenLang = "es-ES"
+            }
+
+            startLevelPolling()
+            SpeechRecognitionManager.shared.startHandsFreeRecording(
+                expectedAnswer: expectedAnswer,
+                languageCode: listenLang
+            ) { result in
+                self.stopLevelPolling()
+                guard self.handsFree.isActive else { return }
+                self.handsFree.recognizedText = result.recognizedText
+                self.handsFree.state = .showingResult(correct: result.isMatch)
+            }
+
+        case .showingResult(let correct):
+            // Flip to reveal answer
+            if !viewModel.isFlipped {
+                withAnimation(.easeInOut(duration: 0.4)) {
+                    viewModel.isFlipped = true
+                    hasRevealedCard = true
+                }
+                viewModel.flipResponseTime = handsFree.thinkPauseDuration
+            }
+
+            hapticGenerator.notificationOccurred(correct ? .success : .error)
+            if correct {
+                AudioServicesPlaySystemSound(1407) // Apple Pay success ding
+            }
+
+            // If wrong, speak the correct answer
+            if !correct {
+                let showTargetFirst = viewModel.effectiveShowTargetFirst
+                let correctText: String
+                let correctLang: String
+
+                if showTargetFirst {
+                    // Answer side is English
+                    correctText = card.displaySourceText
+                    correctLang = deckMeta?.sourceLanguageCode ?? "en"
+                } else {
+                    // Answer side is Spanish
+                    if let article = card.article, !article.isEmpty {
+                        correctText = "\(article) \(card.targetText)"
+                    } else {
+                        correctText = card.targetText
+                    }
+                    correctLang = deckMeta?.targetLanguageCode ?? "es"
+                }
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    PronunciationManager.shared.speak(correctText, languageCode: correctLang)
+                }
+            }
+
+            // Auto-advance after result display
+            handsFreeTimer = Timer.scheduledTimer(withTimeInterval: handsFree.resultDisplayDuration, repeats: false) { _ in
+                guard self.handsFree.isActive else { return }
+                // Submit rating and advance
+                var transaction = Transaction(animation: nil)
+                transaction.disablesAnimations = true
+                withTransaction(transaction) {
+                    self.hasRevealedCard = false
+                    self.dragOffset = 0
+                    self.viewModel.submitRating(correct ? 4 : 1, recallModality: "spoken", context: self.modelContext)
+                }
+                self.handsFree.state = .advancing
+            }
+
+        case .advancing:
+            if viewModel.isSessionComplete {
+                handsFree.stop()
+            } else {
+                // Brief pause before next card
+                handsFreeTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                    self.handsFree.beginNextCard()
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var handsFreeOverlay: some View {
+        VStack {
+            Spacer()
+            switch handsFree.state {
+            case .speakingPrompt:
+                Label("Listen...", systemImage: "speaker.wave.2.fill")
+                    .font(.headline)
+                    .foregroundStyle(.blue)
+                    .transition(.opacity)
+
+            case .thinkPause:
+                Text("Think...")
+                    .font(.headline)
+                    .foregroundStyle(.secondary)
+                    .symbolEffect(.pulse)
+                    .transition(.opacity)
+
+            case .listening:
+                VStack(spacing: 8) {
+                    Image(systemName: "mic.fill")
+                        .font(.title2)
+                        .foregroundStyle(.red)
+                        .symbolEffect(.pulse)
+                    AudioLevelBars(level: audioLevel)
+                        .frame(height: 24)
+                    Text("Say the answer...")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                .transition(.opacity)
+
+            case .showingResult(let correct):
+                VStack(spacing: 6) {
+                    Image(systemName: correct ? "checkmark.circle.fill" : "xmark.circle.fill")
+                        .font(.system(size: 36))
+                        .foregroundStyle(correct ? .green : .red)
+                    if !handsFree.recognizedText.isEmpty {
+                        Text("Heard: \"\(handsFree.recognizedText)\"")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                .transition(.scale.combined(with: .opacity))
+
+            default:
+                EmptyView()
+            }
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(
+            RoundedRectangle(cornerRadius: 20)
+                .fill(.ultraThinMaterial.opacity(handsFree.state == .idle || handsFree.state == .advancing ? 0 : 0.8))
+        )
+        .animation(.easeInOut(duration: 0.3), value: handsFree.state)
+    }
+
+    private var handsFreeBottomBar: some View {
+        VStack(spacing: 12) {
+            Text("Hands-Free Mode")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+
+            Button {
+                handsFree.stop()
+                handsFreeTimer?.invalidate()
+                handsFreeTimer = nil
+            } label: {
+                Label("Stop", systemImage: "stop.circle.fill")
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 14)
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(.orange)
+            .padding(.horizontal)
         }
     }
 
@@ -263,11 +679,11 @@ struct ReviewSessionView: View {
     private var reviewDragGesture: some Gesture {
         DragGesture(minimumDistance: 15)
             .onChanged { value in
-                guard viewModel.mode == .review && hasRevealedCard else { return }
+                guard viewModel.mode == .review && hasRevealedCard && !handsFree.isActive else { return }
                 dragOffset = value.translation.width
             }
             .onEnded { value in
-                guard viewModel.mode == .review && hasRevealedCard else {
+                guard viewModel.mode == .review && hasRevealedCard && !handsFree.isActive else {
                     withAnimation(.spring(response: 0.3)) { dragOffset = 0 }
                     return
                 }

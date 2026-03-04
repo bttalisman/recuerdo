@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import WidgetKit
 
 @main
 struct flashCardsApp: App {
@@ -47,11 +48,16 @@ struct flashCardsApp: App {
         }
         .modelContainer(sharedModelContainer)
         .onChange(of: scenePhase) { _, newPhase in
+            let container = sharedModelContainer
             if newPhase == .active {
-                let container = sharedModelContainer
                 DispatchQueue.global(qos: .utility).async {
                     let context = ModelContext(container)
                     NotificationManager.shared.rescheduleNotifications(context: context)
+                    WidgetStatsWriter.update(container: container)
+                }
+            } else if newPhase == .background {
+                DispatchQueue.global(qos: .utility).async {
+                    WidgetStatsWriter.update(container: container)
                 }
             }
         }

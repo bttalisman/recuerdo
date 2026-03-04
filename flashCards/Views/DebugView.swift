@@ -291,7 +291,8 @@ struct DebugView: View {
                     newEaseFactor: result.newEaseFactor,
                     studyMode: "free_review",
                     responseTimeSeconds: responseTime,
-                    cardDirection: reviewDirection
+                    cardDirection: reviewDirection,
+                    recallModality: "visual"
                 )
                 modelContext.insert(record)
 

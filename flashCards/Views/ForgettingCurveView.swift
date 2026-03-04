@@ -3,17 +3,18 @@ import SwiftData
 import Charts
 
 struct ForgettingCurveView: View {
-    @Query(sort: \ReviewRecord.reviewDate)
-    private var allReviews: [ReviewRecord]
-    @Query(filter: #Predicate<FlashCard> { $0.isTrashed != true })
-    private var allCards: [FlashCard]
+    @Environment(\.modelContext) private var modelContext
+    @State private var cachedCards: [FlashCard] = []
     @State private var selectedCard: FlashCard?
     @State private var searchText = ""
     @State private var showCurveInfo = false
     @State private var showTimingInfo = false
+    @State private var tierCurvesData: [TierCurveData] = []
+    @State private var actualPointsData: [ActualRetentionPoint] = []
+    @State private var isLoading = true
 
     private var reviewedCards: [FlashCard] {
-        allCards.filter { $0.totalReviews > 0 && $0.interval > 0 }
+        cachedCards.filter { $0.totalReviews > 0 && $0.interval > 0 }
     }
 
     private var filteredCards: [FlashCard] {
@@ -27,37 +28,79 @@ struct ForgettingCurveView: View {
 
     var body: some View {
         ScrollViewReader { proxy in
-            List {
-                Section {
-                    if let card = selectedCard {
-                        wordCurveSection(card)
-                            .id("curveChart")
-                            .subtleSectionGlow()
-                    } else {
-                        aggregateCurveSection
-                            .id("curveChart")
-                            .subtleSectionGlow()
+            Group {
+                if isLoading {
+                    ProgressView("Loading retention data…")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    List {
+                        Section {
+                            if let card = selectedCard {
+                                wordCurveSection(card)
+                                    .id("curveChart")
+                                    .subtleSectionGlow()
+                            } else {
+                                aggregateCurveSection
+                                    .id("curveChart")
+                                    .subtleSectionGlow()
+                            }
+                        }
+                        Section { summaryStatsSection.subtleSectionGlow() }
+                        Section { wordPickerSection(scrollProxy: proxy).subtleSectionGlow() }
                     }
                 }
-                Section { summaryStatsSection.subtleSectionGlow() }
-                Section { wordPickerSection(scrollProxy: proxy).subtleSectionGlow() }
             }
         }
         .navigationTitle("Word Retention")
         .navigationBarTitleDisplayMode(.large)
         .searchable(text: $searchText, prompt: "Search words...")
         .enhancedDarkContrast()
+        .onAppear { loadData() }
+    }
+
+    private func loadData() {
+        guard isLoading else { return }
+        // One-time fetch for the word picker (main context, so cards are interactive)
+        let cardDescriptor = FetchDescriptor<FlashCard>(
+            predicate: #Predicate<FlashCard> { $0.isTrashed != true }
+        )
+        cachedCards = (try? modelContext.fetch(cardDescriptor)) ?? []
+        print("[FCView] fetched \(cachedCards.count) cards for picker")
+
+        // Heavy computation on background context (no deadlock with main actor)
+        let container = modelContext.container
+        Task.detached {
+            let t0 = CFAbsoluteTimeGetCurrent()
+            let bgContext = ModelContext(container)
+            let bgCardDesc = FetchDescriptor<FlashCard>(
+                predicate: #Predicate<FlashCard> { $0.isTrashed != true }
+            )
+            let bgReviewDesc = FetchDescriptor<ReviewRecord>(
+                sortBy: [SortDescriptor(\ReviewRecord.reviewDate)]
+            )
+            let bgCards = (try? bgContext.fetch(bgCardDesc)) ?? []
+            let bgReviews = (try? bgContext.fetch(bgReviewDesc)) ?? []
+            let t1 = CFAbsoluteTimeGetCurrent()
+            print("[FCView] bg fetch: \(bgCards.count) cards, \(bgReviews.count) reviews in \(String(format: "%.3f", t1 - t0))s")
+
+            let tiers = ForgettingCurveCalculator.aggregateCurves(cards: bgCards)
+            let t2 = CFAbsoluteTimeGetCurrent()
+            print("[FCView] aggregateCurves: \(String(format: "%.3f", t2 - t1))s")
+
+            let points = ForgettingCurveCalculator.actualRetentionData(reviews: bgReviews)
+            let t3 = CFAbsoluteTimeGetCurrent()
+            print("[FCView] actualRetentionData: \(points.count) points in \(String(format: "%.3f", t3 - t2))s")
+
+            await MainActor.run {
+                tierCurvesData = tiers
+                actualPointsData = points
+                isLoading = false
+                print("[FCView] done, chart rendering now")
+            }
+        }
     }
 
     // MARK: - Aggregate Curve
-
-    private var tierCurves: [TierCurveData] {
-        ForgettingCurveCalculator.aggregateCurves(cards: allCards)
-    }
-
-    private var actualPoints: [ActualRetentionPoint] {
-        ForgettingCurveCalculator.actualRetentionData(reviews: allReviews)
-    }
 
     private var aggregateCurveSection: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -84,70 +127,78 @@ struct ForgettingCurveView: View {
                 .font(.caption)
                 .foregroundStyle(.secondary)
 
-            if tierCurves.isEmpty {
+            if tierCurvesData.isEmpty {
                 Text("Not enough reviewed cards to show curves.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, minHeight: 200)
             } else {
-                Chart {
-                    // Tier area curves — use series to separate tiers
-                    ForEach(tierCurves) { tier in
-                        ForEach(tier.curve) { point in
-                            LineMark(
-                                x: .value("Days", point.day),
-                                y: .value("Retention", point.retention),
-                                series: .value("Tier", tier.tier.rawValue)
-                            )
-                            .foregroundStyle(tierColor(tier.tier))
-                            .interpolationMethod(.catmullRom)
-                            .lineStyle(StrokeStyle(lineWidth: 2.5))
-                        }
-                    }
+                aggregateChart
+                aggregateLegend
+            }
+        }
+    }
 
-                    // Actual review scatter
-                    ForEach(actualPoints) { point in
-                        PointMark(
-                            x: .value("Days", point.daysSinceReview),
-                            y: .value("Outcome", point.wasCorrect ? 0.95 : 0.05)
-                        )
-                        .foregroundStyle(point.wasCorrect ? .green.opacity(0.7) : .red.opacity(0.7))
-                        .symbolSize(30)
-                    }
+    @ViewBuilder
+    private var aggregateChart: some View {
+        let tiers = tierCurvesData
+        let points = Array(actualPointsData.suffix(200))
+        Chart {
+            ForEach(tiers) { tier in
+                ForEach(tier.curve) { point in
+                    LineMark(
+                        x: .value("Days", point.day),
+                        y: .value("Retention", point.retention),
+                        series: .value("Tier", tier.tier.rawValue)
+                    )
+                    .foregroundStyle(tierColor(tier.tier))
+                    .interpolationMethod(.catmullRom)
+                    .lineStyle(StrokeStyle(lineWidth: 2.5))
                 }
-                .chartYScale(domain: 0...1)
-                .chartYAxis {
-                    AxisMarks(values: [0, 0.25, 0.5, 0.75, 1.0]) { value in
-                        AxisGridLine()
-                        AxisValueLabel {
-                            if let v = value.as(Double.self) {
-                                Text("\(Int(v * 100))%")
-                            }
-                        }
-                    }
-                }
-                .chartXAxisLabel("Days since review")
-                .frame(height: 250)
-                .padding(.top, 12)
-                .clipped()
-                .accessibilityElement(children: .ignore)
-                .accessibilityLabel(aggregateChartAccessibilityLabel)
+            }
 
-                // Legend
-                HStack(spacing: 16) {
-                    ForEach(tierCurves) { tier in
-                        HStack(spacing: 4) {
-                            Circle().fill(tierColor(tier.tier)).frame(width: 8, height: 8)
-                                .accessibilityHidden(true)
-                            Text("\(tier.tier.rawValue) (\(tier.cardCount))")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
+            ForEach(points) { point in
+                PointMark(
+                    x: .value("Days", point.daysSinceReview),
+                    y: .value("Outcome", point.wasCorrect ? 0.95 : 0.05)
+                )
+                .foregroundStyle(point.wasCorrect ? Color.green.opacity(0.7) : Color.red.opacity(0.7))
+                .symbolSize(30)
+            }
+        }
+        .chartYScale(domain: 0...1)
+        .chartYAxis {
+            AxisMarks(values: [0, 0.25, 0.5, 0.75, 1.0]) { value in
+                AxisGridLine()
+                AxisValueLabel {
+                    if let v = value.as(Double.self) {
+                        Text("\(Int(v * 100))%")
                     }
                 }
             }
         }
+        .chartXAxisLabel("Days since review")
+        .frame(height: 250)
+        .padding(.top, 12)
+        .clipped()
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(aggregateChartAccessibilityLabel)
     }
+
+    private var aggregateLegend: some View {
+        HStack(spacing: 16) {
+            ForEach(tierCurvesData) { tier in
+                HStack(spacing: 4) {
+                    Circle().fill(tierColor(tier.tier)).frame(width: 8, height: 8)
+                        .accessibilityHidden(true)
+                    Text("\(tier.tier.rawValue) (\(tier.cardCount))")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+        }
+    }
+
 
     // MARK: - Single Word Curve
 
@@ -251,12 +302,12 @@ struct ForgettingCurveView: View {
                 Text("Each word has a stability value (S) — the number of days it takes for your recall to drop to 90%. Higher stability means the memory lasts longer.\n\n\"Review by day X\" is the latest you should review words in that tier before retention drops below 90%. Recuerdo uses these values to schedule your reviews automatically.\n\nStrong words have high stability and can wait longer between reviews. Weak words fade faster and need more frequent practice.")
             }
 
-            if tierCurves.isEmpty {
+            if tierCurvesData.isEmpty {
                 Text("No data yet.")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             } else {
-                ForEach(tierCurves) { tier in
+                ForEach(tierCurvesData) { tier in
                     let optimalDay = ForgettingCurveCalculator.optimalReviewDay(stability: tier.averageStability)
                     HStack {
                         Circle().fill(tierColor(tier.tier)).frame(width: 10, height: 10)
@@ -331,8 +382,8 @@ struct ForgettingCurveView: View {
     // MARK: - Helpers
 
     private var aggregateChartAccessibilityLabel: String {
-        let tierSummaries = tierCurves.map { "\($0.tier.rawValue): \($0.cardCount) words" }
-        return "Memory decay chart with \(tierCurves.count) tiers. \(tierSummaries.joined(separator: ", "))"
+        let tierSummaries = tierCurvesData.map { "\($0.tier.rawValue): \($0.cardCount) words" }
+        return "Memory decay chart with \(tierCurvesData.count) tiers. \(tierSummaries.joined(separator: ", "))"
     }
 
     private func tierColor(_ tier: RetentionTier) -> Color {

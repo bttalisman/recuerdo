@@ -1,12 +1,15 @@
 import AVFoundation
 
-class PronunciationManager {
+class PronunciationManager: NSObject, AVSpeechSynthesizerDelegate {
     static let shared = PronunciationManager()
 
     private let synthesizer = AVSpeechSynthesizer()
     private var voiceCache: [String: AVSpeechSynthesisVoice] = [:]
+    private var speakCompletion: (() -> Void)?
 
-    private init() {
+    private override init() {
+        super.init()
+        synthesizer.delegate = self
         #if os(iOS)
         try? AVAudioSession.sharedInstance().setCategory(.playback, options: .duckOthers)
         #endif
@@ -33,8 +36,9 @@ class PronunciationManager {
         return voice
     }
 
-    func speak(_ text: String, languageCode: String) {
+    func speak(_ text: String, languageCode: String, completion: (() -> Void)? = nil) {
         synthesizer.stopSpeaking(at: .immediate)
+        speakCompletion = completion
 
         // Strip parenthetical hints like "to be (permanent)" → "to be"
         let cleaned = text.replacingOccurrences(
@@ -51,7 +55,18 @@ class PronunciationManager {
         synthesizer.speak(utterance)
     }
 
+    var isSpeaking: Bool { synthesizer.isSpeaking }
+
     func stop() {
+        speakCompletion = nil
         synthesizer.stopSpeaking(at: .immediate)
+    }
+
+    // MARK: - AVSpeechSynthesizerDelegate
+
+    func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
+        let cb = speakCompletion
+        speakCompletion = nil
+        DispatchQueue.main.async { cb?() }
     }
 }
