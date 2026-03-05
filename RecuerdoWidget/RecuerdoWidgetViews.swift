@@ -12,49 +12,49 @@ struct SmallWidgetView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 4) {
             HStack(spacing: 4) {
                 Image(systemName: "bolt.fill")
-                    .font(.caption)
+                    .font(.caption2)
                     .foregroundStyle(.yellow)
                 Text("Recuerdo")
-                    .font(.caption.bold())
+                    .font(.caption2.bold())
                     .foregroundStyle(.secondary)
             }
 
-            Spacer()
+            Spacer(minLength: 2)
 
             if stats.dueCount > 0 {
                 Text("\(stats.dueCount)")
-                    .font(.system(size: 44, weight: .bold, design: .rounded))
+                    .font(.system(size: 40, weight: .bold, design: .rounded))
                     .foregroundStyle(.orange)
                 Text(stats.dueCount == 1 ? "card due" : "cards due")
-                    .font(.caption)
+                    .font(.caption2)
                     .foregroundStyle(.secondary)
             } else {
                 Text("0")
-                    .font(.system(size: 44, weight: .bold, design: .rounded))
+                    .font(.system(size: 40, weight: .bold, design: .rounded))
                     .foregroundStyle(.green)
                 Text(hasStudiedToday ? "All caught up!" : "Study today")
-                    .font(.caption)
+                    .font(.caption2)
                     .foregroundStyle(.secondary)
             }
 
-            Spacer()
+            Spacer(minLength: 2)
 
             if stats.currentDayStreak > 0 {
-                HStack(spacing: 4) {
+                HStack(spacing: 3) {
                     Image(systemName: "flame.fill")
-                        .font(.caption2)
+                        .font(.system(size: 9))
                         .foregroundStyle(.orange)
-                    Text("\(stats.currentDayStreak) day streak")
-                        .font(.caption2)
+                    Text("\(stats.currentDayStreak)d streak")
+                        .font(.system(size: 10))
                         .foregroundStyle(.secondary)
                 }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .widgetURL(URL(string: "recuerdo://study"))
+        .widgetURL(URL(string: "recuerdo://quickreview"))
     }
 }
 

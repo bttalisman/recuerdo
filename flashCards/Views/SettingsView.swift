@@ -207,6 +207,13 @@ struct SettingsView: View {
                             set: { premiumManager.devOverride = $0 }
                         ))
                         .subtleSectionGlow()
+
+                        Button {
+                            NotificationManager.shared.sendTestNotification()
+                        } label: {
+                            Label("Send Test Notification", systemImage: "bell.badge")
+                        }
+                        .subtleSectionGlow()
                     }
                     #endif
 

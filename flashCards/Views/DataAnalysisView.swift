@@ -62,6 +62,7 @@ struct DataAnalysisView: View {
     @State private var showAccuracyInfo = false
     @State private var selectedZone: EngagementZone = .effortZone
     @State private var showEngagementInfo = false
+    @State private var showModalityInfo = false
 
     var body: some View {
         List {
@@ -72,6 +73,7 @@ struct DataAnalysisView: View {
             Section { responseTimeTrendSection.subtleSectionGlow() }
             Section { responseTimeByWordSection.subtleSectionGlow() }
             Section { directionComparisonSection.subtleSectionGlow() }
+            Section { modalitySection.subtleSectionGlow() }
             Section { timeOfDaySection.subtleSectionGlow() }
             Section { activityHeatmapSection.subtleSectionGlow() }
             Section { difficultyInsightsLink.subtleSectionGlow() }
@@ -870,6 +872,83 @@ struct DataAnalysisView: View {
                     }
                     ProgressView(value: item.total > 0 ? item.accuracy : 0)
                         .tint(item.total > 0 ? barColor(for: item.accuracy) : .gray)
+                }
+            }
+        }
+    }
+
+    // MARK: - Recall by Modality
+
+    private var accuracyByModality: [(modality: String, label: String, accuracy: Double, total: Int)] {
+        var byModality: [String: (correct: Int, total: Int)] = [:]
+
+        for review in allReviews {
+            let modality = review.recallModality
+            var entry = byModality[modality, default: (correct: 0, total: 0)]
+            entry.total += 1
+            if review.wasCorrect { entry.correct += 1 }
+            byModality[modality] = entry
+        }
+
+        return byModality.map { modality, counts in
+            let label: String
+            switch modality {
+            case "spoken": label = "Audio Review"
+            case "pronunciation": label = "Pronunciation"
+            default: label = "Visual Review"
+            }
+            return (modality: modality, label: label, accuracy: Double(counts.correct) / Double(counts.total), total: counts.total)
+        }
+        .filter { $0.total >= 3 }
+        .sorted { $0.label < $1.label }
+    }
+
+    private var modalitySection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Text("Recall by Modality")
+                    .font(.headline)
+                Button {
+                    showModalityInfo = true
+                } label: {
+                    Image(systemName: "info.circle")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Info")
+            }
+            .alert("About Recall Modality", isPresented: $showModalityInfo) {
+                Button("Got it", role: .cancel) { }
+            } message: {
+                Text("Visual Review: standard card flip where you see the answer.\n\nAudio Review: hands-free mode where the app speaks the prompt and you say the answer aloud.\n\nA lower accuracy in one mode doesn't mean it's less effective — harder recall (like speaking aloud) often builds stronger long-term memory. What matters is that you're exercising recall in different ways.\n\nMore reviews in each mode gives a more reliable comparison.\n\nTip: use both modes regularly on the same material for the best results.")
+            }
+            Text("How does review style affect retention?")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
+            if accuracyByModality.isEmpty {
+                Text("Not enough data yet. Try Audio Review to compare!")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .frame(maxWidth: .infinity, minHeight: 60)
+            } else {
+                ForEach(accuracyByModality, id: \.modality) { item in
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack {
+                            Text(item.label)
+                                .font(.subheadline)
+                            Spacer()
+                            Text("\(Int(item.accuracy * 100))%")
+                                .font(.subheadline.bold())
+                                .foregroundStyle(barColor(for: item.accuracy))
+                            Text("(\(item.total) reviews)")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        ProgressView(value: item.accuracy)
+                            .tint(barColor(for: item.accuracy))
+                    }
                 }
             }
         }

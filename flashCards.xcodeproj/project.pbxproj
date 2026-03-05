@@ -386,6 +386,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Recuerdo;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Recuerdo uses the microphone to listen to your pronunciation and provide feedback.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Recuerdo uses speech recognition to evaluate your Spanish pronunciation.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -435,6 +436,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Recuerdo;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Recuerdo uses the microphone to listen to your pronunciation and provide feedback.";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Recuerdo uses speech recognition to evaluate your Spanish pronunciation.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;

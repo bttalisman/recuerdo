@@ -58,28 +58,6 @@ class PronunciationManager: NSObject, AVSpeechSynthesizerDelegate {
         let voice = sorted.first ?? AVSpeechSynthesisVoice(language: languageCode)
         if let voice {
             voiceCache[languageCode] = voice
-            let qualityName: String
-            switch voice.quality {
-            case .default: qualityName = "default"
-            case .enhanced: qualityName = "enhanced"
-            case .premium: qualityName = "premium"
-            @unknown default: qualityName = "unknown"
-            }
-            print("[TTS] Selected voice for '\(languageCode)': \(voice.name) (\(voice.language)) quality=\(qualityName)")
-        } else {
-            print("[TTS] No voice found for '\(languageCode)'")
-        }
-        // Log all available voices for this language for comparison
-        print("[TTS] All voices for '\(languageCode)':")
-        for v in sorted {
-            let q: String
-            switch v.quality {
-            case .default: q = "default"
-            case .enhanced: q = "enhanced"
-            case .premium: q = "premium"
-            @unknown default: q = "unknown"
-            }
-            print("  - \(v.name) (\(v.language)) quality=\(q)")
         }
         return voice
     }
@@ -92,16 +70,13 @@ class PronunciationManager: NSObject, AVSpeechSynthesizerDelegate {
         let session = AVAudioSession.sharedInstance()
         if keepSessionActive {
             // Audio review: no ducking, just ensure playback is active
-            print("[AudioSession] PronMgr.speak keepActive=true → .playback mode=.default (no duck), setActive(true)")
             try? session.setCategory(.playback, mode: .default)
             try? session.setActive(true)
         } else {
             // Standalone tap: duck other apps, will deactivate in didFinish
-            print("[AudioSession] PronMgr.speak keepActive=false → .playback mode=.default + .duckOthers, setActive(true)")
             try? session.setCategory(.playback, mode: .default, options: .duckOthers)
             try? session.setActive(true)
         }
-        print("[AudioSession] PronMgr.speak after: category=\(session.category.rawValue) options=\(session.categoryOptions.rawValue) outputVol=\(session.outputVolume)")
         #endif
 
         // Strip parenthetical hints like "to be (permanent)" → "to be"
@@ -133,7 +108,6 @@ class PronunciationManager: NSObject, AVSpeechSynthesizerDelegate {
     }
 
     func stop() {
-        print("[AudioSession] PronMgr.stop() → keepActive reset to false, setActive(false)")
         speakCompletion = nil
         keepSessionActive = false
         synthesizer.stopSpeaking(at: .immediate)
@@ -149,10 +123,7 @@ class PronunciationManager: NSObject, AVSpeechSynthesizerDelegate {
         speakCompletion = nil
         #if os(iOS)
         if !keepSessionActive {
-            print("[AudioSession] PronMgr.didFinish keepActive=false → setActive(false)")
             try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
-        } else {
-            print("[AudioSession] PronMgr.didFinish keepActive=true → skipping deactivation")
         }
         #endif
         DispatchQueue.main.async { cb?() }

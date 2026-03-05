@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 import UserNotifications
 import SwiftData
 
@@ -6,12 +7,36 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     static let shared = NotificationManager()
     private let center = UNUserNotificationCenter.current()
 
+    static let categoryIdentifier = "REVIEW_DUE"
+    static let reviewAction = "REVIEW_ACTION"
+    static let audioReviewAction = "AUDIO_REVIEW_ACTION"
+
     /// Daytime check-point hours when we may send a notification
     private let checkHours = [9, 13, 18]
 
     private override init() {
         super.init()
         center.delegate = self
+        registerCategories()
+    }
+
+    private func registerCategories() {
+        let review = UNNotificationAction(
+            identifier: Self.reviewAction,
+            title: "Review",
+            options: .foreground
+        )
+        let audioReview = UNNotificationAction(
+            identifier: Self.audioReviewAction,
+            title: "Audio Review",
+            options: .foreground
+        )
+        let category = UNNotificationCategory(
+            identifier: Self.categoryIdentifier,
+            actions: [review, audioReview],
+            intentIdentifiers: []
+        )
+        center.setNotificationCategories([category])
     }
 
     // Show notifications even when the app is in the foreground
@@ -21,6 +46,44 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
         completionHandler([.banner, .sound, .badge])
+    }
+
+    enum PendingAction: String {
+        case review
+        case audioReview
+    }
+
+    /// Stored so cold-start can pick it up after UI is ready.
+    var pendingAction: PendingAction?
+
+    static let launchReviewNotification = Notification.Name("launchReview")
+    static let launchAudioReviewNotification = Notification.Name("launchAudioReview")
+
+    func userNotificationCenter(
+        _ center: UNUserNotificationCenter,
+        didReceive response: UNNotificationResponse,
+        withCompletionHandler completionHandler: @escaping () -> Void
+    ) {
+        let action: PendingAction?
+        switch response.actionIdentifier {
+        case Self.audioReviewAction:
+            action = .audioReview
+        case Self.reviewAction, UNNotificationDefaultActionIdentifier:
+            action = .review
+        default:
+            action = nil
+        }
+
+        if let action {
+            pendingAction = action
+            DispatchQueue.main.async {
+                let name = action == .audioReview
+                    ? Self.launchAudioReviewNotification
+                    : Self.launchReviewNotification
+                NotificationCenter.default.post(name: name, object: nil)
+            }
+        }
+        completionHandler()
     }
 
     func requestAuthorization() {
@@ -51,8 +114,9 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         content.title = "Recuerdo"
         content.body = "This is a test notification. Your words are waiting!"
         content.sound = .default
+        content.categoryIdentifier = Self.categoryIdentifier
 
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         let request = UNNotificationRequest(identifier: "test_\(UUID())", content: content, trigger: trigger)
         center.add(request)
     }
@@ -133,6 +197,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         }
         content.sound = .default
         content.badge = dueCount as NSNumber
+        content.categoryIdentifier = Self.categoryIdentifier
 
         var dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: day)
         dateComponents.hour = hour

@@ -3,6 +3,7 @@ import SwiftData
 import Speech
 import UIKit
 import AudioToolbox
+import AVFoundation
 
 /// Shared review/learn session view used by StudySessionView, WordListView, and DebugView.
 struct ReviewSessionView: View {
@@ -11,6 +12,7 @@ struct ReviewSessionView: View {
     let backLabel: String
     let onDismiss: () -> Void
     var deckMeta: DeckMetadata?
+    var autoStartHandsFree: Bool = false
 
     @Environment(\.modelContext) private var modelContext
     @State private var ratingFlash: RatingFlash?
@@ -59,6 +61,13 @@ struct ReviewSessionView: View {
             modelContext.autosaveEnabled = false
             snapshotVergeState()
             checkVoiceQuality()
+            if autoStartHandsFree {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    PronunciationManager.shared.keepSessionActive = true
+                    startHandsFreeWithPermissions()
+                    UIApplication.shared.isIdleTimerDisabled = true
+                }
+            }
         }
         .onDisappear {
             if handsFree.isActive { handsFree.stop() }
@@ -412,6 +421,12 @@ struct ReviewSessionView: View {
                             speechText = card.targetText
                         }
                         PronunciationManager.shared.speak(speechText, languageCode: "es")
+                    }
+                } else {
+                    // Excellent — no TTS will follow, so deactivate the ducking session
+                    // to prevent it from ducking subsequent TTS playback
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
                     }
                 }
 

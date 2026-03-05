@@ -51,21 +51,44 @@ struct ContentView: View {
             }
         }
         .onChange(of: showStartup) { _, isShowing in
-            if !isShowing, let url = pendingDeepLink {
-                pendingDeepLink = nil
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    handleDeepLink(url)
+            if !isShowing {
+                if let url = pendingDeepLink {
+                    pendingDeepLink = nil
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        handleDeepLink(url)
+                    }
+                }
+                if let action = NotificationManager.shared.pendingAction {
+                    NotificationManager.shared.pendingAction = nil
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        launchQuickReview(handsFree: action == .audioReview)
+                    }
                 }
             }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NotificationManager.launchReviewNotification)) { _ in
+            guard !showStartup else { return }
+            launchQuickReview(handsFree: false)
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NotificationManager.launchAudioReviewNotification)) { _ in
+            guard !showStartup else { return }
+            launchQuickReview(handsFree: true)
         }
         .fullScreenCover(item: $quickReviewViewModel) { vm in
             NavigationStack {
                 ReviewSessionView(
                     viewModel: vm,
-                    title: "Quick Review",
+                    title: vm.autoStartHandsFree ? "Audio Review" : "Quick Review",
                     backLabel: "Done",
-                    onDismiss: { quickReviewViewModel = nil },
-                    deckMeta: decks.first
+                    onDismiss: {
+                        quickReviewViewModel = nil
+                        let container = modelContext.container
+                        DispatchQueue.global(qos: .utility).async {
+                            WidgetStatsWriter.update(container: container)
+                        }
+                    },
+                    deckMeta: decks.first,
+                    autoStartHandsFree: vm.autoStartHandsFree
                 )
             }
         }
@@ -77,19 +100,36 @@ struct ContentView: View {
         case "study":
             selectedTab = 0
         case "quickreview":
-            launchQuickReview()
+            launchQuickReview(handsFree: false)
+        case "audioreview":
+            launchQuickReview(handsFree: true)
         default:
             selectedTab = 0
         }
     }
 
-    private func launchQuickReview() {
+    private func launchQuickReview(handsFree: Bool = false) {
         let cardDirection = decks.first?.cardDirection ?? "source_first"
 
-        // Fetch learning cards with low accuracy or broken streaks
         let descriptor = FetchDescriptor<FlashCard>()
         guard let allCards = try? modelContext.fetch(descriptor) else { return }
 
+        // Prioritize due cards
+        let now = Date()
+        let due = allCards.filter {
+            !$0.isTrashed && $0.status != "new" && $0.nextReviewDate != nil && $0.nextReviewDate! <= now
+        }
+        .prefix(10)
+
+        guard due.isEmpty else {
+            let vm = StudySessionViewModel()
+            vm.loadCustomReviewSession(cards: Array(due), cardDirection: cardDirection)
+            vm.autoStartHandsFree = handsFree
+            quickReviewViewModel = vm
+            return
+        }
+
+        // Fall back to at-risk cards if nothing is due
         let atRisk = allCards.filter { card in
             guard !card.isTrashed, card.status == "learning", card.totalReviews >= 3 else { return false }
             let accuracy = Double(card.totalCorrect) / Double(card.totalReviews)
@@ -98,22 +138,10 @@ struct ContentView: View {
         .sorted { $0.easeFactor < $1.easeFactor }
         .prefix(10)
 
-        guard !atRisk.isEmpty else {
-            // Fall back to due cards if no at-risk
-            let now = Date()
-            let due = allCards.filter {
-                !$0.isTrashed && $0.status != "new" && $0.nextReviewDate != nil && $0.nextReviewDate! <= now
-            }
-            .prefix(10)
-            guard !due.isEmpty else { selectedTab = 0; return }
-            let vm = StudySessionViewModel()
-            vm.loadCustomReviewSession(cards: Array(due), cardDirection: cardDirection)
-            quickReviewViewModel = vm
-            return
-        }
-
+        guard !atRisk.isEmpty else { selectedTab = 0; return }
         let vm = StudySessionViewModel()
         vm.loadCustomReviewSession(cards: Array(atRisk), cardDirection: cardDirection)
+        vm.autoStartHandsFree = handsFree
         quickReviewViewModel = vm
     }
 

@@ -23,6 +23,7 @@ class StudySessionViewModel: Identifiable {
     var flipResponseTime: Double? = nil
     var cardDirection: String = "source_first" // "source_first", "target_first", "mixed"
     var isCategorySession: Bool = false
+    var autoStartHandsFree: Bool = false
     private var mixedDirections: [String: Bool] = [:]
     private var pendingRecords: [ReviewRecord] = []
     var sessionRecordsFlushed: Bool = false

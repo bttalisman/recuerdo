@@ -6,6 +6,11 @@ import WidgetKit
 struct flashCardsApp: App {
     @Environment(\.scenePhase) private var scenePhase
 
+    init() {
+        // Set the notification delegate before the system delivers any pending response.
+        _ = NotificationManager.shared
+    }
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             FlashCard.self,
