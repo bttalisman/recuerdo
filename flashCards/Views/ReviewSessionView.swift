@@ -35,6 +35,8 @@ struct ReviewSessionView: View {
     @State private var pronunciationTimeAccumulator: Double = 0
     @State private var handsFree = HandsFreeController()
     @State private var handsFreeTimer: Timer? = nil
+    @State private var showVoiceAlert = false
+    @State private var voiceAlertLanguages = ""
     private let hapticGenerator = UINotificationFeedbackGenerator()
 
     var body: some View {
@@ -47,13 +49,21 @@ struct ReviewSessionView: View {
                 emptyStateView
             }
         }
+        .alert("Improve Voice Quality", isPresented: $showVoiceAlert) {
+            voiceAlertButtons
+        } message: {
+            Text(voiceAlertMessage)
+        }
         .onAppear {
             hapticGenerator.prepare()
             modelContext.autosaveEnabled = false
             snapshotVergeState()
+            checkVoiceQuality()
         }
         .onDisappear {
             if handsFree.isActive { handsFree.stop() }
+            UIApplication.shared.isIdleTimerDisabled = false
+            PronunciationManager.shared.keepSessionActive = false
             handsFreeTimer?.invalidate()
             viewModel.flushPendingRecords(context: modelContext)
             try? modelContext.save()
@@ -121,12 +131,23 @@ struct ReviewSessionView: View {
                                 handsFree.stop()
                                 handsFreeTimer?.invalidate()
                                 handsFreeTimer = nil
+                                UIApplication.shared.isIdleTimerDisabled = false
+                                PronunciationManager.shared.keepSessionActive = false
                             } else {
+                                PronunciationManager.shared.keepSessionActive = true
                                 startHandsFreeWithPermissions()
+                                UIApplication.shared.isIdleTimerDisabled = true
                             }
                         } label: {
-                            Image(systemName: handsFree.isActive ? "hand.raised.slash.fill" : "hand.raised.fill")
-                                .foregroundStyle(handsFree.isActive ? .green : .secondary)
+                            Label("Audio Review", systemImage: handsFree.isActive ? "waveform.circle.fill" : "waveform.circle")
+                                .font(.subheadline.bold())
+                                .foregroundStyle(handsFree.isActive ? .green : .blue)
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 5)
+                                .background(
+                                    Capsule()
+                                        .fill(handsFree.isActive ? Color.green.opacity(0.15) : Color.blue.opacity(0.1))
+                                )
                         }
                     }
                 }
@@ -141,8 +162,24 @@ struct ReviewSessionView: View {
                 handsFree.stop()
                 handsFreeTimer?.invalidate()
                 handsFreeTimer = nil
+                UIApplication.shared.isIdleTimerDisabled = false
+                PronunciationManager.shared.keepSessionActive = false
             }
         }
+    }
+
+    @ViewBuilder
+    private var voiceAlertButtons: some View {
+        Button("Open Settings") {
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url)
+            }
+        }
+        Button("Not Now", role: .cancel) {}
+    }
+
+    private var voiceAlertMessage: String {
+        "You can download enhanced \(voiceAlertLanguages) voices for much more natural pronunciation.\n\nSettings > Accessibility > Spoken Content > Voices"
     }
 
     // MARK: - Card View
@@ -410,7 +447,24 @@ struct ReviewSessionView: View {
         audioLevel = 0
     }
 
-    // MARK: - Hands-Free Mode
+    // MARK: - Voice Quality Check
+
+    private static let voiceAlertDismissedKey = "voiceQualityAlertDismissed"
+
+    private func checkVoiceQuality() {
+        guard !UserDefaults.standard.bool(forKey: Self.voiceAlertDismissedKey) else { return }
+        let langs = PronunciationManager.shared.languagesWithDefaultOnlyVoices(["en", "es"])
+        guard !langs.isEmpty else { return }
+        let names = langs.map { $0 == "en" ? "English" : "Spanish" }
+        voiceAlertLanguages = names.joined(separator: " and ")
+        UserDefaults.standard.set(true, forKey: Self.voiceAlertDismissedKey)
+        // Slight delay so it doesn't compete with the session appearing
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            showVoiceAlert = true
+        }
+    }
+
+    // MARK: - Audio Review Mode
 
     private func startHandsFreeWithPermissions() {
         let manager = SpeechRecognitionManager.shared
@@ -561,14 +615,11 @@ struct ReviewSessionView: View {
             // Auto-advance after result display
             handsFreeTimer = Timer.scheduledTimer(withTimeInterval: handsFree.resultDisplayDuration, repeats: false) { _ in
                 guard self.handsFree.isActive else { return }
-                // Submit rating and advance
-                var transaction = Transaction(animation: nil)
-                transaction.disablesAnimations = true
-                withTransaction(transaction) {
-                    self.hasRevealedCard = false
-                    self.dragOffset = 0
-                    self.viewModel.submitRating(correct ? 4 : 1, recallModality: "spoken", context: self.modelContext)
-                }
+
+                // Submit rating (this swaps to next card internally)
+                self.viewModel.submitRating(correct ? 4 : 1, recallModality: "spoken", context: self.modelContext)
+                self.hasRevealedCard = false
+                self.dragOffset = 0
                 self.handsFree.state = .advancing
             }
 
@@ -576,8 +627,8 @@ struct ReviewSessionView: View {
             if viewModel.isSessionComplete {
                 handsFree.stop()
             } else {
-                // Brief pause before next card
-                handsFreeTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { _ in
+                // Brief pause lets the new card render before TTS starts
+                handsFreeTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
                     self.handsFree.beginNextCard()
                 }
             }
@@ -644,7 +695,7 @@ struct ReviewSessionView: View {
 
     private var handsFreeBottomBar: some View {
         VStack(spacing: 12) {
-            Text("Hands-Free Mode")
+            Text("Audio Review")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
 

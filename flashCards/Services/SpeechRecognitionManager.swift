@@ -146,8 +146,13 @@ class SpeechRecognitionManager {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.recognitionTask = nil
-            try? AVAudioSession.sharedInstance().setCategory(.playback, options: .duckOthers)
+            let keepActive = PronunciationManager.shared.keepSessionActive
+            let duckOption: AVAudioSession.CategoryOptions = keepActive ? [] : .duckOthers
+            print("[AudioSession] SpeechMgr.stopRecording → .playback mode=.default keepActive=\(keepActive) duck=\(!keepActive)")
+            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: duckOption)
             try? AVAudioSession.sharedInstance().setActive(true)
+            let s = AVAudioSession.sharedInstance()
+            print("[AudioSession] SpeechMgr.stopRecording after: category=\(s.category.rawValue) mode=\(s.mode.rawValue) options=\(s.categoryOptions.rawValue) outputVol=\(s.outputVolume)")
         }
     }
 
@@ -176,9 +181,12 @@ class SpeechRecognitionManager {
 
         do {
             let audioSession = AVAudioSession.sharedInstance()
+            print("[AudioSession] SpeechMgr.startHandsFree → .playAndRecord, setActive(true)")
             try audioSession.setCategory(.playAndRecord, mode: .measurement, options: .defaultToSpeaker)
             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+            print("[AudioSession] SpeechMgr.startHandsFree after: category=\(audioSession.category.rawValue) options=\(audioSession.categoryOptions.rawValue) outputVol=\(audioSession.outputVolume)")
         } catch {
+            print("[AudioSession] SpeechMgr.startHandsFree FAILED: \(error)")
             completion(HandsFreeResult(recognizedText: "", isMatch: false))
             return
         }
@@ -199,6 +207,7 @@ class SpeechRecognitionManager {
                 if result.isFinal {
                     guard !hasCompleted else { return }
                     hasCompleted = true
+                    print("[AudioSession] SpeechMgr handsFree isFinal → stopRecording")
                     self?.stopRecording()
                     let match = Self.isHandsFreeMatch(recognized: latestTranscription, expected: expectedAnswer)
                     DispatchQueue.main.async {
@@ -209,6 +218,7 @@ class SpeechRecognitionManager {
 
             if let error, !hasCompleted {
                 hasCompleted = true
+                print("[AudioSession] SpeechMgr handsFree error → stopRecording: \(error.localizedDescription)")
                 self?.stopRecording()
                 let match = !latestTranscription.isEmpty && Self.isHandsFreeMatch(recognized: latestTranscription, expected: expectedAnswer)
                 DispatchQueue.main.async {
@@ -254,8 +264,13 @@ class SpeechRecognitionManager {
                 let match = !latestTranscription.isEmpty && Self.isHandsFreeMatch(recognized: latestTranscription, expected: expectedAnswer)
                 completion(HandsFreeResult(recognizedText: latestTranscription.isEmpty ? "" : latestTranscription, isMatch: match))
 
-                try? AVAudioSession.sharedInstance().setCategory(.playback, options: .duckOthers)
+                let keepActive = PronunciationManager.shared.keepSessionActive
+                let duckOption: AVAudioSession.CategoryOptions = keepActive ? [] : .duckOthers
+                print("[AudioSession] SpeechMgr.handsFreeTimeout → .playback mode=.default keepActive=\(keepActive) duck=\(!keepActive)")
+                try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: duckOption)
                 try? AVAudioSession.sharedInstance().setActive(true)
+                let s = AVAudioSession.sharedInstance()
+                print("[AudioSession] SpeechMgr.handsFreeTimeout after: category=\(s.category.rawValue) mode=\(s.mode.rawValue) options=\(s.categoryOptions.rawValue) outputVol=\(s.outputVolume)")
             }
         }
     }
@@ -358,7 +373,8 @@ class SpeechRecognitionManager {
                             self?.isProcessing = false
                             self?.stopAudioLevelMonitoring()
                             // Restore audio session to playback so TTS plays at full volume
-                            try? AVAudioSession.sharedInstance().setCategory(.playback, options: .duckOthers)
+                            let duckOption: AVAudioSession.CategoryOptions = PronunciationManager.shared.keepSessionActive ? [] : .duckOthers
+                            try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: duckOption)
                             try? AVAudioSession.sharedInstance().setActive(true)
                         }
                     }
@@ -423,7 +439,8 @@ class SpeechRecognitionManager {
                     self?.isRecording = false
                     self?.isProcessing = false
                     self?.stopAudioLevelMonitoring()
-                    try? AVAudioSession.sharedInstance().setCategory(.playback, options: .duckOthers)
+                    let duckOption: AVAudioSession.CategoryOptions = PronunciationManager.shared.keepSessionActive ? [] : .duckOthers
+                    try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: duckOption)
                     try? AVAudioSession.sharedInstance().setActive(true)
                     let fallback = Self.makeErrorResult(expectedText: expectedText, message: "(Azure error: \(error.localizedDescription))")
                     completion(fallback)
@@ -566,7 +583,8 @@ class SpeechRecognitionManager {
                     : Self.scoreSFSpeech(recognized: latestTranscription, expected: expectedText, article: article, confidence: latestConfidence)
                 completion(scored)
 
-                try? AVAudioSession.sharedInstance().setCategory(.playback, options: .duckOthers)
+                let duckOption: AVAudioSession.CategoryOptions = PronunciationManager.shared.keepSessionActive ? [] : .duckOthers
+                try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: duckOption)
                 try? AVAudioSession.sharedInstance().setActive(true)
             }
         }

@@ -10,6 +10,34 @@ struct WidgetStats: Codable {
     let currentDayStreak: Int
     let lastStudiedDate: Date?
     let lastUpdated: Date
+    var atRiskCount: Int
+
+    init(dueCount: Int, learningCount: Int, masteredCount: Int,
+         totalIntroduced: Int, unlockedWordCount: Int, currentDayStreak: Int,
+         lastStudiedDate: Date?, lastUpdated: Date, atRiskCount: Int = 0) {
+        self.dueCount = dueCount
+        self.learningCount = learningCount
+        self.masteredCount = masteredCount
+        self.totalIntroduced = totalIntroduced
+        self.unlockedWordCount = unlockedWordCount
+        self.currentDayStreak = currentDayStreak
+        self.lastStudiedDate = lastStudiedDate
+        self.lastUpdated = lastUpdated
+        self.atRiskCount = atRiskCount
+    }
+
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        dueCount = try c.decode(Int.self, forKey: .dueCount)
+        learningCount = try c.decode(Int.self, forKey: .learningCount)
+        masteredCount = try c.decode(Int.self, forKey: .masteredCount)
+        totalIntroduced = try c.decode(Int.self, forKey: .totalIntroduced)
+        unlockedWordCount = try c.decode(Int.self, forKey: .unlockedWordCount)
+        currentDayStreak = try c.decode(Int.self, forKey: .currentDayStreak)
+        lastStudiedDate = try c.decodeIfPresent(Date.self, forKey: .lastStudiedDate)
+        lastUpdated = try c.decode(Date.self, forKey: .lastUpdated)
+        atRiskCount = try c.decodeIfPresent(Int.self, forKey: .atRiskCount) ?? 0
+    }
 
     static let suiteName = "group.com.recuerdoapp.flash"
     static let key = "widgetStats"
@@ -36,7 +64,8 @@ struct WidgetStats: Codable {
             unlockedWordCount: 500,
             currentDayStreak: 0,
             lastStudiedDate: nil,
-            lastUpdated: Date()
+            lastUpdated: Date(),
+            atRiskCount: 0
         )
     }
 }

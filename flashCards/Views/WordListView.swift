@@ -14,6 +14,36 @@ enum WordSortOption: String, CaseIterable {
     case alphabetical = "A → Z"
 }
 
+enum POSFilter: String, CaseIterable {
+    case any = "Any"
+    case noun = "Nouns"
+    case verb = "Verbs"
+    case adjective = "Adjectives"
+    case adverb = "Adverbs"
+    case pronoun = "Pronouns"
+    case preposition = "Prepositions"
+    case conjunction = "Conjunctions"
+    case phrase = "Phrases"
+    case other = "Other"
+
+    func matches(_ partOfSpeech: String?) -> Bool {
+        guard self != .any else { return true }
+        guard let pos = partOfSpeech?.lowercased() else { return self == .other }
+        switch self {
+        case .any: return true
+        case .noun: return pos.hasPrefix("noun")
+        case .verb: return pos == "verb"
+        case .adjective: return pos == "adjective"
+        case .adverb: return pos == "adverb"
+        case .pronoun: return pos == "pronoun"
+        case .preposition: return pos == "preposition"
+        case .conjunction: return pos == "conjunction"
+        case .phrase: return pos == "phrase"
+        case .other: return !["noun", "verb", "adjective", "adverb", "pronoun", "preposition", "conjunction", "phrase"].contains(where: { pos.hasPrefix($0) })
+        }
+    }
+}
+
 struct WordListView: View {
     @Query(filter: #Predicate<FlashCard> { $0.status != "new" },
            sort: [SortDescriptor(\FlashCard.introducedDate, order: .reverse)])
@@ -31,6 +61,7 @@ struct WordListView: View {
     @State private var showReviewSetup = false
     @State private var viewModel: StudySessionViewModel?
     @State private var filterCategory: String? = nil
+    @State private var posFilter: POSFilter = .any
     private var isPremium: Bool { PremiumManager.shared.isPremium }
 
     private var availableCategories: [String] {
@@ -56,6 +87,9 @@ struct WordListView: View {
                 let parent = cat.split(separator: "/").first.map(String.init) ?? cat
                 return parent == filterCategory
             }
+        }
+        if posFilter != .any {
+            cards = cards.filter { posFilter.matches($0.partOfSpeech) }
         }
         if !searchText.isEmpty {
             let query = searchText.lowercased()
@@ -183,7 +217,14 @@ struct WordListView: View {
                     }
 
                     Section {
-                        Picker("Sort by", selection: $sortOption) {
+                        Picker("Part of Speech", selection: $posFilter) {
+                            ForEach(POSFilter.allCases, id: \.self) { pos in
+                                Text(pos.rawValue).tag(pos)
+                            }
+                        }
+                        .subtleSectionGlow()
+
+                        Picker("Sort", selection: $sortOption) {
                             ForEach(WordSortOption.allCases, id: \.self) { option in
                                 Text(option.rawValue).tag(option)
                             }

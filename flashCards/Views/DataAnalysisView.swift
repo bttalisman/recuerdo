@@ -397,28 +397,22 @@ struct DataAnalysisView: View {
                         y: .value("Type", item.pos)
                     )
                     .foregroundStyle(barColor(for: item.accuracy))
-                    .annotation(position: item.accuracy > 0.85 ? .overlay : .trailing, spacing: 4) {
-                        if item.accuracy > 0.85 {
-                            Text("\(Int(item.accuracy * 100))%")
-                                .font(.caption2.bold())
-                                .foregroundStyle(.white)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 2)
-                                .background(
-                                    Capsule()
-                                        .fill(
-                                            .linearGradient(
-                                                colors: [.clear, .black.opacity(0.4), .black.opacity(0.4), .clear],
-                                                startPoint: .leading,
-                                                endPoint: .trailing
-                                            )
-                                        )
-                                )
-                        } else {
-                            Text("\(Int(item.accuracy * 100))%")
-                                .font(.caption2)
-                                .foregroundStyle(.secondary)
-                        }
+                    .annotation(position: item.accuracy > 0.25 ? .overlay : .trailing, spacing: 4) {
+                        Text("\(Int(item.accuracy * 100))%")
+                            .font(.caption2.bold())
+                            .foregroundStyle(.primary)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 2)
+                            .background(
+                                item.accuracy > 0.25 ?
+                                AnyShapeStyle(
+                                    .linearGradient(
+                                        colors: [.clear, Color(uiColor: .systemBackground), Color(uiColor: .systemBackground), .clear],
+                                        startPoint: .leading,
+                                        endPoint: .trailing
+                                    )
+                                ) : AnyShapeStyle(.clear)
+                            )
                     }
                 }
                 .chartXScale(domain: 0...1)

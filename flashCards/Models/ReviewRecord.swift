@@ -14,7 +14,7 @@ final class ReviewRecord {
     var studyMode: String          // "free_review", "scheduled_review"
     var responseTimeSeconds: Double // seconds from card shown to rating
     var cardDirection: String      // "source_to_target" or "target_to_source"
-    var recallModality: String     // "visual", "spoken", "pronunciation"
+    var recallModality: String = "visual"  // "visual", "spoken", "pronunciation"
 
     init(card: FlashCard, reviewDate: Date, quality: Int,
          wasCorrect: Bool, previousInterval: Int, newInterval: Int,

@@ -7,13 +7,27 @@ class PronunciationManager: NSObject, AVSpeechSynthesizerDelegate {
     private var voiceCache: [String: AVSpeechSynthesisVoice] = [:]
     private var speakCompletion: (() -> Void)?
 
+    /// When true, the audio session stays active between utterances (for audio review mode).
+    var keepSessionActive = false
+
     private override init() {
         super.init()
         synthesizer.delegate = self
-        #if os(iOS)
-        try? AVAudioSession.sharedInstance().setCategory(.playback, options: .duckOthers)
-        #endif
     }
+
+    // Novelty/joke voices to exclude from auto-selection
+    private static let excludedVoices: Set<String> = [
+        "Bahh", "Albert", "Jester", "Organ", "Cellos", "Zarvox", "Bells",
+        "Trinoids", "Boing", "Whisper", "Good News", "Bad News", "Wobble",
+        "Bubbles", "Superstar", "Grandma", "Grandpa", "Fred", "Kathy",
+        "Junior", "Ralph"
+    ]
+
+    // Preferred locales when the language code is just "en" or "es"
+    private static let preferredLocales: [String: [String]] = [
+        "en": ["en-US", "en-GB"],
+        "es": ["es-MX", "es-ES"]
+    ]
 
     /// Find the best available voice for a language, preferring premium > enhanced > default.
     private func bestVoice(for languageCode: String) -> AVSpeechSynthesisVoice? {
@@ -22,16 +36,50 @@ class PronunciationManager: NSObject, AVSpeechSynthesizerDelegate {
         }
 
         let allVoices = AVSpeechSynthesisVoice.speechVoices()
-        let matching = allVoices.filter { $0.language.hasPrefix(languageCode) }
+        let matching = allVoices.filter {
+            $0.language.hasPrefix(languageCode) && !Self.excludedVoices.contains($0.name)
+        }
 
-        // Sort by quality: premium first, then enhanced, then default
+        let preferred = Self.preferredLocales[languageCode] ?? []
+
+        // Sort by: quality (premium > enhanced > default), then preferred locale, then name
         let sorted = matching.sorted { a, b in
-            a.quality.rawValue > b.quality.rawValue
+            if a.quality.rawValue != b.quality.rawValue {
+                return a.quality.rawValue > b.quality.rawValue
+            }
+            let aLocaleRank = preferred.firstIndex(of: a.language) ?? preferred.count
+            let bLocaleRank = preferred.firstIndex(of: b.language) ?? preferred.count
+            if aLocaleRank != bLocaleRank {
+                return aLocaleRank < bLocaleRank
+            }
+            return a.name < b.name
         }
 
         let voice = sorted.first ?? AVSpeechSynthesisVoice(language: languageCode)
         if let voice {
             voiceCache[languageCode] = voice
+            let qualityName: String
+            switch voice.quality {
+            case .default: qualityName = "default"
+            case .enhanced: qualityName = "enhanced"
+            case .premium: qualityName = "premium"
+            @unknown default: qualityName = "unknown"
+            }
+            print("[TTS] Selected voice for '\(languageCode)': \(voice.name) (\(voice.language)) quality=\(qualityName)")
+        } else {
+            print("[TTS] No voice found for '\(languageCode)'")
+        }
+        // Log all available voices for this language for comparison
+        print("[TTS] All voices for '\(languageCode)':")
+        for v in sorted {
+            let q: String
+            switch v.quality {
+            case .default: q = "default"
+            case .enhanced: q = "enhanced"
+            case .premium: q = "premium"
+            @unknown default: q = "unknown"
+            }
+            print("  - \(v.name) (\(v.language)) quality=\(q)")
         }
         return voice
     }
@@ -39,6 +87,22 @@ class PronunciationManager: NSObject, AVSpeechSynthesizerDelegate {
     func speak(_ text: String, languageCode: String, completion: (() -> Void)? = nil) {
         synthesizer.stopSpeaking(at: .immediate)
         speakCompletion = completion
+
+        #if os(iOS)
+        let session = AVAudioSession.sharedInstance()
+        if keepSessionActive {
+            // Audio review: no ducking, just ensure playback is active
+            print("[AudioSession] PronMgr.speak keepActive=true → .playback mode=.default (no duck), setActive(true)")
+            try? session.setCategory(.playback, mode: .default)
+            try? session.setActive(true)
+        } else {
+            // Standalone tap: duck other apps, will deactivate in didFinish
+            print("[AudioSession] PronMgr.speak keepActive=false → .playback mode=.default + .duckOthers, setActive(true)")
+            try? session.setCategory(.playback, mode: .default, options: .duckOthers)
+            try? session.setActive(true)
+        }
+        print("[AudioSession] PronMgr.speak after: category=\(session.category.rawValue) options=\(session.categoryOptions.rawValue) outputVol=\(session.outputVolume)")
+        #endif
 
         // Strip parenthetical hints like "to be (permanent)" → "to be"
         let cleaned = text.replacingOccurrences(
@@ -57,9 +121,25 @@ class PronunciationManager: NSObject, AVSpeechSynthesizerDelegate {
 
     var isSpeaking: Bool { synthesizer.isSpeaking }
 
+    /// Returns language codes (e.g. "en", "es") that only have default-quality voices.
+    func languagesWithDefaultOnlyVoices(_ languageCodes: [String]) -> [String] {
+        let allVoices = AVSpeechSynthesisVoice.speechVoices()
+        return languageCodes.filter { code in
+            let matching = allVoices.filter {
+                $0.language.hasPrefix(code) && !Self.excludedVoices.contains($0.name)
+            }
+            return !matching.contains { $0.quality != .default }
+        }
+    }
+
     func stop() {
+        print("[AudioSession] PronMgr.stop() → keepActive reset to false, setActive(false)")
         speakCompletion = nil
+        keepSessionActive = false
         synthesizer.stopSpeaking(at: .immediate)
+        #if os(iOS)
+        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        #endif
     }
 
     // MARK: - AVSpeechSynthesizerDelegate
@@ -67,6 +147,14 @@ class PronunciationManager: NSObject, AVSpeechSynthesizerDelegate {
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {
         let cb = speakCompletion
         speakCompletion = nil
+        #if os(iOS)
+        if !keepSessionActive {
+            print("[AudioSession] PronMgr.didFinish keepActive=false → setActive(false)")
+            try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        } else {
+            print("[AudioSession] PronMgr.didFinish keepActive=true → skipping deactivation")
+        }
+        #endif
         DispatchQueue.main.async { cb?() }
     }
 }

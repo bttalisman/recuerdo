@@ -31,6 +31,13 @@ struct WidgetStatsWriter {
         reviewDescriptor.fetchLimit = 1
         let lastStudied = try? context.fetch(reviewDescriptor).first?.reviewDate
 
+        // At-risk: learning cards with low accuracy or broken streaks
+        let atRiskCount = activeCards.filter { card in
+            guard card.status == "learning", card.totalReviews >= 3 else { return false }
+            let accuracy = Double(card.totalCorrect) / Double(card.totalReviews)
+            return accuracy < 0.7 || card.currentStreak == 0
+        }.count
+
         let stats = WidgetStats(
             dueCount: dueCount,
             learningCount: learningCount,
@@ -39,7 +46,8 @@ struct WidgetStatsWriter {
             unlockedWordCount: unlockedWordCount,
             currentDayStreak: dayStreak,
             lastStudiedDate: lastStudied,
-            lastUpdated: now
+            lastUpdated: now,
+            atRiskCount: atRiskCount
         )
 
         WidgetStats.save(stats)

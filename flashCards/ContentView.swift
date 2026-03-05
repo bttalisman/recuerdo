@@ -8,6 +8,8 @@ struct ContentView: View {
     @State private var showStartup = true
     @State private var selectedTab = 0
     @State private var loadedTabs: Set<Int> = [0]
+    @State private var pendingDeepLink: URL?
+    @State private var quickReviewViewModel: StudySessionViewModel?
 
     private var colorScheme: ColorScheme? {
         switch appearance {
@@ -16,6 +18,9 @@ struct ContentView: View {
         default: return nil
         }
     }
+
+    @Environment(\.modelContext) private var modelContext
+    @Query private var decks: [DeckMetadata]
 
     var body: some View {
         ZStack {
@@ -38,6 +43,78 @@ struct ContentView: View {
             }
         }
         .preferredColorScheme(colorScheme)
+        .onOpenURL { url in
+            if showStartup {
+                pendingDeepLink = url
+            } else {
+                handleDeepLink(url)
+            }
+        }
+        .onChange(of: showStartup) { _, isShowing in
+            if !isShowing, let url = pendingDeepLink {
+                pendingDeepLink = nil
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    handleDeepLink(url)
+                }
+            }
+        }
+        .fullScreenCover(item: $quickReviewViewModel) { vm in
+            NavigationStack {
+                ReviewSessionView(
+                    viewModel: vm,
+                    title: "Quick Review",
+                    backLabel: "Done",
+                    onDismiss: { quickReviewViewModel = nil },
+                    deckMeta: decks.first
+                )
+            }
+        }
+    }
+
+    private func handleDeepLink(_ url: URL) {
+        guard url.scheme == "recuerdo" else { return }
+        switch url.host {
+        case "study":
+            selectedTab = 0
+        case "quickreview":
+            launchQuickReview()
+        default:
+            selectedTab = 0
+        }
+    }
+
+    private func launchQuickReview() {
+        let cardDirection = decks.first?.cardDirection ?? "source_first"
+
+        // Fetch learning cards with low accuracy or broken streaks
+        let descriptor = FetchDescriptor<FlashCard>()
+        guard let allCards = try? modelContext.fetch(descriptor) else { return }
+
+        let atRisk = allCards.filter { card in
+            guard !card.isTrashed, card.status == "learning", card.totalReviews >= 3 else { return false }
+            let accuracy = Double(card.totalCorrect) / Double(card.totalReviews)
+            return accuracy < 0.7 || card.currentStreak == 0
+        }
+        .sorted { $0.easeFactor < $1.easeFactor }
+        .prefix(10)
+
+        guard !atRisk.isEmpty else {
+            // Fall back to due cards if no at-risk
+            let now = Date()
+            let due = allCards.filter {
+                !$0.isTrashed && $0.status != "new" && $0.nextReviewDate != nil && $0.nextReviewDate! <= now
+            }
+            .prefix(10)
+            guard !due.isEmpty else { selectedTab = 0; return }
+            let vm = StudySessionViewModel()
+            vm.loadCustomReviewSession(cards: Array(due), cardDirection: cardDirection)
+            quickReviewViewModel = vm
+            return
+        }
+
+        let vm = StudySessionViewModel()
+        vm.loadCustomReviewSession(cards: Array(atRisk), cardDirection: cardDirection)
+        quickReviewViewModel = vm
     }
 
     private var mainContent: some View {

@@ -73,91 +73,135 @@ struct MediumWidgetView: View {
         return Calendar.current.isDateInToday(last)
     }
 
+    private var dueColor: Color { stats.dueCount > 0 ? .orange : .green }
+    private var dueLabel: String {
+        stats.dueCount > 0
+            ? "\(stats.dueCount) due"
+            : (hasStudiedToday ? "All caught up" : "Study today")
+    }
+
+    private var quickReviewLabel: String {
+        stats.atRiskCount > 0
+            ? "Review \(min(stats.atRiskCount, 10)) At Risk"
+            : "Quick Review"
+    }
+
     var body: some View {
-        HStack(spacing: 16) {
-            // Left: due count
-            VStack(alignment: .leading, spacing: 4) {
-                HStack(spacing: 4) {
-                    Image(systemName: "bolt.fill")
-                        .font(.caption)
-                        .foregroundStyle(.yellow)
-                    Text("Recuerdo")
-                        .font(.caption.bold())
-                        .foregroundStyle(.secondary)
-                }
-
-                Spacer()
-
-                if stats.dueCount > 0 {
-                    Text("\(stats.dueCount)")
-                        .font(.system(size: 44, weight: .bold, design: .rounded))
-                        .foregroundStyle(.orange)
-                    Text(stats.dueCount == 1 ? "card due" : "cards due")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                } else {
-                    Text("0")
-                        .font(.system(size: 44, weight: .bold, design: .rounded))
-                        .foregroundStyle(.green)
-                    Text(hasStudiedToday ? "All caught up!" : "Study today")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-
-                Spacer()
-
-                if stats.currentDayStreak > 0 {
+        VStack(spacing: 0) {
+            // Top: header + stats
+            VStack(spacing: 8) {
+                // Header row
+                HStack {
                     HStack(spacing: 4) {
-                        Image(systemName: "flame.fill")
-                            .font(.caption2)
-                            .foregroundStyle(.orange)
-                        Text("\(stats.currentDayStreak)d streak")
-                            .font(.caption2)
+                        Image(systemName: "bolt.fill")
+                            .font(.caption)
+                            .foregroundStyle(.yellow)
+                        Text("Recuerdo")
+                            .font(.caption.bold())
                             .foregroundStyle(.secondary)
                     }
-                }
-            }
-
-            // Right: progress breakdown
-            VStack(alignment: .leading, spacing: 8) {
-                Spacer()
-
-                HStack(spacing: 6) {
-                    Circle()
-                        .fill(.orange)
-                        .frame(width: 8, height: 8)
-                    Text("Learning")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
                     Spacer()
-                    Text("\(stats.learningCount)")
-                        .font(.caption.bold())
+                    if stats.currentDayStreak > 0 {
+                        HStack(spacing: 3) {
+                            Image(systemName: "flame.fill")
+                                .font(.caption2)
+                                .foregroundStyle(.orange)
+                            Text("\(stats.currentDayStreak)d")
+                                .font(.caption2.bold())
+                                .foregroundStyle(.secondary)
+                        }
+                    }
                 }
 
-                HStack(spacing: 6) {
-                    Circle()
-                        .fill(.green)
-                        .frame(width: 8, height: 8)
-                    Text("Mastered")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                    Spacer()
-                    Text("\(stats.masteredCount)")
-                        .font(.caption.bold())
+                // Stats row
+                HStack(spacing: 0) {
+                    // Due count
+                    VStack(spacing: 1) {
+                        Text("\(stats.dueCount)")
+                            .font(.system(size: 28, weight: .bold, design: .rounded))
+                            .foregroundStyle(dueColor)
+                        Text("due")
+                            .font(.system(size: 10))
+                            .foregroundStyle(.secondary)
+                    }
+                    .frame(maxWidth: .infinity)
+
+                    // Divider
+                    RoundedRectangle(cornerRadius: 0.5)
+                        .fill(.quaternary)
+                        .frame(width: 1, height: 28)
+
+                    // Learning
+                    VStack(spacing: 1) {
+                        Text("\(stats.learningCount)")
+                            .font(.system(size: 28, weight: .bold, design: .rounded))
+                            .foregroundStyle(.orange)
+                        Text("learning")
+                            .font(.system(size: 10))
+                            .foregroundStyle(.secondary)
+                    }
+                    .frame(maxWidth: .infinity)
+
+                    // Divider
+                    RoundedRectangle(cornerRadius: 0.5)
+                        .fill(.quaternary)
+                        .frame(width: 1, height: 28)
+
+                    // Mastered
+                    VStack(spacing: 1) {
+                        Text("\(stats.masteredCount)")
+                            .font(.system(size: 28, weight: .bold, design: .rounded))
+                            .foregroundStyle(.green)
+                        Text("mastered")
+                            .font(.system(size: 10))
+                            .foregroundStyle(.secondary)
+                    }
+                    .frame(maxWidth: .infinity)
                 }
 
-                VStack(alignment: .leading, spacing: 2) {
+                // Progress bar
+                VStack(spacing: 2) {
                     ProgressView(value: progress)
                         .tint(progress >= 0.8 ? .green : .blue)
-                    Text("\(stats.totalIntroduced)/\(stats.unlockedWordCount) words")
+                    Text("\(stats.totalIntroduced) of \(stats.unlockedWordCount) words introduced")
                         .font(.system(size: 9))
                         .foregroundStyle(.tertiary)
                 }
+            }
 
-                Spacer()
+            Spacer(minLength: 6)
+
+            // Bottom: action buttons
+            HStack(spacing: 8) {
+                Link(destination: URL(string: "recuerdo://study")!) {
+                    HStack(spacing: 4) {
+                        Image(systemName: "book.fill")
+                            .font(.system(size: 11))
+                        Text("Study")
+                            .font(.system(size: 12, weight: .semibold))
+                    }
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
+                    .background(RoundedRectangle(cornerRadius: 10).fill(.blue))
+                }
+
+                Link(destination: URL(string: "recuerdo://quickreview")!) {
+                    HStack(spacing: 4) {
+                        Image(systemName: "bolt.fill")
+                            .font(.system(size: 11))
+                        Text(quickReviewLabel)
+                            .font(.system(size: 12, weight: .semibold))
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.8)
+                    }
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
+                    .background(RoundedRectangle(cornerRadius: 10).fill(.orange))
+                }
             }
         }
-        .widgetURL(URL(string: "recuerdo://study"))
     }
 }
 
@@ -189,7 +233,8 @@ struct MediumWidgetView: View {
         unlockedWordCount: 500,
         currentDayStreak: 5,
         lastStudiedDate: Date(),
-        lastUpdated: Date()
+        lastUpdated: Date(),
+        atRiskCount: 7
     ))
 }
 

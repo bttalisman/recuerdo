@@ -87,8 +87,8 @@ struct FlashCardView: View {
                     .foregroundStyle(.secondary)
                 if let partOfSpeech, !partOfSpeech.isEmpty {
                     Text(partOfSpeech)
-                        .font(.caption2)
-                        .foregroundStyle(.tertiary)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                 }
             }
 
