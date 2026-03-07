@@ -202,7 +202,7 @@ struct FlashCardView: View {
         .padding(32)
         .background(
             RoundedRectangle(cornerRadius: 20)
-                .fill(.background)
+                .fill(Color(uiColor: .secondarySystemBackground))
                 .shadow(color: .black.opacity(0.1), radius: 10, y: 5)
         )
         .overlay(

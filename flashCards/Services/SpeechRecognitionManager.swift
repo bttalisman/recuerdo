@@ -265,8 +265,10 @@ class SpeechRecognitionManager {
     private static let spanishArticles: Set<String> = ["el", "la", "los", "las", "un", "una", "unos", "unas"]
 
     private static func isHandsFreeMatch(recognized: String, expected: String) -> Bool {
-        // Multiple definitions (e.g. "manner, way") — match any one
-        let definitions = expected.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
+        // Multiple definitions (e.g. "manner, way" or "order; sequence") — match any one
+        let definitions = expected.components(separatedBy: CharacterSet(charactersIn: ",;"))
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .filter { !$0.isEmpty }
         if definitions.count > 1 {
             return definitions.contains { isHandsFreeMatch(recognized: recognized, expected: $0) }
         }

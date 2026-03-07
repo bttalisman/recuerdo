@@ -150,7 +150,7 @@ struct ContentView: View {
             StudySessionView()
                 .tag(0)
                 .tabItem {
-                    Label("Study", image: "StudyIcon")
+                    Label("Study", systemImage: "bolt.square.fill")
                 }
 
             LazyTab(isLoaded: loadedTabs.contains(1)) { WordListView() }

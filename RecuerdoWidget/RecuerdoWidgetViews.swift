@@ -172,13 +172,13 @@ struct MediumWidgetView: View {
             Spacer(minLength: 6)
 
             // Bottom: action buttons
-            HStack(spacing: 8) {
+            HStack(spacing: 6) {
                 Link(destination: URL(string: "recuerdo://study")!) {
-                    HStack(spacing: 4) {
+                    HStack(spacing: 3) {
                         Image(systemName: "book.fill")
-                            .font(.system(size: 11))
+                            .font(.system(size: 10))
                         Text("Study")
-                            .font(.system(size: 12, weight: .semibold))
+                            .font(.system(size: 11, weight: .semibold))
                     }
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
@@ -187,18 +187,29 @@ struct MediumWidgetView: View {
                 }
 
                 Link(destination: URL(string: "recuerdo://quickreview")!) {
-                    HStack(spacing: 4) {
+                    HStack(spacing: 3) {
                         Image(systemName: "bolt.fill")
-                            .font(.system(size: 11))
-                        Text(quickReviewLabel)
-                            .font(.system(size: 12, weight: .semibold))
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.8)
+                            .font(.system(size: 10))
+                        Text("Review")
+                            .font(.system(size: 11, weight: .semibold))
                     }
                     .foregroundStyle(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 8)
                     .background(RoundedRectangle(cornerRadius: 10).fill(.orange))
+                }
+
+                Link(destination: URL(string: "recuerdo://audioreview")!) {
+                    HStack(spacing: 3) {
+                        Image(systemName: "waveform.circle.fill")
+                            .font(.system(size: 10))
+                        Text("Audio")
+                            .font(.system(size: 11, weight: .semibold))
+                    }
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
+                    .background(RoundedRectangle(cornerRadius: 10).fill(.green))
                 }
             }
         }

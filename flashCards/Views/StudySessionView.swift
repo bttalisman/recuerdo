@@ -3,6 +3,7 @@ import SwiftData
 
 struct StudySessionView: View {
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.scenePhase) private var scenePhase
     @State private var viewModel: StudySessionViewModel?
     @State private var justUnlocked = false
     @State private var showCategoryBrowser = false
@@ -110,6 +111,9 @@ struct StudySessionView: View {
         }
         .onAppear { loadCardStats() }
         .onChange(of: activeDeckId) { _, _ in loadCardStats() }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active { loadCardStats() }
+        }
         .fullScreenCover(item: $viewModel) { (vm: StudySessionViewModel) in
             NavigationStack {
                 sessionView(viewModel: vm)
