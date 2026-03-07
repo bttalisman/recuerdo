@@ -80,7 +80,10 @@ class StudySessionViewModel: Identifiable {
         flipResponseTime = nil
         generateMixedDirections()
 
-        introduceCurrentCard(context: context)
+        // Defer introduction so the card renders and is interactive before @Model mutations fire
+        DispatchQueue.main.async {
+            self.introduceCurrentCard(context: context)
+        }
     }
 
     func advanceToNextCard(context: ModelContext) {
