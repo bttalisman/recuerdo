@@ -265,6 +265,12 @@ class SpeechRecognitionManager {
     private static let spanishArticles: Set<String> = ["el", "la", "los", "las", "un", "una", "unos", "unas"]
 
     private static func isHandsFreeMatch(recognized: String, expected: String) -> Bool {
+        // Multiple definitions (e.g. "manner, way") — match any one
+        let definitions = expected.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }
+        if definitions.count > 1 {
+            return definitions.contains { isHandsFreeMatch(recognized: recognized, expected: $0) }
+        }
+
         let normRecognized = normalize(recognized)
         // Strip leading "to " for English verb hints
         let strippedExpected = expected.hasPrefix("to ") ? String(expected.dropFirst(3)) : expected
@@ -305,7 +311,35 @@ class SpeechRecognitionManager {
         let distance = levenshteinDistance(normRecognized, normExpected)
         let maxLen = max(normRecognized.count, normExpected.count)
         let ratio = maxLen > 0 ? Double(distance) / Double(maxLen) : 1.0
-        return ratio <= 0.25
+        if ratio <= 0.25 { return true }
+
+        // Order-independent: check that every expected word appears in recognized words
+        return constituentWordsMatch(recognized: normRecognized, expected: normExpected)
+    }
+
+    /// Checks whether all constituent words in `expected` appear somewhere in `recognized`,
+    /// regardless of order. Each expected word is fuzzy-matched (≤25% Levenshtein) against
+    /// recognized words. Articles are required to match exactly.
+    private static func constituentWordsMatch(recognized: String, expected: String) -> Bool {
+        let recognizedWords = recognized.split(separator: " ").map(String.init)
+        let expectedWords = expected.split(separator: " ").map(String.init)
+
+        guard expectedWords.count > 1, !recognizedWords.isEmpty else { return false }
+
+        for expectedWord in expectedWords {
+            let isArticle = spanishArticles.contains(expectedWord)
+            let matched = recognizedWords.contains { recWord in
+                if isArticle {
+                    return recWord == expectedWord
+                }
+                if recWord == expectedWord { return true }
+                let dist = levenshteinDistance(recWord, expectedWord)
+                let maxLen = max(recWord.count, expectedWord.count)
+                return maxLen > 0 && Double(dist) / Double(maxLen) <= 0.25
+            }
+            if !matched { return false }
+        }
+        return true
     }
 
     // MARK: - Azure Path
@@ -399,14 +433,6 @@ class SpeechRecognitionManager {
                     let completeness = pronResult?.completenessScore ?? 0
                     let fluency = pronResult?.fluencyScore ?? 0
                     let recognized = result.text ?? ""
-
-                    print("[AZURE] Pronunciation scores:")
-                    print("[AZURE]   Accuracy:      \(accuracy)")
-                    print("[AZURE]   Pronunciation: \(pronScore)")
-                    print("[AZURE]   Completeness:  \(completeness)")
-                    print("[AZURE]   Fluency:       \(fluency)")
-                    print("[AZURE]   Recognized:    '\(recognized)'")
-
 
                     let tier = Self.tierFromAzureAccuracy(accuracy)
 
@@ -670,9 +696,26 @@ class SpeechRecognitionManager {
     // MARK: - Helpers
 
     private static func normalize(_ text: String) -> String {
-        text.lowercased()
+        let base = text.lowercased()
             .folding(options: .diacriticInsensitive, locale: .current)
             .trimmingCharacters(in: .whitespacesAndNewlines)
+        // Expand digit tokens to spelled-out words so "10" matches "ten"
+        let words = base.split(separator: " ").map { token -> String in
+            let s = String(token)
+            if let number = Int(s) {
+                return numberToWords(number) ?? s
+            }
+            return s
+        }
+        return words.joined(separator: " ")
+    }
+
+    /// Convert an integer to its English spelled-out form (e.g. 10 → "ten").
+    private static func numberToWords(_ n: Int) -> String? {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .spellOut
+        formatter.locale = Locale(identifier: "en_US")
+        return formatter.string(from: NSNumber(value: n))
     }
 
     private static func levenshteinDistance(_ s: String, _ t: String) -> Int {

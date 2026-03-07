@@ -364,8 +364,14 @@ struct DataAnalysisView: View {
 
         for review in allReviews {
             guard let rawPOS = review.card?.partOfSpeech, !rawPOS.isEmpty else { continue }
-            // Normalize: "noun (f)", "noun (m)" → "noun"
-            let pos = rawPOS.split(separator: " ").first.map(String.init) ?? rawPOS
+            // Normalize: "noun (f)", "noun (m)" → "noun"; keep "past participle" intact
+            let trimmed = rawPOS.trimmingCharacters(in: .whitespaces)
+            let pos: String
+            if trimmed.contains("(") {
+                pos = trimmed.split(separator: " ").first.map(String.init) ?? trimmed
+            } else {
+                pos = trimmed
+            }
             var entry = byPOS[pos, default: (correct: 0, total: 0)]
             entry.total += 1
             if review.wasCorrect { entry.correct += 1 }

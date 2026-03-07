@@ -597,9 +597,11 @@ struct ReviewSessionView: View {
                 viewModel.flipResponseTime = handsFree.thinkPauseDuration
             }
 
-            hapticGenerator.notificationOccurred(correct ? .success : .error)
             if correct {
-                AudioServicesPlaySystemSound(1407) // Apple Pay success ding
+                // Delay so audio session has switched back from recording mode
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                    AudioServicesPlaySystemSound(1407)
+                }
             }
 
             // If wrong, speak the correct answer
@@ -609,11 +611,9 @@ struct ReviewSessionView: View {
                 let correctLang: String
 
                 if showTargetFirst {
-                    // Answer side is English
                     correctText = card.displaySourceText
                     correctLang = deckMeta?.sourceLanguageCode ?? "en"
                 } else {
-                    // Answer side is Spanish
                     if let article = card.article, !article.isEmpty {
                         correctText = "\(article) \(card.targetText)"
                     } else {
@@ -628,24 +628,49 @@ struct ReviewSessionView: View {
             }
 
             // Auto-advance after result display
-            handsFreeTimer = Timer.scheduledTimer(withTimeInterval: handsFree.resultDisplayDuration, repeats: false) { _ in
+            let isLastCard = correct && viewModel.sessionCards.count == 1
+            let lastCardDelay: TimeInterval = isLastCard ? 1.5 : handsFree.resultDisplayDuration
+
+            handsFreeTimer = Timer.scheduledTimer(withTimeInterval: lastCardDelay, repeats: false) { _ in
                 guard self.handsFree.isActive else { return }
 
-                // Submit rating (this swaps to next card internally)
-                self.viewModel.submitRating(correct ? 4 : 1, recallModality: "spoken", context: self.modelContext)
-                self.hasRevealedCard = false
-                self.dragOffset = 0
-                self.handsFree.state = .advancing
+                // Stop any TTS still playing without deactivating the audio session
+                PronunciationManager.shared.cancelSpeaking()
+
+                if isLastCard {
+                    // Last card — skip flip-back/settle animations, go straight to completion
+                    self.viewModel.submitRating(correct ? 4 : 1, recallModality: "spoken", context: self.modelContext)
+                    self.hasRevealedCard = false
+                    self.dragOffset = 0
+                    self.handsFree.stop()
+                    return
+                }
+
+                // Step 1: Animate the flip back
+                withAnimation(.easeInOut(duration: 0.25)) {
+                    self.viewModel.isFlipped = false
+                }
+                // Step 2: After flip-back, submit rating (swaps card) with a crossfade
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    guard self.handsFree.isActive else { return }
+                    withAnimation(.easeInOut(duration: 0.3)) {
+                        self.viewModel.submitRating(correct ? 4 : 1, recallModality: "spoken", context: self.modelContext)
+                        self.hasRevealedCard = false
+                        self.dragOffset = 0
+                    }
+                    // Step 3: Let the new card settle before advancing
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                        guard self.handsFree.isActive else { return }
+                        self.handsFree.state = .advancing
+                    }
+                }
             }
 
         case .advancing:
             if viewModel.isSessionComplete {
                 handsFree.stop()
             } else {
-                // Brief pause lets the new card render before TTS starts
-                handsFreeTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false) { _ in
-                    self.handsFree.beginNextCard()
-                }
+                handsFree.beginNextCard()
             }
         }
     }

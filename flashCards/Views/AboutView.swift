@@ -10,7 +10,7 @@ struct AboutView: View {
                     Text("Spanish Flashcards")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
-                    Text("Version 1.0")
+                    Text("Version 1.1")
                         .font(.caption)
                         .foregroundStyle(.tertiary)
                 }
@@ -32,6 +32,24 @@ struct AboutView: View {
                     name: "Anki Shared Decks",
                     url: "https://ankiweb.net/shared/decks",
                     description: "Core vocabulary word list",
+                    license: nil
+                )
+                .subtleSectionGlow()
+            }
+
+            Section("Speech & Pronunciation") {
+                creditRow(
+                    name: "Microsoft Azure Speech Services",
+                    url: "https://azure.microsoft.com/products/ai-services/speech-services",
+                    description: "Pronunciation assessment and scoring",
+                    license: nil
+                )
+                .subtleSectionGlow()
+
+                creditRow(
+                    name: "Apple SFSpeechRecognizer",
+                    url: "https://developer.apple.com/documentation/speech",
+                    description: "On-device speech recognition for hands-free review",
                     license: nil
                 )
                 .subtleSectionGlow()

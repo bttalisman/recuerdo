@@ -116,6 +116,13 @@ class PronunciationManager: NSObject, AVSpeechSynthesizerDelegate {
         #endif
     }
 
+    /// Stop current speech without deactivating the audio session.
+    /// Use during hands-free mode to cancel TTS mid-utterance while keeping audio alive.
+    func cancelSpeaking() {
+        speakCompletion = nil
+        synthesizer.stopSpeaking(at: .immediate)
+    }
+
     // MARK: - AVSpeechSynthesizerDelegate
 
     func speechSynthesizer(_ synthesizer: AVSpeechSynthesizer, didFinish utterance: AVSpeechUtterance) {

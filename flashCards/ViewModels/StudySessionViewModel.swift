@@ -267,13 +267,16 @@ class StudySessionViewModel: Identifiable {
 
             if sessionDone {
                 self.flushPendingRecords(context: context)
-                try? context.save()
-                self.sessionRecordsFlushed = true
-                let container = context.container
-                DispatchQueue.global(qos: .utility).async {
-                    let bgContext = ModelContext(container)
-                    NotificationManager.shared.rescheduleNotifications(context: bgContext)
-                    WidgetStatsWriter.update(container: container)
+                // Yield a frame so the completion screen renders before the save blocks main thread
+                DispatchQueue.main.async {
+                    try? context.save()
+                    self.sessionRecordsFlushed = true
+                    let container = context.container
+                    DispatchQueue.global(qos: .utility).async {
+                        let bgContext = ModelContext(container)
+                        NotificationManager.shared.rescheduleNotifications(context: bgContext)
+                        WidgetStatsWriter.update(container: container)
+                    }
                 }
             }
         }
