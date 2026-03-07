@@ -272,11 +272,18 @@ class SpeechRecognitionManager {
         }
 
         let normRecognized = normalize(recognized)
+        // Strip parenthetical hints like "hundred (num)" → "hundred"
+        let cleanedExpected = expected.replacingOccurrences(
+            of: "\\s*\\(.*?\\)", with: "", options: .regularExpression
+        ).trimmingCharacters(in: .whitespaces)
         // Strip leading "to " for English verb hints
-        let strippedExpected = expected.hasPrefix("to ") ? String(expected.dropFirst(3)) : expected
+        let strippedExpected = cleanedExpected.hasPrefix("to ") ? String(cleanedExpected.dropFirst(3)) : cleanedExpected
         let normExpected = normalize(strippedExpected)
 
         guard !normRecognized.isEmpty, !normExpected.isEmpty else { return false }
+
+        // Number equivalence (e.g. "1000" ↔ "mil", "10" ↔ "ten")
+        if numbersMatch(recognized: normRecognized, expected: normExpected) { return true }
 
         // Exact match
         if normRecognized == normExpected { return true }
@@ -696,26 +703,32 @@ class SpeechRecognitionManager {
     // MARK: - Helpers
 
     private static func normalize(_ text: String) -> String {
-        let base = text.lowercased()
+        text.lowercased()
             .folding(options: .diacriticInsensitive, locale: .current)
             .trimmingCharacters(in: .whitespacesAndNewlines)
-        // Expand digit tokens to spelled-out words so "10" matches "ten"
-        let words = base.split(separator: " ").map { token -> String in
-            let s = String(token)
-            if let number = Int(s) {
-                return numberToWords(number) ?? s
-            }
-            return s
-        }
-        return words.joined(separator: " ")
     }
 
-    /// Convert an integer to its English spelled-out form (e.g. 10 → "ten").
-    private static func numberToWords(_ n: Int) -> String? {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .spellOut
-        formatter.locale = Locale(identifier: "en_US")
-        return formatter.string(from: NSNumber(value: n))
+    /// Try to interpret a string as a number — either digits ("1000") or
+    /// spelled-out words in English ("one thousand") or Spanish ("mil").
+    private static func parseNumber(_ text: String) -> Int? {
+        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        // Direct digit parsing
+        if let n = Int(trimmed) { return n }
+        // Try spelled-out in English and Spanish
+        for localeId in ["en_US", "es_ES"] {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .spellOut
+            formatter.locale = Locale(identifier: localeId)
+            if let n = formatter.number(from: trimmed) { return n.intValue }
+        }
+        return nil
+    }
+
+    /// Check if recognized and expected represent the same number
+    /// (e.g. "1000" vs "mil", "10" vs "ten").
+    private static func numbersMatch(recognized: String, expected: String) -> Bool {
+        guard let r = parseNumber(recognized), let e = parseNumber(expected) else { return false }
+        return r == e
     }
 
     private static func levenshteinDistance(_ s: String, _ t: String) -> Int {

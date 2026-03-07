@@ -24,6 +24,7 @@ enum POSFilter: String, CaseIterable {
     case preposition = "Prepositions"
     case conjunction = "Conjunctions"
     case phrase = "Phrases"
+    case numeral = "Numbers"
     case other = "Other"
 
     func matches(_ partOfSpeech: String?) -> Bool {
@@ -39,7 +40,8 @@ enum POSFilter: String, CaseIterable {
         case .preposition: return pos == "preposition"
         case .conjunction: return pos == "conjunction"
         case .phrase: return pos == "phrase"
-        case .other: return !["noun", "verb", "adjective", "adverb", "pronoun", "preposition", "conjunction", "phrase"].contains(where: { pos.hasPrefix($0) })
+        case .numeral: return pos == "numeral"
+        case .other: return !["noun", "verb", "adjective", "adverb", "pronoun", "preposition", "conjunction", "phrase", "numeral"].contains(where: { pos.hasPrefix($0) })
         }
     }
 }
