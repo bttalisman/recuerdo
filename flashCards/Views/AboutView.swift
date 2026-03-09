@@ -10,7 +10,7 @@ struct AboutView: View {
                     Text("Spanish Flashcards")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
-                    Text("Version 1.1")
+                    Text("Version 2.0")
                         .font(.caption)
                         .foregroundStyle(.tertiary)
                 }
