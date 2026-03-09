@@ -119,6 +119,7 @@ struct ContentView: View {
         let due = allCards.filter {
             !$0.isTrashed && $0.status != "new" && $0.nextReviewDate != nil && $0.nextReviewDate! <= now
         }
+        .shuffled()
         .prefix(10)
 
         guard due.isEmpty else {
@@ -136,6 +137,8 @@ struct ContentView: View {
             return accuracy < 0.7 || card.currentStreak == 0
         }
         .sorted { $0.easeFactor < $1.easeFactor }
+        .prefix(20)
+        .shuffled()
         .prefix(10)
 
         guard !atRisk.isEmpty else { selectedTab = 0; return }
