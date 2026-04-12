@@ -9353,7 +9353,7 @@
     },
     {
       "id": "en_es_0318",
-      "source": "to hear",
+      "source": "to hear (perceive sound)",
       "target": "oír",
       "article": null,
       "partOfSpeech": "verb",
@@ -17128,7 +17128,7 @@
     },
     {
       "id": "en_es_0567",
-      "source": "to hear",
+      "source": "to hear (listen to)",
       "target": "escuchar",
       "partOfSpeech": "verb",
       "category": "actions",
